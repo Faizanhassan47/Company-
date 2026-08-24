@@ -1,0 +1,118 @@
+/* Manifesto Section Styling */
+
+.manifesto-section {
+  background-color: var(--bg-main);
+}
+
+.manifesto-header-block {
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.manifesto-heading {
+  font-size: clamp(2.2rem, 5.2vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Measurement Calibration Progress */
+.manifesto-calibration-wrapper {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 16px 0 20px;
+}
+
+.manifesto-scale-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.manifesto-progress-track {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.manifesto-progress-indicator {
+  height: 100%;
+  background-color: var(--accent-orange);
+  position: relative;
+  transition: width 0.1s linear;
+}
+
+.progress-needle-dot {
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-orange);
+  border-radius: 50%;
+}
+
+/* Narrative Copy Split */
+.manifesto-copy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.manifesto-lead-quote {
+  border-left: 2px solid var(--accent-orange);
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lead-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.quote-origin {
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-top: 20px;
+}
+
+.origin-sep {
+  color: var(--accent-orange);
+}
+
+.manifesto-body-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.manifesto-body-text {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.manifesto-body-subtext {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 850px) {
+  .manifesto-copy-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

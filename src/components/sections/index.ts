@@ -1,0 +1,9 @@
+export { HeroSection } from './Hero/HeroSection';
+export { ManifestoSection } from './Manifesto/ManifestoSection';
+export { ServicesSection } from './Services/ServicesSection';
+export { SelectedWorkSection } from './SelectedWork/SelectedWorkSection';
+export { WhyTekmoraSection } from './WhyTekmora/WhyTekmoraSection';
+export { ProcessSection } from './Process/ProcessSection';
+export { CapabilitiesSection } from './Capabilities/CapabilitiesSection';
+export { FounderSection } from './Founder/FounderSection';
+export { ContactSection } from './Contact/ContactSection';

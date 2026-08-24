@@ -1,0 +1,59 @@
+/* Custom Precision Cursor */
+
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-orange);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate3d(-100px, -100px, 0);
+  margin-top: -5px;
+  margin-left: -5px;
+  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cursor-follower.cursor-pointer {
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  margin-left: -11px;
+  background-color: rgba(255, 77, 28, 0.2);
+  border: 1px solid var(--accent-orange);
+}
+
+.custom-cursor-follower.cursor-view {
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+  background-color: var(--accent-orange);
+  border-radius: 50%;
+}
+
+.cursor-label {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  user-select: none;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-follower {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-follower { display: none !important; }
+}

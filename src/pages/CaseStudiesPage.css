@@ -1,0 +1,30 @@
+.case-studies-page { background: var(--bg-main); }
+.case-studies-intro { padding-top: clamp(8rem, 15vw, 13rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
+.case-studies-eyebrow { margin-bottom: 28px; }
+.case-studies-title { font-size: clamp(3.4rem, 9vw, 9rem); line-height: .9; max-width: 1050px; margin-bottom: 34px; }
+.case-studies-title .italic-accent { font-size: 1.02em; }
+.case-studies-lead { max-width: 620px; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.7; }
+.case-studies-filter-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); }
+.case-studies-filter-header .section-meta { margin: 0; padding-bottom: 18px; }
+.case-studies-count { color: var(--text-dim); font-size: 11px; }
+.case-studies-filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 24px 0 48px; }
+.case-filter-btn { color: var(--text-secondary); border: 1px solid var(--border-subtle); padding: 10px 14px; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; transition: all var(--transition-fast); }
+.case-filter-btn:hover, .case-filter-btn.is-active { color: var(--bg-main); background: var(--accent-orange); border-color: var(--accent-orange); }
+.case-study-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 4rem) 24px; }
+.product-card { border: 1px solid var(--border-subtle); background: var(--bg-secondary); transition: border-color var(--transition-base), transform var(--transition-base); }
+.product-card:hover { border-color: var(--border-medium); transform: translateY(-4px); }
+.product-card-visual { display: block; position: relative; overflow: hidden; min-height: 310px; background: #0d0d0d; }
+.product-card-visual .system-graphic { min-height: 310px; height: 100%; }
+.product-card-overlay { position: absolute; right: 18px; top: 18px; display: grid; place-items: center; width: 42px; height: 42px; color: var(--text-primary); background: var(--accent-orange); opacity: 0; transform: translateY(8px); transition: opacity var(--transition-fast), transform var(--transition-fast); }
+.product-card:hover .product-card-overlay { opacity: 1; transform: translateY(0); }
+.product-card-content { padding: 24px; }
+.product-card-meta { display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-size: 10px; text-transform: uppercase; }
+.product-card-year { margin-left: auto; }
+.product-card-title { font-size: clamp(1.5rem, 2.5vw, 2.2rem); margin: 20px 0 10px; }
+.product-card-title a { transition: color var(--transition-fast); }
+.product-card-title a:hover { color: var(--accent-orange); }
+.product-card-tagline { min-height: 54px; }
+.product-card-outcome { display: flex; gap: 8px; align-items: flex-start; margin: 22px 0; padding: 14px 0; border-top: 1px dashed var(--border-subtle); border-bottom: 1px dashed var(--border-subtle); color: var(--text-primary); font-size: .88rem; line-height: 1.5; }
+.product-card-outcome svg { flex: 0 0 auto; margin-top: 2px; }
+.product-card-link { color: var(--accent-orange); font-size: 11px; }
+@media (max-width: 760px) { .case-study-grid { grid-template-columns: 1fr; } .case-studies-filter-header { align-items: flex-start; flex-direction: column; gap: 8px; } .case-studies-count { padding-bottom: 18px; } .product-card-visual, .product-card-visual .system-graphic { min-height: 240px; } }

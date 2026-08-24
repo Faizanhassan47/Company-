@@ -1,0 +1,18 @@
+@import './styles/global.css';
+@import './styles/visuals.css';
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}

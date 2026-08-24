@@ -1,0 +1,214 @@
+/* Hero Section Styling */
+
+.hero-section {
+  position: relative;
+  min-height: min(900px, 100svh);
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: 60px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-background);
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+/* Top Meta */
+.hero-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.meta-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-meta-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.meta-sep {
+  color: var(--text-dim);
+}
+
+/* Display Headline */
+.hero-headline-wrapper {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.hero-headline {
+  font-size: var(--font-size-hero);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.headline-row {
+  display: block;
+}
+
+.hero-headline .italic-accent {
+  font-size: 1.04em;
+  display: inline-block;
+  color: var(--accent-orange);
+}
+
+/* Abstract System Calibration Diagram */
+.hero-system-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding: 18px 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.diagram-layer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.layer-tag {
+  width: 170px;
+  flex-shrink: 0;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.layer-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 77, 28, 0.3) 50%, rgba(255, 255, 255, 0.08) 100%);
+  position: relative;
+}
+
+.layer-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--accent-orange);
+  border-radius: 50%;
+  position: absolute;
+  left: 60%;
+  top: -2px;
+}
+
+.layer-coord {
+  width: 70px;
+  text-align: right;
+  color: var(--text-dim);
+}
+
+/* Bottom Split Layout */
+.hero-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: flex-end;
+}
+
+.hero-description {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+  max-width: 640px;
+}
+
+.hero-capabilities-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.cap-item {
+  color: var(--text-secondary);
+}
+
+.cap-dot {
+  color: var(--accent-orange);
+}
+
+.hero-actions-column {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.hero-btn {
+  padding: 16px 28px;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .hero-top-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .hero-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .hero-actions-column {
+    justify-content: flex-start;
+  }
+  .layer-tag {
+    width: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section { min-height: auto; padding-top: calc(var(--header-height) + 24px); padding-bottom: 40px; }
+  .hero-top-meta { padding-bottom: 16px; margin-bottom: 32px; }
+  .hero-meta-right { flex-wrap: wrap; font-size: 9px; gap: 6px; }
+  .hero-headline { font-size: clamp(2.8rem, 14vw, 5rem); line-height: .92; }
+  .hero-system-diagram { margin-bottom: 32px; padding: 14px 0; gap: 10px; }
+  .diagram-layer { gap: 8px; font-size: 8px; }
+  .layer-tag { width: 105px; font-size: 8px; }
+  .layer-coord { width: 52px; font-size: 8px; }
+  .hero-description { font-size: 1rem; }
+  .hero-actions-column { flex-direction: column; gap: 10px; }
+  .hero-btn { width: 100%; }
+}
