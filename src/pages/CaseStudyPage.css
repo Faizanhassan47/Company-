@@ -18,6 +18,35 @@
   align-items: center;
   font-size: 11px;
   margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.case-header-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.case-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.case-share-btn:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  background: var(--bg-hover);
 }
 
 .back-link {
@@ -96,14 +125,164 @@
   font-weight: 600;
 }
 
+/* High-Impact Performance Metrics Strip */
+.case-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.kpi-card {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+}
+
+.kpi-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  background: var(--accent-orange-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-val {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.kpi-lbl {
+  font-size: 9px;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+/* Sticky TOC Bar */
+.case-sticky-toc-bar {
+  position: sticky;
+  top: var(--header-height);
+  z-index: var(--z-sticky);
+  background-color: rgba(9, 9, 9, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 0;
+  transition: all var(--transition-fast);
+}
+
+:root[data-theme='light'] .case-sticky-toc-bar {
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+.toc-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.toc-container::-webkit-scrollbar {
+  display: none;
+}
+
+.toc-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.toc-links-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.toc-pill {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.toc-pill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+  background: var(--bg-hover);
+}
+
+.toc-pill.is-active {
+  color: var(--accent-orange);
+  background: var(--accent-orange-dim);
+  border-color: var(--accent-orange);
+  font-weight: 600;
+}
+
 /* Visual Showcase */
 .case-visual-section {
-  background-color: #0b0b0b;
+  background-color: var(--bg-main);
 }
 
 .case-visual-container {
   max-width: 1080px;
   margin: 0 auto;
+}
+
+.case-study-hero-img-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  background: var(--bg-card);
+}
+
+.case-study-hero-img {
+  width: 100%;
+  height: auto;
+  max-height: 580px;
+  object-fit: cover;
+  display: block;
+}
+
+.case-img-meta-tag {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(11, 15, 25, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xs);
+  padding: 6px 12px;
+  font-size: 10px;
+  color: #F8FAFC;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.case-img-meta-tag .live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-orange);
 }
 
 /* Body Content */
@@ -168,7 +347,7 @@
   flex-direction: column;
   gap: 10px;
   margin-top: 10px;
-  background-color: #0b0b0b;
+  background-color: var(--bg-card);
   padding: 18px;
   border-radius: var(--radius-xs);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -281,7 +460,7 @@
 /* Next Project Footer */
 .next-project-section {
   padding: 60px 0 80px;
-  background-color: #060606;
+  background-color: var(--bg-main);
 }
 
 .next-project-wrapper {

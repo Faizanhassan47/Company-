@@ -1,9 +1,15 @@
 export { HeroSection } from './Hero/HeroSection';
+export { TrustEcosystemSection } from './TrustEcosystem/TrustEcosystemSection';
 export { ManifestoSection } from './Manifesto/ManifestoSection';
-export { ServicesSection } from './Services/ServicesSection';
 export { SelectedWorkSection } from './SelectedWork/SelectedWorkSection';
-export { WhyTekmoraSection } from './WhyTekmora/WhyTekmoraSection';
+export { PhilosophySection } from './Philosophy/PhilosophySection';
+export { ServicesSection } from './Services/ServicesSection';
+export { TechRadarSection } from './TechRadar/TechRadarSection';
+export { BusinessProblemsSection } from './BusinessProblems/BusinessProblemsSection';
 export { ProcessSection } from './Process/ProcessSection';
 export { CapabilitiesSection } from './Capabilities/CapabilitiesSection';
-export { FounderSection } from './Founder/FounderSection';
+export { TestimonialsSection } from './Testimonials/TestimonialsSection';
+export { ProcurementFAQSection } from './ProcurementFAQ/ProcurementFAQSection';
+export { InsightsPreviewSection } from './InsightsPreview/InsightsPreviewSection';
 export { ContactSection } from './Contact/ContactSection';
+

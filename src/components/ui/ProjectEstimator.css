@@ -1,0 +1,429 @@
+/* Project Estimator Component Styling */
+
+.project-estimator-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: clamp(1.8rem, 3.5vw, 3rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  transition: border-color var(--transition-base);
+}
+
+.project-estimator-card:hover {
+  border-color: var(--border-medium);
+}
+
+.estimator-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.5rem;
+}
+
+.estimator-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 10px;
+  margin-bottom: 12px;
+}
+
+.estimator-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+/* Currency Selector */
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+}
+
+.curr-label {
+  color: var(--text-dim);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.curr-btn {
+  padding: 3px 7px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  font-size: 9.5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.curr-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.curr-btn.curr-active {
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.estimator-title {
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.estimator-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 720px;
+}
+
+/* Roadmap Stepper */
+.roadmap-group {
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.roadmap-stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0;
+  scrollbar-width: none;
+}
+
+.roadmap-stepper::-webkit-scrollbar {
+  display: none;
+}
+
+.roadmap-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.step-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-orange);
+  color: var(--accent-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.step-name {
+  font-size: 10px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.step-sub {
+  font-size: 8.5px;
+  color: var(--text-dim);
+}
+
+.roadmap-line {
+  width: 16px;
+  height: 1px;
+  background: var(--border-medium);
+  flex-shrink: 0;
+}
+
+/* Budget Value in Summary */
+.budget-val {
+  font-size: 1.45rem !important;
+  color: #10B981 !important;
+}
+
+.copy-summary-btn {
+  font-size: 10.5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.copy-summary-btn:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+}
+
+/* Estimator Grid */
+.estimator-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.estimator-inputs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.estimator-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.estimator-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.label-count {
+  color: var(--accent-orange);
+  font-size: 9.5px;
+}
+
+.estimator-chips-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.estimator-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.estimator-chip:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-medium);
+}
+
+.estimator-chip.is-selected {
+  background: var(--bg-card);
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 1px var(--accent-orange), var(--shadow-sm);
+}
+
+.chip-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-xs);
+  border: 1.5px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--bg-card);
+  color: var(--accent-orange);
+  transition: all var(--transition-fast);
+}
+
+.estimator-chip.is-selected .chip-checkbox {
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: #FFFFFF;
+}
+
+.chip-name {
+  font-size: 11.5px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Speed Toggle */
+.speed-toggle-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.speed-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.speed-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.speed-btn.speed-active {
+  background: var(--bg-card);
+  border-color: var(--accent-orange);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--accent-orange);
+}
+
+/* Output Board */
+.estimator-summary-board {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summary-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.summary-kicker {
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.summary-metric-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-lbl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.metric-val {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--accent-orange);
+  letter-spacing: -0.03em;
+}
+
+.complexity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  font-size: 11px;
+  color: var(--text-primary);
+  font-weight: 600;
+  width: fit-content;
+}
+
+.complexity-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+}
+
+.summary-stack-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tech-pill-tag {
+  font-size: 9.5px;
+  padding: 3px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+}
+
+.summary-apply-row {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.apply-btn {
+  font-size: 11px;
+  padding: 12px;
+}
+
+.applied-btn {
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+}
+
+.summary-disclaimer {
+  font-size: 9px;
+  line-height: 1.4;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .estimator-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

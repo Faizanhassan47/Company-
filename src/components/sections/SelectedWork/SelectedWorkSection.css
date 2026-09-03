@@ -1,219 +1,259 @@
-/* Selected Work Showcase Styling */
+/* Featured Systems & Selected Work Showcase */
 
 .work-section {
   background-color: var(--bg-main);
+  padding-bottom: clamp(4rem, 8vw, 8rem);
 }
 
-.work-heading-block {
+.work-section-header {
+  margin-top: 1.5rem;
   margin-bottom: clamp(3rem, 6vw, 5rem);
-  max-width: 840px;
+  max-width: 800px;
 }
 
-.work-lead-desc {
-  font-size: clamp(1rem, 1.3vw, 1.2rem);
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-top: 16px;
-}
-
-/* Feature Cards Stack */
-.projects-showcase-list {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(4rem, 8vw, 7rem);
-}
-
-.project-feature-card {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
-  background-color: #0d0d0d;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xs);
-  padding: clamp(1.25rem, 3vw, 2.5rem);
-  position: relative;
-  transition: border-color var(--transition-base), background-color var(--transition-base);
-}
-
-.project-feature-card .project-visual-wrapper { min-height: 280px; }
-
-.project-feature-card:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  background-color: #111111;
-}
-
-.project-feature-card.layout-reversed {
-  grid-template-columns: 1.2fr 1fr;
-}
-
-.project-feature-card.layout-reversed .project-info-panel {
-  order: 2;
-}
-
-.project-feature-card.layout-reversed .project-visual-wrapper {
-  order: 1;
-}
-
-/* Info Panel */
-.project-info-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.project-card-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: var(--text-secondary);
-}
-
-.p-num {
-  font-weight: 700;
-}
-
-.p-sep {
-  color: var(--text-dim);
-}
-
-.p-year {
-  margin-left: auto;
-  color: var(--text-dim);
-}
-
-.project-card-title {
-  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+.work-headline {
+  font-size: clamp(2.4rem, 5.5vw, 5.5rem);
+  line-height: 0.98;
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  margin: 0;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
 }
 
-.project-title-link {
+.work-subtitle {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.featured-project {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card), var(--card-inner-bevel);
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  position: relative;
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.featured-project:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover), var(--card-inner-bevel);
+}
+
+.project-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.project-num-badge {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.project-display-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.project-display-title a {
   color: var(--text-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-.project-feature-card:hover .project-title-link {
-  color: #ffffff;
-}
-
-.project-tagline {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.project-context-box {
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  padding: 14px;
-  border-radius: var(--radius-xs);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.context-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.context-lbl {
-  font-size: 9px;
+.project-display-title a:hover {
   color: var(--accent-orange);
-  letter-spacing: 0.05em;
 }
 
-.context-text {
-  font-size: 0.85rem;
-  color: var(--text-primary);
-  line-height: 1.5;
+.project-tagline-text {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
 }
 
-/* Metrics Strip */
-.project-metrics-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.project-cta-group {
+  margin-top: 1.5rem;
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
-  padding: 10px 0;
-  border-top: 1px dashed rgba(255, 255, 255, 0.08);
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent-orange);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform var(--transition-fast);
 }
 
-.p-metric-item {
+.btn-link:hover {
+  transform: translateX(4px);
+}
+
+.tech-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 4px 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+/* 01. DOME Layout */
+.dome-layout-split {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-bottom: 2rem;
+}
+
+.dome-meta-rail {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  border-right: 1px solid var(--border-subtle);
+  padding-right: 20px;
 }
 
-.pm-val {
-  font-size: 13px;
-  font-weight: 700;
+.rail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rail-label {
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.rail-val {
+  font-size: 11px;
   color: var(--text-primary);
 }
 
-.pm-lbl {
-  font-size: 8px;
+.dome-visual-wrapper {
+  margin-top: 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+/* 02. Matrix Layout */
+.matrix-grid,
+.shoestops-grid,
+.comments-grid,
+.transcend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.matrix-tech-list,
+.shoestops-tech-list,
+.transcend-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-highlights,
+.comments-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.hl-item {
+  color: var(--text-primary);
+}
+
+/* 03. GRN Workflow Layout */
+.grn-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.grn-tagline-text {
+  max-width: 500px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.grn-visual-container {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.grn-footer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
   color: var(--text-dim);
 }
 
-/* Bottom Actions */
-.project-bottom-actions {
+.meta-block {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding-top: 6px;
+  gap: 8px;
 }
 
-.tech-badge-row {
+.meta-v {
+  color: var(--text-primary);
+}
+
+/* View All Work Button */
+.view-all-work-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  justify-content: center;
+  margin-top: clamp(3rem, 6vw, 5rem);
 }
 
-.project-case-link {
-  font-weight: 600;
-  font-size: 12px;
-  color: var(--accent-orange);
-}
-
-/* Visual Container */
-.project-visual-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-xs);
-}
-
-.visual-link {
-  display: block;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .project-feature-card,
-  .project-feature-card.layout-reversed {
+@media (max-width: 950px) {
+  .dome-layout-split {
     grid-template-columns: 1fr;
-    gap: 28px;
   }
-  .project-feature-card.layout-reversed .project-info-panel {
-    order: 1;
+  .dome-meta-rail {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
-  .project-feature-card.layout-reversed .project-visual-wrapper {
-    order: 2;
+  .matrix-grid,
+  .shoestops-grid,
+  .comments-grid,
+  .transcend-grid {
+    grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 600px) {
-  .projects-showcase-list { gap: 2.5rem; }
-  .project-feature-card { padding: 16px; }
-  .project-feature-card .project-visual-wrapper { min-height: 220px; }
-  .project-bottom-actions { align-items: flex-start; flex-direction: column; }
-  .project-case-link { margin-top: 4px; }
+  .grn-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

@@ -1,0 +1,132 @@
+.architecture-diagram-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.arch-diagram-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 800px;
+}
+
+.arch-layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.arch-layer-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.arch-nodes-row {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  width: 100%;
+}
+
+.arch-nodes-row.single-node {
+  justify-content: center;
+}
+
+.arch-node {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 2;
+  transition: border-color var(--transition-fast);
+}
+
+.arch-node:hover {
+  border-color: var(--accent-orange);
+}
+
+.arch-node-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+}
+
+.arch-node-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--accent-orange);
+  pointer-events: none;
+}
+
+.arch-node-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.arch-node-label {
+  font-size: 11px;
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.arch-node-sublabel {
+  font-size: 9px;
+  color: var(--text-secondary);
+}
+
+.arch-connector-vertical {
+  width: 1px;
+  height: 45px;
+  background: var(--border-medium);
+  margin: 10px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.arch-data-packet {
+  position: absolute;
+  top: -10px;
+  left: -2px;
+  width: 5px;
+  height: 10px;
+  background: var(--accent-orange);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--accent-orange);
+}
+
+@media (max-width: 600px) {
+  .arch-nodes-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .arch-connector-vertical {
+    height: 30px;
+  }
+}

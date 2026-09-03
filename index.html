@@ -1,29 +1,54 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/brand-icon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Tekmora (Tekmora / ) — Software, built to a better standard. We build custom web platforms, mobile applications, enterprise systems, SAP integrations, and operational software for organizations with real operational challenges." />
-  <meta name="keywords"
-    content="Tekmora, Tekmora, Software Development, Web Platforms, Mobile Apps, Enterprise Systems, SAP Business One, React Native, Next.js, Pakistan" />
-  <meta property="og:title" content="Tekmora — Software, Built to a Better Standard" />
-  <meta property="og:description"
-    content="Custom web platforms, mobile applications, enterprise systems, and operational software led by Muhammad Faizan." />
+  <meta name="description" content="Tekmora builds elite custom web applications, mobile products, and enterprise platforms for forward-thinking companies." />
+  
+  <!-- SEO & Canonical -->
+  <link rel="canonical" href="https://www.telmorasoluctions.com" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <title>Tekmora — Software, Built to a Better Standard</title>
+  <meta property="og:url" content="https://www.telmorasoluctions.com/" />
+  <meta property="og:title" content="Tekmora | Enterprise Software Engineering" />
+  <meta property="og:description" content="Tekmora builds elite custom web applications, mobile products, and enterprise platforms for forward-thinking companies." />
+  <meta property="og:image" content="https://www.telmorasoluctions.com/og-image.jpg" />
+  <meta property="og:site_name" content="Tekmora" />
 
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.telmorasoluctions.com/" />
+  <meta property="twitter:title" content="Tekmora | Enterprise Software Engineering" />
+  <meta property="twitter:description" content="Tekmora builds elite custom web applications, mobile products, and enterprise platforms for forward-thinking companies." />
+  <meta property="twitter:image" content="https://www.telmorasoluctions.com/og-image.jpg" />
+
+  <title>Tekmora | Enterprise Software Engineering</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Syne:wght@500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&family=Syne:wght@500;600;700;800&display=swap"
     rel="stylesheet">
+
+  <!-- Theme Init Script -->
+  <script>
+    (function() {
+      try {
+        document.documentElement.dataset.theme = 'dark';
+        var metaThemeColor = document.createElement('meta');
+        metaThemeColor.name = 'theme-color';
+        metaThemeColor.content = '#090909';
+        document.head.appendChild(metaThemeColor);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
-<body class="bg-main text-primary antialiased selection:bg-orange selection:text-white">
+<body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

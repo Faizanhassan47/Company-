@@ -1,0 +1,229 @@
+/* Insight Detail Page Styling */
+
+.insight-detail-page {
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}
+
+.insight-header-section {
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.insight-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  margin-bottom: 2rem;
+}
+
+.insight-main-title {
+  font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+  line-height: 1.05;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+}
+
+.insight-tagline {
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+
+.insight-author-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--text-dim);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-lbl {
+  color: var(--text-dim);
+}
+
+/* Article Body & Sidebar */
+.insight-body-container {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.insight-article-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.article-section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.section-h2 {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.article-p {
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.article-callout {
+  border-left: 3px solid var(--accent-orange);
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.callout-indicator {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.article-callout p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Sidebar Rails */
+.insight-sidebar-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-widget {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text-dim);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 14px;
+}
+
+.widget-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.widget-link-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  transition: color var(--transition-fast);
+}
+
+.widget-link-item:hover {
+  color: var(--accent-orange);
+}
+
+.sidebar-inquiry-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-accent);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inq-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.inq-desc {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Next Article Footer */
+.next-article-section {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  background: var(--bg-secondary);
+}
+
+.next-article-wrapper {
+  max-width: 800px;
+}
+
+.next-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  margin-bottom: 1rem;
+}
+
+.next-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.next-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.next-link:hover {
+  color: var(--accent-orange);
+}
+
+.next-summary {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 950px) {
+  .insight-body-container {
+    grid-template-columns: 1fr;
+  }
+}

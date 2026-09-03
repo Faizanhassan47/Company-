@@ -116,7 +116,7 @@
 
 /* Right Form */
 .inquiry-card {
-  background-color: #121212;
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xs);
   padding: clamp(1.5rem, 3.5vw, 2.5rem);
@@ -160,7 +160,7 @@
 .form-input,
 .form-select,
 .form-textarea {
-  background-color: #0b0b0b;
+  background-color: var(--bg-main);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   font-family: inherit;
@@ -184,7 +184,7 @@
 }
 
 .scope-chip {
-  background-color: #0b0b0b;
+  background-color: var(--bg-main);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   font-size: 11px;
@@ -201,9 +201,34 @@
 }
 
 .scope-chip.chip-active {
-  background-color: #191614;
+  background-color: var(--accent-orange-dim);
   border-color: var(--accent-orange);
   color: var(--accent-orange);
+}
+
+.nda-checkbox-group {
+  margin: 4px 0;
+}
+
+.nda-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.nda-checkbox-input {
+  accent-color: var(--accent-orange);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.nda-checkbox-label:hover {
+  color: var(--text-primary);
 }
 
 .submit-btn {
@@ -218,7 +243,38 @@
   text-align: center;
 }
 
-/* Success View */
+/* --- Funnel Steps --- */
+.funnel-progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: var(--spacing-6);
+}
+
+.funnel-step {
+  height: 4px;
+  flex: 1;
+  background-color: var(--border-subtle);
+  border-radius: 2px;
+  transition: background-color var(--transition-base);
+}
+
+.funnel-step.active {
+  background-color: var(--accent-orange);
+}
+
+.funnel-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.funnel-actions {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-2);
+}
+
+/* --- Submission Success --- */
 .submission-success-view {
   display: flex;
   flex-direction: column;

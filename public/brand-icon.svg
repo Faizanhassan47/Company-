@@ -1,8 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <rect width="100" height="100" rx="20" fill="#090909" />
-  <!-- Stylized T & M glyphs -->
-  <path d="M22 34 H50 V42 H39 V72 H29 V42 H22 V34Z" fill="#F1EFE8" />
-  <path d="M48 34 H58 L68 56 L78 34 H88 V72 H78 V48 L68 68 L58 48 V72 H48 V34Z" fill="#F1EFE8" />
-  <!-- Calibration dot (Burnt Orange #FF4D1C) -->
-  <circle cx="39" cy="46" r="6" fill="#FF4D1C" />
+  <rect width="100" height="100" rx="22" fill="#111111" />
+  <g transform="translate(5, 5) scale(0.9)">
+    <!-- T-Stem & Crossbar -->
+    <path
+      d="M32 12 H46 V30 H62 V43 H46 V66 C46 72 43 76 36 78 C31 79.5 24 78 20 74 L25 63 C27 65 30 66 32 65 C33.5 64 34 62 34 58 V43 H10 V30 H32 V12 Z"
+      fill="#F1EFE8"
+    />
+    <!-- K-Arms -->
+    <path d="M52 46 L78 20 H96 L67 48 L52 46 Z" fill="#F1EFE8" />
+    <path d="M58 52 L96 86 H77 L48 60 L58 52 Z" fill="#F1EFE8" />
+    <!-- Orange Center Dot -->
+    <circle cx="49" cy="52" r="8.5" fill="#FF4D1C" />
+  </g>
 </svg>

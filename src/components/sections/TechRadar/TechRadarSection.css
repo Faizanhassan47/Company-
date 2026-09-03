@@ -1,0 +1,162 @@
+/* Technology Radar Component Styling */
+
+.tech-radar-section {
+  background-color: var(--bg-main);
+  padding-top: clamp(4rem, 8vw, 7.5rem);
+  padding-bottom: clamp(4rem, 8vw, 7.5rem);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.radar-header-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.radar-headline {
+  font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+  line-height: 1.02;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.radar-subtitle {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 680px;
+}
+
+/* Category Filter Tabs */
+.radar-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 4px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+
+.radar-tab-btn {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.radar-tab-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.radar-tab-btn.is-active {
+  color: var(--text-primary);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm), 0 0 0 1px var(--border-subtle);
+  font-weight: 700;
+}
+
+/* Radar Cards Grid */
+.radar-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .radar-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.radar-card {
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--bg-card);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.radar-card:hover {
+  transform: translateY(-3px);
+}
+
+.radar-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.radar-cat-badge {
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.radar-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+
+.radar-tech-name {
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.radar-tech-role {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.radar-benchmark-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border-left: 2px solid var(--accent-orange);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  font-size: 10px;
+  color: var(--text-primary);
+}
+
+.radar-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.radar-tech-pill {
+  font-size: 9px;
+  padding: 3px 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-dim);
+}

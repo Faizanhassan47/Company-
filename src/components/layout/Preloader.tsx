@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TekmoraLogo } from '../ui/TekmoraLogo';
 import './Preloader.css';
 
 interface PreloaderProps {
@@ -10,8 +11,14 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    const duration = 1600; // ms
-    const intervalTime = 25;
+    // Respect prefers-reduced-motion
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onComplete();
+      return;
+    }
+
+    const duration = 1100; // ~1.1s
+    const intervalTime = 20;
     const step = 100 / (duration / intervalTime);
 
     const timer = setInterval(() => {
@@ -23,8 +30,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
             setIsExiting(true);
             setTimeout(() => {
               onComplete();
-            }, 500);
-          }, 200);
+            }, 300);
+          }, 150);
           return 100;
         }
         return next;
@@ -37,13 +44,10 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   return (
     <div className={`preloader-overlay ${isExiting ? 'preloader-exit' : ''}`} aria-hidden="true">
       <div className="preloader-content">
-        {/* Brand Mark */}
+        {/* Brand Mark with Official tk symbol */}
         <div className="preloader-brand">
-          <span className="preloader-title">Tekmora</span>
-          <span className="preloader-dot"></span>
+          <TekmoraLogo height={48} theme="dark" />
         </div>
-
-        <div className="preloader-subtext font-mono">Tekmora.</div>
 
         {/* Calibration Progress Bar */}
         <div className="preloader-calibration-track">
@@ -53,13 +57,13 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
           ></div>
         </div>
 
-        {/* Counter & Coordinates */}
+        {/* Counter & Status */}
         <div className="preloader-meta font-mono">
           <div className="preloader-metric">
-            <span className="meta-label">CALIBRATING STANDARD</span>
+            <span className="meta-label">SYSTEM INITIALIZATION</span>
             <span className="meta-value text-orange">{Math.round(progress)}%</span>
           </div>
-          <div className="preloader-coord">PK // 24.8607° N, 67.0011° E</div>
+          <div className="preloader-coord">GLOBAL // WORKING WORLDWIDE</div>
         </div>
       </div>
     </div>

@@ -1,0 +1,180 @@
+/* The Reality & Philosophy Section (Buraq AI Style) */
+
+.philosophy-section {
+  background-color: var(--bg-main);
+  padding-top: clamp(4rem, 8vw, 7.5rem);
+  padding-bottom: clamp(4rem, 8vw, 7.5rem);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.philosophy-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: flex-start;
+}
+
+@media (max-width: 980px) {
+  .philosophy-split-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}
+
+.philosophy-sticky-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 981px) {
+  .philosophy-sticky-col {
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.reality-kicker {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.philosophy-main-headline {
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  line-height: 1.05;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.philosophy-narrative {
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.philosophy-action-wrap {
+  margin-top: 0.5rem;
+}
+
+.btn-outline-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--accent-orange);
+  color: var(--accent-orange);
+  background: rgba(255, 77, 28, 0.04);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-outline-orange:hover {
+  background: var(--accent-orange);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 77, 28, 0.25);
+}
+
+/* Bento Box Reality Cards Grid */
+.reality-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  grid-auto-flow: dense;
+}
+
+@media (max-width: 680px) {
+  .reality-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.reality-card {
+  background: linear-gradient(145deg, rgba(25,25,25,0.8), rgba(15,15,15,0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px; /* Softer, Apple-style radius */
+  padding: clamp(1.8rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+/* Asymmetrical Bento Spanning */
+.reality-card:nth-child(1) {
+  grid-column: span 12;
+}
+
+.reality-card:nth-child(2) {
+  grid-column: span 7;
+}
+
+.reality-card:nth-child(3) {
+  grid-column: span 5;
+}
+
+.reality-card:nth-child(4) {
+  grid-column: span 12;
+}
+
+@media (max-width: 680px) {
+  .reality-card:nth-child(n) {
+    grid-column: span 1;
+  }
+}
+
+.reality-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.reality-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  margin-bottom: 2px;
+}
+
+.reality-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.reality-card:hover .reality-icon-box {
+  background: var(--accent-orange-dim);
+  border-color: var(--accent-orange);
+}
+
+.reality-tag {
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.reality-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.reality-card-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}

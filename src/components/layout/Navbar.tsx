@@ -1,49 +1,43 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, Moon, Sun } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+import { Menu, X, ArrowUpRight, Search } from 'lucide-react';
+import { TekmoraLogo } from '../ui/TekmoraLogo';
 import './Navbar.css';
 
 interface NavbarProps {
   onOpenContact?: () => void;
+  onOpenSearch?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useReducer((_: boolean, next: boolean) => next, false);
+export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [pktTime, setPktTime] = useState('');
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window === 'undefined') return 'dark';
-    return window.localStorage.getItem('tekmora-theme') === 'light' ? 'light' : 'dark';
-  });
+  const [scrollProgress, setScrollProgress] = useState(0);
   const location = useLocation();
+  const { t } = useTranslation();
+
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem('tekmora-theme', theme);
-  }, [theme]);
-
-  // Live Pakistan Standard Time (PKT - UTC+5)
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Asia/Karachi',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      };
-      setPktTime(new Intl.DateTimeFormat('en-GB', options).format(now));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
+    document.documentElement.dataset.theme = 'dark';
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#090909');
+    }
   }, []);
 
-  // Handle scroll state
+  // Handle scroll state and progress indicator
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const currentScroll = window.scrollY;
+
+      if (totalHeight > 0) {
+        setScrollProgress((currentScroll / totalHeight) * 100);
+      }
+
+      if (currentScroll > 30) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -55,103 +49,88 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   // Close mobile menu on route change
   useEffect(() => {
-    // Route changes can also come from browser history, so this remains an intentional synchronization.
-    // oxlint-disable-next-line react(set-state-in-effect)
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
-    { label: 'Work', href: '/case-study' },
-    { label: 'Services', href: '/#services' },
-    { label: 'Why Tekmora', href: '/#principles' },
-    { label: 'Process', href: '/#process' },
-    { label: 'Capabilities', href: '/#capabilities' },
-    { label: 'Founder', href: '/#founder' },
-    { label: 'Contact', href: '/#contact' }
+    { label: t('nav.about', 'About'), to: '/about' },
+    { label: t('nav.services', 'Services'), to: '/services' },
+    { label: t('nav.work', 'Work'), to: '/work' },
+    { label: t('nav.industries', 'Industries'), to: '/industries' },
+    { label: t('nav.insights', 'Insights'), to: '/insights' },
+    { label: t('nav.start_project', 'Contact'), to: '/contact' }
   ];
-
-  const handleNavClick = (href: string) => {
-    setMobileMenuOpen(false);
-    if (href.startsWith('/#')) {
-      const elementId = href.replace('/#', '');
-      if (location.pathname === '/') {
-        const el = document.getElementById(elementId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }
-  };
 
   return (
     <>
-      <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}>
+      <motion.header
+        className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: 'tween', ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
+      >
+        {/* Real-time Scroll Progress Bar */}
+        <div
+          className="header-scroll-progress"
+          style={{ width: `${scrollProgress}%` }}
+          role="progressbar"
+          aria-valuenow={Math.round(scrollProgress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        />
+
         <div className="container header-container">
-          {/* Brand Logo */}
+          {/* Brand Logo with Official tk Mark + Wordmark */}
           <Link to="/" className="brand-lockup" aria-label="Tekmora Home">
-            <div className="brand-mark-wrapper">
-              <span className="brand-title">Tekmora</span>
-              <span className="brand-calibration-point"></span>
-            </div>
-            <span className="brand-sub-wordmark"></span>
+            <TekmoraLogo height={28} />
           </Link>
 
-          {/* Timezone and Calibration Status (Desktop) */}
-          <div className="header-meta-status font-mono">
-            <span className="live-pulse-dot"></span>
-            <span className="status-label">PKT</span>
-            <span className="status-clock">{pktTime || '13:00:00'}</span>
-            <span className="status-divider">/</span>
-            <span className="status-location">LAHORE, PK</span>
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <nav className="desktop-nav" aria-label="Primary Navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="nav-link font-mono"
-                onClick={(e) => {
-                  if (location.pathname === '/') {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }
-                }}
-              >
-                <span className="nav-link-text">{link.label}</span>
-              </a>
-            ))}
+          {/* Desktop Pill Navigation Links */}
+          <nav className="desktop-nav-pill-dock" aria-label="Primary Navigation">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
+              return (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className={`nav-pill-item ${isActive ? 'nav-pill--active' : ''}`}
+                >
+                  <span className="nav-pill-text">{link.label}</span>
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Header Action CTA */}
+          {/* Header Actions: Quick Search, Theme Toggle, Start Project CTA */}
           <div className="header-actions">
-            <button
-              type="button"
-              className="theme-toggle"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-              <span className="theme-toggle-label font-mono">{theme === 'dark' ? 'LIGHT' : 'DARK'}</span>
-            </button>
-            <a
-              href="#contact"
-              className="btn btn-sm btn-outline-cta font-mono"
+            {/* Quick Search Button */}
+            {onOpenSearch && (
+              <button
+                type="button"
+                className="header-search-btn"
+                onClick={onOpenSearch}
+                aria-label="Search systems, services, and technical notes (Cmd+K)"
+                title="Search (Cmd+K / Ctrl+K)"
+              >
+                <Search size={14} className="search-btn-icon" />
+                <span className="search-btn-text">Search</span>
+              </button>
+            )}
+
+            {/* Primary Action Button */}
+            <Link
+              to="/contact"
+              className="header-primary-cta"
               onClick={(e) => {
                 if (onOpenContact) {
                   e.preventDefault();
                   onOpenContact();
-                } else if (location.pathname === '/') {
-                  e.preventDefault();
-                  handleNavClick('/#contact');
                 }
               }}
             >
               <span>Start a project</span>
               <ArrowUpRight size={14} className="cta-icon" />
-            </a>
+            </Link>
 
             {/* Mobile Menu Toggle Button */}
             <button
@@ -159,21 +138,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Full-Screen Clean Mobile Menu */}
       <div className={`mobile-nav-overlay ${mobileMenuOpen ? 'is-open' : ''}`}>
         <div className="mobile-nav-backdrop" onClick={() => setMobileMenuOpen(false)}></div>
         <div className="mobile-nav-drawer">
           <div className="mobile-nav-header">
-            <div className="brand-mark-wrapper">
-              <span className="brand-title">Tekmora</span>
-              <span className="brand-calibration-point"></span>
-            </div>
+            <TekmoraLogo height={28} />
             <button
               className="mobile-close-btn"
               onClick={() => setMobileMenuOpen(false)}
@@ -185,43 +161,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
           <div className="mobile-nav-links">
             {navLinks.map((link, idx) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.to}
                 className="mobile-nav-item"
-                onClick={(e) => {
-                  if (location.pathname === '/') {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  } else {
-                    setMobileMenuOpen(false);
-                  }
-                }}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="mobile-link-num font-mono">0{idx + 1}</span>
                 <span className="mobile-link-title">{link.label}</span>
                 <ArrowUpRight size={20} className="mobile-link-arrow" />
-              </a>
+              </Link>
             ))}
           </div>
 
           <div className="mobile-nav-footer">
             <div className="mobile-meta font-mono">
-              <div>PAKISTAN — WORKING WORLDWIDE</div>
-              <div className="text-orange">SOFTWARE, BUILT TO A BETTER STANDARD.</div>
+              <div>GLOBAL // WORKING WORLDWIDE</div>
+              <div className="text-orange">WE BUILD THE SYSTEMS BUSINESSES RUN ON.</div>
             </div>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="btn btn-orange w-full font-mono mt-4"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (location.pathname === '/') {
-                  handleNavClick('/#contact');
-                }
-              }}
+              onClick={() => setMobileMenuOpen(false)}
             >
               Start a project ↗
-            </a>
+            </Link>
           </div>
         </div>
       </div>

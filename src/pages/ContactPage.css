@@ -1,0 +1,69 @@
+/* Standalone Contact Page Styling */
+
+.standalone-contact-page {
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}
+
+.contact-page-hero {
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.contact-page-title {
+  font-size: clamp(2.6rem, 6vw, 6rem);
+  line-height: 0.96;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-page-lead {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 780px;
+}
+
+.contact-faq-section {
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+.contact-faq-heading {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 800;
+  margin-top: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.contact-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.contact-faq-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.cf-q {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.cf-a {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 800px) {
+  .contact-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}

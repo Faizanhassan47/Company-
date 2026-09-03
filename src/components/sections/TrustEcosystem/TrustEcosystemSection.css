@@ -1,0 +1,175 @@
+/* Trust Ecosystem & Certified Stack Styling */
+
+.trust-ecosystem-section {
+  background-color: var(--bg-secondary);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  position: relative;
+}
+
+.trust-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 10.5px;
+}
+
+.trust-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.trust-standard-label {
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+/* 4 Metrics Grid */
+.trust-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 1024px) {
+  .trust-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .trust-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trust-metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--shadow-sm), var(--card-inner-bevel);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.trust-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+
+.trust-metric-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.metric-index {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.metric-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.trust-metric-val {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.trust-metric-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+}
+
+.trust-metric-sub {
+  font-size: 9.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Certified Protocols Ticker */
+.trust-tech-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: var(--card-inner-bevel);
+}
+
+.tech-ecosystem-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-orange);
+  white-space: nowrap;
+}
+
+.tech-badges-grid {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.tech-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.tech-badge-item:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-hover);
+}
+
+.tech-badge-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tech-badge-name {
+  font-size: 11px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.tech-badge-cat {
+  font-size: 8.5px;
+  color: var(--text-dim);
+}

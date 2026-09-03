@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { PRINCIPLES, type Principle } from '../../../data/principles';
+import { staggerContainer, fadeInUp, hoverLift } from '../../../utils/animations';
 import './WhyTekmoraSection.css';
 
 export const WhyTekmoraSection: React.FC = () => {
@@ -16,7 +18,13 @@ export const WhyTekmoraSection: React.FC = () => {
         </div>
 
         {/* Headline */}
-        <div className="why-heading-block">
+        <motion.div 
+          className="why-heading-block"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
           <h2 className="section-title-large">
             THE STANDARD IS<br />
             <span className="italic-accent">HOW WE WORK.</span>
@@ -24,10 +32,16 @@ export const WhyTekmoraSection: React.FC = () => {
           <p className="why-lead-desc">
             The Tekmora standard represents measurement, alignment, and uncompromising quality. We apply this standard through every stage of software engineering.
           </p>
-        </div>
+        </motion.div>
 
         {/* Interactive Calibration Scale Bar */}
-        <div className="principles-calibration-scale">
+        <motion.div 
+          className="principles-calibration-scale"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
           <div className="scale-track-line">
             <div
               className="scale-active-fill"
@@ -52,17 +66,25 @@ export const WhyTekmoraSection: React.FC = () => {
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* 4 Principles Grid */}
-        <div className="principles-grid">
+        <motion.div 
+          className="principles-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
           {PRINCIPLES.map((principle: Principle, idx: number) => {
             const isSelected = selectedIdx === idx;
             return (
-              <div
+              <motion.div
                 key={principle.number}
                 className={`principle-card ${isSelected ? 'principle-highlighted' : ''}`}
                 onClick={() => setSelectedIdx(idx)}
+                variants={fadeInUp}
+                whileHover={hoverLift}
               >
                 <div className="principle-top-row">
                   <span className="p-num font-mono">{principle.number}</span>
@@ -79,10 +101,10 @@ export const WhyTekmoraSection: React.FC = () => {
                   <span className="calibration-dot"></span>
                   <span className="indicator-text font-mono">STANDARD APPLIED</span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

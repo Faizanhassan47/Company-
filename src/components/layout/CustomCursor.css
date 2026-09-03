@@ -1,47 +1,57 @@
-/* Custom Precision Cursor */
+/* Custom Precision & Magnetic Cursor */
 
 .custom-cursor-follower {
   position: fixed;
   top: 0;
   left: 0;
-  width: 10px;
-  height: 10px;
-  background-color: var(--accent-orange);
-  border-radius: 50%;
   pointer-events: none;
   z-index: var(--z-cursor);
-  transform: translate3d(-100px, -100px, 0);
-  margin-top: -5px;
-  margin-left: -5px;
-  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.2s ease,
-              border 0.2s ease;
+  /* The center translation is handled by moving it based on its dynamic size.
+     We will use flex to center the inner shape. */
+  transform: translate3d(-50%, -50%, 0);
   display: flex;
   align-items: center;
   justify-content: center;
+  mix-blend-mode: exclusion;
 }
 
-.custom-cursor-follower.cursor-pointer {
-  width: 22px;
-  height: 22px;
-  margin-top: -11px;
-  margin-left: -11px;
-  background-color: rgba(255, 77, 28, 0.2);
-  border: 1px solid var(--accent-orange);
+.cursor-inner-shape {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.custom-cursor-follower.cursor-view {
-  width: 64px;
-  height: 64px;
-  margin-top: -32px;
-  margin-left: -32px;
-  background-color: var(--accent-orange);
+/* Base states handled by motion styles for width/height/radius, 
+   but we handle colors/borders here */
+
+.custom-cursor-follower.cursor-default .cursor-inner-shape {
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.custom-cursor-follower.cursor-pointer:not(.magnetic-active) .cursor-inner-shape {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  transform: scale(1);
+}
+
+.custom-cursor-follower.cursor-pointer.magnetic-active .cursor-inner-shape {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* Magnetic active radius is controlled by framer motion inline */
+  backdrop-filter: blur(4px);
+}
+
+.custom-cursor-follower.cursor-view .cursor-inner-shape {
+  background-color: #ffffff;
   border-radius: 50%;
 }
 
 .cursor-label {
-  color: #ffffff;
+  color: #000000;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;

@@ -1,0 +1,40 @@
+.swiss-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1; /* Sits behind everything but above the background color */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.swiss-grid-container {
+  width: 100%;
+  max-width: 1440px; /* Match site max-width container if applicable */
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  padding: 0 clamp(1.5rem, 5vw, 4rem); /* Match site padding */
+  box-sizing: border-box;
+}
+
+.swiss-grid-column {
+  height: 100%;
+  border-left: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  opacity: 0.3; /* Make it faint */
+}
+
+/* On mobile, we reduce the grid lines to avoid clutter */
+@media (max-width: 768px) {
+  .swiss-grid-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .swiss-grid-column:nth-child(n+5) {
+    display: none;
+  }
+}

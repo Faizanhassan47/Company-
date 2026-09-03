@@ -1,9 +1,27 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { ShieldCheck } from 'lucide-react';
+import { fadeInUp } from '../../../utils/animations';
 import './ManifestoSection.css';
 
 export const ManifestoSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+
+  const techPills = [
+    { name: 'React 19', tag: 'Web Core' },
+    { name: 'TypeScript', tag: 'Type-Safe' },
+    { name: 'Next.js (App Router)', tag: 'SSR / Edge' },
+    { name: 'React Native & Expo', tag: 'Cross-Platform' },
+    { name: 'Node.js & Express', tag: 'REST APIs' },
+    { name: 'Microsoft SQL Server', tag: 'Relational Core' },
+    { name: 'SAP Business One', tag: 'Service Layer' },
+    { name: 'PostgreSQL', tag: 'ACID Data' },
+    { name: 'Redis Cache', tag: 'Sub-ms Speed' },
+    { name: 'SQLite Offline Sync', tag: 'Field DB' },
+    { name: 'Tailwind CSS', tag: 'Design Tokens' },
+    { name: 'Docker Containers', tag: 'Deployment' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,30 +41,46 @@ export const ManifestoSection: React.FC = () => {
 
   return (
     <section className="section manifesto-section section-border-bottom" ref={sectionRef} id="manifesto">
+      {/* Slow Horizontal Running Typography Marquee */}
+      <div className="manifesto-marquee font-mono" aria-hidden="true">
+        <div className="marquee-track">
+          {techPills.concat(techPills).map((t, idx) => (
+            <div key={idx} className="marquee-pill-item">
+              <span className="pill-dot">●</span>
+              <strong className="pill-name">{t.name}</strong>
+              <span className="pill-tag font-mono">{t.tag}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="container">
         {/* Numbered Meta Tag */}
         <div className="section-meta">
           <span className="section-number">02</span>
-          <span>// BRAND MANIFESTO</span>
+          <span>// COMPANY STATEMENT</span>
         </div>
 
         {/* Big Editorial Statement */}
-        <div className="manifesto-header-block">
-          <h2 className="manifesto-heading">
+        <motion.div 
+          className="manifesto-header-block"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
+          <h2 className="manifesto-heading font-display">
             COMPLEX SYSTEMS.<br />
-            CLEAR PRODUCTS.<br />
-            <span className="italic-accent">A BETTER STANDARD.</span>
+            <span className="italic-accent">CLEAR PRODUCTS.</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Animated Measurement Calibration Line */}
         <div className="manifesto-calibration-wrapper">
-          <div className="manifesto-scale-ticks">
-            <span className="tick">0.00</span>
-            <span className="tick">0.25</span>
-            <span className="tick">0.50</span>
-            <span className="tick">0.75</span>
-            <span className="tick">1.00 (TEKMORA)</span>
+          <div className="manifesto-scale-ticks font-mono">
+            <span className="tick">0.00 DISCONNECTED</span>
+            <span className="tick">0.50 STRUCTURED</span>
+            <span className="tick">1.00 TEKMORA STANDARD</span>
           </div>
 
           <div className="manifesto-progress-track">
@@ -60,27 +94,34 @@ export const ManifestoSection: React.FC = () => {
         </div>
 
         {/* Narrative Copy Split */}
-        <div className="manifesto-copy-grid">
+        <motion.div 
+          className="manifesto-copy-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
           <div className="manifesto-lead-quote">
-            <p className="lead-text">
+            <p className="lead-text font-display">
               “Complex behind the scenes. Simple where it matters.”
             </p>
             <div className="quote-origin font-mono">
-              <span>FOUNDING PHILOSOPHY</span>
+              <ShieldCheck size={13} className="text-orange" />
+              <span>CORE PHILOSOPHY</span>
               <span className="origin-sep">/</span>
-              <span>MUHAMMAD FAIZAN</span>
+              <span>TEKMORA</span>
             </div>
           </div>
 
           <div className="manifesto-body-column">
             <p className="manifesto-body-text">
-              We work on products where understanding the problem matters more than choosing the trendiest technology. That might mean building a mobile application, connecting several business systems or turning a complicated workflow into one understandable platform.
+              We work where software meets real business operations. Tekmora helps organizations replace disconnected tools, repetitive work and difficult workflows with dependable digital systems.
             </p>
             <p className="manifesto-body-subtext">
-              We do not treat engineering as an isolated craft. Every line of code exists to remove operational drag, empower real technicians and business operators, and deliver software that works consistently on ordinary business days.
+              We explain technical decisions without hiding behind jargon. Whether a project begins with an exact technical specification or an unorganized spreadsheet, our goal remains constant: build a dependable, maintainable platform that solves the actual problem.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

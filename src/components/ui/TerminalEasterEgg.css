@@ -1,0 +1,121 @@
+.terminal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 99999;
+  font-family: 'JetBrains Mono', monospace;
+  color: #00ff00;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  pointer-events: auto;
+}
+
+/* CRT Screen Effect */
+.terminal-overlay::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 100000;
+  pointer-events: none;
+}
+
+/* Subtle pulse/flicker */
+.terminal-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 100000;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.05; }
+  50% { opacity: 0.1; }
+  100% { opacity: 0.05; }
+}
+
+.terminal-content {
+  position: relative;
+  z-index: 100001;
+  text-shadow: 0 0 5px #00ff00;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.terminal-line {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.terminal-prompt {
+  margin-right: 0.5rem;
+  color: #00ff00;
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  color: #00ff00;
+  font-family: inherit;
+  font-size: inherit;
+  flex: 1;
+  outline: none;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.terminal-input:focus {
+  outline: none;
+}
+
+/* System crash effect */
+.system-crash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0000aa;
+  color: #fff;
+  z-index: 999999;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 4rem;
+  box-sizing: border-box;
+}
+
+.system-crash-overlay h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  background-color: #fff;
+  color: #0000aa;
+  display: inline-block;
+  padding: 0 0.5rem;
+}

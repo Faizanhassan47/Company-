@@ -1,142 +1,174 @@
-import React, { useState } from 'react';
-import { SERVICES, type ServiceItem } from '../../../data/services';
-import { ArrowUpRight, Check, ChevronDown } from 'lucide-react';
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Code2, Cpu, Server, Smartphone, Layers, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { staggerContainer, fadeInUp, hoverLift } from '../../../utils/animations';
+import { ArchitectureDiagram } from '../../ui/ArchitectureDiagram';
 import './ServicesSection.css';
 
-export const ServicesSection: React.FC = () => {
-  const [activeService, setActiveService] = useState<string>('01');
-  const [expandedMobile, setExpandedMobile] = useState<Record<string, boolean>>({
-    '01': true,
-    '02': false,
-    '03': false,
-    '04': false,
-    '05': false
-  });
+const MotionLink = motion.create(Link);
 
-  const toggleMobile = (num: string) => {
-    setExpandedMobile(prev => ({ ...prev, [num]: !prev[num] }));
-  };
+interface CapabilityCard {
+  number: string;
+  category: string;
+  title: string;
+  slug: string;
+  icon: React.ReactNode;
+  desc: string;
+  tags: string[];
+}
+
+export const ServicesSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const capabilities: CapabilityCard[] = useMemo(() => [
+    {
+      number: '01',
+      category: t('services.c1_cat'),
+      title: t('services.c1_title'),
+      slug: 'web-application-development',
+      icon: <Code2 size={24} className="text-orange" />,
+      desc: t('services.c1_desc'),
+      tags: ['React 19', 'Next.js', 'TypeScript', 'Tailwind']
+    },
+    {
+      number: '02',
+      category: t('services.c2_cat'),
+      title: t('services.c2_title'),
+      slug: 'mobile-app-development',
+      icon: <Smartphone size={24} className="text-orange" />,
+      desc: t('services.c2_desc'),
+      tags: ['React Native', 'Expo Bare', 'SQLite', 'Offline Engine']
+    },
+    {
+      number: '03',
+      category: t('services.c3_cat'),
+      title: t('services.c3_title'),
+      slug: 'sap-business-one-integration',
+      icon: <Server size={24} className="text-orange" />,
+      desc: t('services.c3_desc'),
+      tags: ['Service Layer API', 'DI API', 'OData v4', 'T-SQL']
+    },
+    {
+      number: '04',
+      category: t('services.c4_cat'),
+      title: t('services.c4_title'),
+      slug: 'warehouse-management-systems',
+      icon: <Layers size={24} className="text-orange" />,
+      desc: t('services.c4_desc'),
+      tags: ['Zebra Scanners', 'Bin Allocation', 'ESC/POS', 'GRN Sync']
+    },
+    {
+      number: '05',
+      category: t('services.c5_cat'),
+      title: t('services.c5_title'),
+      slug: 'enterprise-software-development',
+      icon: <Cpu size={24} className="text-orange" />,
+      desc: t('services.c5_desc'),
+      tags: ['Node.js 22', 'Express', 'WebSockets', 'Redis Streams']
+    },
+    {
+      number: '06',
+      category: t('services.c6_cat'),
+      title: t('services.c6_title'),
+      slug: 'wordpress-development',
+      icon: <ShieldCheck size={24} className="text-orange" />,
+      desc: t('services.c6_desc'),
+      tags: ['Headless APIs', 'OWASP Hardening', 'Core Web Vitals']
+    }
+  ], [t]);
 
   return (
     <section className="section services-section section-border-bottom" id="services">
       <div className="container">
         {/* Section Meta */}
         <div className="section-meta">
-          <span className="section-number">03</span>
-          <span>// WHAT WE BUILD</span>
-          <span className="meta-sep font-mono">5 CORE CAPABILITIES</span>
+          <span className="section-number">04</span>
+          <span>// {t('services.section_meta')}</span>
+          <span className="meta-sep font-mono">{t('services.section_submeta')}</span>
         </div>
 
-        {/* Section Headline */}
-        <div className="services-heading-block">
-          <h2 className="section-title-large">
-            ENGINEERING DISCIPLINES.<br />
-            <span className="italic-accent">BUILT FOR REAL SCALE.</span>
-          </h2>
-          <p className="services-lead-desc">
-            We don’t do generic software houses or one-size-fits-all templates. Every system is purpose-built to eliminate manual friction, connect fragmented operations, and perform with extreme reliability.
-          </p>
+        {/* Section Header Split */}
+        <motion.div 
+          className="services-header-split"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
+          <div>
+            <h2 className="services-main-headline font-display">
+              {t('services.title_1')}<br />
+              <span className="italic-accent">{t('services.title_2')}</span>
+            </h2>
+            <p className="services-subtitle">
+              {t('services.subtitle')}
+            </p>
+          </div>
+
+          <div className="services-header-action font-mono">
+            <Link to="/services" className="btn btn-outline-orange">
+              <span>{t('services.cta')}</span>
+              <ArrowUpRight size={14} />
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Embedded Architecture Diagram */}
+        <div style={{ marginBottom: '4rem', marginTop: '2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <span className="font-mono" style={{ fontSize: '10px', color: 'var(--accent-orange)', letterSpacing: '0.1em' }}>ENTERPRISE TOPOLOGY // SYSTEM ARCHITECTURE</span>
+          </div>
+          <ArchitectureDiagram />
         </div>
 
-        {/* Large Editorial Rows List */}
-        <div className="services-rows-container">
-          {SERVICES.map((service: ServiceItem) => {
-            const isActive = activeService === service.number;
-            const isMobileOpen = expandedMobile[service.number];
-
-            return (
-              <div
-                key={service.number}
-                className={`service-editorial-row ${isActive ? 'row-active' : ''}`}
-                onMouseEnter={() => setActiveService(service.number)}
-              >
-                {/* Collapsed Row Header */}
-                <div
-                  className="service-row-header"
-                  onClick={() => toggleMobile(service.number)}
-                >
-                  <div className="service-number-col font-mono">
-                    <span className="service-num">{service.number}</span>
-                    <span className="service-dot"></span>
-                  </div>
-
-                  <div className="service-title-col">
-                    <h3 className="service-title">{service.title}</h3>
-                    <p className="service-short-desc">{service.shortDesc}</p>
-                  </div>
-
-                  <div className="service-tech-col font-mono">
-                    <div className="tech-tags-preview">
-                      {service.technologies.slice(0, 3).map(tech => (
-                        <span key={tech} className="mini-tag">{tech}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="service-action-col">
-                    <button className="row-toggle-btn" aria-label="Toggle Service Details">
-                      <ChevronDown
-                        size={18}
-                        className={`mobile-chevron ${isMobileOpen ? 'rotate-180' : ''}`}
-                      />
-                      <ArrowUpRight size={18} className="desktop-arrow" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Expanded Detailed Drawer (Active State / Mobile Accordion) */}
-                <div className={`service-drawer ${isMobileOpen ? 'drawer-open-mobile' : ''}`}>
-                  <div className="drawer-inner-grid">
-                    {/* Left: Deep Description & Deliverables */}
-                    <div className="drawer-details">
-                      <div className="drawer-desc-block">
-                        <div className="drawer-label font-mono">SYSTEM SCOPE & DELIVERABLES</div>
-                        <p className="drawer-detailed-text">{service.detailedDescription}</p>
-                      </div>
-
-                      <div className="deliverables-grid">
-                        {service.deliverables.map(deliv => (
-                          <div key={deliv} className="deliverable-item">
-                            <span className="deliv-check"><Check size={12} /></span>
-                            <span>{deliv}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Right: Technical Spec Box */}
-                    <div className="drawer-spec-box">
-                      <div className="spec-header font-mono">
-                        <span className="spec-title">SPECIFICATION MATRIX // {service.number}</span>
-                        <span className="spec-status text-orange">VERIFIED</span>
-                      </div>
-
-                      <div className="spec-list">
-                        {service.specSnippet.map((spec) => (
-                          <div key={spec.label} className="spec-row font-mono">
-                            <span className="spec-lbl">{spec.label}</span>
-                            <span className="spec-val">{spec.details}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="spec-focus-block">
-                        <div className="focus-lbl font-mono">CORE SYSTEM FOCUS</div>
-                        <div className="focus-val font-mono">{service.systemFocus}</div>
-                      </div>
-
-                      <div className="drawer-action-row">
-                        <a href="#contact" className="btn btn-sm btn-orange font-mono">
-                          Discuss {service.title} Project ↗
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+        {/* 6 Capabilities Cards Grid (3x2, Zero Image Dependency) */}
+        <motion.div 
+          className="capabilities-grid-3x2"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
+          {capabilities.map((cap) => (
+            <MotionLink
+              to={`/services/${cap.slug}`}
+              key={cap.slug}
+              className="capability-card-modern spotlight-card"
+              variants={fadeInUp}
+              whileHover={hoverLift}
+            >
+              {/* Top Row: Icon + Arrow */}
+              <div className="cap-card-top">
+                <div className="cap-icon-box">{cap.icon}</div>
+                <div className="cap-arrow-btn">
+                  <ArrowUpRight size={16} />
                 </div>
               </div>
-            );
-          })}
-        </div>
+
+              {/* Category Tag */}
+              <div className="cap-cat-badge font-mono">{cap.category}</div>
+
+              {/* Title & Description */}
+              <h3 className="cap-card-title font-display">{cap.title}</h3>
+              <p className="cap-card-desc">{cap.desc}</p>
+
+              {/* Technical Stack Pills */}
+              <div className="cap-tags-row font-mono">
+                {cap.tags.map(tag => (
+                  <span key={tag} className="cap-tag-pill">{tag}</span>
+                ))}
+              </div>
+
+              {/* Explore Footer Trigger */}
+              <div className="cap-card-footer font-mono">
+                <span>{t('services.explore')}</span>
+                <ArrowUpRight size={12} className="footer-arrow" />
+              </div>
+            </MotionLink>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

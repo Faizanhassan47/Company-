@@ -1,0 +1,107 @@
+/* Business Problems Section Styling */
+
+.business-problems-section {
+  background-color: var(--bg-main);
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+.problems-header {
+  margin-top: 1.5rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  max-width: 800px;
+}
+
+.problems-headline {
+  font-size: clamp(2.4rem, 5.5vw, 5.5rem);
+  line-height: 0.98;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.problems-subtitle {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* Scroll-Activated Sequence Rows */
+.problems-sequence {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.problem-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  opacity: 0.35;
+}
+
+.problem-row--active {
+  opacity: 1;
+}
+
+.problem-row:hover {
+  opacity: 0.85;
+}
+
+.problem-index {
+  font-size: 14px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.problem-row--active .problem-index {
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.index-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color var(--transition-fast);
+}
+
+.problem-row--active .index-indicator {
+  background-color: var(--accent-orange);
+}
+
+.problem-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.problem-title {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.problem-context {
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 700px;
+}
+
+@media (max-width: 700px) {
+  .problem-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 1.5rem 0;
+    opacity: 0.85;
+  }
+}

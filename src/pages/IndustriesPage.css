@@ -1,0 +1,146 @@
+/* Industries Page Styling */
+
+.industries-page {
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}
+
+.industries-hero {
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.industries-title {
+  font-size: clamp(2.6rem, 6vw, 6rem);
+  line-height: 0.96;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.industries-lead {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 780px;
+}
+
+.industries-grid-section {
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+.industries-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.industry-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  transition: border-color var(--transition-base);
+}
+
+.industry-card:hover {
+  border-color: var(--border-medium);
+}
+
+.industry-card-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ind-meta {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.ind-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ind-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.ind-title a:hover {
+  color: var(--accent-orange);
+}
+
+.ind-tagline {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.industry-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.col-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+}
+
+.problems-compact-list,
+.solutions-compact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.problem-compact-item,
+.solution-compact-item {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 16px;
+}
+
+.prob-name {
+  font-size: 11px;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.prob-impact,
+.sol-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.sol-name {
+  font-size: 13px;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.ind-action {
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .industry-card-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

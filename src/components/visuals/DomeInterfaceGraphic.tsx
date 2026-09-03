@@ -10,10 +10,10 @@ export const DomeInterfaceGraphic: React.FC = () => {
           <span className="dot dot-yellow"></span>
           <span className="dot dot-green"></span>
         </div>
-        <div className="window-title">DOME Portal — Enterprise ERP // Logistics & Invoicing Engine</div>
+        <div className="window-title">DOME Enterprise Portal // Logistics, ERP & Invoicing Platform</div>
         <div className="window-status">
           <span className="status-indicator"></span>
-          <span className="status-text">RBAC ACTIVE (TIER-1)</span>
+          <span className="status-text font-mono">RBAC ACTIVE (TIER-1)</span>
         </div>
       </div>
 
@@ -23,15 +23,15 @@ export const DomeInterfaceGraphic: React.FC = () => {
         <div className="graphic-sidebar">
           <div className="sidebar-brand">
             <span className="brand-dot"></span>
-            <span>DOME v3.4</span>
+            <span>DOME ERP</span>
           </div>
           <div className="sidebar-group">
-            <div className="sidebar-label">CORE MODULES</div>
+            <div className="sidebar-label font-mono">MODULES</div>
             <div className="sidebar-item active">
               <span className="sidebar-icon">❖</span> Operations Hub
             </div>
             <div className="sidebar-item">
-              <span className="sidebar-icon">▤</span> Procurement / PO
+              <span className="sidebar-icon">▤</span> Procurement
             </div>
             <div className="sidebar-item">
               <span className="sidebar-icon">◈</span> Logistics & Fleet
@@ -44,10 +44,10 @@ export const DomeInterfaceGraphic: React.FC = () => {
             </div>
           </div>
           <div className="sidebar-footer">
-            <span className="user-avatar">MF</span>
+            <span className="user-avatar font-mono">TK</span>
             <div className="user-meta">
-              <div className="user-name">M. Faizan</div>
-              <div className="user-role">System Lead</div>
+              <div className="user-name">Tekmora Admin</div>
+              <div className="user-role font-mono">Enterprise Lead</div>
             </div>
           </div>
         </div>
@@ -57,34 +57,34 @@ export const DomeInterfaceGraphic: React.FC = () => {
           {/* Top Metric Bar */}
           <div className="metric-row">
             <div className="metric-box">
-              <div className="metric-label">CONNECTED MODULES</div>
-              <div className="metric-val">07 <span className="metric-unit">ACTIVE</span></div>
-              <div className="metric-trend text-green">↑ 100% HEALTHY</div>
+              <div className="metric-label font-mono">MODULES</div>
+              <div className="metric-val font-mono">07 <span className="metric-unit">ACTIVE</span></div>
+              <div className="metric-trend text-green font-mono">↑ 100% HEALTHY</div>
             </div>
             <div className="metric-box">
-              <div className="metric-label">DAILY TRANSACTIONS</div>
-              <div className="metric-val">14,820</div>
-              <div className="metric-trend text-orange">SYNCED REAL-TIME</div>
+              <div className="metric-label font-mono">TRANSACTIONS</div>
+              <div className="metric-val font-mono">14,820</div>
+              <div className="metric-trend text-orange font-mono">REAL-TIME SYNC</div>
             </div>
             <div className="metric-box">
-              <div className="metric-label">AVG QUERY LATENCY</div>
-              <div className="metric-val">142 <span className="metric-unit">MS</span></div>
-              <div className="metric-trend text-green">OPTIMIZED INDEX</div>
+              <div className="metric-label font-mono">QUERY LATENCY</div>
+              <div className="metric-val font-mono">142 <span className="metric-unit">MS</span></div>
+              <div className="metric-trend text-green font-mono">INDEX OPTIMIZED</div>
             </div>
             <div className="metric-box">
-              <div className="metric-label">ACTIVE OPERATORS</div>
-              <div className="metric-val">248</div>
-              <div className="metric-trend text-parchment">ACROSS 4 HUBS</div>
+              <div className="metric-label font-mono">PERSONNEL</div>
+              <div className="metric-val font-mono">250+</div>
+              <div className="metric-trend text-parchment font-mono">ACROSS 4 HUBS</div>
             </div>
           </div>
 
           {/* Operational Data Table */}
           <div className="data-table-card">
             <div className="table-header-bar">
-              <div className="table-title">Recent Operational Invoices & Cross-Department Dispatches</div>
+              <div className="table-title">Cross-Department Operations & Ledger Dispatches</div>
               <div className="table-actions">
-                <span className="table-btn">FILTER</span>
-                <span className="table-btn export-btn">EXPORT CSV</span>
+                <span className="table-btn font-mono">FILTER</span>
+                <span className="table-btn export-btn font-mono">EXPORT CSV</span>
               </div>
             </div>
 
