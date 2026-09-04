@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { SERVICES_DATA } from '../data/services';
 import { PROJECTS } from '../data/projects';
-import { ArrowLeft, ArrowUpRight, HelpCircle, ArrowDownRight } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, HelpCircle, ArrowDownRight, Briefcase, Zap } from 'lucide-react';
 import { SEOHead } from '../components/seo/SEOHead';
 import './ServiceDetailPage.css';
 
@@ -68,13 +68,19 @@ export const ServiceDetailPage: React.FC = () => {
               <span>All Services</span>
             </Link>
             <span className="sep">/</span>
-            <span className="text-orange">SERVICE {service.number}</span>
+            <span className="text-orange">{service.number}</span>
           </div>
 
           <div className="service-header-content">
             <div className="service-kicker font-mono">DISCIPLINE // {service.number}</div>
             <h1 className="service-headline font-display">{service.heroHeadline}</h1>
             <p className="service-lead-tagline">{service.overview}</p>
+            
+            {service.architectureApproach && (
+              <div className="service-arch-approach font-mono">
+                <span className="text-orange">ARCHITECTURAL APPROACH:</span> {service.architectureApproach}
+              </div>
+            )}
 
             <div className="service-hero-actions font-mono">
               <Link to="/contact" className="btn btn-primary">
@@ -90,11 +96,35 @@ export const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Business Problems We Solve */}
+      {service.businessProblems && service.businessProblems.length > 0 && (
+        <section className="section business-problems-section section-border-bottom">
+          <div className="container">
+             <div className="section-meta">
+              <span className="section-number">01</span>
+              <span>// OPERATIONAL CHALLENGES</span>
+            </div>
+            
+            <h2 className="subhead-display font-display">BUSINESS PROBLEMS WE SOLVE</h2>
+            
+            <div className="problems-grid">
+              {service.businessProblems.map((prob, idx) => (
+                <div key={idx} className="problem-card">
+                  <div className="problem-icon"><Zap size={20} className="text-orange" /></div>
+                  <h3 className="problem-title font-display">{prob.title}</h3>
+                  <p className="problem-desc">{prob.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Key Architectural Capabilities */}
       <section className="section capabilities-detail-section section-border-bottom" id="capabilities">
         <div className="container">
           <div className="section-meta">
-            <span className="section-number">01</span>
+            <span className="section-number">{service.businessProblems ? '02' : '01'}</span>
             <span>// ARCHITECTURAL CAPABILITIES</span>
             <span className="meta-sep font-mono">WHAT WE DELIVER</span>
           </div>
@@ -118,7 +148,7 @@ export const ServiceDetailPage: React.FC = () => {
             {/* Left: Production Stack */}
             <div className="tech-stack-column">
               <div className="section-meta">
-                <span className="section-number">02</span>
+                <span className="section-number">{service.businessProblems ? '03' : '02'}</span>
                 <span>// PRODUCTION TECH STACK</span>
               </div>
               <h2 className="subhead-display font-display">VERIFIED TECHNOLOGIES</h2>
@@ -141,10 +171,10 @@ export const ServiceDetailPage: React.FC = () => {
             {/* Right: Development Process */}
             <div className="dev-process-column">
               <div className="section-meta">
-                <span className="section-number">03</span>
+                <span className="section-number">{service.businessProblems ? '04' : '03'}</span>
                 <span>// EXECUTION METHODOLOGY</span>
               </div>
-              <h2 className="subhead-display font-display">FIVE-PHASE LIFECYCLE</h2>
+              <h2 className="subhead-display font-display">PHASED LIFECYCLE</h2>
 
               <div className="process-timeline font-mono">
                 {service.developmentProcess.map(step => (
@@ -167,7 +197,7 @@ export const ServiceDetailPage: React.FC = () => {
         <section className="section relevant-projects-section section-border-bottom">
           <div className="container">
             <div className="section-meta">
-              <span className="section-number">04</span>
+              <span className="section-number">{service.businessProblems ? '05' : '04'}</span>
               <span>// PROVEN TRACK RECORD</span>
               <span className="meta-sep font-mono">RELEVANT CASE STUDIES</span>
             </div>
@@ -199,12 +229,33 @@ export const ServiceDetailPage: React.FC = () => {
           </div>
         </section>
       )}
+      
+      {/* Industries Section */}
+      {service.industries && service.industries.length > 0 && (
+        <section className="section service-industries-section section-border-bottom">
+          <div className="container">
+            <div className="section-meta">
+              <span className="section-number">{service.businessProblems ? '06' : '05'}</span>
+              <span>// PRIMARY DOMAINS</span>
+            </div>
+            <h2 className="subhead-display font-display">INDUSTRIES WE SERVE</h2>
+            <div className="industries-list font-mono">
+              {service.industries.map((ind, idx) => (
+                <div key={idx} className="industry-chip">
+                   <Briefcase size={14} />
+                   <span>{ind.toUpperCase()}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* FAQs Section */}
       <section className="section service-faq-section section-border-bottom">
         <div className="container">
           <div className="section-meta">
-            <span className="section-number">05</span>
+            <span className="section-number">{service.businessProblems ? (service.industries ? '07' : '06') : '05'}</span>
             <span>// FREQUENTLY ASKED QUESTIONS</span>
           </div>
 
@@ -229,11 +280,17 @@ export const ServiceDetailPage: React.FC = () => {
         <div className="container">
           <div className="service-cta-banner">
             <h2 className="cta-banner-title font-display">
-              READY TO BUILD YOUR<br />
-              <span className="italic-accent">{service.title.toUpperCase()}?</span>
+              {service.ctaHeadline ? (
+                <span dangerouslySetInnerHTML={{ __html: service.ctaHeadline.replace('\n', '<br />') }} />
+              ) : (
+                <>
+                  READY TO BUILD YOUR<br />
+                  <span className="italic-accent">{service.title.toUpperCase()}?</span>
+                </>
+              )}
             </h2>
             <p className="cta-banner-desc">
-              Tell us about your operational workflows, required integrations, or user requirements.
+              {service.ctaDesc || 'Tell us about your operational workflows, required integrations, or user requirements.'}
             </p>
             <div className="cta-banner-action font-mono">
               <Link to="/contact" className="btn btn-orange btn-lg">

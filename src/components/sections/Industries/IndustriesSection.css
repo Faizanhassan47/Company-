@@ -1,0 +1,94 @@
+.industries-section {
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+  background-color: var(--bg-main);
+}
+
+.industries-header {
+  margin-top: 1.5rem;
+  margin-bottom: clamp(3rem, 6vw, 4rem);
+  max-width: 800px;
+}
+
+.industries-headline {
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  line-height: 0.98;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.industries-subtitle {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.industry-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.industry-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-card-hover), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.industry-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--accent-orange);
+  flex-shrink: 0;
+}
+
+.industry-content {
+  flex: 1;
+}
+
+.industry-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  transition: color var(--transition-fast);
+}
+
+.industry-card:hover .industry-name {
+  color: var(--accent-orange);
+}
+
+.industry-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.industry-arrow {
+  color: var(--text-dim);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.industry-card:hover .industry-arrow {
+  color: var(--accent-orange);
+  transform: translateX(4px);
+}

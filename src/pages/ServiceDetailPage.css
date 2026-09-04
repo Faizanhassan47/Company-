@@ -273,3 +273,93 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Business Problems We Solve */
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.problem-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-card), var(--card-inner-bevel);
+  transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.problem-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-medium);
+}
+
+.problem-icon {
+  margin-bottom: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.problem-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.problem-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Industries Section */
+.industries-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.industry-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.industry-chip:hover {
+  background: var(--bg-elevated);
+  border-color: var(--accent-orange);
+}
+
+.industry-chip svg {
+  color: var(--text-secondary);
+}
+
+/* Architecture Approach */
+.service-arch-approach {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: var(--bg-card);
+  border-left: 3px solid var(--accent-orange);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+

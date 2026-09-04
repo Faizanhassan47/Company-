@@ -18,7 +18,8 @@ export const ContactSection: React.FC = () => {
     timeline: '1-3 Months',
     budget: '$15k — $35k',
     requestNDA: true,
-    details: ''
+    details: '',
+    projectStage: 'Idea'
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -62,6 +63,7 @@ export const ContactSection: React.FC = () => {
           projectType: formData.projectType,
           timeline: formData.timeline,
           budget: formData.budget,
+          projectStage: formData.projectStage,
           requestNDA: formData.requestNDA,
           details: formData.details,
           _subject: `Enterprise inquiry from ${formData.name}`
@@ -87,6 +89,13 @@ export const ContactSection: React.FC = () => {
     'SAP & Warehouse',
     'WordPress Solutions',
     'System Integrations'
+  ];
+
+  const projectStages = [
+    'Idea',
+    'Requirements Ready',
+    'Existing System',
+    'Already in Development'
   ];
 
   return (
@@ -284,7 +293,23 @@ export const ContactSection: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="form-row-2">
+                      <div className="form-group" style={{ marginTop: '1.5rem' }}>
+                        <label className="form-label font-mono">PROJECT STAGE</label>
+                        <div className="scope-chips-grid">
+                          {projectStages.map(stage => (
+                            <button
+                              type="button"
+                              key={stage}
+                              className={`scope-chip font-mono ${formData.projectStage === stage ? 'chip-active' : ''}`}
+                              onClick={() => setFormData({ ...formData, projectStage: stage })}
+                            >
+                              {stage}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="form-row-2" style={{ marginTop: '1.5rem' }}>
                         <div className="form-group">
                           <label className="form-label font-mono">{t('contact.f_timeline')}</label>
                           <select

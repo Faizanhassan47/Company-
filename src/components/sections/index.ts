@@ -13,3 +13,10 @@ export { ProcurementFAQSection } from './ProcurementFAQ/ProcurementFAQSection';
 export { InsightsPreviewSection } from './InsightsPreview/InsightsPreviewSection';
 export { ContactSection } from './Contact/ContactSection';
 
+export * from './CapabilitiesMap/CapabilitiesMapSection';
+export * from './Industries/IndustriesSection';
+export * from './Metrics/MetricsSection';
+export * from './Integrations/IntegrationsSection';
+export * from './LogoCloud/LogoCloudSection';
+export * from './WhyTekmora/WhyTekmoraSection';
+export * from './EngagementModels/EngagementModelsSection';

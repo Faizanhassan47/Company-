@@ -13,6 +13,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const location = useLocation();
@@ -89,6 +90,54 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
           <nav className="desktop-nav-pill-dock" aria-label="Primary Navigation">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
+              
+              if (link.to === '/services') {
+                return (
+                  <div
+                    key={link.label}
+                    className="nav-dropdown-wrapper"
+                    onMouseEnter={() => setServicesDropdownOpen(true)}
+                    onMouseLeave={() => setServicesDropdownOpen(false)}
+                  >
+                    <Link
+                      to={link.to}
+                      className={`nav-pill-item ${isActive ? 'nav-pill--active' : ''}`}
+                    >
+                      <span className="nav-pill-text">{link.label}</span>
+                    </Link>
+                    
+                    {servicesDropdownOpen && (
+                      <div className="mega-menu-panel">
+                        <div className="mega-menu-grid">
+                          <div className="mega-column">
+                            <h4 className="mega-col-title font-mono">Software Engineering</h4>
+                            <Link to="/services/custom-software-development">Custom Software</Link>
+                            <Link to="/services/web-application-development">Web Applications</Link>
+                            <Link to="/services/mobile-app-development">Mobile Apps</Link>
+                          </div>
+                          <div className="mega-column">
+                            <h4 className="mega-col-title font-mono">Enterprise Systems</h4>
+                            <Link to="/services/warehouse-management-systems">ERP / WMS</Link>
+                            <Link to="/services/sap-business-one-integration">SAP Integration</Link>
+                            <Link to="/services/ai-integration-workflow-automation">Workflow Automation</Link>
+                          </div>
+                          <div className="mega-column">
+                            <h4 className="mega-col-title font-mono">Data</h4>
+                            <Link to="/services/data-bi-analytics">Power BI</Link>
+                            <Link to="/services/data-bi-analytics">Data Analytics</Link>
+                          </div>
+                          <div className="mega-column">
+                            <h4 className="mega-col-title font-mono">Web</h4>
+                            <Link to="/services/wordpress-development">WordPress</Link>
+                            <Link to="/services/wordpress-development">Custom Plugins</Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.label}

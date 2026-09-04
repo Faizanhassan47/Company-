@@ -31,6 +31,48 @@
   max-width: 650px;
 }
 
+/* Tab Switcher */
+.services-tab-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-switch-btn:hover {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+.tab-switch-btn.active {
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: #000;
+  font-weight: 700;
+}
+
+.tab-pill {
+  font-size: 9px;
+  padding: 1px 6px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #000;
+  border-radius: 2px;
+}
+
 /* 3x2 Grid */
 .capabilities-grid-3x2 {
   display: grid;
@@ -177,4 +219,50 @@
 
 .capability-card-modern:hover .footer-arrow {
   transform: translate(2px, -2px);
+}
+
+/* Bottom Matrix CTA Banner */
+.services-matrix-cta-banner {
+  margin-top: 3.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  padding: clamp(1.8rem, 3vw, 2.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta-banner-left {
+  max-width: 680px;
+}
+
+.banner-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--accent-orange);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.banner-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.banner-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cta-banner-right {
+  flex-shrink: 0;
 }

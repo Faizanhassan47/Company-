@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { PRINCIPLES, type Principle } from '../../../data/principles';
-import { staggerContainer, fadeInUp, hoverLift } from '../../../utils/animations';
+import { fadeInUp, staggerContainer } from '../../../utils/animations';
+import { ArrowDown } from 'lucide-react';
 import './WhyTekmoraSection.css';
 
-export const WhyTekmoraSection: React.FC = () => {
-  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+const SYSTEM_LAYERS = [
+  'Business Workflow',
+  'User Experience',
+  'Data Model',
+  'Backend Architecture',
+  'Integrations',
+  'Security',
+  'Reporting',
+  'Deployment',
+  'Long-Term Maintenance'
+];
 
+export const WhyTekmoraSection: React.FC = () => {
   return (
-    <section className="section why-section section-border-bottom" id="principles">
+    <section className="section why-section section-border-bottom" id="why-tekmora">
       <div className="container">
-        {/* Section Meta */}
         <div className="section-meta">
-          <span className="section-number">05</span>
-          <span>// WHY TEKMORA</span>
-          <span className="meta-sep font-mono">4 OPERATIONAL PILLARS</span>
+          <span className="section-number">06</span>
+          <span>// SYSTEM THINKING</span>
+          <span className="meta-sep font-mono">OUR APPROACH</span>
         </div>
 
-        {/* Headline */}
         <motion.div 
           className="why-heading-block"
           initial="hidden"
@@ -26,85 +34,36 @@ export const WhyTekmoraSection: React.FC = () => {
           variants={fadeInUp}
         >
           <h2 className="section-title-large">
-            THE STANDARD IS<br />
-            <span className="italic-accent">HOW WE WORK.</span>
+            WE DON'T JUST<br />
+            <span className="italic-accent">BUILD SCREENS.</span>
           </h2>
           <p className="why-lead-desc">
-            The Tekmora standard represents measurement, alignment, and uncompromising quality. We apply this standard through every stage of software engineering.
+            We approach software as an operational system, not a collection of web pages. Every system is considered sequentially across its entire operational footprint.
           </p>
         </motion.div>
 
-        {/* Interactive Calibration Scale Bar */}
-        <motion.div 
-          className="principles-calibration-scale"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-        >
-          <div className="scale-track-line">
-            <div
-              className="scale-active-fill"
-              style={{ width: `${(selectedIdx / (PRINCIPLES.length - 1)) * 100}%` }}
-            ></div>
-          </div>
-
-          <div className="scale-nodes-row">
-            {PRINCIPLES.map((p: Principle, idx: number) => {
-              const isSelected = selectedIdx === idx;
-              return (
-                <button
-                  key={p.number}
-                  className={`scale-node-btn ${isSelected ? 'node-selected' : ''}`}
-                  onClick={() => setSelectedIdx(idx)}
-                  aria-label={`Select Principle ${p.number}: ${p.title}`}
-                >
-                  <span className="node-pip"></span>
-                  <span className="node-number font-mono">{p.number}</span>
-                  <span className="node-title-short font-mono">{p.title}</span>
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* 4 Principles Grid */}
-        <motion.div 
-          className="principles-grid"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-        >
-          {PRINCIPLES.map((principle: Principle, idx: number) => {
-            const isSelected = selectedIdx === idx;
-            return (
-              <motion.div
-                key={principle.number}
-                className={`principle-card ${isSelected ? 'principle-highlighted' : ''}`}
-                onClick={() => setSelectedIdx(idx)}
-                variants={fadeInUp}
-                whileHover={hoverLift}
-              >
-                <div className="principle-top-row">
-                  <span className="p-num font-mono">{principle.number}</span>
-                  <span className="p-calibration-tag font-mono">
-                    {principle.calibrationPoint}
-                  </span>
-                </div>
-
-                <h3 className="principle-title">{principle.title}</h3>
-                <p className="principle-statement">{principle.statement}</p>
-                <p className="principle-elaboration">{principle.elaboration}</p>
-
-                <div className="principle-status-indicator">
-                  <span className="calibration-dot"></span>
-                  <span className="indicator-text font-mono">STANDARD APPLIED</span>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        <div className="system-thinking-container">
+          <motion.div 
+            className="system-flow"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            {SYSTEM_LAYERS.map((layer, idx) => (
+              <React.Fragment key={idx}>
+                <motion.div className="flow-layer" variants={fadeInUp}>
+                  <div className="layer-content font-mono">{layer.toUpperCase()}</div>
+                </motion.div>
+                {idx < SYSTEM_LAYERS.length - 1 && (
+                  <motion.div className="flow-arrow" variants={fadeInUp}>
+                    <ArrowDown size={20} className="text-orange" />
+                  </motion.div>
+                )}
+              </React.Fragment>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

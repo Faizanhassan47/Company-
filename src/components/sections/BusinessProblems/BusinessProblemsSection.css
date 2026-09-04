@@ -1,8 +1,6 @@
-/* Business Problems Section Styling */
-
 .business-problems-section {
-  background-color: var(--bg-main);
   padding-bottom: clamp(4rem, 8vw, 8rem);
+  background-color: var(--bg-main);
 }
 
 .problems-header {
@@ -25,83 +23,108 @@
   color: var(--text-secondary);
 }
 
-/* Scroll-Activated Sequence Rows */
 .problems-sequence {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--border-subtle);
+  gap: 16px;
 }
 
-.problem-row {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  padding: clamp(2rem, 4vw, 3.5rem) 0;
-  border-bottom: 1px solid var(--border-subtle);
-  cursor: pointer;
-  transition: opacity var(--transition-base), transform var(--transition-base);
-  opacity: 0.35;
-}
-
-.problem-row--active {
-  opacity: 1;
-}
-
-.problem-row:hover {
-  opacity: 0.85;
-}
-
-.problem-index {
-  font-size: 14px;
-  color: var(--text-dim);
+.problem-solution-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  opacity: 0.6;
 }
 
-.problem-row--active .problem-index {
-  color: var(--accent-orange);
-  font-weight: 700;
+.problem-solution-row:hover {
+  opacity: 0.8;
 }
 
-.index-indicator {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: transparent;
-  transition: background-color var(--transition-fast);
+.problem-solution-row.row-active {
+  opacity: 1;
+  background: var(--bg-elevated);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: scale(1.01);
 }
 
-.problem-row--active .index-indicator {
-  background-color: var(--accent-orange);
-}
-
-.problem-content {
+.problem-side,
+.solution-side {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
-.problem-title {
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
-  line-height: 1.15;
+.solution-side {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.ps-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.problem-side .ps-label {
+  color: var(--text-secondary);
+}
+
+.solution-side .ps-label {
+  color: var(--accent-orange);
+}
+
+.ps-text {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
-.problem-context {
-  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
-  line-height: 1.65;
-  color: var(--text-secondary);
-  max-width: 700px;
+.row-active .solution-side .ps-text {
+  color: var(--accent-orange);
 }
 
-@media (max-width: 700px) {
-  .problem-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 1.5rem 0;
-    opacity: 0.85;
+.ps-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  opacity: 0.3;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.row-active .ps-arrow {
+  opacity: 1;
+  transform: translateX(10px);
+}
+
+@media (max-width: 768px) {
+  .problem-solution-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .solution-side {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .ps-arrow {
+    padding: 0;
+    transform: rotate(90deg);
+  }
+
+  .row-active .ps-arrow {
+    transform: rotate(90deg) translateY(5px);
   }
 }

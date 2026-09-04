@@ -1,69 +1,66 @@
 import React from 'react';
 import {
   HeroSection,
-  PhilosophySection,
   ServicesSection,
   BusinessProblemsSection,
-  TechRadarSection,
-  ProcessSection,
-  ProcurementFAQSection,
-  TrustEcosystemSection,
-  ContactSection
+  ContactSection,
+  LogoCloudSection,
+  MetricsSection,
+  CapabilitiesMapSection,
+  IndustriesSection,
+  IntegrationsSection,
+  WhyTekmoraSection,
+  PhilosophySection,
+  SelectedWorkSection
 } from '../components/sections';
-import { ProjectEstimator } from '../components/ui/ProjectEstimator';
 import { SEOHead } from '../components/seo/SEOHead';
 
 export const HomePage: React.FC = () => {
   return (
     <main className="home-page" id="main-content">
       <SEOHead
-        title="Tekmora | Custom Web, Mobile and Enterprise Software Engineering"
-        description="Tekmora builds custom web platforms, mobile applications, enterprise ERP portals, warehouse systems and SAP Business One integrations."
+        title="Tekmora | Enterprise Software Engineering & Operational Systems"
+        description="Tekmora engineers robust operational software—connecting inventory, dispatch, ERPs, and custom workflows into unified enterprise platforms."
         canonical="https://tekmora.com/"
       />
-      {/* 01: Grounded Engineering Hero */}
+      
+      {/* 01: Hero */}
       <HeroSection />
 
-      {/* 02: Core Engineering Principles */}
-      <PhilosophySection />
+      {/* 02: Credibility / Trust */}
+      <LogoCloudSection />
 
-      {/* 03: 6 Specialized Engineering Disciplines */}
-      <ServicesSection />
+      {/* 03: Results / Numbers */}
+      <MetricsSection />
 
-      {/* 04: Operational Challenges & Problems We Solve */}
+      {/* 04: Problems We Solve (Problem -> Solution) */}
       <BusinessProblemsSection />
 
-      {/* 05: Concrete Technology & Protocol Radar */}
-      <TechRadarSection />
+      {/* 05: Services (Matrix) */}
+      <ServicesSection />
 
-      {/* 06: How We Deliver (4-Stage Engineering Process) */}
-      <ProcessSection />
+      {/* 06: Featured Case Studies */}
+      <SelectedWorkSection />
 
-      {/* 07: Transparent Procurement, IP Ownership & Security FAQ */}
-      <ProcurementFAQSection />
+      {/* 07: Enterprise Capabilities Map */}
+      <CapabilitiesMapSection />
 
-      {/* 08: Security & Compliance Trust Center */}
-      <TrustEcosystemSection />
+      {/* 08: Industries */}
+      <IndustriesSection />
 
-      {/* 09: Interactive ROI & Project Estimator */}
-      <section className="section-border-bottom" style={{ padding: 'clamp(4rem, 8vw, 6rem) 0', backgroundColor: 'var(--bg-main)' }}>
-        <div className="container">
-          <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-            <h2 className="font-display" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem' }}>PROJECT SCOPE CALCULATOR</h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>Use our interactive architecture estimator to instantly calculate the complexity, timeline, and investment required for your system.</p>
-          </div>
-          <ProjectEstimator onApplyEstimates={() => {
-            // Scroll to contact form
-            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-          }} />
-        </div>
-      </section>
+      {/* 09: System Thinking / How We Engineer */}
+      <WhyTekmoraSection />
 
-      {/* 10: Direct Technical Consultation & Inquiry Form */}
+      {/* 10: Integrations */}
+      <IntegrationsSection />
+
+      {/* 11: Why Tekmora (Philosophy) */}
+      <PhilosophySection />
+
+      {/* 12: Final CTA (Contact) */}
       <div id="contact">
         <ContactSection />
       </div>
     </main>
   );
 };
-

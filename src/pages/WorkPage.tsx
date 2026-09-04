@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, CheckCircle2, Layers, Eye } from 'lucide-react';
+import { ArrowUpRight, Layers } from 'lucide-react';
 import { PROJECTS, type CaseStudy } from '../data/projects';
 import { SEOHead } from '../components/seo/SEOHead';
-import { ProjectModal } from '../components/ui/ProjectModal';
 import { DomeInterfaceGraphic } from '../components/visuals/DomeInterfaceGraphic';
 import { MatrixMobileGraphic } from '../components/visuals/MatrixMobileGraphic';
 import { GrnWorkflowGraphic } from '../components/visuals/GrnWorkflowGraphic';
@@ -26,28 +25,8 @@ const filterTabs = [
   { label: 'Company Websites', value: 'company-websites' }
 ];
 
-const renderProjectVisual = (project: CaseStudy) => {
-  if (project.imageUrl) {
-    return (
-      <div className="work-card-img-container">
-        <img
-          src={project.imageUrl}
-          alt={`${project.title} Interface Screenshot`}
-          className="work-card-img"
-          loading="lazy"
-        />
-        <div className="work-img-overlay-bar font-mono">
-          <span className="overlay-pill">
-            <span className="live-dot" />
-            <span>PRODUCTION SYSTEM</span>
-          </span>
-          <span className="overlay-role">{project.category}</span>
-        </div>
-      </div>
-    );
-  }
-
-  switch (project.slug) {
+const renderGraphic = (slug: string) => {
+  switch (slug) {
     case 'dome-enterprise': return <DomeInterfaceGraphic />;
     case 'matrix-field-service': return <MatrixMobileGraphic />;
     case 'warehouse-grn-automation': return <GrnWorkflowGraphic />;
@@ -58,47 +37,145 @@ const renderProjectVisual = (project: CaseStudy) => {
     case 'comments-fusion': return <CommentsFusionGraphic />;
     case 'transcend-healthcare': return <TranscendGraphic />;
     default:
-      return (
-        <div className="system-graphic fallback-poster">
-          <div className="fallback-hdr font-mono">
-            <span className="dot dot-green"></span>
-            <span>SYSTEM ARCHITECTURE // {project.slug.toUpperCase()}</span>
+      return null;
+  }
+};
+
+const renderEditorialBlock = (project: CaseStudy, index: number) => {
+  const isEven = index % 2 === 0;
+
+  // Render Visual
+  const visualContent = project.imageUrl ? (
+    <div className="editorial-img-wrapper">
+      <img src={project.imageUrl} alt={`${project.title} Interface`} className="editorial-img" loading="lazy" />
+      <div className="editorial-img-overlay font-mono">
+        <span className="live-dot" /> PRODUCTION SYSTEM
+      </div>
+    </div>
+  ) : (
+    <div className="editorial-graphic-wrapper">
+      {renderGraphic(project.slug) || (
+        <div className="fallback-poster">
+          <div className="fallback-hdr font-mono"><span className="dot dot-green"></span> SYSTEM ARCHITECTURE // {project.slug.toUpperCase()}</div>
+          <div className="fallback-body"><div className="fallback-title font-display">{project.title}</div><div className="fallback-tech font-mono">VERIFIED TEKMORA PLATFORM</div></div>
+        </div>
+      )}
+    </div>
+  );
+
+  // Layouts based on visualType
+  if (project.visualType === 'full-interface' || project.visualType === 'workflow-diagram') {
+    return (
+      <article className="editorial-project project-full" key={project.id}>
+        <div className="project-header-bar desktop-header">
+          <div className="project-num-badge font-mono">
+            <span className="text-orange">{project.number}</span> / {project.category}
           </div>
-          <div className="fallback-body">
-            <div className="fallback-title font-display">{project.title}</div>
-            <div className="fallback-tech font-mono">VERIFIED TEKMORA PLATFORM</div>
+          <div className="project-year font-mono">{project.year}</div>
+        </div>
+        
+        <div className="editorial-layout-split">
+          <div className="editorial-meta-rail font-mono">
+            <div className="rail-item">
+              <span className="rail-label">CLIENT CONTEXT</span>
+              <span className="rail-val">{project.client}</span>
+            </div>
+            <div className="rail-item">
+              <span className="rail-label">STACK</span>
+              <span className="rail-val">{project.technologies.slice(0, 3).join(', ')}</span>
+            </div>
+          </div>
+          <div className="editorial-main-content">
+            <div className="project-header-bar mobile-header">
+              <div className="project-num-badge font-mono">
+                <span className="text-orange">{project.number}</span> / {project.category}
+              </div>
+              <div className="project-year font-mono">{project.year}</div>
+            </div>
+            
+            <h3 className="project-display-title font-display">
+              <Link to={`/work/${project.slug}`}>{project.title}</Link>
+            </h3>
+            <p className="project-tagline-text">{project.tagline}</p>
+            <div className="project-cta-group font-mono">
+              <Link to={`/work/${project.slug}`} className="btn-link case-link">
+                <span>EXPLORE CASE STUDY</span>
+                <ArrowUpRight size={15} />
+              </Link>
+            </div>
           </div>
         </div>
-      );
+        <div className="editorial-visual-container">
+          {visualContent}
+        </div>
+      </article>
+    );
   }
+
+  // Split Layout for mobile-dual, analytics-board, clean-mobile, editorial-poster
+  return (
+    <article className={`editorial-project project-split ${isEven ? 'img-right' : 'img-left'}`} key={project.id}>
+      <div className="project-header-bar mobile-header">
+        <div className="project-num-badge font-mono">
+          <span className="text-orange">{project.number}</span> / {project.category}
+        </div>
+        <div className="project-year font-mono">{project.year}</div>
+      </div>
+      <div className="editorial-grid">
+        <div className="editorial-content-col">
+          <div className="project-header-bar desktop-header">
+            <div className="project-num-badge font-mono">
+              <span className="text-orange">{project.number}</span> / {project.category}
+            </div>
+            <div className="project-year font-mono">{project.year}</div>
+          </div>
+          
+          <h3 className="project-display-title font-display">
+            <Link to={`/work/${project.slug}`}>{project.title}</Link>
+          </h3>
+          <p className="project-tagline-text">{project.tagline}</p>
+          
+          <div className="editorial-tech-list font-mono">
+            {project.technologies.slice(0, 4).map((tech) => (
+              <span key={tech} className="tech-badge">{tech}</span>
+            ))}
+          </div>
+
+          <div className="editorial-highlights font-mono">
+            {project.highlights?.slice(0, 3).map((hl, idx) => (
+              <div key={idx} className="hl-item">✓ {hl}</div>
+            ))}
+          </div>
+
+          <div className="project-cta-group font-mono">
+            <Link to={`/work/${project.slug}`} className="btn-link case-link">
+              <span>EXPLORE CASE STUDY</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </div>
+
+        <div className="editorial-visual-col">
+          {visualContent}
+        </div>
+      </div>
+    </article>
+  );
 };
 
 export const WorkPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [modalIndex, setModalIndex] = useState<number | null>(null);
 
   const visibleProjects = useMemo(() => {
     if (activeFilter === 'all') return PROJECTS;
     return PROJECTS.filter(project => project.filterCategory === activeFilter);
   }, [activeFilter]);
 
-  const activeModalProject = modalIndex !== null ? visibleProjects[modalIndex] : null;
-
-  const handleNextProject = () => {
-    if (modalIndex === null) return;
-    setModalIndex((modalIndex + 1) % visibleProjects.length);
-  };
-
-  const handlePrevProject = () => {
-    if (modalIndex === null) return;
-    setModalIndex((modalIndex - 1 + visibleProjects.length) % visibleProjects.length);
-  };
-
   return (
     <main className="work-page" id="main-content">
       <SEOHead
         title="Engineered Systems & Portfolio | Tekmora"
-        description="Explore 17 verified custom web applications, mobile tools, enterprise ERP systems, warehouse automation workflows and SAP Business One integrations built by Tekmora."
+        description="Explore verified custom web applications, mobile tools, enterprise ERP systems, and warehouse automation workflows built by Tekmora."
         canonical="https://tekmora.com/work"
       />
 
@@ -108,12 +185,12 @@ export const WorkPage: React.FC = () => {
           <div className="section-meta">
             <span className="section-number">01</span>
             <span>// PORTFOLIO DIRECTORY</span>
-            <span className="meta-sep font-mono">17 SYSTEMS</span>
+            <span className="meta-sep font-mono">{PROJECTS.length} SYSTEMS</span>
           </div>
 
           <h1 className="work-page-title font-display">
-            SELECTED SYSTEMS<br />
-            <span className="italic-accent">BUILT TO WORK.</span>
+            SYSTEMS ARCHITECTURE<br />
+            <span className="italic-accent">& PORTFOLIO.</span>
           </h1>
 
           <p className="work-page-lead">
@@ -122,7 +199,7 @@ export const WorkPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Filter Matrix & Project Gallery */}
+      {/* Filter & Editorial List */}
       <section className="work-gallery-section section section-border-top">
         <div className="container">
           {/* Top Controls */}
@@ -136,10 +213,7 @@ export const WorkPage: React.FC = () => {
                     role="tab"
                     aria-selected={isSelected}
                     className={`filter-tab-btn font-mono ${isSelected ? 'is-active' : ''}`}
-                    onClick={() => {
-                      setActiveFilter(tab.value);
-                      setModalIndex(null);
-                    }}
+                    onClick={() => setActiveFilter(tab.value)}
                   >
                     <span>{tab.label}</span>
                     {isSelected && <span className="tab-indicator"></span>}
@@ -154,95 +228,12 @@ export const WorkPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Projects Grid */}
-          <div className="work-cards-grid">
-            {visibleProjects.map((project: CaseStudy, idx: number) => (
-              <article className="work-project-card" key={project.id}>
-                {/* Visual Header with Lightbox Popup Trigger */}
-                <div
-                  className="work-card-visual-wrapper"
-                  onClick={() => setModalIndex(idx)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      setModalIndex(idx);
-                    }
-                  }}
-                  aria-label={`Open popup preview for ${project.title}`}
-                >
-                  {renderProjectVisual(project)}
-                  <div className="visual-hover-overlay">
-                    <span className="overlay-badge font-mono">
-                      <Eye size={14} />
-                      <span>QUICK PREVIEW (POPUP)</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Card Content */}
-                <div className="work-card-body">
-                  <div className="work-card-top-meta font-mono">
-                    <span className="project-num text-orange">{project.number}</span>
-                    <span className="meta-sep">/</span>
-                    <span className="project-cat">{project.category}</span>
-                    <span className="project-yr">{project.year}</span>
-                  </div>
-
-                  <h2 className="work-card-title font-display">
-                    <Link to={`/work/${project.slug}`}>{project.title}</Link>
-                  </h2>
-
-                  <p className="work-card-tagline">{project.tagline}</p>
-
-                  {/* Main Features */}
-                  <div className="work-card-features">
-                    {project.keyFeatures.slice(0, 2).map((feat) => (
-                      <div key={feat.title} className="card-feat-item">
-                        <CheckCircle2 size={13} className="text-orange feat-icon" />
-                        <span className="feat-text"><strong>{feat.title}:</strong> {feat.description}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="work-card-tech font-mono">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span key={tech} className="tech-pill">{tech}</span>
-                    ))}
-                  </div>
-
-                  {/* Action Link */}
-                  <div className="work-card-actions font-mono">
-                    <button
-                      type="button"
-                      className="btn-preview-modal font-mono"
-                      onClick={() => setModalIndex(idx)}
-                    >
-                      <Eye size={13} />
-                      <span>Quick View</span>
-                    </button>
-                    <Link to={`/work/${project.slug}`} className="btn-link case-link">
-                      <span>Full Case Study</span>
-                      <ArrowUpRight size={14} />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
+          {/* Editorial Projects List */}
+          <div className="editorial-list-container">
+            {visibleProjects.map((project, idx) => renderEditorialBlock(project, idx))}
           </div>
         </div>
       </section>
-
-      {/* Interactive Project Lightbox Modal */}
-      <ProjectModal
-        isOpen={modalIndex !== null}
-        project={activeModalProject}
-        onClose={() => setModalIndex(null)}
-        onNext={handleNextProject}
-        onPrev={handlePrevProject}
-      />
     </main>
   );
 };

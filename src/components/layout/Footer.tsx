@@ -79,11 +79,12 @@ export const Footer: React.FC = () => {
           <motion.div className="footer-nav-group" variants={fadeInUp}>
             <div className="footer-group-header font-mono">DISCIPLINES</div>
             <ul className="footer-nav-links font-mono">
-              <li><Link to="/services/web-application-development">Web Platforms & SaaS</Link></li>
-              <li><Link to="/services/mobile-app-development">Offline-First Mobile</Link></li>
+              <li><Link to="/services/ai-integration-workflow-automation">AI & Workflow Automation</Link></li>
+              <li><Link to="/services/saas-engineering-modernization">SaaS Engineering</Link></li>
+              <li><Link to="/services/ai-agents-process-automation">Autonomous AI Agents</Link></li>
+              <li><Link to="/services/production-hardening-code-rescue">Production Code Rescue</Link></li>
               <li><Link to="/services/sap-business-one-integration">SAP Business One Sync</Link></li>
               <li><Link to="/services/warehouse-management-systems">Warehouse Systems (WMS)</Link></li>
-              <li><Link to="/services/enterprise-software-development">Custom APIs & Microservices</Link></li>
             </ul>
           </motion.div>
 
