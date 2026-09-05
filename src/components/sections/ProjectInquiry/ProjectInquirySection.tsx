@@ -29,7 +29,8 @@ export const ProjectInquirySection: React.FC = () => {
       setShowError(false);
       
       try {
-        const response = await fetch('https://formspree.io/f/mbgjkvrb', {
+        const endpointId = import.meta.env.VITE_FORMSPREE_ENDPOINT_ID || 'mbgjkvrb';
+        const response = await fetch(`https://formspree.io/f/${endpointId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
