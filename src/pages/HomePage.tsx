@@ -6,7 +6,6 @@ import {
   MetricsSection,
   CapabilitiesMapSection,
   IndustriesSection,
-  IndustriesSection,
   PhilosophySection,
   SelectedWorkSection,
   ArchitectureFlowchartSection,
