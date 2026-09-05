@@ -58,8 +58,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('contact@tekmora.com');
-      showToast('Copied contact@tekmora.com to clipboard');
+      await navigator.clipboard.writeText('contact@tekmorasolution.com');
+      showToast('Copied contact@tekmorasolution.com to clipboard');
     } catch {
       // fallback
     }

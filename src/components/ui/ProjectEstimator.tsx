@@ -42,7 +42,11 @@ const MODULE_OPTIONS = [
   { id: 'realtime', name: 'Real-Time WebSockets & Telemetry', weeks: 1.5, costUsd: 1800, tech: ['WebSocket Stream', 'Redis Pub/Sub'] },
   { id: 'reporting', name: 'Custom BI & Reporting Engine', weeks: 1.5, costUsd: 1600, tech: ['Aggregated SQL', 'Export Pipelines'] },
   { id: 'hardware', name: 'Hardware / Thermal Scanner Sync', weeks: 2, costUsd: 2400, tech: ['ESC/POS Protocols', 'Zebra / Honeywell'] },
-  { id: 'audit', name: 'Audit Logging & Compliance', weeks: 1, costUsd: 1200, tech: ['Immutable Logs', 'Data Encryption'] }
+  { id: 'audit', name: 'Audit Logging & Compliance', weeks: 1, costUsd: 1200, tech: ['Immutable Logs', 'Data Encryption'] },
+  { id: 'ai_ml', name: 'AI & Machine Learning Pipelines', weeks: 3, costUsd: 4500, tech: ['OpenAI / Claude', 'Vector Databases', 'Python Microservices'] },
+  { id: 'multi_tenant', name: 'Multi-Tenant SaaS Architecture', weeks: 2.5, costUsd: 3800, tech: ['Data Isolation', 'Custom Domains', 'Subscription Billing'] },
+  { id: 'blockchain', name: 'Blockchain & Smart Contracts', weeks: 4, costUsd: 6500, tech: ['Solidity', 'Web3.js', 'Ethereum / Polygon'] },
+  { id: 'integrations', name: 'Advanced 3rd-Party Integrations', weeks: 1.5, costUsd: 1800, tech: ['Stripe / Plaid', 'Salesforce / HubSpot API', 'Twilio Webhooks'] }
 ];
 
 export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstimates }) => {

@@ -31,7 +31,7 @@ export const ServicesPage: React.FC = () => {
       <SEOHead
         title="Engineering Services & Market Capabilities | Tekmora"
         description="Tekmora builds custom web platforms, AI workflow automations, autonomous agent systems, multi-tenant SaaS, enterprise ERP portals, and warehouse systems."
-        canonical="https://tekmora.com/services"
+        canonical="https://tekmorasolution.com/services"
       />
 
       {/* Hero */}

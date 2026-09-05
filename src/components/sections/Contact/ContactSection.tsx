@@ -47,10 +47,8 @@ export const ContactSection: React.FC = () => {
     if (!formData.email || !formData.name) return;
 
     setIsSubmitting(true);
-    setErrorMsg(null);
-
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_ENDPOINT_ID', {
+      const response = await fetch('https://formspree.io/f/mbgjkvrb', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,7 +110,7 @@ export const ContactSection: React.FC = () => {
         <ProjectEstimator onApplyEstimates={handleApplyEstimates} />
 
         {/* Closing Main Grid */}
-        <motion.div 
+        <motion.div
           className="contact-main-grid"
           initial="hidden"
           whileInView="visible"
@@ -140,8 +138,8 @@ export const ContactSection: React.FC = () => {
             <div className="contact-details-box">
               <div className="c-detail-item">
                 <div className="cd-lbl font-mono">{t('contact.biz_inq')}</div>
-                <a href="mailto:inquiry@tekmora.com" className="cd-val font-mono">
-                  <Mail size={14} className="text-orange" /> inquiry@tekmora.com
+                <a href="mailto:info@tekmorasolution.com" className="cd-val font-mono">
+                  <Mail size={14} className="text-orange" /> info@tekmorasolution.com
                 </a>
               </div>
 
@@ -178,7 +176,7 @@ export const ContactSection: React.FC = () => {
                 <span>{t('contact.form_header')}</span>
                 <span className="text-orange">STEP 0{step} // {step === 1 ? 'CONTACT' : step === 2 ? 'SCOPE' : 'DETAILS'}</span>
               </div>
-              
+
               {/* Progress Indicator */}
               {!submitted && (
                 <div className="funnel-progress">
@@ -208,7 +206,7 @@ export const ContactSection: React.FC = () => {
                 <form onSubmit={handleSubmit} className="inquiry-form">
                   {/* Step 1: Contact */}
                   {step === 1 && (
-                    <motion.div 
+                    <motion.div
                       key="step1"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -255,7 +253,7 @@ export const ContactSection: React.FC = () => {
                           onChange={e => setFormData({ ...formData, email: e.target.value })}
                         />
                       </div>
-                      
+
                       <button
                         type="button"
                         className="btn btn-orange w-full font-mono mt-4"
@@ -270,7 +268,7 @@ export const ContactSection: React.FC = () => {
 
                   {/* Step 2: Scope */}
                   {step === 2 && (
-                    <motion.div 
+                    <motion.div
                       key="step2"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -342,7 +340,7 @@ export const ContactSection: React.FC = () => {
                           </select>
                         </div>
                       </div>
-                      
+
                       <div className="funnel-actions">
                         <button type="button" className="btn btn-secondary font-mono" onClick={() => setStep(1)}>BACK</button>
                         <button type="button" className="btn btn-orange font-mono flex-1" onClick={() => setStep(3)}>NEXT STEP ↗</button>
@@ -352,7 +350,7 @@ export const ContactSection: React.FC = () => {
 
                   {/* Step 3: Details & Submit */}
                   {step === 3 && (
-                    <motion.div 
+                    <motion.div
                       key="step3"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}

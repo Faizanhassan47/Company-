@@ -8,7 +8,7 @@ export const TermsPage: React.FC = () => {
       <SEOHead
         title="Terms of Service | Tekmora"
         description="Terms of service and software development engagement standards for Tekmora."
-        canonical="https://tekmora.com/terms"
+        canonical="https://tekmorasolution.com/terms"
       />
 
       <section className="legal-hero section">
@@ -57,7 +57,7 @@ export const TermsPage: React.FC = () => {
               For legal and contractual inquiries, contact:
             </p>
             <p className="font-mono text-orange">
-              inquiry@tekmora.com
+              info@tekmorasolution.com
             </p>
           </div>
         </div>

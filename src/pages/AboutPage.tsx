@@ -12,7 +12,7 @@ export const AboutPage: React.FC = () => {
       <SEOHead
         title="About Tekmora | Custom Software Engineering Company"
         description="Tekmora is a focused custom software engineering company operating globally and working worldwide, building web, mobile and enterprise systems around real operational workflows."
-        canonical="https://tekmora.com/about"
+        canonical="https://tekmorasolution.com/about"
       />
 
       {/* Hero */}

@@ -11,7 +11,7 @@ export const IndustriesPage: React.FC = () => {
       <SEOHead
         title="Operational Software for Core Industries | Tekmora"
         description="Tekmora engineers custom software solutions for manufacturing plants, warehouse logistics hubs, field service teams, and scaling e-commerce brands."
-        canonical="https://tekmora.com/industries"
+        canonical="https://tekmorasolution.com/industries"
       />
 
       {/* Hero */}

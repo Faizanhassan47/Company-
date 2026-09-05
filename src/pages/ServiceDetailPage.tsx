@@ -43,7 +43,7 @@ export const ServiceDetailPage: React.FC = () => {
     provider: {
       '@type': 'Organization',
       name: 'Tekmora',
-      url: 'https://tekmora.com'
+      url: 'https://tekmorasolution.com'
     },
     description: service.overview,
     areaServed: 'Worldwide'
@@ -54,7 +54,7 @@ export const ServiceDetailPage: React.FC = () => {
       <SEOHead
         title={`${service.title} Services | Tekmora`}
         description={`${service.overview}`}
-        canonical={`https://tekmora.com/services/${service.slug}`}
+        canonical={`https://tekmorasolution.com/services/${service.slug}`}
         type="service"
         jsonLd={serviceJsonLd}
       />

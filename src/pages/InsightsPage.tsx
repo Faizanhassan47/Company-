@@ -27,7 +27,7 @@ export const InsightsPage: React.FC = () => {
       <SEOHead
         title="Technical Insights & Architecture Notes | Tekmora"
         description="Original, in-depth engineering breakdowns from Tekmora covering SAP Business One integrations, warehouse GRN automation, React Native vs Native, RBAC permissions, and SQL Server telemetry."
-        canonical="https://tekmora.com/insights"
+        canonical="https://tekmorasolution.com/insights"
       />
 
       {/* Hero Header */}

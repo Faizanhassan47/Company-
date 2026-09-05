@@ -8,7 +8,7 @@ export const PrivacyPage: React.FC = () => {
       <SEOHead
         title="Privacy Policy | Tekmora"
         description="Tekmora privacy policy and data governance practices. Learn how we handle client data and platform confidentiality."
-        canonical="https://tekmora.com/privacy"
+        canonical="https://tekmorasolution.com/privacy"
       />
 
       <section className="legal-hero section">
@@ -70,7 +70,7 @@ export const PrivacyPage: React.FC = () => {
               If you have any questions regarding our data privacy practices, please contact us at:
             </p>
             <p className="font-mono text-orange">
-              inquiry@tekmora.com
+              info@tekmorasolution.com
             </p>
           </div>
         </div>

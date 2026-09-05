@@ -85,7 +85,7 @@ export const CaseStudyPage: React.FC = () => {
       <SEOHead
         title={`${project.title} | Case Study`}
         description={`${project.title}: ${project.tagline}`}
-        canonical={`https://tekmora.com/work/${project.slug}`}
+        canonical={`https://tekmorasolution.com/work/${project.slug}`}
         type="article"
       />
 

@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
     <footer className="site-footer">
       <div className="container">
         {/* Top Direct Action Banner */}
-        <motion.div 
+        <motion.div
           className="footer-action-banner"
           initial="hidden"
           whileInView="visible"
@@ -34,15 +34,15 @@ export const Footer: React.FC = () => {
               <span>Start a Project Inquiry</span>
               <ArrowUpRight size={16} />
             </Link>
-            <a href="mailto:inquiry@tekmora.com" className="footer-direct-email">
+            <a href="mailto:info@tekmorasolution.com" className="footer-direct-email">
               <Mail size={14} className="text-orange" />
-              <span>inquiry@tekmora.com</span>
+              <span>info@tekmorasolution.com</span>
             </a>
           </div>
         </motion.div>
 
         {/* Main Footer Layout */}
-        <motion.div 
+        <motion.div
           className="footer-main-grid"
           initial="hidden"
           whileInView="visible"
@@ -105,7 +105,7 @@ export const Footer: React.FC = () => {
         </motion.div>
 
         {/* Bottom Bar */}
-        <motion.div 
+        <motion.div
           className="footer-bottom-row font-mono"
           initial="hidden"
           whileInView="visible"

@@ -49,30 +49,17 @@ export const PhilosophySection: React.FC = () => {
   ], [t]);
 
   useGSAP(() => {
-    // Parallax Headline
-    gsap.to('.philosophy-main-headline', {
+
+    // Parallax Cards Container
+    gsap.to('.reality-cards-grid', {
       scrollTrigger: {
         trigger: '.philosophy-section',
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 1.5,
+        scrub: 1,
       },
-      y: -100,
+      y: -80,
       ease: 'none',
-    });
-
-    // Parallax Cards
-    gsap.utils.toArray('.reality-card').forEach((card: any, i) => {
-      gsap.to(card, {
-        scrollTrigger: {
-          trigger: '.philosophy-section',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1 + (i * 0.2),
-        },
-        y: -150 - (i * 20),
-        ease: 'none',
-      });
     });
   }, []);
 

@@ -9,7 +9,7 @@ export const ContactPage: React.FC = () => {
       <SEOHead
         title="Contact Tekmora | Start a Software Project"
         description="Discuss your software development requirements with Tekmora. Direct technical consultation on web platforms, mobile apps, enterprise systems, and SAP integrations."
-        canonical="https://tekmora.com/contact"
+        canonical="https://tekmorasolution.com/contact"
       />
 
       {/* Hero */}

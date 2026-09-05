@@ -176,7 +176,7 @@ export const WorkPage: React.FC = () => {
       <SEOHead
         title="Engineered Systems & Portfolio | Tekmora"
         description="Explore verified custom web applications, mobile tools, enterprise ERP systems, and warehouse automation workflows built by Tekmora."
-        canonical="https://tekmora.com/work"
+        canonical="https://tekmorasolution.com/work"
       />
 
       {/* Hero Header */}
