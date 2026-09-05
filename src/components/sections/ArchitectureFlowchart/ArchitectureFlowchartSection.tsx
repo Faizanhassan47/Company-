@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { 
-  Globe, Smartphone, Monitor,
+  Globe, Monitor,
   ShieldCheck, Lock, ShieldAlert,
   Box, Server, Activity, Settings, Zap,
   CreditCard, Link as LinkIcon, Mail, Cloud,

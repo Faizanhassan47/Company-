@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   MessageSquare, Lightbulb, Rocket, 
-  Mail, MapPin, Clock, User, Building, ArrowRight, ArrowUpRight, FileText, Check, Send
+  Mail, MapPin, Clock, User, Building, ArrowRight, ArrowUpRight, Check, Send
 } from 'lucide-react';
 import './ProjectInquirySection.css';
 

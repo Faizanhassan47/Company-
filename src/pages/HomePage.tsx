@@ -1,15 +1,12 @@
 import React from 'react';
 import {
   HeroSection,
-  ServicesSection,
   BusinessProblemsSection,
-  ContactSection,
   LogoCloudSection,
   MetricsSection,
   CapabilitiesMapSection,
   IndustriesSection,
-  IntegrationsSection,
-  WhyTekmoraSection,
+  IndustriesSection,
   PhilosophySection,
   SelectedWorkSection,
   ArchitectureFlowchartSection,

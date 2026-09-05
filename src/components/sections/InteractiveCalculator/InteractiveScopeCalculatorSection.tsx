@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Calculator, Check, AlertCircle, Share2, ArrowRight, GitMerge, FileCode2, TestTube2, LayoutGrid
+  Calculator, Check, AlertCircle, Share2, ArrowRight, GitMerge, FileCode2, LayoutGrid
 } from 'lucide-react';
 import './InteractiveScopeCalculatorSection.css';
 
