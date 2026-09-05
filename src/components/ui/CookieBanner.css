@@ -10,8 +10,8 @@
 .cookie-banner-content {
   padding: 1.5rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  background: var(--bg-color); /* Use solid background instead of surface */
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card); /* Use solid background instead of surface */
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
