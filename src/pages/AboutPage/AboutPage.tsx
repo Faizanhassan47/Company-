@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Globe, ShieldCheck, Code2 } from 'lucide-react';
-import { SEOHead } from '../components/seo/SEOHead';
-import { TrustEcosystemSection } from '../components/sections/TrustEcosystem/TrustEcosystemSection';
-import { TestimonialsSection } from '../components/sections/Testimonials/TestimonialsSection';
+import { SEOHead } from '../../components/seo/SEOHead';
+import { TrustEcosystemSection } from '../../components/sections/TrustEcosystem/TrustEcosystemSection';
+import { TestimonialsSection } from '../../components/sections/Testimonials/TestimonialsSection';
 import './AboutPage.css';
 
 export const AboutPage: React.FC = () => {

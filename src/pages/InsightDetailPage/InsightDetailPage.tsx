@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { INSIGHTS_DATA, type InsightArticle } from '../data/insights';
-import { SERVICES_DATA } from '../data/services';
-import { PROJECTS } from '../data/projects';
+import { INSIGHTS_DATA, type InsightArticle } from '../../data/insights';
+import { SERVICES_DATA } from '../../data/services';
+import { PROJECTS } from '../../data/projects';
 import { ArrowLeft, ArrowUpRight, Clock, Calendar, ShieldCheck, Layers } from 'lucide-react';
-import { SEOHead } from '../components/seo/SEOHead';
+import { SEOHead } from '../../components/seo/SEOHead';
 import './InsightDetailPage.css';
 
 export const InsightDetailPage: React.FC = () => {

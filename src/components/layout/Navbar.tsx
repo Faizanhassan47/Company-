@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Menu, X, ArrowUpRight, Search } from 'lucide-react';
 import { TekmoraLogo } from '../ui/TekmoraLogo';
 import './Navbar.css';
+import publicRoutes from '../../config/publicRoutes.json';
 
 interface NavbarProps {
   onOpenContact?: () => void;
@@ -51,14 +52,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: t('nav.about', 'About'), to: '/about' },
-    { label: t('nav.services', 'Services'), to: '/services' },
-    { label: t('nav.work', 'Work'), to: '/work' },
-    { label: t('nav.industries', 'Industries'), to: '/industries' },
-    { label: t('nav.insights', 'Insights'), to: '/insights' },
-    { label: t('nav.start_project', 'Contact'), to: '/contact' }
-  ];
+  const navLabels: Record<string, string> = {
+    about: t('nav.about', 'About'),
+    services: t('nav.services', 'Services'),
+    work: t('nav.work', 'Work'),
+    industries: t('nav.industries', 'Industries'),
+    insights: t('nav.insights', 'Insights'),
+    contact: t('nav.start_project', 'Contact')
+  };
+  const navLinks = publicRoutes
+    .filter(route => route.nav)
+    .map(route => ({ label: navLabels[route.id], to: route.path }));
 
   return (
     <>

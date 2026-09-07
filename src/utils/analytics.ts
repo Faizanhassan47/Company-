@@ -5,7 +5,7 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+export const GA_MEASUREMENT_ID = env.googleAnalyticsId;
 
 export const initAnalytics = () => {
   if (typeof window === 'undefined') return;
@@ -59,4 +59,5 @@ export const trackEvent = (action: string, category: string, label?: string, val
     });
   }
 };
+import { env } from '@/config/env';
 

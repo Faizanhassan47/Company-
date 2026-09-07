@@ -1,6 +1,6 @@
 import React from 'react';
-import { SEOHead } from '../components/seo/SEOHead';
-import './LegalPages.css';
+import { SEOHead } from '../../components/seo/SEOHead';
+import '../_shared/LegalPages.css';
 
 export const PrivacyPage: React.FC = () => {
   return (

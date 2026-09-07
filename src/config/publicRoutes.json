@@ -1,0 +1,11 @@
+[
+  { "id": "home", "path": "/", "nav": false, "changefreq": "weekly", "priority": 1.0 },
+  { "id": "about", "path": "/about", "nav": true, "changefreq": "monthly", "priority": 0.8 },
+  { "id": "services", "path": "/services", "nav": true, "changefreq": "monthly", "priority": 0.9 },
+  { "id": "work", "path": "/work", "nav": true, "changefreq": "weekly", "priority": 0.8 },
+  { "id": "industries", "path": "/industries", "nav": true, "changefreq": "monthly", "priority": 0.7 },
+  { "id": "insights", "path": "/insights", "nav": true, "changefreq": "weekly", "priority": 0.7 },
+  { "id": "contact", "path": "/contact", "nav": true, "changefreq": "yearly", "priority": 0.6 },
+  { "id": "privacy", "path": "/privacy", "nav": false, "changefreq": "yearly", "priority": 0.3 },
+  { "id": "terms", "path": "/terms", "nav": false, "changefreq": "yearly", "priority": 0.3 }
+]

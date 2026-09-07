@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, AlertCircle, CheckCircle2 } from 'lucide-react';
-import { INDUSTRIES_DATA, type IndustryDetail } from '../data/industries';
-import { SEOHead } from '../components/seo/SEOHead';
+import { INDUSTRIES_DATA, type IndustryDetail } from '../../data/industries';
+import { SEOHead } from '../../components/seo/SEOHead';
 import './IndustriesPage.css';
 
 export const IndustriesPage: React.FC = () => {

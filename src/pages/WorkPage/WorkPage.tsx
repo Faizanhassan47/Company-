@@ -1,18 +1,18 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Code, Globe, Layout } from 'lucide-react';
-import { PROJECTS, type CaseStudy } from '../data/projects';
-import { SEOHead } from '../components/seo/SEOHead';
-import { trackEvent } from '../utils/analytics';
-import { DomeInterfaceGraphic } from '../components/visuals/DomeInterfaceGraphic';
-import { MatrixMobileGraphic } from '../components/visuals/MatrixMobileGraphic';
-import { GrnWorkflowGraphic } from '../components/visuals/GrnWorkflowGraphic';
-import { SapAnalyticsGraphic } from '../components/visuals/SapAnalyticsGraphic';
-import { QuranAyatGraphic } from '../components/visuals/QuranAyatGraphic';
-import { CitiBooksGraphic } from '../components/visuals/CitiBooksGraphic';
-import { ShoestopsGraphic } from '../components/visuals/ShoestopsGraphic';
-import { CommentsFusionGraphic } from '../components/visuals/CommentsFusionGraphic';
-import { TranscendGraphic } from '../components/visuals/TranscendGraphic';
+import { PROJECTS, type CaseStudy } from '../../data/projects';
+import { SEOHead } from '../../components/seo/SEOHead';
+import { trackEvent } from '../../utils/analytics';
+import { DomeInterfaceGraphic } from '../../components/visuals/DomeInterfaceGraphic';
+import { MatrixMobileGraphic } from '../../components/visuals/MatrixMobileGraphic';
+import { GrnWorkflowGraphic } from '../../components/visuals/GrnWorkflowGraphic';
+import { SapAnalyticsGraphic } from '../../components/visuals/SapAnalyticsGraphic';
+import { QuranAyatGraphic } from '../../components/visuals/QuranAyatGraphic';
+import { CitiBooksGraphic } from '../../components/visuals/CitiBooksGraphic';
+import { ShoestopsGraphic } from '../../components/visuals/ShoestopsGraphic';
+import { CommentsFusionGraphic } from '../../components/visuals/CommentsFusionGraphic';
+import { TranscendGraphic } from '../../components/visuals/TranscendGraphic';
 import './WorkPage.css';
 
 const filterTabs = [

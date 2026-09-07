@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Search, Terminal } from 'lucide-react';
-import { fadeInUp, staggerContainer } from '../utils/animations';
+import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './NotFoundPage.css';
 
 export const NotFoundPage: React.FC = () => {

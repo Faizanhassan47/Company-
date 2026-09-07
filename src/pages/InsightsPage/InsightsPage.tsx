@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Clock, Calendar, Search } from 'lucide-react';
-import { INSIGHTS_DATA, type InsightArticle } from '../data/insights';
-import { SEOHead } from '../components/seo/SEOHead';
+import { INSIGHTS_DATA, type InsightArticle } from '../../data/insights';
+import { SEOHead } from '../../components/seo/SEOHead';
 import './InsightsPage.css';
 
 export const InsightsPage: React.FC = () => {

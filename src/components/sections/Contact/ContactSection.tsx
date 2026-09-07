@@ -7,6 +7,7 @@ import { ProjectEstimator, type EstimatorSelection } from '../../ui/ProjectEstim
 import { staggerContainer, fadeInUp } from '../../../utils/animations';
 import { trackEvent } from '../../../utils/analytics';
 import './ContactSection.css';
+import { env } from '@/config/env';
 
 export const ContactSection: React.FC = () => {
   const { t } = useTranslation();
@@ -49,7 +50,7 @@ export const ContactSection: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      const endpointId = import.meta.env.VITE_FORMSPREE_ENDPOINT_ID || 'mbgjkvrb';
+      const endpointId = env.formspreeEndpointId;
       const response = await fetch(`https://formspree.io/f/${endpointId}`, {
         method: 'POST',
         headers: {
@@ -219,11 +220,14 @@ export const ContactSection: React.FC = () => {
                     >
                       <div className="form-row-2">
                         <div className="form-group">
-                          <label className="form-label font-mono">
+                          <label className="form-label font-mono" htmlFor="contact-name">
                             {t('contact.f_name')} <span className="text-orange">*</span>
                           </label>
                           <input
+                            id="contact-name"
+                            name="name"
                             type="text"
+                            autoComplete="name"
                             required
                             className="form-input"
                             placeholder="Your Name"
@@ -233,9 +237,12 @@ export const ContactSection: React.FC = () => {
                         </div>
 
                         <div className="form-group">
-                          <label className="form-label font-mono">{t('contact.f_company')}</label>
+                          <label className="form-label font-mono" htmlFor="contact-company">{t('contact.f_company')}</label>
                           <input
+                            id="contact-company"
+                            name="company"
                             type="text"
+                            autoComplete="organization"
                             className="form-input"
                             placeholder="Company Name"
                             value={formData.company}
@@ -245,11 +252,14 @@ export const ContactSection: React.FC = () => {
                       </div>
 
                       <div className="form-group">
-                        <label className="form-label font-mono">
+                        <label className="form-label font-mono" htmlFor="contact-email">
                           {t('contact.f_email')} <span className="text-orange">*</span>
                         </label>
                         <input
+                          id="contact-email"
+                          name="email"
                           type="email"
+                          autoComplete="email"
                           required
                           className="form-input"
                           placeholder="name@company.com"
@@ -313,8 +323,10 @@ export const ContactSection: React.FC = () => {
 
                       <div className="form-row-2" style={{ marginTop: '1.5rem' }}>
                         <div className="form-group">
-                          <label className="form-label font-mono">{t('contact.f_timeline')}</label>
+                          <label className="form-label font-mono" htmlFor="contact-timeline">{t('contact.f_timeline')}</label>
                           <select
+                            id="contact-timeline"
+                            name="timeline"
                             className="form-select font-mono"
                             value={formData.timeline}
                             onChange={e => setFormData({ ...formData, timeline: e.target.value })}
@@ -329,8 +341,10 @@ export const ContactSection: React.FC = () => {
                         </div>
 
                         <div className="form-group">
-                          <label className="form-label font-mono">{t('contact.f_budget')}</label>
+                          <label className="form-label font-mono" htmlFor="contact-budget">{t('contact.f_budget')}</label>
                           <select
+                            id="contact-budget"
+                            name="budget"
                             className="form-select font-mono"
                             value={formData.budget}
                             onChange={e => setFormData({ ...formData, budget: e.target.value })}
@@ -362,8 +376,10 @@ export const ContactSection: React.FC = () => {
                       className="funnel-step-content"
                     >
                       <div className="form-group">
-                        <label className="form-label font-mono">{t('contact.f_details')}</label>
+                        <label className="form-label font-mono" htmlFor="contact-details">{t('contact.f_details')}</label>
                         <textarea
+                          id="contact-details"
+                          name="details"
                           rows={4}
                           className="form-textarea font-mono"
                           placeholder="What is currently manual or disconnected? What systems need to be built or integrated?"

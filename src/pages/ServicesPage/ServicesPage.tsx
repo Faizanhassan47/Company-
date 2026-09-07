@@ -2,12 +2,12 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, Cpu, Filter } from 'lucide-react';
-import { SERVICES_DATA, type ServiceDetail } from '../data/services';
-import { SEOHead } from '../components/seo/SEOHead';
-import { ServiceMarketMatrix } from '../components/sections/Services/ServiceMarketMatrix';
-import { TechRadarSection } from '../components/sections/TechRadar/TechRadarSection';
-import { ProcurementFAQSection } from '../components/sections/ProcurementFAQ/ProcurementFAQSection';
-import { EngagementModelsSection } from '../components/sections/EngagementModels/EngagementModelsSection';
+import { SERVICES_DATA, type ServiceDetail } from '../../data/services';
+import { SEOHead } from '../../components/seo/SEOHead';
+import { ServiceMarketMatrix } from '../../components/sections/Services/ServiceMarketMatrix';
+import { TechRadarSection } from '../../components/sections/TechRadar/TechRadarSection';
+import { ProcurementFAQSection } from '../../components/sections/ProcurementFAQ/ProcurementFAQSection';
+import { EngagementModelsSection } from '../../components/sections/EngagementModels/EngagementModelsSection';
 import './ServicesPage.css';
 
 export const ServicesPage: React.FC = () => {

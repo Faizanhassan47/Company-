@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import './ProjectInquirySection.css';
 import { trackEvent } from '../../../utils/analytics';
+import { env } from '@/config/env';
 
 export const ProjectInquirySection: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -30,7 +31,7 @@ export const ProjectInquirySection: React.FC = () => {
       setShowError(false);
       
       try {
-        const endpointId = import.meta.env.VITE_FORMSPREE_ENDPOINT_ID || 'mbgjkvrb';
+        const endpointId = env.formspreeEndpointId;
         const response = await fetch(`https://formspree.io/f/${endpointId}`, {
           method: 'POST',
           headers: {

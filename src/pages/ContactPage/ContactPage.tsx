@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContactSection } from '../components/sections/Contact/ContactSection';
-import { SEOHead } from '../components/seo/SEOHead';
+import { ContactSection } from '../../components/sections/Contact/ContactSection';
+import { SEOHead } from '../../components/seo/SEOHead';
 import './ContactPage.css';
 
 export const ContactPage: React.FC = () => {

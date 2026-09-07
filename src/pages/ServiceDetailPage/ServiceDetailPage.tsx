@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { SERVICES_DATA } from '../data/services';
-import { PROJECTS } from '../data/projects';
+import { SERVICES_DATA } from '../../data/services';
+import { PROJECTS } from '../../data/projects';
 import { ArrowLeft, ArrowUpRight, HelpCircle, ArrowDownRight, Briefcase, Zap } from 'lucide-react';
-import { SEOHead } from '../components/seo/SEOHead';
+import { SEOHead } from '../../components/seo/SEOHead';
 import './ServiceDetailPage.css';
 
 export const ServiceDetailPage: React.FC = () => {

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { INDUSTRIES_DATA } from '../data/industries';
-import { PROJECTS } from '../data/projects';
-import { SERVICES_DATA } from '../data/services';
+import { INDUSTRIES_DATA } from '../../data/industries';
+import { PROJECTS } from '../../data/projects';
+import { SERVICES_DATA } from '../../data/services';
 import { ArrowLeft, ArrowUpRight, AlertCircle, CheckCircle2, HelpCircle } from 'lucide-react';
-import { SEOHead } from '../components/seo/SEOHead';
+import { SEOHead } from '../../components/seo/SEOHead';
 import './IndustryDetailPage.css';
 
 export const IndustryDetailPage: React.FC = () => {

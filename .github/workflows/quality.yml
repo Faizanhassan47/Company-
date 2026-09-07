@@ -26,6 +26,10 @@ jobs:
         run: npm run lint
       - name: Build production bundle
         run: npm run build
+      - name: Install browser test runtime
+        run: npx playwright install --with-deps chromium
+      - name: Run browser smoke tests
+        run: npm run test:e2e -- --project=chromium
       - name: Run Lighthouse quality budgets
         uses: treosh/lighthouse-ci-action@v12
         with:
