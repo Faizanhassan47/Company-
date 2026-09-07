@@ -120,6 +120,7 @@ export const CaseStudyPage: React.FC = () => {
         title={`${project.title} | Case Study`}
         description={`${project.title}: ${project.tagline}`}
         canonical={`https://tekmorasolution.com/work/${project.slug}`}
+        image={project.imageUrl}
         type="article"
         jsonLd={[
           {

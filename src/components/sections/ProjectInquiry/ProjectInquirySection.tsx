@@ -167,26 +167,26 @@ export const ProjectInquirySection: React.FC = () => {
                 <>
                   <div className="pi-form-row">
                     <div className="pi-form-group">
-                      <label>YOUR NAME <span className="pi-req">*</span></label>
+                      <label htmlFor="project-name">YOUR NAME <span className="pi-req">*</span></label>
                       <div className="pi-input-wrapper">
                         <User size={16} className="pi-input-icon" />
-                        <input type="text" placeholder="John Doe" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
+                        <input id="project-name" name="name" type="text" autoComplete="name" placeholder="John Doe" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
                       </div>
                     </div>
                     <div className="pi-form-group">
-                      <label>COMPANY / ORGANIZATION</label>
+                      <label htmlFor="project-company">COMPANY / ORGANIZATION</label>
                       <div className="pi-input-wrapper">
                         <Building size={16} className="pi-input-icon" />
-                        <input type="text" placeholder="Company Name" value={formData.company} onChange={(e) => setFormData({...formData, company: e.target.value})} />
+                        <input id="project-company" name="company" type="text" autoComplete="organization" placeholder="Company Name" value={formData.company} onChange={(e) => setFormData({...formData, company: e.target.value})} />
                       </div>
                     </div>
                   </div>
 
                   <div className="pi-form-group">
-                    <label>EMAIL ADDRESS <span className="pi-req">*</span></label>
+                    <label htmlFor="project-email">EMAIL ADDRESS <span className="pi-req">*</span></label>
                     <div className="pi-input-wrapper">
                       <Mail size={16} className="pi-input-icon" />
-                      <input type="email" placeholder="you@company.com" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                      <input id="project-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                     </div>
                   </div>
                 </>
@@ -196,8 +196,8 @@ export const ProjectInquirySection: React.FC = () => {
               {step === 2 && (
                 <>
                   <div className="pi-form-group">
-                    <label>PROJECT BUDGET (OPTIONAL)</label>
-                    <select className="pi-select-input" value={formData.budget} onChange={(e) => setFormData({...formData, budget: e.target.value})}>
+                    <label htmlFor="project-budget">PROJECT BUDGET (OPTIONAL)</label>
+                    <select id="project-budget" name="budget" className="pi-select-input" value={formData.budget} onChange={(e) => setFormData({...formData, budget: e.target.value})}>
                       <option>Less than $5,000</option>
                       <option>$5,000 - $15,000</option>
                       <option>$15,000 - $50,000</option>
@@ -205,8 +205,8 @@ export const ProjectInquirySection: React.FC = () => {
                     </select>
                   </div>
                   <div className="pi-form-group">
-                    <label>TIMELINE</label>
-                    <select className="pi-select-input" value={formData.timeline} onChange={(e) => setFormData({...formData, timeline: e.target.value})}>
+                    <label htmlFor="project-timeline">TIMELINE</label>
+                    <select id="project-timeline" name="timeline" className="pi-select-input" value={formData.timeline} onChange={(e) => setFormData({...formData, timeline: e.target.value})}>
                       <option>As soon as possible</option>
                       <option>Within 1-2 months</option>
                       <option>Within 3-6 months</option>
@@ -220,9 +220,9 @@ export const ProjectInquirySection: React.FC = () => {
               {step === 3 && (
                 <>
                   <div className="pi-form-group">
-                    <label>TELL US ABOUT THE WORKFLOW OR SYSTEM</label>
+                    <label htmlFor="project-details">TELL US ABOUT THE WORKFLOW OR SYSTEM</label>
                     <div className="pi-input-wrapper pi-textarea-wrapper no-icon">
-                      <textarea placeholder="What is currently manual or disconnected? What systems need to be built or integrated?" required value={formData.details} onChange={(e) => setFormData({...formData, details: e.target.value})}></textarea>
+                      <textarea id="project-details" name="details" minLength={20} placeholder="What is currently manual or disconnected? What systems need to be built or integrated?" required value={formData.details} onChange={(e) => setFormData({...formData, details: e.target.value})}></textarea>
                     </div>
                   </div>
 

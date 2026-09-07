@@ -117,6 +117,25 @@ img {
   place-items: center;
 }
 
+.app-error {
+  display: grid;
+  min-height: 100vh;
+  padding: 2rem;
+  color: var(--text-primary);
+  background: var(--bg-main);
+  text-align: center;
+  place-items: center;
+}
+
+.app-error > div {
+  width: min(100%, 560px);
+}
+
+.app-error h1,
+.app-error p {
+  margin-bottom: 1.25rem;
+}
+
 .form-honeypot {
   position: absolute !important;
   width: 1px !important;

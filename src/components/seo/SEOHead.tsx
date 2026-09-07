@@ -4,6 +4,7 @@ interface SEOProps {
   title: string;
   description: string;
   canonical?: string;
+  image?: string;
   type?: 'website' | 'article' | 'service';
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
@@ -12,6 +13,7 @@ export const SEOHead: React.FC<SEOProps> = ({
   title,
   description,
   canonical,
+  image,
   type = 'website',
   jsonLd
 }) => {
@@ -30,7 +32,10 @@ export const SEOHead: React.FC<SEOProps> = ({
     metaDesc.content = description;
 
     // 3. Update Canonical
-    const currentUrl = canonical || window.location.href;
+    const currentUrl = canonical || `${window.location.origin}${window.location.pathname}`;
+    const socialImage = image
+      ? new URL(image, 'https://tekmorasolution.com').href
+      : 'https://tekmorasolution.com/og-image.jpg';
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
@@ -47,12 +52,12 @@ export const SEOHead: React.FC<SEOProps> = ({
       { property: 'og:type', content: type === 'article' ? 'article' : 'website' },
       { property: 'og:site_name', content: 'Tekmora' },
       { property: 'og:locale', content: 'en_US' },
-      { property: 'og:image', content: 'https://tekmorasolution.com/og-image.jpg' },
+      { property: 'og:image', content: socialImage },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
       { property: 'og:image:alt', content: 'Tekmora enterprise software engineering' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:image', content: 'https://tekmorasolution.com/og-image.jpg' },
+      { name: 'twitter:image', content: socialImage },
       { name: 'twitter:title', content: formattedTitle },
       { name: 'twitter:description', content: description }
     ];
@@ -111,7 +116,7 @@ export const SEOHead: React.FC<SEOProps> = ({
     return () => {
       // Cleanup on unmount if needed
     };
-  }, [title, description, canonical, type, jsonLd]);
+  }, [title, description, canonical, image, type, jsonLd]);
 
   return null;
 };
