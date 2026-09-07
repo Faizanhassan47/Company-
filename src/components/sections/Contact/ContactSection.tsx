@@ -5,6 +5,7 @@ import { Mail, MapPin, Send, CheckCircle2, Clock } from 'lucide-react';
 import { TekmoraLogo } from '../../ui/TekmoraLogo';
 import { ProjectEstimator, type EstimatorSelection } from '../../ui/ProjectEstimator';
 import { staggerContainer, fadeInUp } from '../../../utils/animations';
+import { trackEvent } from '../../../utils/analytics';
 import './ContactSection.css';
 
 export const ContactSection: React.FC = () => {
@@ -71,10 +72,11 @@ export const ContactSection: React.FC = () => {
 
       if (response.ok) {
         setSubmitted(true);
+        trackEvent('contact_form_submit', 'lead', formData.projectType);
       } else {
         setErrorMsg('System routing error. Please try again or email us directly.');
       }
-    } catch (err) {
+    } catch {
       setErrorMsg('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
@@ -205,6 +207,7 @@ export const ContactSection: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="inquiry-form">
+                  <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="form-honeypot" aria-hidden="true" />
                   {/* Step 1: Contact */}
                   {step === 1 && (
                     <motion.div
@@ -402,7 +405,7 @@ export const ContactSection: React.FC = () => {
                   )}
 
                   {errorMsg && (
-                    <div className="form-error-msg font-mono text-orange mt-3 text-sm text-center">
+                    <div className="form-error-msg font-mono text-orange mt-3 text-sm text-center" role="alert" aria-live="assertive">
                       {errorMsg}
                     </div>
                   )}

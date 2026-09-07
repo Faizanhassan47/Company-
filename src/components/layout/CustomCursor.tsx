@@ -99,7 +99,7 @@ export const CustomCursor: React.FC = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [isVisible, mouseX, mouseY]);
+  }, [borderRadius, isVisible, mouseX, mouseY, size]);
 
   if (!isVisible) return null;
 
@@ -126,4 +126,3 @@ export const CustomCursor: React.FC = () => {
     </motion.div>
   );
 };
-

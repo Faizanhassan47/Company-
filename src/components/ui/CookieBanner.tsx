@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, X } from 'lucide-react';
+// @ts-ignore
+import FocusTrap from 'focus-trap-react';
 import { initAnalytics } from '../../utils/analytics';
 import './CookieBanner.css';
 
@@ -40,32 +42,34 @@ export const CookieBanner: React.FC = () => {
           exit={{ y: 150, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
         >
-          <div className="cookie-banner-content">
-            <div className="cookie-banner-info">
-              <div className="cookie-banner-title font-mono">
-                <ShieldCheck size={16} className="text-orange" />
-                <span>DATA PRIVACY & ANALYTICS</span>
+          <FocusTrap>
+            <div className="cookie-banner-content" role="dialog" aria-modal="true" aria-labelledby="cookie-banner-title">
+              <div className="cookie-banner-info">
+                <div className="cookie-banner-title font-mono" id="cookie-banner-title">
+                  <ShieldCheck size={16} className="text-orange" />
+                  <span>DATA PRIVACY & ANALYTICS</span>
+                </div>
+                <p className="cookie-banner-text">
+                  Tekmora uses minimal tracking cookies to measure site performance and understand technical engagement. We prioritize your privacy and do not sell data.
+                </p>
               </div>
-              <p className="cookie-banner-text">
-                Tekmora uses minimal tracking cookies to measure site performance and understand technical engagement. We prioritize your privacy and do not sell data.
-              </p>
+              <div className="cookie-banner-actions font-mono">
+                <button className="btn btn-secondary btn-sm" onClick={handleDecline}>
+                  DECLINE
+                </button>
+                <button className="btn btn-orange btn-sm" onClick={handleAccept}>
+                  ACCEPT & CONTINUE
+                </button>
+                <button
+                  className="cookie-close-btn"
+                  onClick={handleDecline}
+                  aria-label="Close cookie banner"
+                >
+                  <X size={16} aria-hidden="true" />
+                </button>
+              </div>
             </div>
-            <div className="cookie-banner-actions font-mono">
-              <button className="btn btn-secondary btn-sm" onClick={handleDecline}>
-                DECLINE
-              </button>
-              <button className="btn btn-orange btn-sm" onClick={handleAccept}>
-                ACCEPT & CONTINUE
-              </button>
-              <button 
-                className="cookie-close-btn" 
-                onClick={handleDecline} 
-                aria-label="Close"
-              >
-                <X size={16} />
-              </button>
-            </div>
-          </div>
+          </FocusTrap>
         </motion.div>
       )}
     </AnimatePresence>

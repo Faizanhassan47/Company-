@@ -128,3 +128,17 @@
     transform: rotate(90deg) translateY(5px);
   }
 }
+
+@media (max-width: 768px) {
+  .business-problems-title {
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+    word-break: break-word;
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+  .metric-val {
+    font-size: 1.8rem !important;
+  }
+}

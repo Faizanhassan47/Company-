@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Layers } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Code, Globe, Layout } from 'lucide-react';
 import { PROJECTS, type CaseStudy } from '../data/projects';
 import { SEOHead } from '../components/seo/SEOHead';
+import { trackEvent } from '../utils/analytics';
 import { DomeInterfaceGraphic } from '../components/visuals/DomeInterfaceGraphic';
 import { MatrixMobileGraphic } from '../components/visuals/MatrixMobileGraphic';
 import { GrnWorkflowGraphic } from '../components/visuals/GrnWorkflowGraphic';
@@ -17,12 +18,10 @@ import './WorkPage.css';
 const filterTabs = [
   { label: 'All', value: 'all' },
   { label: 'Enterprise', value: 'enterprise' },
-  { label: 'Mobile', value: 'mobile' },
+  { label: 'Web Apps', value: 'web-apps' },
+  { label: 'Mobile Apps', value: 'mobile' },
   { label: 'E-commerce', value: 'ecommerce' },
-  { label: 'Business Platforms', value: 'business-platforms' },
-  { label: 'Healthcare', value: 'healthcare' },
-  { label: 'Warehouse and SAP', value: 'warehouse-sap' },
-  { label: 'Company Websites', value: 'company-websites' }
+  { label: 'Data & BI', value: 'data-bi' }
 ];
 
 const renderGraphic = (slug: string) => {
@@ -41,123 +40,51 @@ const renderGraphic = (slug: string) => {
   }
 };
 
-const renderEditorialBlock = (project: CaseStudy, index: number) => {
-  const isEven = index % 2 === 0;
-
-  // Render Visual
+const renderProjectCard = (project: CaseStudy, isFullWidth: boolean) => {
   const visualContent = project.imageUrl ? (
-    <div className="editorial-img-wrapper">
-      <img src={project.imageUrl} alt={`${project.title} Interface`} className="editorial-img" loading="lazy" />
-      <div className="editorial-img-overlay font-mono">
-        <span className="live-dot" /> PRODUCTION SYSTEM
-      </div>
-    </div>
+    <img src={project.imageUrl} alt={`${project.title} interface preview`} className="project-card-img" loading="lazy" decoding="async" />
   ) : (
-    <div className="editorial-graphic-wrapper">
+    <div className="project-card-graphic">
       {renderGraphic(project.slug) || (
         <div className="fallback-poster">
-          <div className="fallback-hdr font-mono"><span className="dot dot-green"></span> SYSTEM ARCHITECTURE // {project.slug.toUpperCase()}</div>
-          <div className="fallback-body"><div className="fallback-title font-display">{project.title}</div><div className="fallback-tech font-mono">VERIFIED TEKMORA PLATFORM</div></div>
+          <div className="fallback-title font-display">{project.title}</div>
         </div>
       )}
     </div>
   );
 
-  // Layouts based on visualType
-  if (project.visualType === 'full-interface' || project.visualType === 'workflow-diagram') {
-    return (
-      <article className="editorial-project project-full" key={project.id}>
-        <div className="project-header-bar desktop-header">
-          <div className="project-num-badge font-mono">
-            <span className="text-orange">{project.number}</span> / {project.category}
-          </div>
-          <div className="project-year font-mono">{project.year}</div>
-        </div>
-        
-        <div className="editorial-layout-split">
-          <div className="editorial-meta-rail font-mono">
-            <div className="rail-item">
-              <span className="rail-label">CLIENT CONTEXT</span>
-              <span className="rail-val">{project.client}</span>
-            </div>
-            <div className="rail-item">
-              <span className="rail-label">STACK</span>
-              <span className="rail-val">{project.technologies.slice(0, 3).join(', ')}</span>
-            </div>
-          </div>
-          <div className="editorial-main-content">
-            <div className="project-header-bar mobile-header">
-              <div className="project-num-badge font-mono">
-                <span className="text-orange">{project.number}</span> / {project.category}
-              </div>
-              <div className="project-year font-mono">{project.year}</div>
-            </div>
-            
-            <h3 className="project-display-title font-display">
-              <Link to={`/work/${project.slug}`}>{project.title}</Link>
-            </h3>
-            <p className="project-tagline-text">{project.tagline}</p>
-            <div className="project-cta-group font-mono">
-              <Link to={`/work/${project.slug}`} className="btn-link case-link">
-                <span>EXPLORE CASE STUDY</span>
-                <ArrowUpRight size={15} />
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="editorial-visual-container">
-          {visualContent}
-        </div>
-      </article>
-    );
-  }
-
-  // Split Layout for mobile-dual, analytics-board, clean-mobile, editorial-poster
   return (
-    <article className={`editorial-project project-split ${isEven ? 'img-right' : 'img-left'}`} key={project.id}>
-      <div className="project-header-bar mobile-header">
-        <div className="project-num-badge font-mono">
-          <span className="text-orange">{project.number}</span> / {project.category}
+    <article className={`project-card ${isFullWidth ? 'project-card-full' : 'project-card-half'}`} key={project.id}>
+      <div className="project-card-content">
+        <div className="project-card-header font-mono">
+          <span className="project-num">{project.number}</span>
+          <span className="project-cat-sep">—</span>
+          <span className="project-cat">{isFullWidth ? 'FEATURED PROJECT' : project.category}</span>
         </div>
-        <div className="project-year font-mono">{project.year}</div>
+
+        <h3 className="project-card-title font-display">
+          {project.title}
+        </h3>
+
+        <p className="project-card-desc">
+          {project.tagline}
+        </p>
+
+        <div className="project-card-tech font-mono">
+          {project.technologies.slice(0, 4).map((tech) => (
+            <span key={tech} className="tech-pill">
+              <Code size={12} /> {tech}
+            </span>
+          ))}
+        </div>
+
+        <Link to={`/work/${project.slug}`} className="project-card-btn" onClick={() => trackEvent('project_open', 'portfolio', project.slug)}>
+          View Project <ArrowRight size={16} />
+        </Link>
       </div>
-      <div className="editorial-grid">
-        <div className="editorial-content-col">
-          <div className="project-header-bar desktop-header">
-            <div className="project-num-badge font-mono">
-              <span className="text-orange">{project.number}</span> / {project.category}
-            </div>
-            <div className="project-year font-mono">{project.year}</div>
-          </div>
-          
-          <h3 className="project-display-title font-display">
-            <Link to={`/work/${project.slug}`}>{project.title}</Link>
-          </h3>
-          <p className="project-tagline-text">{project.tagline}</p>
-          
-          <div className="editorial-tech-list font-mono">
-            {project.technologies.slice(0, 4).map((tech) => (
-              <span key={tech} className="tech-badge">{tech}</span>
-            ))}
-          </div>
 
-          <div className="editorial-highlights font-mono">
-            {project.highlights?.slice(0, 3).map((hl, idx) => (
-              <div key={idx} className="hl-item">✓ {hl}</div>
-            ))}
-          </div>
-
-          <div className="project-cta-group font-mono">
-            <Link to={`/work/${project.slug}`} className="btn-link case-link">
-              <span>EXPLORE CASE STUDY</span>
-              <ArrowUpRight size={15} />
-            </Link>
-          </div>
-        </div>
-
-        <div className="editorial-visual-col">
-          {visualContent}
-        </div>
+      <div className="project-card-visual">
+        {visualContent}
       </div>
     </article>
   );
@@ -166,71 +93,125 @@ const renderEditorialBlock = (project: CaseStudy, index: number) => {
 export const WorkPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
 
+  // Map filters to internal categories for demo
+  const getMappedCategory = (filter: string) => {
+    if (filter === 'all') return 'all';
+    if (filter === 'web-apps') return 'business-platforms';
+    if (filter === 'data-bi') return 'warehouse-sap';
+    return filter;
+  };
+
   const visibleProjects = useMemo(() => {
-    if (activeFilter === 'all') return PROJECTS;
-    return PROJECTS.filter(project => project.filterCategory === activeFilter);
+    const mapped = getMappedCategory(activeFilter);
+    if (mapped === 'all') return PROJECTS;
+    return PROJECTS.filter(project => project.filterCategory === mapped);
   }, [activeFilter]);
 
   return (
     <main className="work-page" id="main-content">
       <SEOHead
-        title="Engineered Systems & Portfolio | Tekmora"
+        title="Our Work & Portfolio | Tekmora"
         description="Explore verified custom web applications, mobile tools, enterprise ERP systems, and warehouse automation workflows built by Tekmora."
         canonical="https://tekmorasolution.com/work"
       />
 
-      {/* Hero Header */}
-      <section className="work-page-hero section">
-        <div className="container">
-          <div className="section-meta">
-            <span className="section-number">01</span>
-            <span>// PORTFOLIO DIRECTORY</span>
-            <span className="meta-sep font-mono">{PROJECTS.length} SYSTEMS</span>
+      {/* Hero Section */}
+      <section className="work-page-hero">
+        <div className="container work-hero-grid">
+          <div className="work-hero-content">
+            <span className="hero-subtitle font-mono">OUR WORK</span>
+            <h1 className="work-page-title font-display">
+              Software that moves businesses <span className="text-orange">forward.</span>
+            </h1>
+            <p className="work-page-lead">
+              From enterprise platforms to mobile applications, we design and build reliable software solutions that solve real world problems.
+            </p>
           </div>
 
-          <h1 className="work-page-title font-display">
-            SYSTEMS ARCHITECTURE<br />
-            <span className="italic-accent">& PORTFOLIO.</span>
-          </h1>
-
-          <p className="work-page-lead">
-            Every project represents a tailored software architecture engineered around real operational requirements, user environments, and business data models.
-          </p>
+          <div className="work-hero-stats">
+            <div className="hero-ideas-arrow">
+               <div className="ideas-text font-display">Ideas<br/>into Impact</div>
+               <svg viewBox="0 0 200 80" className="hero-arrow-svg">
+                  <path d="M20,60 Q80,10 180,30" stroke="var(--accent-orange)" fill="transparent" strokeWidth="3" strokeLinecap="round" />
+                  <polygon points="180,30 165,20 170,40" fill="var(--accent-orange)" />
+               </svg>
+            </div>
+            <div className="stat-list">
+              <div className="stat-item">
+                <div className="stat-icon"><Layout size={18} className="text-orange"/></div>
+                <div className="stat-data">
+                  <span className="stat-val font-display">15+</span>
+                  <span className="stat-label">Projects Delivered</span>
+                </div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-icon"><Globe size={18} className="text-orange"/></div>
+                <div className="stat-data">
+                  <span className="stat-val font-display">8+</span>
+                  <span className="stat-label">Industries Served</span>
+                </div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-icon"><ArrowUpRight size={18} className="text-orange"/></div>
+                <div className="stat-data">
+                  <span className="stat-val font-display">100%</span>
+                  <span className="stat-label">Client Focused</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Filter & Editorial List */}
-      <section className="work-gallery-section section section-border-top">
+      {/* Filters and Grid */}
+      <section className="work-gallery-section">
         <div className="container">
-          {/* Top Controls */}
-          <div className="work-controls-bar">
-            <div className="filter-tabs-list" role="tablist" aria-label="Filter projects by category">
-              {filterTabs.map(tab => {
-                const isSelected = activeFilter === tab.value;
-                return (
-                  <button
-                    key={tab.value}
-                    role="tab"
-                    aria-selected={isSelected}
-                    className={`filter-tab-btn font-mono ${isSelected ? 'is-active' : ''}`}
-                    onClick={() => setActiveFilter(tab.value)}
-                  >
-                    <span>{tab.label}</span>
-                    {isSelected && <span className="tab-indicator"></span>}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="work-count font-mono">
-              <Layers size={14} className="text-orange" />
-              <span>SHOWING {visibleProjects.length} OF {PROJECTS.length} SYSTEMS</span>
-            </div>
+          <div className="filter-tabs-container">
+            {filterTabs.map(tab => {
+              const isSelected = activeFilter === tab.value;
+              return (
+                <button
+                  key={tab.value}
+                  className={`filter-tab-pill ${isSelected ? 'is-active' : ''}`}
+                  onClick={() => setActiveFilter(tab.value)}
+                  type="button"
+                  aria-pressed={isSelected}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Editorial Projects List */}
-          <div className="editorial-list-container">
-            {visibleProjects.map((project, idx) => renderEditorialBlock(project, idx))}
+          <div className="work-grid">
+            {visibleProjects.map((project, idx) => {
+              // Full width for 1st and 4th items in "all" view, or if only 1 item
+              const isFullWidth = (activeFilter === 'all' && (idx === 0 || idx === 3)) || visibleProjects.length === 1;
+              return renderProjectCard(project, isFullWidth);
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="work-cta-section">
+        <div className="container">
+          <div className="cta-box">
+            <span className="cta-subtitle font-mono">LET'S BUILD TOGETHER</span>
+            <h2 className="cta-title font-display">
+              Have a <span className="text-orange">system</span> in mind?
+            </h2>
+            <p className="cta-desc">
+              Let's discuss your idea and turn it into a reliable, scalable solution.
+            </p>
+            <div className="cta-actions">
+              <Link to="/contact" className="btn btn-primary">
+                Start a Project <ArrowRight size={16} />
+              </Link>
+              <Link to="/contact" className="btn btn-outline-light">
+                Get in Touch
+              </Link>
+            </div>
           </div>
         </div>
       </section>

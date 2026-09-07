@@ -257,3 +257,20 @@
     align-items: flex-start;
   }
 }
+
+@media (max-width: 768px) {
+  .cursor-follower, .view-circle {
+    display: none !important;
+  }
+  .work-meta-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  .work-meta-item {
+    padding-right: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+}

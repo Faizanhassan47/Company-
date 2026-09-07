@@ -43,7 +43,7 @@ body {
   background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: var(--text-dim);
   border-radius: var(--radius-xs);
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -103,6 +103,27 @@ button {
 img, svg, video {
   display: block;
   max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+.route-loading {
+  display: grid;
+  min-height: 55vh;
+  color: var(--text-secondary);
+  background: var(--bg-main);
+  place-items: center;
+}
+
+.form-honeypot {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
 }
 
 /* Container & Layout */
@@ -344,6 +365,9 @@ img, svg, video {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 
@@ -404,4 +428,3 @@ img, svg, video {
   from { opacity: 0; transform: translateY(12px) scale(0.96); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
-

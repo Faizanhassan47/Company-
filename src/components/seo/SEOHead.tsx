@@ -5,7 +5,7 @@ interface SEOProps {
   description: string;
   canonical?: string;
   type?: 'website' | 'article' | 'service';
-  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 export const SEOHead: React.FC<SEOProps> = ({
@@ -40,22 +40,35 @@ export const SEOHead: React.FC<SEOProps> = ({
     canonicalLink.href = currentUrl;
 
     // 4. Update OpenGraph Tags
-    const ogTags = [
+    const metaTags = [
       { property: 'og:title', content: formattedTitle },
       { property: 'og:description', content: description },
       { property: 'og:url', content: currentUrl },
       { property: 'og:type', content: type === 'article' ? 'article' : 'website' },
-      { property: 'og:site_name', content: 'Tekmora' }
+      { property: 'og:site_name', content: 'Tekmora' },
+      { property: 'og:locale', content: 'en_US' },
+      { property: 'og:image', content: 'https://tekmorasolution.com/og-image.jpg' },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:image:alt', content: 'Tekmora enterprise software engineering' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:image', content: 'https://tekmorasolution.com/og-image.jpg' },
+      { name: 'twitter:title', content: formattedTitle },
+      { name: 'twitter:description', content: description }
     ];
 
-    ogTags.forEach(({ property, content }) => {
-      let tag = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
+    metaTags.forEach((meta) => {
+      const isProperty = 'property' in meta;
+      const attrName = isProperty ? 'property' : 'name';
+      const attrValue = isProperty ? meta.property : meta.name;
+
+      let tag = document.querySelector(`meta[${attrName}="${attrValue}"]`) as HTMLMetaElement;
       if (!tag) {
         tag = document.createElement('meta');
-        tag.setAttribute('property', property);
+        tag.setAttribute(attrName, attrValue as string);
         document.head.appendChild(tag);
       }
-      tag.content = content;
+      tag.content = meta.content;
     });
 
     // 5. Inject JSON-LD Schema

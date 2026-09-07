@@ -25,9 +25,64 @@ export interface CaseStudy {
   accentColor?: string;
   liveUrl?: string;
   imageUrl?: string;
+  thumbnailUrl?: string;
 }
 
 export const PROJECTS: CaseStudy[] = [
+  {
+    id: 'glucotrack-cgm',
+    slug: 'glucotrack-cgm',
+    number: '00',
+    title: 'GlucoTrack CGM Platform',
+    client: 'Healthcare & Medical Devices',
+    tagline: 'A Continuous Glucose Monitoring (CGM) platform containing a mobile app, web API, and BLE hardware simulator.',
+    imageUrl: '/images/projects/cgm-app.png',
+    thumbnailUrl: '/images/projects/cgm-app.png',
+    category: 'Healthcare & Mobile Platform',
+    filterCategory: 'healthcare',
+    year: '2026',
+    role: 'Full-Stack & Mobile Architecture',
+    services: ['Mobile Application', 'Backend REST API', 'Bluetooth Low Energy (BLE)', 'Hardware Simulation'],
+    technologies: ['.NET MAUI', 'C#', 'ASP.NET Core', 'Entity Framework Core', 'SQL Server'],
+    clientProblem: 'Patients needed a comprehensive way to monitor glucose levels, synchronize with a CGM sensor over Bluetooth, and track history, trends, and alerts securely.',
+    usersAndContext: 'Patients tracking daily glucose levels, logging meals and insulin, and syncing device data securely.',
+    developmentApproach: 'Developed an end-to-end architecture with a cross-platform .NET MAUI mobile app connecting to a Windows BLE GATT peripheral simulator and an ASP.NET Core backend.',
+    technicalArchitecture: [
+      'Mobile Client: Cross-platform .NET MAUI targeting Android, iOS, Mac Catalyst, and Windows with MVVM.',
+      'Backend: ASP.NET Core Web API with Entity Framework Core and JWT bearer authentication.',
+      'Hardware Simulator: .NET Windows application using Windows GATT server APIs to imitate a CGM device.',
+      'Database: Microsoft SQL Server for patient profiles, device metadata, measurements, and tokens.'
+    ],
+    keyFeatures: [
+      {
+        title: 'Bluetooth Sensor Integration',
+        description: 'Android BLE scanning, GATT discovery, and diagnostic verification with CGM sensors.'
+      },
+      {
+        title: 'Real-time Glucose Dashboard',
+        description: 'Clinical dashboard showing current glucose, trends, reports, alerts, and time-in-range summaries.'
+      },
+      {
+        title: 'Robust Security',
+        description: 'JWT authentication, hashed passwords, rotating refresh tokens, and rate-limiting.'
+      }
+    ],
+    challengesAndDecisions: [
+      {
+        challenge: 'Reliable BLE communication and parsing diagnostic commands from hardware.',
+        decision: 'Built a specialized protocol parser to exchange frames and validate checksums with the BLE peripheral.'
+      }
+    ],
+    outcome: 'Delivered a strong foundation including secure accounts, device diagnostic verification, API registration, and a multi-tab clinical dashboard.',
+    lessonsOrImprovements: 'Next steps include completing the live glucose ingestion pipeline and generating automated alerts from bulk data.',
+    visualType: 'clean-mobile',
+    mockMetrics: [
+      { label: 'Security', value: 'JWT & Hashing' },
+      { label: 'Connectivity', value: 'BLE GATT' },
+      { label: 'Platform', value: '.NET MAUI' }
+    ],
+    highlights: ['Cross-platform Mobile', 'BLE Hardware Sync', 'Clinical Dashboard', 'ASP.NET Web API']
+  },
   {
     id: 'dome-enterprise',
     slug: 'dome-enterprise',
@@ -96,7 +151,7 @@ export const PROJECTS: CaseStudy[] = [
     title: 'Matrix Field Service Application',
     client: 'Field Operations & Equipment Maintenance',
     tagline: 'A field-service mobile application supporting technicians, customers and operational teams.',
-    imageUrl: '/images/projects/matrix-field.jpg',
+    thumbnailUrl: '/images/projects/77f76df9-cca6-4458-ad2b-836760cec246.png',
     category: 'Mobile Field Operations',
     filterCategory: 'mobile',
     year: '2023 — 2024',

@@ -4,6 +4,7 @@ import {
   Mail, MapPin, Clock, User, Building, ArrowRight, ArrowUpRight, Check, Send
 } from 'lucide-react';
 import './ProjectInquirySection.css';
+import { trackEvent } from '../../../utils/analytics';
 
 export const ProjectInquirySection: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -44,10 +45,11 @@ export const ProjectInquirySection: React.FC = () => {
 
         if (response.ok) {
           setIsSuccess(true);
+          trackEvent('project_inquiry_submit', 'lead', formData.budget);
         } else {
           setShowError(true);
         }
-      } catch (err) {
+      } catch {
         setShowError(true);
       } finally {
         setIsSubmitting(false);
@@ -158,6 +160,7 @@ export const ProjectInquirySection: React.FC = () => {
               </div>
             ) : (
             <form className="pi-form" onSubmit={handleNext}>
+              <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="form-honeypot" aria-hidden="true" />
               
               {/* STEP 1 */}
               {step === 1 && (
@@ -234,7 +237,7 @@ export const ProjectInquirySection: React.FC = () => {
               )}
 
               {showError && (
-                <div className="pi-error-message">
+                <div className="pi-error-message" role="alert" aria-live="assertive">
                   System routing error. Please try again or email us directly.
                 </div>
               )}

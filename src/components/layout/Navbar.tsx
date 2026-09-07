@@ -21,10 +21,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
 
 
   useEffect(() => {
-    document.documentElement.dataset.theme = 'dark';
-    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    const savedTheme = window.localStorage.getItem('tekmora-theme');
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : systemTheme;
+    document.documentElement.dataset.theme = theme;
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', '#090909');
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#090909' : '#FFFFFF');
     }
   }, []);
 
@@ -47,11 +50,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
 
   const navLinks = [
     { label: t('nav.about', 'About'), to: '/about' },

@@ -6,25 +6,26 @@
   <link rel="icon" type="image/svg+xml" href="/brand-icon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Tekmora builds elite custom web applications, mobile products, and enterprise platforms for forward-thinking companies." />
+  <meta name="google-site-verification" content="OumkQ-Ae5UVVKLIaEb-tnaRLgzfBKwSvCazT2wcp_-M" />
   
   <!-- SEO & Canonical -->
-  <link rel="canonical" href="https://www.telmorasoluctions.com" />
+  <link rel="canonical" href="https://tekmorasolution.com/" />
   <meta name="robots" content="index, follow" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.telmorasoluctions.com/" />
+  <meta property="og:url" content="https://tekmorasolution.com/" />
   <meta property="og:title" content="Tekmora | Enterprise Software Engineering" />
   <meta property="og:description" content="Tekmora builds elite custom web applications, mobile products, and enterprise platforms for forward-thinking companies." />
-  <meta property="og:image" content="https://www.telmorasoluctions.com/og-image.jpg" />
+  <meta property="og:image" content="https://tekmorasolution.com/og-image.jpg" />
   <meta property="og:site_name" content="Tekmora" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://www.telmorasoluctions.com/" />
+  <meta property="twitter:url" content="https://tekmorasolution.com/" />
   <meta property="twitter:title" content="Tekmora | Enterprise Software Engineering" />
   <meta property="twitter:description" content="Tekmora builds elite custom web applications, mobile products, and enterprise platforms for forward-thinking companies." />
-  <meta property="twitter:image" content="https://www.telmorasoluctions.com/og-image.jpg" />
+  <meta property="twitter:image" content="https://tekmorasolution.com/og-image.jpg" />
 
   <title>Tekmora | Enterprise Software Engineering</title>
   <!-- Google Fonts -->
@@ -38,10 +39,13 @@
   <script>
     (function() {
       try {
-        document.documentElement.dataset.theme = 'dark';
+        var savedTheme = localStorage.getItem('tekmora-theme');
+        var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        var theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme;
+        document.documentElement.dataset.theme = theme;
         var metaThemeColor = document.createElement('meta');
         metaThemeColor.name = 'theme-color';
-        metaThemeColor.content = '#090909';
+        metaThemeColor.content = theme === 'dark' ? '#090909' : '#FFFFFF';
         document.head.appendChild(metaThemeColor);
       } catch (e) {}
     })();

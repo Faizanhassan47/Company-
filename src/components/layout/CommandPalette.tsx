@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Layers, Cpu, Globe, BookOpen, ArrowRight, CornerDownLeft, Sun, Mail, Calculator, Check } from 'lucide-react';
@@ -18,6 +18,11 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  const handleClose = useCallback(() => {
+    setQuery('');
+    onClose();
+  }, [onClose]);
+
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 2500);
@@ -28,20 +33,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        if (isOpen) onClose();
+        if (isOpen) handleClose();
       }
       if (e.key === 'Escape' && isOpen) {
-        onClose();
+        handleClose();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [handleClose, isOpen]);
 
-  // Reset query on open
   useEffect(() => {
     if (isOpen) {
-      setQuery('');
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -53,6 +56,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = nextTheme;
     window.localStorage.setItem('tekmora-theme', nextTheme);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      'content',
+      nextTheme === 'dark' ? '#090909' : '#FFFFFF'
+    );
     showToast(`Switched to ${nextTheme.toUpperCase()} theme`);
   };
 
@@ -94,7 +101,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
   const handleSelect = (url: string) => {
     navigate(url);
-    onClose();
+    handleClose();
   };
 
 
@@ -109,7 +116,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       {isOpen && (
         <motion.div
           className="cmd-overlay"
-          onClick={onClose}
+          onClick={handleClose}
           role="dialog"
           aria-modal="true"
           initial={{ opacity: 0 }}

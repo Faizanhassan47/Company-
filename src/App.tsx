@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { initAnalytics, trackPageView } from './utils/analytics';
 import { AnimatePresence } from 'framer-motion';
@@ -6,30 +6,29 @@ import { PageTransition } from './components/layout/PageTransition';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Preloader } from './components/layout/Preloader';
-import { CustomCursor } from './components/layout/CustomCursor';
 import { SmoothScroll } from './components/layout/SmoothScroll';
 import { FilmGrain } from './components/layout/FilmGrain';
 import { ScrollToTop } from './components/layout/ScrollToTop';
-import { CommandPalette } from './components/layout/CommandPalette';
 import { CookieBanner } from './components/ui/CookieBanner';
 import { LiveChat } from './components/layout/LiveChat';
 import { TerminalEasterEgg } from './components/ui/TerminalEasterEgg';
 import { SwissGrid } from './components/layout/SwissGrid';
 import { useSecretCode } from './hooks/useSecretCode';
-import { HomePage } from './pages/HomePage';
-import { WorkPage } from './pages/WorkPage';
-import { CaseStudyPage } from './pages/CaseStudyPage';
-import { ServicesPage } from './pages/ServicesPage';
-import { ServiceDetailPage } from './pages/ServiceDetailPage';
-import { IndustriesPage } from './pages/IndustriesPage';
-import { IndustryDetailPage } from './pages/IndustryDetailPage';
-import { AboutPage } from './pages/AboutPage';
-import { InsightsPage } from './pages/InsightsPage';
-import { InsightDetailPage } from './pages/InsightDetailPage';
-import { ContactPage } from './pages/ContactPage';
-import { PrivacyPage } from './pages/PrivacyPage';
-import { TermsPage } from './pages/TermsPage';
-import { NotFoundPage } from './pages/NotFoundPage';
+const HomePage = lazy(() => import('./pages/HomePage').then(module => ({ default: module.HomePage })));
+const WorkPage = lazy(() => import('./pages/WorkPage').then(module => ({ default: module.WorkPage })));
+const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage').then(module => ({ default: module.CaseStudyPage })));
+const ServicesPage = lazy(() => import('./pages/ServicesPage').then(module => ({ default: module.ServicesPage })));
+const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage').then(module => ({ default: module.ServiceDetailPage })));
+const IndustriesPage = lazy(() => import('./pages/IndustriesPage').then(module => ({ default: module.IndustriesPage })));
+const IndustryDetailPage = lazy(() => import('./pages/IndustryDetailPage').then(module => ({ default: module.IndustryDetailPage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then(module => ({ default: module.AboutPage })));
+const InsightsPage = lazy(() => import('./pages/InsightsPage').then(module => ({ default: module.InsightsPage })));
+const InsightDetailPage = lazy(() => import('./pages/InsightDetailPage').then(module => ({ default: module.InsightDetailPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then(module => ({ default: module.ContactPage })));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage').then(module => ({ default: module.PrivacyPage })));
+const TermsPage = lazy(() => import('./pages/TermsPage').then(module => ({ default: module.TermsPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(module => ({ default: module.NotFoundPage })));
+const CommandPalette = lazy(() => import('./components/layout/CommandPalette').then(module => ({ default: module.CommandPalette })));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -39,8 +38,9 @@ const AnimatedRoutes = () => {
   }, [location]);
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+    <Suspense fallback={<div className="route-loading font-mono" role="status" aria-live="polite">Loading page…</div>}>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
         {/* Main Routes */}
         <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
         <Route path="/work" element={<PageTransition><WorkPage /></PageTransition>} />
@@ -60,8 +60,9 @@ const AnimatedRoutes = () => {
         <Route path="/case-study" element={<Navigate to="/work" replace />} />
         <Route path="/case-studies" element={<Navigate to="/work" replace />} />
         <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
-      </Routes>
-    </AnimatePresence>
+        </Routes>
+      </AnimatePresence>
+    </Suspense>
   );
 };
 
@@ -95,11 +96,12 @@ export const App: React.FC = () => {
         {/* Global Cinematic Noise */}
         <FilmGrain />
 
-        {/* Precision Cursor */}
-        <CustomCursor />
-
         {/* Quick Search Command Palette (Cmd+K) */}
-        <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        {searchOpen && (
+          <Suspense fallback={null}>
+            <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+          </Suspense>
+        )}
 
         {/* God Mode Terminal */}
         <AnimatePresence>

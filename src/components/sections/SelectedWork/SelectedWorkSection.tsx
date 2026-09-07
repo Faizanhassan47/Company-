@@ -13,6 +13,7 @@ import { fadeInUp } from '../../../utils/animations';
 import './SelectedWorkSection.css';
 
 export const SelectedWorkSection: React.FC = () => {
+  const cgm = PROJECTS.find(p => p.id === 'glucotrack-cgm');
   const dome = PROJECTS.find(p => p.id === 'dome-enterprise');
   const matrix = PROJECTS.find(p => p.id === 'matrix-field-service');
   const grn = PROJECTS.find(p => p.id === 'warehouse-grn-automation');
@@ -44,6 +45,55 @@ export const SelectedWorkSection: React.FC = () => {
             Six operational systems engineered to solve complicated business workflows, disconnected databases, and real-world coordination challenges.
           </p>
         </motion.div>
+
+        {/* 00. GlucoTrack CGM Platform */}
+        {cgm && (
+          <motion.article 
+            className="featured-project project-matrix" 
+            data-cursor="view"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
+            <div className="matrix-grid">
+              <div className="matrix-content-col">
+                <div className="project-num-badge font-mono">
+                  <span className="text-orange">{cgm.number}</span> / {cgm.category}
+                </div>
+                <h3 className="project-display-title font-display">
+                  <Link to={`/work/${cgm.slug}`}>{cgm.title}</Link>
+                </h3>
+                <p className="project-tagline-text">{cgm.tagline}</p>
+                
+                <div className="matrix-tech-list font-mono">
+                  {cgm.technologies.slice(0, 4).map((tech) => (
+                    <span key={tech} className="tech-badge">{tech}</span>
+                  ))}
+                </div>
+
+                <div className="matrix-highlights font-mono">
+                  <div className="hl-item">✓ .NET MAUI Cross-Platform</div>
+                  <div className="hl-item">✓ BLE GATT Integration</div>
+                  <div className="hl-item">✓ Real-Time Clinical Dashboard</div>
+                </div>
+
+                <div className="project-cta-group font-mono">
+                  <Link to={`/work/${cgm.slug}`} className="btn-link case-link">
+                    <span>EXPLORE CASE STUDY</span>
+                    <ArrowUpRight size={15} />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="matrix-visual-col" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-bg-secondary)', borderRadius: '12px', border: '1px solid var(--color-border)' }}>
+                <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'var(--font-mono)', opacity: 0.5 }}>
+                  CGM UI Visual
+                </div>
+              </div>
+            </div>
+          </motion.article>
+        )}
 
         {/* 01. DOME Enterprise Platform - Full-Width Application Visual */}
         {dome && (

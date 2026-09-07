@@ -489,3 +489,16 @@
     align-items: flex-start;
   }
 }
+
+@media (max-width: 768px) {
+  .service-matrix-card {
+    padding: 1.5rem !important;
+  }
+  .tier-badge {
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+}

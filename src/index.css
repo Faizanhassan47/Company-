@@ -16,3 +16,16 @@
   min-height: 100vh;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
