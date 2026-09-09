@@ -274,6 +274,42 @@
   }
 }
 
+@media (max-width: 600px) {
+  .service-headline,
+  .service-lead-tagline {
+    overflow-wrap: anywhere;
+  }
+
+  .service-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .service-hero-actions .btn {
+    justify-content: space-between;
+  }
+
+  .service-cta-banner {
+    padding: 32px 20px;
+  }
+
+  .problems-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .problem-card,
+  .cap-detail-card,
+  .relevant-card,
+  .faq-item {
+    min-width: 0;
+    padding: 20px 16px;
+  }
+
+  .faq-answer {
+    padding-left: 0;
+  }
+}
+
 /* Business Problems We Solve */
 .problems-grid {
   display: grid;

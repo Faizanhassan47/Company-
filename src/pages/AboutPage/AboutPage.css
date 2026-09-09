@@ -267,3 +267,9 @@
     gap: 6px;
   }
 }
+
+@media (max-width: 600px) {
+  .about-cta-card {
+    padding: 32px 20px;
+  }
+}

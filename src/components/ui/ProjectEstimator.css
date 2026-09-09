@@ -420,7 +420,46 @@
 
 @media (max-width: 900px) {
   .estimator-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-estimator-card {
+    padding: 24px 16px;
+  }
+
+  .estimator-grid,
+  .estimator-inputs-col,
+  .estimator-group,
+  .estimator-summary-board {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .estimator-header-meta,
+  .estimator-label,
+  .currency-selector {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .estimator-label,
+  .chip-name,
+  .speed-btn,
+  .metric-val {
+    overflow-wrap: anywhere;
+  }
+
+  .estimator-chip,
+  .speed-btn,
+  .copy-summary-btn,
+  .curr-btn {
+    min-height: 40px;
+  }
+
+  .estimator-summary-board {
+    padding: 20px 16px;
   }
 }

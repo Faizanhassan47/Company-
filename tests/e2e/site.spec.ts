@@ -31,6 +31,11 @@ test('theme preference persists after reload', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('data-theme', nextTheme);
 });
 
+test('page scroll progress exposes an accessible name', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('progressbar', { name: /page scroll progress/i })).toBeVisible();
+});
+
 test('project inquiry exposes accessible required fields', async ({ page }) => {
   await page.goto('/contact');
   await expect(page.getByLabel(/your name/i).first()).toBeVisible();

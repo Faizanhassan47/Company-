@@ -491,6 +491,42 @@
 }
 
 @media (max-width: 768px) {
+  .filter-chip,
+  .btn-inspect-service,
+  .btn-toggle-expand {
+    min-height: 40px;
+  }
+
+  .btn-toggle-expand {
+    width: 40px;
+  }
+
+  .matrix-row-summary {
+    grid-template-columns: 38px minmax(0, 1fr);
+    grid-template-areas:
+      "rank service"
+      "market market"
+      "rec rec"
+      "action action";
+    padding: 14px 12px;
+  }
+
+  .col-service,
+  .col-market,
+  .col-recommendation,
+  .col-action {
+    min-width: 0;
+  }
+
+  .col-action {
+    justify-content: flex-end;
+  }
+
+  .service-link-title,
+  .service-mobile-note {
+    overflow-wrap: anywhere;
+  }
+
   .service-matrix-card {
     padding: 1.5rem !important;
   }

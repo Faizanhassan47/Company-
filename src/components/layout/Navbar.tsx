@@ -77,6 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
           className="header-scroll-progress"
           style={{ width: `${scrollProgress}%` }}
           role="progressbar"
+          aria-label="Page scroll progress"
           aria-valuenow={Math.round(scrollProgress)}
           aria-valuemin={0}
           aria-valuemax={100}

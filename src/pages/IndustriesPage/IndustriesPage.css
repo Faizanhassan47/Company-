@@ -140,7 +140,27 @@
 
 @media (max-width: 900px) {
   .industry-card-body {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
+  }
+
+  .ind-problems-col,
+  .ind-solutions-col {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .industry-card {
+    padding: 24px 16px;
+  }
+
+  .ind-title,
+  .ind-tagline,
+  .prob-name,
+  .prob-impact,
+  .sol-name,
+  .sol-desc {
+    overflow-wrap: anywhere;
   }
 }

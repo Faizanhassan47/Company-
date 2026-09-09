@@ -230,6 +230,16 @@
     min-width: 0;
   }
 
+  .sm-action-btn {
+    min-height: 40px;
+    padding: 8px;
+  }
+
+  .sm-more-btn {
+    width: 40px;
+    height: 40px;
+  }
+
   .sm-col-service {
     padding-right: 42px;
     gap: 12px;
