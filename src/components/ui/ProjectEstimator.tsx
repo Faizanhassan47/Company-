@@ -29,30 +29,30 @@ const CURRENCY_RATES: Record<CurrencyType, { symbol: string; rate: number; prefi
 };
 
 const PLATFORM_OPTIONS = [
-  { id: 'web', name: 'Web Platform (React / Next.js)', weeks: 3, costUsd: 3500, tech: ['React 19', 'Next.js', 'TypeScript'] },
-  { id: 'mobile', name: 'Mobile App (iOS & Android)', weeks: 4, costUsd: 4500, tech: ['React Native', 'Expo'] },
-  { id: 'enterprise', name: 'Enterprise ERP / Portal', weeks: 5, costUsd: 6000, tech: ['Node.js', 'Express', 'SQL Server'] },
-  { id: 'sap', name: 'SAP Business One / Warehouse', weeks: 4, costUsd: 5500, tech: ['SAP Service Layer', 'DI API'] },
-  { id: 'wordpress', name: 'Custom WordPress / Headless', weeks: 2, costUsd: 2200, tech: ['WordPress', 'PHP 8.x'] }
+  { id: 'web', name: 'Web Platform (React / Next.js)', weeks: 2, minUsd: 150, maxUsd: 250, tech: ['React 19', 'Next.js', 'TypeScript'] },
+  { id: 'mobile', name: 'Mobile App (iOS & Android)', weeks: 3, minUsd: 200, maxUsd: 350, tech: ['React Native', 'Expo'] },
+  { id: 'enterprise', name: 'Enterprise ERP / Portal', weeks: 4, minUsd: 300, maxUsd: 500, tech: ['Node.js', 'Express', 'SQL Server'] },
+  { id: 'sap', name: 'SAP Business One / Warehouse', weeks: 4, minUsd: 400, maxUsd: 600, tech: ['SAP Service Layer', 'DI API'] },
+  { id: 'wordpress', name: 'Custom WordPress / Headless', weeks: 1, minUsd: 100, maxUsd: 200, tech: ['WordPress', 'PHP 8.x'] }
 ];
 
 const MODULE_OPTIONS = [
-  { id: 'rbac', name: 'Role-Based Access Control (RBAC)', weeks: 1, costUsd: 1200, tech: ['JWT Security', 'Permissions Matrix'] },
-  { id: 'offline', name: 'Offline Sync & Local SQLite', weeks: 2, costUsd: 2200, tech: ['SQLite Engine', 'Conflict Resolution'] },
-  { id: 'realtime', name: 'Real-Time WebSockets & Telemetry', weeks: 1.5, costUsd: 1800, tech: ['WebSocket Stream', 'Redis Pub/Sub'] },
-  { id: 'reporting', name: 'Custom BI & Reporting Engine', weeks: 1.5, costUsd: 1600, tech: ['Aggregated SQL', 'Export Pipelines'] },
-  { id: 'hardware', name: 'Hardware / Thermal Scanner Sync', weeks: 2, costUsd: 2400, tech: ['ESC/POS Protocols', 'Zebra / Honeywell'] },
-  { id: 'audit', name: 'Audit Logging & Compliance', weeks: 1, costUsd: 1200, tech: ['Immutable Logs', 'Data Encryption'] },
-  { id: 'gps', name: 'GPS Tracking, Geofencing & Route Maps', weeks: 2, costUsd: 2400, tech: ['Google Maps / Mapbox', 'Live Geolocation', 'Geofencing'] },
-  { id: 'chatbot', name: 'AI Chatbot & Virtual Assistant Integration', weeks: 2, costUsd: 2800, tech: ['OpenAI / Claude', 'Knowledge Base', 'Conversation Workflows'] },
-  { id: 'payments', name: 'Online Payments & Subscription Billing', weeks: 1.5, costUsd: 2000, tech: ['Stripe / PayPal', 'Recurring Billing', 'Webhooks'] },
-  { id: 'notifications', name: 'Push, SMS, WhatsApp & Email Notifications', weeks: 1.5, costUsd: 1800, tech: ['Firebase', 'Twilio / WhatsApp', 'Transactional Email'] },
-  { id: 'documents', name: 'Document OCR, PDF Reports & E-Signatures', weeks: 2, costUsd: 2600, tech: ['OCR Extraction', 'PDF Generation', 'E-Signature'] },
-  { id: 'cloud_media', name: 'Cloud Storage, File Uploads & Media Processing', weeks: 1.5, costUsd: 1800, tech: ['AWS S3 / Azure Blob', 'Secure Uploads', 'Media Optimization'] },
-  { id: 'ai_ml', name: 'AI & Machine Learning Pipelines', weeks: 3, costUsd: 4500, tech: ['OpenAI / Claude', 'Vector Databases', 'Python Microservices'] },
-  { id: 'multi_tenant', name: 'Multi-Tenant SaaS Architecture', weeks: 2.5, costUsd: 3800, tech: ['Data Isolation', 'Custom Domains', 'Subscription Billing'] },
-  { id: 'blockchain', name: 'Blockchain & Smart Contracts', weeks: 4, costUsd: 6500, tech: ['Solidity', 'Web3.js', 'Ethereum / Polygon'] },
-  { id: 'integrations', name: 'Advanced 3rd-Party Integrations', weeks: 1.5, costUsd: 1800, tech: ['Stripe / Plaid', 'Salesforce / HubSpot API', 'Twilio Webhooks'] }
+  { id: 'rbac', name: 'Role-Based Access Control (RBAC)', weeks: 1, minUsd: 50, maxUsd: 80, tech: ['JWT Security', 'Permissions Matrix'] },
+  { id: 'offline', name: 'Offline Sync & Local SQLite', weeks: 1, minUsd: 80, maxUsd: 120, tech: ['SQLite Engine', 'Conflict Resolution'] },
+  { id: 'realtime', name: 'Real-Time WebSockets & Telemetry', weeks: 1, minUsd: 100, maxUsd: 150, tech: ['WebSocket Stream', 'Redis Pub/Sub'] },
+  { id: 'reporting', name: 'Custom BI & Reporting Engine', weeks: 2, minUsd: 120, maxUsd: 180, tech: ['Aggregated SQL', 'Export Pipelines'] },
+  { id: 'hardware', name: 'Hardware / Thermal Scanner Sync', weeks: 2, minUsd: 150, maxUsd: 250, tech: ['ESC/POS Protocols', 'Zebra / Honeywell'] },
+  { id: 'audit', name: 'Audit Logging & Compliance', weeks: 1, minUsd: 50, maxUsd: 100, tech: ['Immutable Logs', 'Data Encryption'] },
+  { id: 'gps', name: 'GPS Tracking, Geofencing & Route Maps', weeks: 2, minUsd: 120, maxUsd: 220, tech: ['Google Maps / Mapbox', 'Live Geolocation', 'Geofencing'] },
+  { id: 'chatbot', name: 'AI Chatbot & Virtual Assistant Integration', weeks: 2, minUsd: 100, maxUsd: 200, tech: ['OpenAI / Claude', 'Knowledge Base', 'Conversation Workflows'] },
+  { id: 'payments', name: 'Online Payments & Subscription Billing', weeks: 1, minUsd: 100, maxUsd: 180, tech: ['Stripe / PayPal', 'Recurring Billing', 'Webhooks'] },
+  { id: 'notifications', name: 'Push, SMS, WhatsApp & Email Notifications', weeks: 1, minUsd: 80, maxUsd: 140, tech: ['Firebase', 'Twilio / WhatsApp', 'Transactional Email'] },
+  { id: 'documents', name: 'Document OCR, PDF Reports & E-Signatures', weeks: 2, minUsd: 120, maxUsd: 220, tech: ['OCR Extraction', 'PDF Generation', 'E-Signature'] },
+  { id: 'cloud_media', name: 'Cloud Storage, File Uploads & Media Processing', weeks: 1, minUsd: 80, maxUsd: 150, tech: ['AWS S3 / Azure Blob', 'Secure Uploads', 'Media Optimization'] },
+  { id: 'ai_ml', name: 'AI & Machine Learning Pipelines', weeks: 3, minUsd: 180, maxUsd: 300, tech: ['OpenAI / Claude', 'Vector Databases', 'Python Microservices'] },
+  { id: 'multi_tenant', name: 'Multi-Tenant SaaS Architecture', weeks: 3, minUsd: 180, maxUsd: 300, tech: ['Data Isolation', 'Custom Domains', 'Subscription Billing'] },
+  { id: 'blockchain', name: 'Blockchain & Smart Contracts', weeks: 4, minUsd: 250, maxUsd: 400, tech: ['Solidity', 'Web3.js', 'Ethereum / Polygon'] },
+  { id: 'integrations', name: 'Advanced 3rd-Party Integrations', weeks: 2, minUsd: 100, maxUsd: 200, tech: ['Stripe / Plaid', 'Salesforce / HubSpot API', 'Twilio Webhooks'] }
 ];
 
 export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstimates }) => {
@@ -81,14 +81,16 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
 
   const calculation = useMemo<EstimatorSelection>(() => {
     let baseWeeks = 0;
-    let baseCost = 0;
+    let minCost = 0;
+    let maxCost = 0;
     const stackSet = new Set<string>();
 
     selectedPlatforms.forEach(pId => {
       const found = PLATFORM_OPTIONS.find(p => p.id === pId);
       if (found) {
         baseWeeks += found.weeks;
-        baseCost += found.costUsd;
+        minCost += found.minUsd;
+        maxCost += found.maxUsd;
         found.tech.forEach(t => stackSet.add(t));
       }
     });
@@ -97,7 +99,8 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
       const found = MODULE_OPTIONS.find(m => m.id === mId);
       if (found) {
         baseWeeks += found.weeks;
-        baseCost += found.costUsd;
+        minCost += found.minUsd;
+        maxCost += found.maxUsd;
         found.tech.forEach(t => stackSet.add(t));
       }
     });
@@ -108,15 +111,16 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
 
     if (speed === 'expedited') {
       netWeeks = Math.max(2, Math.round(netWeeks * 0.7));
-      baseCost = Math.round(baseCost * 1.25); // sprint surcharge
+      minCost = Math.round(minCost * 1.5);
+      maxCost = Math.round(maxCost * 1.5);
     }
 
     const minWeeks = Math.max(2, netWeeks - 1);
     const maxWeeks = netWeeks + 2;
 
     const currInfo = CURRENCY_RATES[currency];
-    const minBudget = Math.round((baseCost * 0.9 * currInfo.rate) / 100) * 100;
-    const maxBudget = Math.round((baseCost * 1.15 * currInfo.rate) / 100) * 100;
+    const minBudget = Math.round(minCost * currInfo.rate);
+    const maxBudget = Math.round(maxCost * currInfo.rate);
     const formattedBudget = `${currInfo.symbol}${minBudget.toLocaleString()} – ${currInfo.symbol}${maxBudget.toLocaleString()}`;
 
     let complexity: 'Standard' | 'Advanced' | 'Enterprise Multi-Tier' = 'Standard';
