@@ -33,7 +33,7 @@ test('theme preference persists after reload', async ({ page }) => {
 
 test('page scroll progress exposes an accessible name', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('progressbar', { name: /page scroll progress/i })).toBeVisible();
+  await expect(page.locator('[role="progressbar"]')).toHaveAccessibleName('Page scroll progress');
 });
 
 test('project inquiry exposes accessible required fields', async ({ page }) => {
