@@ -28,6 +28,32 @@ body {
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
+/* Prevent intrinsic-width grid/flex children from forcing phone layouts wider. */
+#root,
+main,
+section,
+.container {
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --container-padding: 16px;
+    --header-height: 68px;
+  }
+
+  .section {
+    padding-top: clamp(3rem, 14vw, 4rem);
+    padding-bottom: clamp(3rem, 14vw, 4rem);
+  }
+
+  .section-title-large,
+  .work-headline,
+  .capabilities-headline {
+    overflow-wrap: anywhere;
+  }
+}
+
 /* Selection */
 ::selection {
   background-color: var(--accent-orange);
@@ -253,14 +279,12 @@ img {
   background-color: var(--text-primary);
   color: var(--bg-main);
   border-color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
   background-color: var(--accent-orange);
   color: #ffffff;
   border-color: var(--accent-orange);
-  box-shadow: 0 6px 20px -2px rgba(255, 77, 28, 0.35);
   transform: translateY(-2px);
 }
 
@@ -268,7 +292,6 @@ img {
   background-color: var(--bg-card);
   color: var(--text-primary);
   border-color: var(--border-subtle);
-  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
@@ -276,20 +299,17 @@ img {
   color: var(--accent-orange);
   background-color: var(--bg-hover);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
 }
 
 .btn-orange {
   background-color: var(--accent-orange);
   color: #ffffff;
   border-color: var(--accent-orange);
-  box-shadow: 0 4px 14px 0 rgba(255, 77, 28, 0.28);
 }
 
 .btn-orange:hover {
   background-color: var(--accent-orange-hover);
   border-color: var(--accent-orange-hover);
-  box-shadow: 0 8px 25px 0 rgba(255, 77, 28, 0.4);
   transform: translateY(-2px);
 }
 
@@ -397,8 +417,7 @@ img {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm), var(--card-inner-bevel);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
   overflow: hidden;
 }
 
@@ -415,7 +434,6 @@ img {
 
 .spotlight-card:hover {
   border-color: var(--border-medium);
-  box-shadow: var(--shadow-card-hover), var(--card-inner-bevel);
 }
 
 .spotlight-card:hover::before {
@@ -431,7 +449,6 @@ img {
   background: var(--bg-card);
   color: var(--text-primary);
   border: 1px solid var(--accent-orange);
-  box-shadow: var(--shadow-xl), 0 0 20px rgba(255, 77, 28, 0.2);
   padding: 10px 18px;
   border-radius: var(--radius-sm);
   display: flex;

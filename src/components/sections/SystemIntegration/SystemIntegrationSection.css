@@ -174,7 +174,6 @@
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
-  box-shadow: 0 0 40px var(--border-glow, rgba(255, 77, 28, 0.2));
   position: relative;
 }
 

@@ -4,7 +4,6 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
   padding: clamp(1.8rem, 3.5vw, 3rem);
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
   transition: border-color var(--transition-base);
@@ -242,7 +241,6 @@
 .estimator-chip.is-selected {
   background: var(--bg-card);
   border-color: var(--accent-orange);
-  box-shadow: 0 0 0 1px var(--accent-orange), var(--shadow-sm);
 }
 
 .chip-checkbox {
@@ -302,7 +300,6 @@
   border-color: var(--accent-orange);
   color: var(--text-primary);
   font-weight: 600;
-  box-shadow: 0 0 0 1px var(--accent-orange);
 }
 
 /* Output Board */

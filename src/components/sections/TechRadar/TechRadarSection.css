@@ -62,7 +62,6 @@
 .radar-tab-btn.is-active {
   color: var(--text-primary);
   background: var(--bg-card);
-  box-shadow: var(--shadow-sm), 0 0 0 1px var(--border-subtle);
   font-weight: 700;
 }
 

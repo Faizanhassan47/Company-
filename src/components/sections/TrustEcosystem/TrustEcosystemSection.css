@@ -61,7 +61,6 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  box-shadow: var(--shadow-sm), var(--card-inner-bevel);
   transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 
@@ -87,7 +86,6 @@
   height: 6px;
   border-radius: 50%;
   background: #10B981;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
 }
 
 .trust-metric-val {
@@ -122,7 +120,6 @@
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
-  box-shadow: var(--card-inner-bevel);
 }
 
 .tech-ecosystem-title {

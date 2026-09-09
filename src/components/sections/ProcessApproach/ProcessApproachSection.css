@@ -148,7 +148,6 @@
   height: 6px;
   background-color: var(--accent-orange, #FF4D1C);
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--border-glow, rgba(255, 77, 28, 0.3));
 }
 
 .pa-nodes-grid {
@@ -175,7 +174,6 @@
 .pa-node:hover {
   border-color: var(--border-accent, rgba(255,77,28,0.5));
   transform: translateY(-2px);
-  box-shadow: var(--shadow-card-hover);
 }
 
 .pa-node-icon {
@@ -276,5 +274,68 @@
   
   .pa-diagram-bg {
     display: none; /* Hide complex lines on mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .process-approach-section {
+    padding: 4rem 16px 3rem;
+  }
+
+  .pa-container {
+    gap: 3rem;
+  }
+
+  .pa-content-side {
+    min-width: 0;
+  }
+
+  .pa-content-side .section-meta {
+    align-items: flex-start;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: 4px;
+  }
+
+  .pa-content-side .meta-sep {
+    grid-column: 2;
+  }
+
+  .pa-headline {
+    font-size: clamp(2.5rem, 13vw, 3.25rem);
+    overflow-wrap: normal;
+  }
+
+  .pa-description {
+    max-width: none;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+  }
+
+  .pa-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .pa-step-text {
+    overflow-wrap: anywhere;
+  }
+
+  .pa-node {
+    min-width: 0;
+    padding: 16px;
+  }
+
+  .pa-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 3rem;
+  }
+
+  .pa-footer-line {
+    width: 100%;
+    flex: none;
   }
 }

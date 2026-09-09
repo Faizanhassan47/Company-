@@ -31,7 +31,6 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
   padding: clamp(1.8rem, 3.5vw, 3rem);
   transition: border-color var(--transition-base);
 }
@@ -98,7 +97,6 @@
 .pipeline-tier-btn.is-active {
   background: var(--bg-card);
   border-color: var(--accent-orange);
-  box-shadow: 0 0 0 1px var(--accent-orange), var(--shadow-sm);
 }
 
 .pipeline-tier-btn.is-pulsing {
@@ -257,7 +255,6 @@
   color: #E2E8F0;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xl);
   display: flex;
   flex-direction: column;
   overflow: hidden;

@@ -114,7 +114,6 @@
   background: var(--hero-note-bg);
   border: 1px solid var(--hero-note-border);
   border-radius: 8px;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 16%);
   backdrop-filter: blur(10px);
   line-height: 1.25;
   text-shadow: none;
@@ -129,7 +128,6 @@
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
   background: #1e293b;
 }
 .case-hero-img {
@@ -245,7 +243,6 @@
   justify-content: center;
   border-radius: 12px;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 .feat-title {
   font-size: 1.1rem;
@@ -287,7 +284,6 @@
   background: radial-gradient(circle at 92% 5%, rgb(255 76 36 / 12%), transparent 31%), var(--impact-panel);
   border: 1px solid var(--impact-panel-border);
   border-radius: 14px;
-  box-shadow: var(--shadow-lg);
 }
 .case-tech-impact-section .case-split-left,
 .case-tech-impact-section .case-split-right {
@@ -340,16 +336,14 @@
   border-radius: 8px;
   background: var(--impact-badge);
   border: 1px solid var(--impact-panel-border);
-  box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 .tech-icon-item:hover .tech-icon-circle {
   transform: translateY(-3px);
   border-color: var(--border-accent);
-  box-shadow: 0 8px 20px rgb(255 77 28 / 14%);
 }
 .tech-name {
   font-size: 0.68rem;
@@ -439,7 +433,6 @@
   background: var(--impact-glass);
   border: 1px solid var(--impact-panel-border);
   border-radius: 16px;
-  box-shadow: -30px -20px 70px rgb(255 75 30 / 8%);
   transform: skewY(-15deg);
 }
 .impact-chip {
@@ -451,7 +444,6 @@
   border: 1px solid rgb(255 105 65 / 30%);
   border-radius: 5px;
   font-size: 0.58rem;
-  box-shadow: 0 10px 25px rgb(0 0 0 / 35%);
 }
 .chip-fast { top: 18%; right: 46%; transform: rotate(10deg); }
 .chip-smart { top: 39%; right: 20%; transform: rotate(6deg); }

@@ -9,6 +9,13 @@
   width: 100%;
 }
 
+.system-graphic > *,
+.graphic-body,
+.graphic-content,
+.data-table-card {
+  min-width: 0;
+}
+
 /* Header & Window Bars */
 .graphic-header {
   display: flex;
@@ -218,7 +225,154 @@
   background-color: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xs);
-  overflow: hidden;
+  overflow-x: auto;
+}
+
+/* Comments Fusion pipeline */
+.fusion-body,
+.transcend-body {
+  padding: 20px;
+}
+
+.fusion-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.pipeline-stage,
+.stage-card {
+  min-width: 0;
+}
+
+.stage-tag {
+  margin-bottom: 8px;
+  color: var(--text-dim);
+  font-size: 9px;
+}
+
+.stage-card {
+  height: calc(100% - 24px);
+  padding: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+
+.stage-card.active-card {
+  border-color: var(--border-accent);
+}
+
+.stage-card .card-title,
+.stage-card .card-item {
+  overflow-wrap: anywhere;
+}
+
+.stage-card .card-title {
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.stage-card .card-item {
+  margin-top: 5px;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.fusion-pipeline > .pipeline-arrow {
+  align-self: center;
+  color: var(--accent-orange);
+}
+
+/* Transcend healthcare mockup */
+.medical-nav,
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.medical-nav {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.medical-brand {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.locale-switcher {
+  display: flex;
+  gap: 6px;
+  font-size: 8px;
+}
+
+.locale-btn {
+  padding: 3px 5px;
+  color: var(--text-dim);
+  border: 1px solid var(--border-subtle);
+}
+
+.locale-btn.active {
+  color: var(--accent-orange);
+  border-color: var(--border-accent);
+}
+
+.clinical-card-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: stretch;
+  padding-top: 14px;
+}
+
+.clinical-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+
+.dept-badge,
+.cms-status-pill,
+.card-footer {
+  font-size: 9px;
+}
+
+.clinician-name {
+  margin: 8px 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.clinician-desc {
+  font-size: 12px;
+}
+
+.card-footer {
+  margin-top: 14px;
+}
+
+.availability-tag {
+  color: #27c93f;
+}
+
+.cta-link {
+  color: var(--accent-orange);
+}
+
+.cms-status-pill {
+  display: flex;
+  align-items: center;
+  max-width: 150px;
+  padding: 12px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  overflow-wrap: anywhere;
 }
 
 .table-header-bar {
@@ -849,12 +1003,34 @@
 .font-bold { font-weight: bold; }
 
 @media (max-width: 768px) {
+  .graphic-header {
+    align-items: flex-start;
+    padding: 10px;
+    gap: 8px;
+  }
+  .window-dots { flex: 0 0 auto; padding-top: 3px; }
+  .window-title { min-width: 0; font-size: 8px; line-height: 1.45; overflow-wrap: anywhere; }
+  .window-status { align-items: flex-start; flex: 0 1 82px; font-size: 8px; line-height: 1.4; overflow-wrap: anywhere; }
   .graphic-body { grid-template-columns: 1fr; }
   .graphic-sidebar { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  .graphic-content { padding: 10px; }
   .metric-row { grid-template-columns: repeat(2, 1fr); }
+  .metric-box { min-width: 0; padding: 10px; }
+  .metric-val { font-size: 15px; overflow-wrap: anywhere; }
+  .table-header-bar { align-items: flex-start; flex-direction: column; }
+  .mini-table { min-width: 620px; }
   .mobile-dual-container { flex-direction: column; align-items: center; }
   .workflow-container { grid-template-columns: 1fr; }
   .workflow-connector { transform: rotate(90deg); margin: 10px 0; }
   .plant-lines-grid { grid-template-columns: 1fr; }
   .ledger-kpi-grid { grid-template-columns: 1fr; }
+  .fusion-body,
+  .transcend-body { padding: 10px; }
+  .fusion-pipeline { grid-template-columns: 1fr; }
+  .fusion-pipeline > .pipeline-arrow { transform: rotate(90deg); }
+  .stage-card { height: auto; }
+  .clinical-card-grid { grid-template-columns: 1fr; }
+  .medical-nav,
+  .card-footer { align-items: flex-start; flex-direction: column; }
+  .cms-status-pill { max-width: none; }
 }

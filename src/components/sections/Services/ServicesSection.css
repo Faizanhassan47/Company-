@@ -103,14 +103,12 @@
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-sm), var(--card-inner-bevel);
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 
 .capability-card-modern:hover {
   transform: translateY(-4px);
   border-color: var(--accent-orange);
-  box-shadow: 0 12px 32px rgba(255, 77, 28, 0.12), var(--card-inner-bevel);
 }
 
 .cap-card-top {

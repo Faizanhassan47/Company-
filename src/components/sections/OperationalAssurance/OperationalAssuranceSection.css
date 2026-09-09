@@ -142,7 +142,6 @@
 .oa-card:hover {
   border-color: var(--border-accent, rgba(255,77,28,0.5));
   transform: translateY(-2px);
-  box-shadow: var(--shadow-card-hover);
 }
 
 .oa-card-header {
@@ -172,7 +171,6 @@
   width: 6px; height: 6px;
   background-color: #10B981;
   border-radius: 50%;
-  box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
 }
 
 .oa-card-main {

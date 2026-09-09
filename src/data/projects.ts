@@ -101,7 +101,7 @@ export const PROJECTS: CaseStudy[] = [
     usersAndContext: 'Used daily by 200+ multi-departmental personnel: HR managers, procurement officers, sales leads, logistics coordinators, and C-level executives requiring real-time operational status without system friction.',
     developmentApproach: 'Tekmora designed a unified, modular architecture with strict design tokens, standardized data grid tables, centralized authentication with granular permission matrix, and real-time aggregation microservices.',
     technicalArchitecture: [
-      'Frontend: Scalable React architecture with custom design system, zero box-shadows, keyboard shortcuts, and virtualized tables.',
+      'Frontend: Scalable React architecture with custom design system, zero visual depth effects, keyboard shortcuts, and virtualized tables.',
       'API Gateway: Express/Node.js middleware layer managing tokenized RBAC, audit logging, and payload validation.',
       'Database: Normalized relational database schema with transactional integrity and partitioned reporting tables.',
       'Integrations: Automated background cron workers reconciling invoices, CRM pipeline stages, and inventory levels.'

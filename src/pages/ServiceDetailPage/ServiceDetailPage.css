@@ -287,7 +287,6 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 2rem;
-  box-shadow: var(--shadow-card), var(--card-inner-bevel);
   transition: transform var(--transition-base), border-color var(--transition-base);
 }
 

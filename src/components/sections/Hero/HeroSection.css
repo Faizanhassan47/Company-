@@ -153,7 +153,6 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: var(--shadow-sm), var(--card-inner-bevel);
 }
 
 .blueprint-titlebar {
@@ -248,6 +247,74 @@
 }
 
 @media (max-width: 768px) {
+  .hero-grid,
+  .hero-code-col,
+  .technical-blueprint-box {
+    min-width: 0;
+  }
+
+  .hero-cta-row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-cta-row > div,
+  .hero-action-btn {
+    width: 100%;
+  }
+
+  .hero-link-secondary {
+    justify-content: space-between;
+    padding: 10px 0;
+    line-height: 1.4;
+  }
+
+  .blueprint-titlebar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .blueprint-tabs {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .blueprint-tab {
+    min-width: 0;
+    padding: 5px 7px;
+    font-size: 8.5px;
+  }
+
+  .blueprint-copy-btn {
+    align-self: flex-end;
+  }
+
+  .blueprint-content {
+    padding: 14px 12px;
+    font-size: 9px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  .blueprint-content pre,
+  .blueprint-content code {
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .blueprint-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+    font-size: 8px;
+  }
+
   .hero-title {
     font-size: clamp(2rem, 10vw, 3.5rem) !important;
     word-break: break-word;

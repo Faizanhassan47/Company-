@@ -29,17 +29,15 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card), var(--card-inner-bevel);
   margin-bottom: clamp(3.5rem, 7vw, 6rem);
   padding: clamp(1.5rem, 4vw, 3rem);
   position: relative;
-  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  transition: border-color var(--transition-base), transform var(--transition-base);
 }
 
 .featured-project:hover {
   border-color: var(--border-medium);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-card-hover), var(--card-inner-bevel);
 }
 
 .project-header-bar {
@@ -259,6 +257,41 @@
 }
 
 @media (max-width: 768px) {
+  .featured-project {
+    padding: 16px;
+    margin-bottom: 32px;
+  }
+
+  .project-header-bar {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .project-header-bar > * {
+    min-width: 0;
+  }
+
+  .project-num-badge,
+  .grn-footer-meta {
+    overflow-wrap: anywhere;
+  }
+
+  .dome-visual-wrapper,
+  .grn-visual-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .grn-visual-container {
+    padding: 12px;
+  }
+
+  .grn-footer-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .cursor-follower, .view-circle {
     display: none !important;
   }

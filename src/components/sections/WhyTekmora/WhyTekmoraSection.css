@@ -38,7 +38,6 @@
   border-radius: var(--radius-sm);
   padding: 1.2rem;
   text-align: center;
-  box-shadow: var(--shadow-sm);
   transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 

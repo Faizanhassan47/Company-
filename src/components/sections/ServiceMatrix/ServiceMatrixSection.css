@@ -210,3 +210,62 @@
   .sm-col-rank { position: absolute; top: 2rem; right: 0; }
   .sm-col-action { align-self: flex-end; margin-top: 1rem; }
 }
+
+@media (max-width: 600px) {
+  .service-matrix-section {
+    padding: 4rem 16px;
+  }
+
+  .sm-row {
+    width: 100%;
+    padding: 24px 0;
+    gap: 14px;
+  }
+
+  .sm-col-service,
+  .sm-col-market,
+  .sm-col-strategy,
+  .sm-col-action {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .sm-col-service {
+    padding-right: 42px;
+    gap: 12px;
+  }
+
+  .sm-col-service > div {
+    min-width: 0;
+  }
+
+  .sm-service-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    overflow-wrap: anywhere;
+  }
+
+  .sm-service-subtitle,
+  .sm-rec-desc {
+    max-width: none;
+    overflow-wrap: anywhere;
+  }
+
+  .sm-col-rank {
+    top: 24px;
+    width: auto;
+  }
+
+  .sm-col-action {
+    align-self: stretch;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+
+  .sm-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

@@ -19,7 +19,14 @@ const PRICING = {
     realtime: { min: 100, max: 150, weeks: 1 },
     bi: { min: 120, max: 180, weeks: 2 },
     hardware: { min: 150, max: 250, weeks: 2 },
-    audit: { min: 50, max: 100, weeks: 1 }
+    audit: { min: 50, max: 100, weeks: 1 },
+    gps: { min: 120, max: 220, weeks: 2 },
+    chatbot: { min: 100, max: 200, weeks: 2 },
+    payments: { min: 100, max: 180, weeks: 1 },
+    notifications: { min: 80, max: 140, weeks: 1 },
+    integrations: { min: 100, max: 200, weeks: 2 },
+    documents: { min: 120, max: 220, weeks: 2 },
+    cloudMedia: { min: 80, max: 150, weeks: 1 }
   }
 };
 
@@ -41,7 +48,9 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
   });
   
   const [features, setFeatures] = useState({
-    rbac: true, offline: false, realtime: false, bi: false, hardware: false, audit: false
+    rbac: true, offline: false, realtime: false, bi: false, hardware: false, audit: false,
+    gps: false, chatbot: false, payments: false, notifications: false,
+    integrations: false, documents: false, cloudMedia: false
   });
 
   const [cadence, setCadence] = useState<'standard' | 'expedited'>('standard');
@@ -75,6 +84,13 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
     if (features.bi) { minCost += PRICING.features.bi.min; maxCost += PRICING.features.bi.max; baseWeeks += PRICING.features.bi.weeks; stack.push('D3.js'); }
     if (features.hardware) { minCost += PRICING.features.hardware.min; maxCost += PRICING.features.hardware.max; baseWeeks += PRICING.features.hardware.weeks; stack.push('BLE APIs'); }
     if (features.audit) { minCost += PRICING.features.audit.min; maxCost += PRICING.features.audit.max; baseWeeks += PRICING.features.audit.weeks; stack.push('Event Log'); }
+    if (features.gps) { minCost += PRICING.features.gps.min; maxCost += PRICING.features.gps.max; baseWeeks += PRICING.features.gps.weeks; stack.push('GPS & Maps'); }
+    if (features.chatbot) { minCost += PRICING.features.chatbot.min; maxCost += PRICING.features.chatbot.max; baseWeeks += PRICING.features.chatbot.weeks; stack.push('AI Assistant'); }
+    if (features.payments) { minCost += PRICING.features.payments.min; maxCost += PRICING.features.payments.max; baseWeeks += PRICING.features.payments.weeks; stack.push('Stripe'); }
+    if (features.notifications) { minCost += PRICING.features.notifications.min; maxCost += PRICING.features.notifications.max; baseWeeks += PRICING.features.notifications.weeks; stack.push('Push & SMS'); }
+    if (features.integrations) { minCost += PRICING.features.integrations.min; maxCost += PRICING.features.integrations.max; baseWeeks += PRICING.features.integrations.weeks; stack.push('External APIs'); }
+    if (features.documents) { minCost += PRICING.features.documents.min; maxCost += PRICING.features.documents.max; baseWeeks += PRICING.features.documents.weeks; stack.push('OCR & E-Sign'); }
+    if (features.cloudMedia) { minCost += PRICING.features.cloudMedia.min; maxCost += PRICING.features.cloudMedia.max; baseWeeks += PRICING.features.cloudMedia.weeks; stack.push('Cloud Storage'); }
 
     // Fallback if nothing selected
     if (minCost === 0) {
@@ -224,6 +240,41 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
                   <input type="checkbox" checked={features.audit} onChange={() => toggleFeature('audit')} />
                   <div className="cc-box">{features.audit && <Check size={14} />}</div>
                   <span className="cc-text">Audit Logging & Compliance</span>
+                </label>
+                <label className={`calc-checkbox ${features.gps ? 'active' : ''}`}>
+                  <input type="checkbox" checked={features.gps} onChange={() => toggleFeature('gps')} />
+                  <div className="cc-box">{features.gps && <Check size={14} />}</div>
+                  <span className="cc-text">GPS Tracking, Geofencing & Route Maps</span>
+                </label>
+                <label className={`calc-checkbox ${features.chatbot ? 'active' : ''}`}>
+                  <input type="checkbox" checked={features.chatbot} onChange={() => toggleFeature('chatbot')} />
+                  <div className="cc-box">{features.chatbot && <Check size={14} />}</div>
+                  <span className="cc-text">AI Chatbot & Virtual Assistant Integration</span>
+                </label>
+                <label className={`calc-checkbox ${features.payments ? 'active' : ''}`}>
+                  <input type="checkbox" checked={features.payments} onChange={() => toggleFeature('payments')} />
+                  <div className="cc-box">{features.payments && <Check size={14} />}</div>
+                  <span className="cc-text">Online Payments & Subscription Billing</span>
+                </label>
+                <label className={`calc-checkbox ${features.notifications ? 'active' : ''}`}>
+                  <input type="checkbox" checked={features.notifications} onChange={() => toggleFeature('notifications')} />
+                  <div className="cc-box">{features.notifications && <Check size={14} />}</div>
+                  <span className="cc-text">Push, SMS, WhatsApp & Email Notifications</span>
+                </label>
+                <label className={`calc-checkbox ${features.integrations ? 'active' : ''}`}>
+                  <input type="checkbox" checked={features.integrations} onChange={() => toggleFeature('integrations')} />
+                  <div className="cc-box">{features.integrations && <Check size={14} />}</div>
+                  <span className="cc-text">CRM, ERP & Third-Party API Integrations</span>
+                </label>
+                <label className={`calc-checkbox ${features.documents ? 'active' : ''}`}>
+                  <input type="checkbox" checked={features.documents} onChange={() => toggleFeature('documents')} />
+                  <div className="cc-box">{features.documents && <Check size={14} />}</div>
+                  <span className="cc-text">Document OCR, PDF Reports & E-Signatures</span>
+                </label>
+                <label className={`calc-checkbox ${features.cloudMedia ? 'active' : ''}`}>
+                  <input type="checkbox" checked={features.cloudMedia} onChange={() => toggleFeature('cloudMedia')} />
+                  <div className="cc-box">{features.cloudMedia && <Check size={14} />}</div>
+                  <span className="cc-text">Cloud Storage, File Uploads & Media Processing</span>
                 </label>
               </div>
             </div>
