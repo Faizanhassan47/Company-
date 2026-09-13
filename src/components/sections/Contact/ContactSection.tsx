@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send, CheckCircle2, Clock, Calendar } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Clock, Calendar, Paperclip } from 'lucide-react';
 import { TekmoraLogo } from '../../ui/TekmoraLogo';
 import { ProjectEstimator, type EstimatorSelection } from '../../ui/ProjectEstimator';
 import { MeetingSchedulerModal } from '../../ui/MeetingSchedulerModal';
@@ -456,6 +456,20 @@ export const ContactSection: React.FC = () => {
                           value={formData.details}
                           onChange={e => setFormData({ ...formData, details: e.target.value })}
                         />
+                      </div>
+
+                      <div className="rfp-spec-notice font-mono">
+                        <Paperclip size={14} className="text-orange" style={{ flexShrink: 0, marginTop: 2 }} />
+                        <div>
+                          <strong>EXISTING RFP / FIGMA PROTOTYPE / ARCHITECTURE SPEC?</strong>
+                          <p>
+                            Paste sharing links above, or email attachments directly to{' '}
+                            <a href="mailto:info@tekmorasolution.com" className="text-orange">
+                              info@tekmorasolution.com
+                            </a>{' '}
+                            under mutual NDA protection.
+                          </p>
+                        </div>
                       </div>
 
                       <div className="form-group nda-checkbox-group">

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Calculator, Check, AlertCircle, Share2, ArrowRight, GitMerge, FileCode2, LayoutGrid, Download, CheckCheck
+  Calculator, Check, AlertCircle, Share2, ArrowRight, GitMerge, FileCode2, LayoutGrid, Download, CheckCheck, Sparkles
 } from 'lucide-react';
 import './InteractiveScopeCalculatorSection.css';
 
@@ -40,8 +40,64 @@ const CURRENCY_RATES = {
 
 type Currency = keyof typeof CURRENCY_RATES;
 
+const PRESETS = [
+  {
+    id: 'mvp',
+    badge: '🚀 FAST MVP',
+    title: 'SaaS MVP Launch',
+    desc: 'Web App, Auth RBAC, Stripe & Cloud Storage',
+    platforms: { web: true, mobile: false, erp: false, sap: false, wp: false },
+    features: {
+      rbac: true, offline: false, realtime: false, bi: false, hardware: false, audit: false,
+      gps: false, chatbot: false, payments: true, notifications: false,
+      integrations: false, documents: false, cloudMedia: true
+    },
+    cadence: 'expedited' as const,
+  },
+  {
+    id: 'erp',
+    badge: '🏭 ENTERPRISE',
+    title: 'ERP & Logistics Core',
+    desc: 'ERP Engine, SAP Sync, Offline Sync & Audit',
+    platforms: { web: false, mobile: false, erp: true, sap: true, wp: false },
+    features: {
+      rbac: true, offline: true, realtime: true, bi: true, hardware: false, audit: true,
+      gps: false, chatbot: false, payments: false, notifications: false,
+      integrations: true, documents: true, cloudMedia: false
+    },
+    cadence: 'standard' as const,
+  },
+  {
+    id: 'field',
+    badge: '📱 FIELD OPS',
+    title: 'Field Ops & Mobile',
+    desc: 'iOS/Android App, GPS Geofencing & Offline Sync',
+    platforms: { web: false, mobile: true, erp: false, sap: false, wp: false },
+    features: {
+      rbac: true, offline: true, realtime: false, bi: false, hardware: true, audit: false,
+      gps: true, chatbot: false, payments: false, notifications: true,
+      integrations: false, documents: false, cloudMedia: false
+    },
+    cadence: 'standard' as const,
+  },
+  {
+    id: 'ai',
+    badge: '🤖 AI AGENTS',
+    title: 'AI Automation Hub',
+    desc: 'Web Hub, Autonomous Agents, OCR & APIs',
+    platforms: { web: true, mobile: false, erp: false, sap: false, wp: false },
+    features: {
+      rbac: true, offline: false, realtime: true, bi: true, hardware: false, audit: true,
+      gps: false, chatbot: true, payments: false, notifications: true,
+      integrations: true, documents: true, cloudMedia: false
+    },
+    cadence: 'standard' as const,
+  }
+];
+
 export const InteractiveScopeCalculatorSection: React.FC = () => {
   const [currency, setCurrency] = useState<Currency>('USD');
+  const [activePreset, setActivePreset] = useState<string | null>('mvp');
   
   // State for selections
   const [platforms, setPlatforms] = useState({
@@ -50,19 +106,28 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
   
   const [features, setFeatures] = useState({
     rbac: true, offline: false, realtime: false, bi: false, hardware: false, audit: false,
-    gps: false, chatbot: false, payments: false, notifications: false,
-    integrations: false, documents: false, cloudMedia: false
+    gps: false, chatbot: false, payments: true, notifications: false,
+    integrations: false, documents: false, cloudMedia: true
   });
 
-  const [cadence, setCadence] = useState<'standard' | 'expedited'>('standard');
+  const [cadence, setCadence] = useState<'standard' | 'expedited'>('expedited');
   const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
 
+  const applyPreset = (preset: typeof PRESETS[number]) => {
+    setActivePreset(preset.id);
+    setPlatforms(preset.platforms);
+    setFeatures(preset.features);
+    setCadence(preset.cadence);
+  };
+
   const togglePlatform = (key: keyof typeof platforms) => {
+    setActivePreset(null);
     setPlatforms(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
   const toggleFeature = (key: keyof typeof features) => {
+    setActivePreset(null);
     setFeatures(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -288,6 +353,31 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
         <p className="calc-subtitle">
           Select target platforms, technical capabilities, and execution velocity to generate live milestone timelines and highly competitive budget brackets.
         </p>
+
+        {/* Quick Enterprise Architecture Presets */}
+        <div className="calc-presets-container">
+          <div className="calc-presets-header font-mono">
+            <Sparkles size={13} className="text-orange" />
+            <span>CURATED ARCHITECTURE PRESETS (1-CLICK CONFIG):</span>
+          </div>
+          <div className="calc-presets-grid">
+            {PRESETS.map(preset => (
+              <button
+                key={preset.id}
+                type="button"
+                className={`calc-preset-card ${activePreset === preset.id ? 'is-active' : ''}`}
+                onClick={() => applyPreset(preset)}
+              >
+                <div className="preset-card-top font-mono">
+                  <span className="preset-badge">{preset.badge}</span>
+                  {activePreset === preset.id && <span className="preset-active-dot" />}
+                </div>
+                <div className="preset-title">{preset.title}</div>
+                <div className="preset-desc font-mono">{preset.desc}</div>
+              </button>
+            ))}
+          </div>
+        </div>
 
         <div className="calc-main-split">
           
