@@ -17,6 +17,7 @@ import { BackToTop } from './components/ui/BackToTop';
 import { NetworkStatus } from './components/ui/NetworkStatus';
 import { KeyboardShortcutsModal } from './components/ui/KeyboardShortcutsModal';
 import { useSecretCode } from './hooks/useSecretCode';
+import { useSpotlight } from './utils/useSpotlight';
 const HomePage = lazy(() => import('@/pages/HomePage').then(module => ({ default: module.HomePage })));
 const WorkPage = lazy(() => import('@/pages/WorkPage').then(module => ({ default: module.WorkPage })));
 const CaseStudyPage = lazy(() => import('@/pages/CaseStudyPage').then(module => ({ default: module.CaseStudyPage })));
@@ -73,6 +74,8 @@ export const App: React.FC = () => {
   const [preloaderDone, setPreloaderDone] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
+  
+  useSpotlight();
   
   // Easter Eggs
   const tekmoraCode = useSecretCode('tekmora');

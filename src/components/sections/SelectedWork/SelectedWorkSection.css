@@ -333,3 +333,169 @@
     padding-bottom: 0.5rem;
   }
 }
+
+/* ==========================================================================
+   PRODUCTION KPI SCRUBBER & PROJECT BENCHMARK CHIPS
+   ========================================================================== */
+.impact-scrubber-bar {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.scrubber-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.scrubber-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-orange);
+}
+
+.scrubber-caption {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+.scrubber-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scrubber-tab {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.scrubber-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.scrubber-tab.active {
+  background: rgba(255, 107, 0, 0.12);
+  border-color: rgba(255, 107, 0, 0.4);
+  color: var(--accent-orange);
+  box-shadow: 0 0 16px rgba(255, 107, 0, 0.12);
+}
+
+/* Project KPI Benchmark Chips */
+.project-kpi-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.kpi-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 11px;
+  cursor: default;
+  transition: all var(--transition-fast);
+}
+
+.kpi-chip:hover {
+  border-color: rgba(255, 107, 0, 0.4);
+  background: var(--bg-secondary);
+}
+
+.kpi-chip-dot {
+  font-size: 8px;
+  line-height: 1;
+}
+
+.kpi-chip-val {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.kpi-chip-lbl {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpi-chip-tooltip {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #090d13;
+  color: #e6edf3;
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 10px;
+  line-height: 1.4;
+  width: max-content;
+  max-width: 260px;
+  white-space: normal;
+  text-align: center;
+  z-index: 50;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.kpi-chip-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: var(--border-medium) transparent transparent transparent;
+}
+
+.kpi-chip:hover .kpi-chip-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 600px) {
+  .scrubber-filters {
+    gap: 6px;
+  }
+  .scrubber-tab {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+  .kpi-chip-tooltip {
+    max-width: 200px;
+  }
+}

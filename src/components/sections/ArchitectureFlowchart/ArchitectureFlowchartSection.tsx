@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { 
   Globe, Monitor,
   ShieldCheck, Lock, ShieldAlert,
   Box, Server, Activity, Settings, Zap,
   CreditCard, Link as LinkIcon, Mail, Cloud,
   Database, Layers,
-  Cloudy, Package, RefreshCw
+  Cloudy, Package, RefreshCw,
+  Terminal, Copy, Check, Code2
 } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -70,8 +71,68 @@ const flowchartData = [
   }
 ];
 
+const SNIPPETS = {
+  sap: {
+    title: 'SAP B1 Service Layer Hook',
+    method: 'POST',
+    endpoint: '/b1s/v2/Drafts (Automated GRN)',
+    status: '201 CREATED • 18ms',
+    code: `// Automated Goods Receipt via SAP Service Layer
+curl -X POST https://api.tekmorasolution.com/v1/erp/sap/grn \\
+  -H "Authorization: Bearer tk_live_984210" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "CardCode": "V10002",
+    "DocDate": "2026-09-13",
+    "DocumentLines": [
+      { "ItemCode": "SKU-9941", "Quantity": 150, "WarehouseCode": "WH-B4" }
+    ],
+    "Comments": "Automated warehouse scan via Tekmora WMS Engine"
+  }'`
+  },
+  ws: {
+    title: 'Real-Time Telemetry Stream',
+    method: 'WSS',
+    endpoint: 'wss://stream.tekmorasolution.com/v1/telemetry',
+    status: 'CONNECTED • 0 DROPPED',
+    code: `// Real-Time Event Bus Subscription
+const socket = new WebSocket('wss://stream.tekmorasolution.com/v1/telemetry');
+
+socket.onmessage = (event) => {
+  const telemetry = JSON.parse(event.data);
+  // [18:22:01.041] SKU-9941 verified at Bay B4
+  // [18:22:01.189] SAP Service Layer journal balanced (0 discrepancies)
+  // [18:22:01.214] Automated dispatch alert dispatched to mobile client
+};`
+  },
+  sql: {
+    title: 'PostgreSQL ACID Ledger Lock',
+    method: 'SQL',
+    endpoint: 'PostgreSQL 16 (Strict Atomicity)',
+    status: 'COMMITTED • 4ms',
+    code: `-- Zero-Drift Financial & Inventory Ledger Lock
+BEGIN;
+
+SELECT balance, reserved_stock 
+FROM inventory_ledger 
+WHERE sku = 'SKU-9941' AND warehouse_id = 'WH-B4'
+FOR UPDATE;
+
+UPDATE inventory_ledger 
+SET reserved_stock = reserved_stock + 150,
+    updated_at = NOW()
+WHERE sku = 'SKU-9941';
+
+COMMIT; -- Atomicity guaranteed across multi-tenant clusters`
+  }
+};
+
+type SnippetTab = keyof typeof SNIPPETS;
+
 export const ArchitectureFlowchartSection: React.FC = () => {
   const container = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<SnippetTab>('sap');
+  const [copied, setCopied] = useState(false);
 
   useGSAP(() => {
     if (!container.current) return;
@@ -92,10 +153,16 @@ export const ArchitectureFlowchartSection: React.FC = () => {
     );
   }, { scope: container });
 
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(SNIPPETS[activeTab].code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section className="architecture-section" ref={container}>
       <div className="architecture-container">
-        {flowchartData.map((tier, index) => (
+        {flowchartData.map((tier) => (
           <div key={tier.tier} className="arch-tier-group">
             <div className="arch-tier-header">
               <span className="arch-tier-number">{tier.tier}</span>
@@ -105,7 +172,7 @@ export const ArchitectureFlowchartSection: React.FC = () => {
             
             <div className="arch-nodes-container">
               {tier.nodes.map((node, nodeIndex) => (
-                <div key={nodeIndex} className="arch-node">
+                <div key={nodeIndex} className="arch-node spotlight-card">
                   <div className="arch-node-icon-wrapper">
                     <node.icon className="arch-node-icon" size={20} />
                   </div>
@@ -117,12 +184,76 @@ export const ArchitectureFlowchartSection: React.FC = () => {
               ))}
             </div>
 
-            {/* Connecting line to next tier, except for last tier */}
-            {index < flowchartData.length - 1 && (
-              <div className="arch-connector-line"></div>
-            )}
+            {/* Connecting line to next tier */}
+            <div className="arch-connector-line"></div>
           </div>
         ))}
+
+        {/* Live 2D Enterprise API & Telemetry Playground */}
+        <div className="arch-terminal-wrapper spotlight-card">
+          <div className="arch-terminal-header font-mono">
+            <div className="terminal-dots">
+              <span className="dot dot-red" />
+              <span className="dot dot-yellow" />
+              <span className="dot dot-green" />
+              <span className="terminal-title">LIVE ARCHITECTURAL CONTRACT TELEMETRY</span>
+            </div>
+            <div className="terminal-live-pill">
+              <span className="telemetry-live-dot" />
+              <span>LIVE EDGE ENVIRONMENT</span>
+            </div>
+          </div>
+
+          <div className="arch-terminal-tabs font-mono">
+            <button
+              type="button"
+              className={`terminal-tab-btn ${activeTab === 'sap' ? 'active' : ''}`}
+              onClick={() => setActiveTab('sap')}
+            >
+              <Terminal size={12} className="text-orange" />
+              <span>01 // SAP SERVICE LAYER</span>
+            </button>
+            <button
+              type="button"
+              className={`terminal-tab-btn ${activeTab === 'ws' ? 'active' : ''}`}
+              onClick={() => setActiveTab('ws')}
+            >
+              <Zap size={12} className="text-orange" />
+              <span>02 // WEBSOCKET STREAM</span>
+            </button>
+            <button
+              type="button"
+              className={`terminal-tab-btn ${activeTab === 'sql' ? 'active' : ''}`}
+              onClick={() => setActiveTab('sql')}
+            >
+              <Code2 size={12} className="text-orange" />
+              <span>03 // ACID SQL TRANSACTION</span>
+            </button>
+          </div>
+
+          <div className="arch-terminal-subbar font-mono">
+            <div className="endpoint-info">
+              <span className={`method-badge method-${activeTab}`}>{SNIPPETS[activeTab].method}</span>
+              <span className="endpoint-url">{SNIPPETS[activeTab].endpoint}</span>
+            </div>
+            <div className="endpoint-actions">
+              <span className="status-badge text-green">{SNIPPETS[activeTab].status}</span>
+              <button
+                type="button"
+                className="copy-snippet-btn font-mono"
+                onClick={handleCopyCode}
+                title="Copy code to clipboard"
+              >
+                {copied ? <Check size={12} className="text-green" /> : <Copy size={12} />}
+                <span>{copied ? 'COPIED' : 'COPY'}</span>
+              </button>
+            </div>
+          </div>
+
+          <pre className="arch-terminal-code font-mono">
+            <code>{SNIPPETS[activeTab].code}</code>
+          </pre>
+        </div>
       </div>
     </section>
   );

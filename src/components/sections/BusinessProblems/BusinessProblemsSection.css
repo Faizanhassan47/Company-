@@ -141,3 +141,327 @@
     font-size: 1.8rem !important;
   }
 }
+
+/* ==========================================================================
+   ARCHITECTURE REALITY CHECK COMPARISON MODULE
+   ========================================================================== */
+.arch-compare-module {
+  margin-top: clamp(4rem, 7vw, 6rem);
+  padding-top: clamp(3rem, 5vw, 4rem);
+  border-top: 1px dashed var(--border-medium);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.arch-compare-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.arch-compare-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent-orange);
+  background: rgba(255, 107, 0, 0.08);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+}
+
+.arch-compare-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.arch-compare-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.arch-compare-controls {
+  display: inline-flex;
+  gap: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.arch-ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.arch-ctrl-btn:hover {
+  color: var(--text-primary);
+}
+
+.arch-ctrl-btn.active-tekmora {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+}
+
+.arch-ctrl-btn.active-legacy {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.15);
+}
+
+.arch-ctrl-btn.active-split {
+  background: rgba(255, 107, 0, 0.12);
+  color: var(--accent-orange);
+  border-color: rgba(255, 107, 0, 0.3);
+}
+
+/* Benchmark Metrics Bar */
+.arch-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+}
+
+.arch-metric-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.metric-comparison {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.metric-legacy {
+  font-size: 12px;
+  color: #ef4444;
+  opacity: 0.75;
+  text-decoration: line-through;
+}
+
+.metric-arrow {
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
+.metric-tekmora {
+  font-size: 13px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* Panels */
+.arch-panels-container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.arch-panels-container.mode-split {
+  grid-template-columns: 1fr 1fr;
+}
+
+.arch-panels-container.mode-tekmora,
+.arch-panels-container.mode-legacy {
+  grid-template-columns: 1fr;
+}
+
+.arch-panel {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.arch-panel-legacy {
+  background: rgba(239, 68, 68, 0.03);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.arch-panel-tekmora {
+  background: rgba(16, 185, 129, 0.03);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.arch-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+
+.panel-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.status-legacy {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.status-tekmora {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.panel-risk-badge {
+  font-size: 10px;
+  color: #f87171;
+  letter-spacing: 0.1em;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.panel-benefit-badge {
+  font-size: 10px;
+  color: #10b981;
+  letter-spacing: 0.1em;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.arch-pillars-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.pillar-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.pillar-item:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-medium);
+}
+
+.pillar-legacy {
+  border-left: 3px solid rgba(239, 68, 68, 0.5);
+}
+
+.pillar-tekmora {
+  border-left: 3px solid rgba(16, 185, 129, 0.7);
+}
+
+.pillar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pillar-num {
+  font-size: 10px;
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.pillar-cat {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.pillar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.pillar-detail {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .arch-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .arch-panels-container.mode-split {
+    grid-template-columns: 1fr;
+  }
+  .arch-pillars-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .arch-metrics-bar {
+    grid-template-columns: 1fr;
+  }
+  .arch-compare-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .arch-ctrl-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 6px;
+    font-size: 10px;
+  }
+}
+

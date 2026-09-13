@@ -365,7 +365,7 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
               <button
                 key={preset.id}
                 type="button"
-                className={`calc-preset-card ${activePreset === preset.id ? 'is-active' : ''}`}
+                className={`calc-preset-card spotlight-card ${activePreset === preset.id ? 'is-active' : ''}`}
                 onClick={() => applyPreset(preset)}
               >
                 <div className="preset-card-top font-mono">
