@@ -133,6 +133,128 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
     };
   }, [platforms, features, cadence, currency]);
 
+  const handleAttachInquiry = () => {
+    navigate(`/contact?scope=${encodeURIComponent(estimate.costStr)}&timeline=${encodeURIComponent(estimate.weeksStr)}&tier=${encodeURIComponent(estimate.complexity)}`);
+  };
+
+  const handleCopySummary = () => {
+    const summaryText = `TEKMORA SOLUTIONS // ARCHITECTURAL ESTIMATE\nDelivery Window: ${estimate.weeksStr}\nInvestment Bracket: ${estimate.costStr}\nComplexity: ${estimate.complexity}\nRecommended Stack: ${estimate.stack.join(', ')}\nCadence: ${cadence.toUpperCase()}\nCurrency: ${currency}\nGenerated via https://tekmorasolution.com`;
+    navigator.clipboard.writeText(summaryText);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleExportBrief = () => {
+    const platformLabels: Record<string, string> = {
+      web: 'Custom Web Platform',
+      mobile: 'Mobile App (iOS/Android)',
+      erp: 'Enterprise ERP System',
+      sap: 'SAP Business One Integration',
+      wp: 'Headless Web Solution'
+    };
+
+    const selectedPlatformsList = Object.entries(platforms)
+      .filter(([, v]) => v)
+      .map(([k]) => platformLabels[k] || k.toUpperCase())
+      .join(', ') || 'Custom Architecture';
+
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    printWindow.document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tekmora Solutions - Formal Architectural Scope Brief</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 40px; color: #0f172a; line-height: 1.5; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0f172a; padding-bottom: 16px; margin-bottom: 24px; }
+    .brand { font-size: 22px; font-weight: 800; letter-spacing: 0.05em; color: #ea580c; }
+    .meta { font-family: monospace; font-size: 11px; color: #475569; text-align: right; }
+    .title { font-size: 18px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .card { border: 1px solid #e2e8f0; padding: 16px; border-radius: 8px; background: #f8fafc; }
+    .card h4 { margin: 0 0 8px; font-size: 11px; text-transform: uppercase; color: #64748b; font-family: monospace; }
+    .val { font-size: 18px; font-weight: 700; color: #0f172a; }
+    .section { margin: 24px 0; }
+    .section h3 { font-size: 12px; font-family: monospace; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 10px; color: #334155; }
+    .tags span { display: inline-block; background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-family: monospace; margin: 0 4px 4px 0; }
+    .footer { margin-top: 40px; border-top: 1px solid #cbd5e1; padding-top: 14px; font-size: 10px; color: #64748b; font-family: monospace; }
+    @media print { body { margin: 20px; } button { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="brand">TEKMORA SOLUTIONS</div>
+      <div style="font-size: 12px; color: #475569;">Enterprise Software Engineering & Architecture Studio</div>
+    </div>
+    <div class="meta">
+      DISPATCH: FORMAL ARCHITECTURAL BRIEF<br>
+      REF: TKM-SCOPE-SPEC<br>
+      URL: tekmorasolution.com
+    </div>
+  </div>
+
+  <div class="title">Architectural Scope & Investment Specification</div>
+  <p style="font-size: 13px; color: #475569;">Prepared for corporate procurement, engineering review, and statement-of-work baseline estimation.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h4>ESTIMATED DELIVERY WINDOW</h4>
+      <div class="val">${estimate.weeksStr}</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Cadence: ${cadence.toUpperCase()}</div>
+    </div>
+    <div class="card">
+      <h4>INVESTMENT BRACKET (${currency})</h4>
+      <div class="val">${estimate.costStr}</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Complexity Tier: ${estimate.complexity}</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>01 // INCLUDED ARCHITECTURAL DOMAINS</h3>
+    <p style="font-size: 12px; margin: 0; color: #0f172a;">${selectedPlatformsList}</p>
+  </div>
+
+  <div class="section">
+    <h3>02 // SPECIFIED CAPABILITIES & MODULES</h3>
+    <div class="tags">
+      ${Object.entries(features).filter(([, v]) => v).map(([k]) => `<span>${k.toUpperCase()}</span>`).join(' ')}
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>03 // RECOMMENDED PRODUCTION STACK</h3>
+    <div class="tags">
+      ${estimate.stack.map(s => `<span>${s}</span>`).join(' ')}
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>04 // EXECUTION MILESTONES</h3>
+    <p style="font-size: 11px; color: #475569;">
+      <strong>Phase 1: Discovery & Architecture</strong> — Schema, RBAC, API Spec.<br>
+      <strong>Phase 2: Engine Sprint</strong> — UI & Backend Pipelines.<br>
+      <strong>Phase 3: Integrations & Sync</strong> — SAP Service Layer, WebSockets, DB validation.<br>
+      <strong>Phase 4: QA & Production Hardening</strong> — Multi-region staging, automated failover, load testing.
+    </p>
+  </div>
+
+  <div class="footer">
+    TEKMORA SOLUTIONS // CONFIDENTIAL & PROPRIETARY // MUTUAL NDA COMPLIANT // CONTACT: info@tekmorasolution.com
+  </div>
+
+  <script>
+    window.onload = function() { window.print(); };
+  </script>
+</body>
+</html>
+    `);
+    printWindow.document.close();
+  };
+
   return (
     <section className="interactive-calc-section">
       <div className="calc-container">
@@ -366,162 +488,36 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
                 </div>
               </div>
 
-              {(() => {
-                const handleAttachInquiry = () => {
-                  navigate(`/contact?scope=${encodeURIComponent(estimate.costStr)}&timeline=${encodeURIComponent(estimate.weeksStr)}&tier=${encodeURIComponent(estimate.complexity)}`);
-                };
-
-                const handleCopySummary = () => {
-                  const summaryText = `TEKMORA SOLUTIONS // ARCHITECTURAL ESTIMATE\nDelivery Window: ${estimate.weeksStr}\nInvestment Bracket: ${estimate.costStr}\nComplexity: ${estimate.complexity}\nRecommended Stack: ${estimate.stack.join(', ')}\nCadence: ${cadence.toUpperCase()}\nCurrency: ${currency}\nGenerated via https://tekmorasolution.com`;
-                  navigator.clipboard.writeText(summaryText);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 2500);
-                };
-
-                const handleExportBrief = () => {
-                  const platformLabels: Record<string, string> = {
-                    web: 'Custom Web Platform',
-                    mobile: 'Mobile App (iOS/Android)',
-                    erp: 'Enterprise ERP System',
-                    sap: 'SAP Business One Integration',
-                    wp: 'Headless Web Solution'
-                  };
-
-                  const selectedPlatformsList = Object.entries(platforms)
-                    .filter(([, v]) => v)
-                    .map(([k]) => platformLabels[k] || k.toUpperCase())
-                    .join(', ') || 'Custom Architecture';
-
-                  const printWindow = window.open('', '_blank');
-                  if (!printWindow) return;
-
-                  printWindow.document.write(`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Tekmora Solutions - Formal Architectural Scope Brief</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 40px; color: #0f172a; line-height: 1.5; }
-    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0f172a; padding-bottom: 16px; margin-bottom: 24px; }
-    .brand { font-size: 22px; font-weight: 800; letter-spacing: 0.05em; color: #ea580c; }
-    .meta { font-family: monospace; font-size: 11px; color: #475569; text-align: right; }
-    .title { font-size: 18px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
-    .card { border: 1px solid #e2e8f0; padding: 16px; border-radius: 8px; background: #f8fafc; }
-    .card h4 { margin: 0 0 8px; font-size: 11px; text-transform: uppercase; color: #64748b; font-family: monospace; }
-    .val { font-size: 18px; font-weight: 700; color: #0f172a; }
-    .section { margin: 24px 0; }
-    .section h3 { font-size: 12px; font-family: monospace; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 10px; color: #334155; }
-    .tags span { display: inline-block; background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-family: monospace; margin: 0 4px 4px 0; }
-    .footer { margin-top: 40px; border-top: 1px solid #cbd5e1; padding-top: 14px; font-size: 10px; color: #64748b; font-family: monospace; }
-    @media print { body { margin: 20px; } button { display: none; } }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div>
-      <div class="brand">TEKMORA SOLUTIONS</div>
-      <div style="font-size: 12px; color: #475569;">Enterprise Software Engineering & Architecture Studio</div>
-    </div>
-    <div class="meta">
-      DISPATCH: FORMAL ARCHITECTURAL BRIEF<br>
-      REF: TKM-SCOPE-SPEC<br>
-      URL: tekmorasolution.com
-    </div>
-  </div>
-
-  <div class="title">Architectural Scope & Investment Specification</div>
-  <p style="font-size: 13px; color: #475569;">Prepared for corporate procurement, engineering review, and statement-of-work baseline estimation.</p>
-
-  <div class="grid">
-    <div class="card">
-      <h4>ESTIMATED DELIVERY WINDOW</h4>
-      <div class="val">${estimate.weeksStr}</div>
-      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Cadence: ${cadence.toUpperCase()}</div>
-    </div>
-    <div class="card">
-      <h4>INVESTMENT BRACKET (${currency})</h4>
-      <div class="val">${estimate.costStr}</div>
-      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Complexity Tier: ${estimate.complexity}</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>01 // INCLUDED ARCHITECTURAL DOMAINS</h3>
-    <p style="font-size: 12px; margin: 0; color: #0f172a;">${selectedPlatformsList}</p>
-  </div>
-
-  <div class="section">
-    <h3>02 // SPECIFIED CAPABILITIES & MODULES</h3>
-    <div class="tags">
-      ${Object.entries(features).filter(([, v]) => v).map(([k]) => `<span>${k.toUpperCase()}</span>`).join(' ')}
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>03 // RECOMMENDED PRODUCTION STACK</h3>
-    <div class="tags">
-      ${estimate.stack.map(s => `<span>${s}</span>`).join(' ')}
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>04 // EXECUTION MILESTONES</h3>
-    <p style="font-size: 11px; color: #475569;">
-      <strong>Phase 1: Discovery & Architecture</strong> — Schema, RBAC, API Spec.<br>
-      <strong>Phase 2: Engine Sprint</strong> — UI & Backend Pipelines.<br>
-      <strong>Phase 3: Integrations & Sync</strong> — SAP Service Layer, WebSockets, DB validation.<br>
-      <strong>Phase 4: QA & Production Hardening</strong> — Multi-region staging, automated failover, load testing.
-    </p>
-  </div>
-
-  <div class="footer">
-    TEKMORA SOLUTIONS // CONFIDENTIAL & PROPRIETARY // MUTUAL NDA COMPLIANT // CONTACT: info@tekmorasolution.com
-  </div>
-
-  <script>
-    window.onload = function() { window.print(); };
-  </script>
-</body>
-</html>
-                  `);
-                  printWindow.document.close();
-                };
-
-                return (
-                  <div className="cec-actions">
-                    <button
-                      type="button"
-                      className="cec-btn-primary"
-                      onClick={handleAttachInquiry}
-                    >
-                      <span>ATTACH ESTIMATES TO INQUIRY</span>
-                      <ArrowRight size={16}/>
-                    </button>
-                    <div className="cec-action-row">
-                      <button
-                        type="button"
-                        className="cec-btn-secondary"
-                        onClick={handleCopySummary}
-                        title="Copy text summary to clipboard"
-                      >
-                        {copied ? <CheckCheck size={14} className="text-green" /> : <Share2 size={14}/>}
-                        <span>{copied ? 'COPIED!' : 'COPY SUMMARY'}</span>
-                      </button>
-                      <button
-                        type="button"
-                        className="cec-btn-secondary"
-                        onClick={handleExportBrief}
-                        title="Export printable executive PDF brief"
-                      >
-                        <Download size={14} className="text-orange" />
-                        <span>EXPORT BRIEF (PDF)</span>
-                      </button>
-                    </div>
-                  </div>
-                );
-              })()}
+              <div className="cec-actions">
+                <button
+                  type="button"
+                  className="cec-btn-primary"
+                  onClick={handleAttachInquiry}
+                >
+                  <span>ATTACH ESTIMATES TO INQUIRY</span>
+                  <ArrowRight size={16}/>
+                </button>
+                <div className="cec-action-row">
+                  <button
+                    type="button"
+                    className="cec-btn-secondary"
+                    onClick={handleCopySummary}
+                    title="Copy text summary to clipboard"
+                  >
+                    {copied ? <CheckCheck size={14} className="text-green" /> : <Share2 size={14}/>}
+                    <span>{copied ? 'COPIED!' : 'COPY SUMMARY'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="cec-btn-secondary"
+                    onClick={handleExportBrief}
+                    title="Export printable executive PDF brief"
+                  >
+                    <Download size={14} className="text-orange" />
+                    <span>EXPORT BRIEF (PDF)</span>
+                  </button>
+                </div>
+              </div>
 
               <div className="cec-footer">
                 Estimates based on aggressive startup pricing models. Fixed SOW provided after discovery workshop.

@@ -243,6 +243,20 @@
   text-align: center;
 }
 
+.inquiry-prefilled-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: var(--radius-sm, 6px);
+  color: var(--accent-orange);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--spacing-4);
+}
+
 /* --- Funnel Steps --- */
 .funnel-progress {
   display: flex;

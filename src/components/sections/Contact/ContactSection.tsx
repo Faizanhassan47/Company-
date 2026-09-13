@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Send, CheckCircle2, Clock, Calendar } from 'lucide-react';
@@ -12,18 +13,24 @@ import { env } from '@/config/env';
 
 export const ContactSection: React.FC = () => {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const urlScope = searchParams.get('scope');
+  const urlTimeline = searchParams.get('timeline');
+  const urlTier = searchParams.get('tier');
+  const urlType = searchParams.get('type');
+
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(() => ({
     name: '',
     company: '',
     email: '',
-    projectType: 'Web Platform',
-    timeline: '1-3 Months',
-    budget: '$15k — $35k',
+    projectType: urlType || (urlTier ? `${urlTier} Architecture` : 'Web Platform'),
+    timeline: urlTimeline || '1-3 Months',
+    budget: urlScope || '$15k — $35k',
     requestNDA: true,
-    details: '',
-    projectStage: 'Idea'
-  });
+    details: urlTier ? `Pre-configured from Scope Calculator:\n• Complexity: ${urlTier}\n• Delivery Window: ${urlTimeline}\n• Target Bracket: ${urlScope}` : '',
+    projectStage: urlTier ? 'Architecture & SOW' : 'Idea'
+  }));
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -224,6 +231,13 @@ export const ContactSection: React.FC = () => {
                 <span>{t('contact.form_header')}</span>
                 <span className="text-orange">STEP 0{step} // {step === 1 ? 'CONTACT' : step === 2 ? 'SCOPE' : 'DETAILS'}</span>
               </div>
+
+              {urlScope && !submitted && (
+                <div className="inquiry-prefilled-badge font-mono">
+                  <span className="telemetry-live-dot" />
+                  <span>PRE-LOADED SCOPE // {urlScope} • {urlTimeline}</span>
+                </div>
+              )}
 
               {/* Progress Indicator */}
               {!submitted && (
