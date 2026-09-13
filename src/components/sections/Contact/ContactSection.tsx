@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send, CheckCircle2, Clock } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Clock, Calendar } from 'lucide-react';
 import { TekmoraLogo } from '../../ui/TekmoraLogo';
 import { ProjectEstimator, type EstimatorSelection } from '../../ui/ProjectEstimator';
+import { MeetingSchedulerModal } from '../../ui/MeetingSchedulerModal';
 import { staggerContainer, fadeInUp } from '../../../utils/animations';
 import { trackEvent } from '../../../utils/analytics';
 import './ContactSection.css';
@@ -27,6 +28,7 @@ export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const handleApplyEstimates = (est: EstimatorSelection) => {
     setFormData(prev => ({
@@ -189,6 +191,19 @@ export const ContactSection: React.FC = () => {
                   <Clock size={14} className="text-green" /> {t('contact.status_val')}
                 </div>
               </div>
+
+              <div className="c-detail-item" style={{ marginTop: '0.5rem', paddingTop: '0.75rem', borderTop: '1px solid var(--border-subtle)' }}>
+                <div className="cd-lbl font-mono">DIRECT DISCOVERY SESSION</div>
+                <button
+                  type="button"
+                  onClick={() => setBookingOpen(true)}
+                  className="btn btn-secondary btn-sm font-mono mt-1"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', width: '100%', justifyContent: 'center' }}
+                >
+                  <Calendar size={13} className="text-orange" />
+                  <span>SCHEDULE 30-MIN CALL</span>
+                </button>
+              </div>
             </div>
 
             {/* Brand Signature Mark */}
@@ -228,12 +243,24 @@ export const ContactSection: React.FC = () => {
                   <p className="success-desc">
                     {t('contact.success_desc')}
                   </p>
-                  <button
-                    className="btn btn-secondary btn-sm font-mono mt-4"
-                    onClick={() => setSubmitted(false)}
-                  >
-                    {t('contact.success_btn')}
-                  </button>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '1.25rem', width: '100%', maxWidth: '360px' }}>
+                    <button
+                      type="button"
+                      className="btn btn-orange font-mono w-full"
+                      onClick={() => setBookingOpen(true)}
+                      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                    >
+                      <Calendar size={15} />
+                      <span>SCHEDULE DISCOVERY CALL DIRECTLY</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary btn-sm font-mono w-full"
+                      onClick={() => setSubmitted(false)}
+                    >
+                      {t('contact.success_btn')}
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="inquiry-form">
@@ -464,6 +491,14 @@ export const ContactSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* 30-Min Discovery Meeting Scheduler Modal */}
+      <MeetingSchedulerModal
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        defaultName={formData.name}
+        defaultEmail={formData.email}
+      />
     </section>
   );
 };

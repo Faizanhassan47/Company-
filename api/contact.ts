@@ -169,7 +169,7 @@ export default async function handler(req: IncomingMessage & { body?: any }, res
           <title>Thank you for contacting Tekmora</title>
         </head>
         <body style="margin: 0; padding: 0; background-color: #090a0f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
-          <div style="max-width: 600px; margin: 30px auto; background-color: #111218; border-radius: 12px; overflow: hidden; border: 1px solid #22232d; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+          <div style="max-width: 600px; margin: 30px auto; background-color: #111218; border-radius: 12px; overflow: hidden; border: 1px solid #22232d;">
             
             <!-- Header -->
             <div style="padding: 32px 36px 24px; background: linear-gradient(180deg, #181922 0%, #111218 100%); border-bottom: 1px solid #22232d;">
