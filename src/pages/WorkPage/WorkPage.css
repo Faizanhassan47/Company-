@@ -156,20 +156,20 @@
 
 /* Project Cards */
 .project-card {
-  background: #11141a; /* Dark card bg */
+  background: #11141a;
+  /* Dark card bg */
   border-radius: 24px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   border: 1px solid var(--color-border);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover {
     transform: translateY(-6px);
     border-color: rgba(249, 115, 22, 0.4);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(249, 115, 22, 0.15);
   }
 
   .project-card:hover .project-card-img {
@@ -187,7 +187,8 @@
 
 .project-card-half {
   grid-column: span 6;
-  flex-direction: column; /* Stack vertically for half width */
+  flex-direction: column;
+  /* Stack vertically for half width */
 }
 
 /* Inside the card */
@@ -252,8 +253,8 @@
   gap: 6px;
   font-size: 0.75rem;
   padding: 6px 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   color: #cbd5e1;
 }
@@ -312,7 +313,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
@@ -332,7 +333,7 @@
   border-radius: 24px;
   padding: 4rem 2rem;
   text-align: center;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .cta-subtitle {
@@ -384,7 +385,7 @@
   gap: 8px;
   background: transparent;
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0.85rem 1.75rem;
   border-radius: 8px;
   font-weight: 600;
@@ -392,7 +393,7 @@
 }
 
 .btn-outline-light:hover {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Responsive */
@@ -400,17 +401,19 @@
   .work-hero-grid {
     grid-template-columns: 1fr;
   }
+
   .work-hero-stats {
     justify-content: flex-start;
   }
+
   .hero-ideas-arrow {
     display: none;
   }
-  
+
   .project-card-full {
     flex-direction: column;
   }
-  
+
   .project-card-full .project-card-visual {
     width: 100%;
   }
