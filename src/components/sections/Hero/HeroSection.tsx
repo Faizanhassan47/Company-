@@ -8,6 +8,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrambleText } from '../../ui/ScrambleText';
 import { TrustMarquee } from '../../ui/TrustMarquee';
+import { MagneticButton } from '../../ui/MagneticButton';
 import { staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from '../../../utils/animations';
 import './HeroSection.css';
 
@@ -139,18 +140,18 @@ export const HeroSection: React.FC = () => {
 
             {/* Action Row */}
             <div className="hero-cta-row font-mono">
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <MagneticButton strength={0.25}>
                 <Link to="/contact" className="btn btn-primary hero-action-btn">
                   <span>{t('hero.cta_primary')}</span>
                   <ArrowUpRight size={16} />
                 </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              </MagneticButton>
+              <MagneticButton strength={0.15}>
                 <a href="#services" className="hero-link-secondary">
                   <span>{t('hero.cta_secondary')}</span>
                   <ArrowDownRight size={15} />
                 </a>
-              </motion.div>
+              </MagneticButton>
             </div>
           </motion.div>
 

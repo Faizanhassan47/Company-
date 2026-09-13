@@ -60,6 +60,13 @@
   100% { transform: translateX(-33.33%); } /* Translates 1/3rd because we duplicated the array 3 times */
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .trust-marquee-container:hover .trust-marquee-track {
+    animation-play-state: paused;
+    cursor: default;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .trust-marquee-track {
     animation-duration: 200s;

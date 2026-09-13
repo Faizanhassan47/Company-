@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Menu, X, ArrowUpRight, Search } from 'lucide-react';
 import { TekmoraLogo } from '../ui/TekmoraLogo';
+import { MagneticButton } from '../ui/MagneticButton';
 import './Navbar.css';
 import publicRoutes from '../../config/publicRoutes.json';
+
 
 interface NavbarProps {
   onOpenContact?: () => void;
@@ -20,17 +22,57 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
   const location = useLocation();
   const { t } = useTranslation();
 
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = window.localStorage.getItem('tekmora-theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
+  });
+
 
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem('tekmora-theme');
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : systemTheme;
+    const handleThemeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail === 'dark' || customEvent.detail === 'light') {
+        setTheme(customEvent.detail);
+      }
+    };
+    window.addEventListener('theme-change', handleThemeChange);
+    return () => window.removeEventListener('theme-change', handleThemeChange);
+  }, []);
+
+  // Listen to device / operating system theme changes in real-time
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleDeviceThemeChange = (e: MediaQueryListEvent) => {
+      const savedTheme = window.localStorage.getItem('tekmora-theme');
+      if (!savedTheme) {
+        const deviceTheme = e.matches ? 'dark' : 'light';
+        setTheme(deviceTheme);
+        document.documentElement.dataset.theme = deviceTheme;
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', deviceTheme === 'dark' ? '#090909' : '#FFFFFF');
+        }
+      }
+    };
+
+    mql.addEventListener('change', handleDeviceThemeChange);
+    return () => mql.removeEventListener('change', handleDeviceThemeChange);
+  }, []);
+
+  useEffect(() => {
     document.documentElement.dataset.theme = theme;
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', theme === 'dark' ? '#090909' : '#FFFFFF');
     }
-  }, []);
+  }, [theme]);
+
+
+
 
   // Handle scroll state and progress indicator
   useEffect(() => {
@@ -72,16 +114,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'tween', ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
       >
-        {/* Real-time Scroll Progress Bar */}
+        {/* Real-time GPU Scroll Progress Bar */}
         <div
           className="header-scroll-progress"
-          style={{ width: `${scrollProgress}%` }}
+          style={{ transform: `scaleX(${scrollProgress / 100})` }}
           role="progressbar"
           aria-label="Page scroll progress"
           aria-valuenow={Math.round(scrollProgress)}
           aria-valuemin={0}
           aria-valuemax={100}
         />
+
 
         <div className="container header-container">
           {/* Brand Logo with Official tk Mark + Wordmark */}
@@ -93,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
           <nav className="desktop-nav-pill-dock" aria-label="Primary Navigation">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
-              
+
               if (link.to === '/services') {
                 return (
                   <div
@@ -108,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
                     >
                       <span className="nav-pill-text">{link.label}</span>
                     </Link>
-                    
+
                     {servicesDropdownOpen && (
                       <div className="mega-menu-panel">
                         <div className="mega-menu-grid">
@@ -169,20 +212,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
               </button>
             )}
 
-            {/* Primary Action Button */}
-            <Link
-              to="/contact"
-              className="header-primary-cta"
-              onClick={(e) => {
-                if (onOpenContact) {
-                  e.preventDefault();
-                  onOpenContact();
-                }
-              }}
-            >
-              <span>Start a project</span>
-              <ArrowUpRight size={14} className="cta-icon" />
-            </Link>
+
+
+            {/* Primary Action Button with 2D Magnetic Pull */}
+            <MagneticButton>
+              <Link
+                to="/contact"
+                className="header-primary-cta"
+                onClick={(e) => {
+                  if (onOpenContact) {
+                    e.preventDefault();
+                    onOpenContact();
+                  }
+                }}
+              >
+                <span>Start a project</span>
+                <ArrowUpRight size={14} className="cta-icon" />
+              </Link>
+            </MagneticButton>
+
 
             {/* Mobile Menu Toggle Button */}
             <button
@@ -202,14 +250,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
         <div className="mobile-nav-drawer">
           <div className="mobile-nav-header">
             <TekmoraLogo height={28} />
-            <button
-              className="mobile-close-btn"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close Menu"
-            >
-              <X size={24} />
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+
+              <button
+                className="mobile-close-btn"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close Menu"
+              >
+                <X size={24} />
+              </button>
+            </div>
           </div>
+
 
           <div className="mobile-nav-links">
             {navLinks.map((link, idx) => (

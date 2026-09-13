@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, Clock, Check, Sparkles, Cpu, Layers, ArrowRight, DollarSign, Share2, GitBranch } from 'lucide-react';
+import { Calculator, Clock, Check, Sparkles, Zap, Cpu, Layers, ArrowRight, DollarSign, Share2, GitBranch } from 'lucide-react';
 import { fadeInUp } from '../../utils/animations';
 import './ProjectEstimator.css';
 
@@ -9,7 +9,7 @@ export type CurrencyType = 'USD' | 'EUR' | 'GBP' | 'PKR';
 export interface EstimatorSelection {
   platforms: string[];
   modules: string[];
-  speed: 'standard' | 'expedited';
+  speed: 'standard' | 'expedited' | 'blitz';
   estimatedWeeks: string;
   estimatedBudget: string;
   currency: CurrencyType;
@@ -58,7 +58,7 @@ const MODULE_OPTIONS = [
 export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstimates }) => {
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>(['web']);
   const [selectedModules, setSelectedModules] = useState<string[]>(['rbac']);
-  const [speed, setSpeed] = useState<'standard' | 'expedited'>('standard');
+  const [speed, setSpeed] = useState<'standard' | 'expedited' | 'blitz'>('standard');
   const [currency, setCurrency] = useState<CurrencyType>('USD');
   const [applied, setApplied] = useState(false);
   const [copiedSummary, setCopiedSummary] = useState(false);
@@ -111,8 +111,12 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
 
     if (speed === 'expedited') {
       netWeeks = Math.max(2, Math.round(netWeeks * 0.7));
-      minCost = Math.round(minCost * 1.5);
-      maxCost = Math.round(maxCost * 1.5);
+      minCost = Math.round(minCost * 1.35);
+      maxCost = Math.round(maxCost * 1.35);
+    } else if (speed === 'blitz') {
+      netWeeks = Math.max(2, Math.round(netWeeks * 0.55));
+      minCost = Math.round(minCost * 1.7);
+      maxCost = Math.round(maxCost * 1.7);
     }
 
     const minWeeks = Math.max(2, netWeeks - 1);
@@ -277,7 +281,8 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                 className={`speed-btn ${speed === 'standard' ? 'speed-active' : ''}`}
                 onClick={() => setSpeed('standard')}
               >
-                <span>Standard Delivery (Bi-Weekly Milestones)</span>
+                <Clock size={13} className={speed === 'standard' ? 'text-orange' : ''} />
+                <span>Standard Cadence (Bi-Weekly Milestones)</span>
               </button>
               <button
                 type="button"
@@ -285,7 +290,15 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                 onClick={() => setSpeed('expedited')}
               >
                 <Sparkles size={13} className="text-orange" />
-                <span>Expedited / Dedicated Engineering Sprint</span>
+                <span>Accelerated Squad (Dedicated Tech Lead + Core Engineers)</span>
+              </button>
+              <button
+                type="button"
+                className={`speed-btn ${speed === 'blitz' ? 'speed-active' : ''}`}
+                onClick={() => setSpeed('blitz')}
+              >
+                <Zap size={13} className="text-orange" />
+                <span>Enterprise Blitz (Concurrent Multi-Squad Sprint)</span>
               </button>
             </div>
           </div>
@@ -346,7 +359,15 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                 <Clock size={14} className="text-orange" />
                 <span>ESTIMATED DELIVERY WINDOW</span>
               </div>
-              <div className="metric-val font-display">{calculation.estimatedWeeks}</div>
+              <motion.div
+                key={calculation.estimatedWeeks}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="metric-val font-display"
+              >
+                {calculation.estimatedWeeks}
+              </motion.div>
             </div>
 
             {/* Estimated Budget Range */}
@@ -355,7 +376,15 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                 <DollarSign size={14} className="text-orange" />
                 <span>INDICATIVE INVESTMENT BRACKET</span>
               </div>
-              <div className="metric-val budget-val font-display">{calculation.estimatedBudget}</div>
+              <motion.div
+                key={calculation.estimatedBudget}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="metric-val budget-val font-display"
+              >
+                {calculation.estimatedBudget}
+              </motion.div>
             </div>
 
             {/* Complexity Tier */}

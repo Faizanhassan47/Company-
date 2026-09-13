@@ -23,6 +23,7 @@ import { CitiBooksGraphic } from '../../components/visuals/CitiBooksGraphic';
 import { ShoestopsGraphic } from '../../components/visuals/ShoestopsGraphic';
 import { CommentsFusionGraphic } from '../../components/visuals/CommentsFusionGraphic';
 import { TranscendGraphic } from '../../components/visuals/TranscendGraphic';
+import { CaseStudyNavigator } from '../../components/ui/CaseStudyNavigator';
 import './CaseStudyPage.css';
 
 const getTechnologyIcon = (technology: string): React.ElementType => {
@@ -184,7 +185,7 @@ export const CaseStudyPage: React.FC = () => {
       </section>
 
       {/* 2. Overview Section */}
-      <section className="case-overview-section">
+      <section className="case-overview-section" id="overview">
         <div className="container case-split-grid">
           <div className="case-split-left">
             <span className="section-label font-mono">OVERVIEW</span>
@@ -229,7 +230,7 @@ export const CaseStudyPage: React.FC = () => {
       </section>
 
       {/* 3. Features Section */}
-      <section className="case-features-section">
+      <section className="case-features-section" id="features">
         <div className="container case-split-grid">
           <div className="case-split-left">
             <span className="section-label font-mono">KEY FEATURES</span>
@@ -253,7 +254,7 @@ export const CaseStudyPage: React.FC = () => {
       </section>
 
       {/* 4. Technologies & Impact Section */}
-      <section className="case-tech-impact-section">
+      <section className="case-tech-impact-section" id="impact">
         <div className="container case-split-grid">
           <div className="case-split-left border-right">
             <span className="section-label font-mono">TECHNOLOGIES</span>
@@ -363,6 +364,9 @@ export const CaseStudyPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Interactive Case Study Milestone Navigator & Share */}
+      <CaseStudyNavigator title={project.title} tagline={project.tagline} />
     </main>
   );
 };

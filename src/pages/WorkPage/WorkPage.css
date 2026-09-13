@@ -162,11 +162,23 @@
   display: flex;
   flex-direction: row;
   border: 1px solid var(--color-border);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(249, 115, 22, 0.15);
+  }
+
+  .project-card:hover .project-card-img {
+    transform: scale(1.04);
+  }
+
+  .project-card:hover .project-card-graphic {
+    transform: scale(1.02);
+  }
 }
 
 .project-card-full {
@@ -285,6 +297,8 @@
   height: 100%;
   object-fit: cover;
   object-position: right bottom;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .project-card-half .project-card-img {
@@ -299,6 +313,8 @@
   align-items: center;
   justify-content: center;
   background: rgba(255,255,255,0.02);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .fallback-poster {

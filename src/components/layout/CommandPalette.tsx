@@ -56,6 +56,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = nextTheme;
     window.localStorage.setItem('tekmora-theme', nextTheme);
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: nextTheme }));
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       'content',
       nextTheme === 'dark' ? '#090909' : '#FFFFFF'
@@ -65,8 +66,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('contact@tekmorasolution.com');
-      showToast('Copied contact@tekmorasolution.com to clipboard');
+      await navigator.clipboard.writeText('info@tekmorasolution.com');
+      showToast('Copied info@tekmorasolution.com to clipboard');
     } catch {
       // fallback
     }

@@ -1,0 +1,13 @@
+.magnetic-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .magnetic-wrap {
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -12,13 +12,19 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-main);
   color: var(--text-primary);
   font-family: var(--font-body);
   transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Prevent native smooth scroll from fighting Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -29,6 +35,13 @@ body {
   overflow-x: hidden;
   transition: background-color var(--transition-base), color var(--transition-base);
 }
+
+/* Performance: instruct browser to skip layout/paint for offscreen sections until scrolled near */
+.home-page > section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
 
 /* Prevent intrinsic-width grid/flex children from forcing phone layouts wider. */
 #root,

@@ -13,6 +13,9 @@ import { CookieBanner } from './components/ui/CookieBanner';
 import { LiveChat } from './components/layout/LiveChat';
 import { TerminalEasterEgg } from './components/ui/TerminalEasterEgg';
 import { SwissGrid } from './components/layout/SwissGrid';
+import { BackToTop } from './components/ui/BackToTop';
+import { NetworkStatus } from './components/ui/NetworkStatus';
+import { KeyboardShortcutsModal } from './components/ui/KeyboardShortcutsModal';
 import { useSecretCode } from './hooks/useSecretCode';
 const HomePage = lazy(() => import('@/pages/HomePage').then(module => ({ default: module.HomePage })));
 const WorkPage = lazy(() => import('@/pages/WorkPage').then(module => ({ default: module.WorkPage })));
@@ -69,6 +72,7 @@ const AnimatedRoutes = () => {
 export const App: React.FC = () => {
   const [preloaderDone, setPreloaderDone] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
   
   // Easter Eggs
   const tekmoraCode = useSecretCode('tekmora');
@@ -82,6 +86,10 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     initAnalytics();
+
+    const handleOpenHUD = () => setShortcutsOpen(prev => !prev);
+    window.addEventListener('open-shortcuts-hud', handleOpenHUD);
+    return () => window.removeEventListener('open-shortcuts-hud', handleOpenHUD);
   }, []);
 
   return (
@@ -102,6 +110,16 @@ export const App: React.FC = () => {
             <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
           </Suspense>
         )}
+
+        {/* Network Connectivity Status Indicator */}
+        <NetworkStatus />
+
+        {/* Developer Keyboard Shortcuts HUD */}
+        <KeyboardShortcutsModal
+          isOpen={shortcutsOpen}
+          onClose={() => setShortcutsOpen(false)}
+          onOpenSearch={() => { setShortcutsOpen(false); setSearchOpen(true); }}
+        />
 
         {/* God Mode Terminal */}
         <AnimatePresence>
@@ -125,6 +143,8 @@ export const App: React.FC = () => {
           <Navbar onOpenSearch={() => setSearchOpen(true)} />
 
           <AnimatedRoutes />
+
+          <BackToTop />
 
           <Footer />
         </div>

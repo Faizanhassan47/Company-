@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '../../../utils/animations';
+import { AnimatedCounter } from '../../ui/AnimatedCounter';
 import './MetricsSection.css';
+
 
 const METRICS = [
   { value: '13K+', label: 'Inventory Items Managed' },
@@ -23,7 +25,9 @@ export const MetricsSection: React.FC = () => {
         >
           {METRICS.map((metric, idx) => (
             <motion.div key={idx} className="metric-item" variants={fadeInUp}>
-              <div className="metric-value font-display">{metric.value}</div>
+              <div className="metric-value font-display">
+                <AnimatedCounter value={metric.value} />
+              </div>
               <div className="metric-label">{metric.label}</div>
             </motion.div>
           ))}

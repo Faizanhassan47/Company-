@@ -1,0 +1,17 @@
+.scroll-text-reveal {
+  display: inline;
+  line-height: inherit;
+}
+
+.reveal-word {
+  display: inline-block;
+  will-change: opacity;
+  transition: opacity 0.15s ease-out;
+  transform: translateZ(0); /* Force GPU compositing */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word {
+    opacity: 1 !important;
+  }
+}

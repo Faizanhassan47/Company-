@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { useLocation } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface SmoothScrollProps {
   children: React.ReactNode;
@@ -11,30 +15,44 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    // Initialize Lenis
+    // Detect mobile or touch-dominant devices
+    const isTouchDevice =
+      typeof window !== 'undefined' &&
+      (('ontouchstart' in window) ||
+        navigator.maxTouchPoints > 0 ||
+        window.innerWidth < 1024);
+
+    // On touch/mobile, let native hardware momentum scrolling run at 60-120Hz
+    if (isTouchDevice) {
+      return;
+    }
+
+    // Initialize Lenis for desktop
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      syncTouch: false, // Never hijack touch
     });
 
     lenisRef.current = lenis;
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
+    // Lock Lenis with GSAP ScrollTrigger to prevent desync & stutter
+    lenis.on('scroll', ScrollTrigger.update);
 
-    rafId = requestAnimationFrame(raf);
+    const updateTicker = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(updateTicker);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
@@ -42,8 +60,11 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   }, [location]);
 
   return <>{children}</>;
 };
+

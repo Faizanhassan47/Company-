@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../../../utils/animations';
 import { ArrowRight } from 'lucide-react';
+import { ScrollTextReveal } from '../../ui/ScrollTextReveal';
 import './BusinessProblemsSection.css';
+
 
 const PROBLEMS = [
   {
@@ -71,9 +73,9 @@ export const BusinessProblemsSection: React.FC = () => {
             ENGINEERING SOLUTIONS TO<br />
             <span className="italic-accent">REAL OPERATIONAL BOTTLENECKS.</span>
           </h2>
-          <p className="problems-subtitle">
+          <ScrollTextReveal className="problems-subtitle" as="p">
             We don't just write code. We eliminate manual processes and connect siloed data.
-          </p>
+          </ScrollTextReveal>
         </motion.div>
 
         <div className="problems-sequence">

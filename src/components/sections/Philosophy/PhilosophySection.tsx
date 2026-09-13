@@ -7,9 +7,13 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { staggerContainer, fadeInUp, hoverLift } from '../../../utils/animations';
+import { ScrollTextReveal } from '../../ui/ScrollTextReveal';
+import { MagneticButton } from '../../ui/MagneticButton';
+import './PhilosophySection.css';
 
 gsap.registerPlugin(ScrollTrigger);
-import './PhilosophySection.css';
+
+
 
 interface PrincipleCard {
   number: string;
@@ -87,16 +91,19 @@ export const PhilosophySection: React.FC = () => {
               <span className="italic-accent">{t('philosophy.title_3')}</span>
             </h2>
 
-            <p className="philosophy-narrative">
+            <ScrollTextReveal className="philosophy-narrative" as="p">
               {t('philosophy.narrative')}
-            </p>
+            </ScrollTextReveal>
 
             <div className="philosophy-action-wrap font-mono">
-              <Link to="/about" className="btn btn-outline-orange font-mono">
-                <span>{t('philosophy.cta')}</span>
-                <ArrowUpRight size={15} />
-              </Link>
+              <MagneticButton>
+                <Link to="/about" className="btn btn-outline-orange font-mono">
+                  <span>{t('philosophy.cta')}</span>
+                  <ArrowUpRight size={15} />
+                </Link>
+              </MagneticButton>
             </div>
+
           </motion.div>
 
           {/* Right Column: 2x2 Interactive Reality Cards */}

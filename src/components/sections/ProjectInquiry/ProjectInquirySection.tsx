@@ -29,22 +29,49 @@ export const ProjectInquirySection: React.FC = () => {
     } else {
       setIsSubmitting(true);
       setShowError(false);
-      
-      try {
-        const endpointId = env.formspreeEndpointId;
-        const response = await fetch(`https://formspree.io/f/${endpointId}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            ...formData,
-            _subject: `New Project Inquiry from ${formData.name}`
-          })
-        });
 
-        if (response.ok) {
+      const payload = {
+        ...formData,
+        _subject: `New Project Inquiry from ${formData.name}`
+      };
+
+      try {
+        let isSent = false;
+
+        // 1. Primary: Hostinger SMTP + Automated Thank You Email
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+          if (response.ok) {
+            isSent = true;
+          }
+        } catch {
+          // Continue to fallback
+        }
+
+        // 2. Fallback: Formspree endpoint
+        if (!isSent) {
+          const endpointId = env.formspreeEndpointId;
+          const response = await fetch(`https://formspree.io/f/${endpointId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+          if (response.ok) {
+            isSent = true;
+          }
+        }
+
+        if (isSent) {
           setIsSuccess(true);
           trackEvent('project_inquiry_submit', 'lead', formData.budget);
         } else {

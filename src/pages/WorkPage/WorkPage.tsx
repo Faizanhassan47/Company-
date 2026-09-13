@@ -1,8 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Code, Globe, Layout } from 'lucide-react';
 import { PROJECTS, type CaseStudy } from '../../data/projects';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { MagneticButton } from '../../components/ui/MagneticButton';
 import { trackEvent } from '../../utils/analytics';
 import { DomeInterfaceGraphic } from '../../components/visuals/DomeInterfaceGraphic';
 import { MatrixMobileGraphic } from '../../components/visuals/MatrixMobileGraphic';
@@ -54,7 +56,15 @@ const renderProjectCard = (project: CaseStudy, isFullWidth: boolean) => {
   );
 
   return (
-    <article className={`project-card ${isFullWidth ? 'project-card-full' : 'project-card-half'}`} key={project.id}>
+    <motion.article 
+      layout
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      className={`project-card ${isFullWidth ? 'project-card-full' : 'project-card-half'}`} 
+      key={project.id}
+    >
       <div className="project-card-content">
         <div className="project-card-header font-mono">
           <span className="project-num">{project.number}</span>
@@ -86,7 +96,7 @@ const renderProjectCard = (project: CaseStudy, isFullWidth: boolean) => {
       <div className="project-card-visual">
         {visualContent}
       </div>
-    </article>
+    </motion.article>
   );
 };
 
@@ -184,11 +194,13 @@ export const WorkPage: React.FC = () => {
           </div>
 
           <div className="work-grid">
-            {visibleProjects.map((project, idx) => {
-              // Full width for 1st and 4th items in "all" view, or if only 1 item
-              const isFullWidth = (activeFilter === 'all' && (idx === 0 || idx === 3)) || visibleProjects.length === 1;
-              return renderProjectCard(project, isFullWidth);
-            })}
+            <AnimatePresence mode="popLayout">
+              {visibleProjects.map((project, idx) => {
+                // Full width for 1st and 4th items in "all" view, or if only 1 item
+                const isFullWidth = (activeFilter === 'all' && (idx === 0 || idx === 3)) || visibleProjects.length === 1;
+                return renderProjectCard(project, isFullWidth);
+              })}
+            </AnimatePresence>
           </div>
         </div>
       </section>
@@ -205,12 +217,16 @@ export const WorkPage: React.FC = () => {
               Let's discuss your idea and turn it into a reliable, scalable solution.
             </p>
             <div className="cta-actions">
-              <Link to="/contact" className="btn btn-primary">
-                Start a Project <ArrowRight size={16} />
-              </Link>
-              <Link to="/contact" className="btn btn-outline-light">
-                Get in Touch
-              </Link>
+              <MagneticButton strength={0.25}>
+                <Link to="/contact" className="btn btn-primary">
+                  Start a Project <ArrowRight size={16} />
+                </Link>
+              </MagneticButton>
+              <MagneticButton strength={0.15}>
+                <Link to="/contact" className="btn btn-outline-light">
+                  Get in Touch
+                </Link>
+              </MagneticButton>
             </div>
           </div>
         </div>

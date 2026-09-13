@@ -49,33 +49,62 @@ export const ContactSection: React.FC = () => {
     if (!formData.email || !formData.name) return;
 
     setIsSubmitting(true);
-    try {
-      const endpointId = env.formspreeEndpointId;
-      const response = await fetch(`https://formspree.io/f/${endpointId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          company: formData.company,
-          email: formData.email,
-          projectType: formData.projectType,
-          timeline: formData.timeline,
-          budget: formData.budget,
-          projectStage: formData.projectStage,
-          requestNDA: formData.requestNDA,
-          details: formData.details,
-          _subject: `Enterprise inquiry from ${formData.name}`
-        })
-      });
+    setErrorMsg('');
 
-      if (response.ok) {
+    const payload = {
+      name: formData.name,
+      company: formData.company,
+      email: formData.email,
+      projectType: formData.projectType,
+      timeline: formData.timeline,
+      budget: formData.budget,
+      projectStage: formData.projectStage,
+      requestNDA: formData.requestNDA,
+      details: formData.details,
+      _subject: `Enterprise inquiry from ${formData.name}`
+    };
+
+    try {
+      let isSent = false;
+
+      // 1. Primary: Hostinger SMTP + Automated Branded Thank You Email
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+          isSent = true;
+        }
+      } catch {
+        // Continue to Formspree fallback
+      }
+
+      // 2. Fallback: Formspree endpoint if /api/contact is unavailable
+      if (!isSent) {
+        const endpointId = env.formspreeEndpointId;
+        const response = await fetch(`https://formspree.io/f/${endpointId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+          isSent = true;
+        }
+      }
+
+      if (isSent) {
         setSubmitted(true);
         trackEvent('contact_form_submit', 'lead', formData.projectType);
       } else {
-        setErrorMsg('System routing error. Please try again or email us directly.');
+        setErrorMsg('System routing error. Please try again or email us directly at info@tekmorasolution.com.');
       }
     } catch {
       setErrorMsg('Network error. Please check your connection and try again.');

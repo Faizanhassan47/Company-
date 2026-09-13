@@ -3,7 +3,7 @@ import './TrustMarquee.css';
 
 const TECHNOLOGIES = [
   'React', 'Node.js', 'TypeScript', 'AWS', 'Python', 'SAP Business One',
-  'PostgreSQL', 'Docker', 'Kubernetes', 'GraphQL', 'Next.js', 'Three.js'
+  'PostgreSQL', 'Docker', 'Kubernetes', 'GraphQL', 'Next.js', 'Redis'
 ];
 
 export const TrustMarquee: React.FC = () => {
