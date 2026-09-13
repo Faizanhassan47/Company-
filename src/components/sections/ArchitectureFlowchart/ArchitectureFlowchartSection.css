@@ -152,7 +152,6 @@
   height: 60%;
   background: linear-gradient(to bottom, transparent, var(--accent-orange), #ffffff, var(--accent-orange), transparent);
   border-radius: 2px;
-  box-shadow: 0 0 10px var(--accent-orange), 0 0 4px #ffffff;
   animation: data-packet-stream 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
@@ -161,12 +160,15 @@
     top: -60%;
     opacity: 0;
   }
+
   25% {
     opacity: 1;
   }
+
   75% {
     opacity: 1;
   }
+
   100% {
     top: 100%;
     opacity: 0;
@@ -186,7 +188,7 @@
     flex-direction: column;
     align-items: center;
   }
-  
+
   .arch-node {
     width: 100%;
     max-width: 100%;

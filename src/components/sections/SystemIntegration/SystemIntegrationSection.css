@@ -123,7 +123,7 @@
 
 .si-node-card {
   background-color: var(--bg-card, #111);
-  border: 1px solid var(--border-subtle, rgba(255,255,255,0.1));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
   border-radius: 8px;
   padding: 1rem 1.25rem;
   display: flex;
@@ -131,14 +131,13 @@
   gap: 1rem;
   width: 240px;
   position: relative;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease,
 }
 
 @media (hover: hover) and (pointer: fine) {
   .si-node-card:hover {
     transform: translateY(-2px);
     border-color: rgba(249, 115, 22, 0.5);
-    box-shadow: 0 8px 24px -6px rgba(249, 115, 22, 0.2);
   }
 }
 
@@ -152,7 +151,6 @@
     width: 2rem;
     height: 2px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(249, 115, 22, 0.7));
-    box-shadow: 0 0 6px rgba(249, 115, 22, 0.3);
   }
 
   .si-right-col .si-node-card::before {
@@ -163,7 +161,6 @@
     width: 2rem;
     height: 2px;
     background: linear-gradient(90deg, rgba(249, 115, 22, 0.7), rgba(255, 255, 255, 0.08));
-    box-shadow: 0 0 6px rgba(249, 115, 22, 0.3);
   }
 }
 
@@ -190,11 +187,16 @@
   top: 50%;
   width: 2rem;
   height: 1px;
-  background-color: var(--border-accent, rgba(255,77,28,0.5));
+  background-color: var(--border-accent, rgba(255, 77, 28, 0.5));
 }
 
-.si-left-col .si-node-card::after { right: -2rem; }
-.si-right-col .si-node-card::before { left: -2rem; }
+.si-left-col .si-node-card::after {
+  right: -2rem;
+}
+
+.si-right-col .si-node-card::before {
+  left: -2rem;
+}
 
 .si-center-wrapper {
   position: relative;
@@ -212,14 +214,7 @@
   animation: center-node-pulse 3.5s infinite ease-in-out;
 }
 
-@keyframes center-node-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.2), 0 12px 32px rgba(0, 0, 0, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(249, 115, 22, 0.08), 0 16px 40px rgba(0, 0, 0, 0.5);
-  }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
   .si-center-node {
@@ -276,22 +271,26 @@
   transform: translate(-50%, -50%);
   width: 400px;
   height: 400px;
-  border: 1px dashed var(--border-subtle, rgba(255,255,255,0.05));
+  border: 1px dashed var(--border-subtle, rgba(255, 255, 255, 0.05));
   border-radius: 50%;
   z-index: 0;
 }
+
 .si-bg-circles::after {
   content: '';
   position: absolute;
-  top: 10%; left: 10%; right: 10%; bottom: 10%;
-  border: 1px dashed var(--border-subtle, rgba(255,255,255,0.05));
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  border: 1px dashed var(--border-subtle, rgba(255, 255, 255, 0.05));
   border-radius: 50%;
 }
 
 /* TECH BAR */
 .si-tech-bar {
   background: var(--bg-card, #111);
-  border: 1px solid var(--border-subtle, rgba(255,255,255,0.1));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
   border-radius: 16px;
   padding: 1.5rem;
   display: flex;
@@ -313,12 +312,16 @@
 
 .si-tech-nav button {
   background: transparent;
-  border: 1px solid var(--border-subtle, rgba(255,255,255,0.2));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.2));
   color: var(--text-primary, #fff);
   border-radius: 50%;
-  width: 32px; height: 32px;
-  display: inline-flex; align-items: center; justify-content: center;
-  margin-left: 0.5rem; cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  cursor: pointer;
 }
 
 .si-tech-list {
@@ -330,7 +333,7 @@
 
 .si-tech-item {
   background: var(--bg-elevated, #171717);
-  border: 1px solid var(--border-subtle, rgba(255,255,255,0.05));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.05));
   border-radius: 8px;
   padding: 0.75rem 1rem;
   display: flex;
@@ -359,7 +362,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
-  border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.1));
+  border-top: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
   font-size: 0.7rem;
   color: var(--text-dim, #94A3B8);
   letter-spacing: 0.05em;
@@ -367,7 +370,17 @@
 }
 
 @media (max-width: 1024px) {
-  .si-main-layout { flex-direction: column; }
-  .si-graph-container { flex-direction: column; gap: 3rem; }
-  .si-left-col .si-node-card::after, .si-right-col .si-node-card::before { display: none; }
+  .si-main-layout {
+    flex-direction: column;
+  }
+
+  .si-graph-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .si-left-col .si-node-card::after,
+  .si-right-col .si-node-card::before {
+    display: none;
+  }
 }

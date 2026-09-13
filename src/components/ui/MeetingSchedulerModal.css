@@ -17,7 +17,6 @@
   background: var(--bg-card);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg, 16px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 
@@ -180,4 +179,74 @@
   color: var(--text-secondary);
   max-width: 400px;
   line-height: 1.5;
+}
+
+.calendar-sync-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 10px);
+  padding: 16px;
+  margin: 8px 0;
+  text-align: left;
+}
+
+.calendar-sync-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.calendar-sync-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 420px) {
+  .calendar-sync-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.cal-btn:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  background: rgba(249, 115, 22, 0.05);
+}
+
+.cal-btn-google:hover {
+  border-color: #4285F4;
+  color: #4285F4;
+  background: rgba(66, 133, 244, 0.08);
+}
+
+.cal-btn-outlook:hover,
+.cal-btn-o365:hover {
+  border-color: #0078D4;
+  color: #0078D4;
+  background: rgba(0, 120, 212, 0.08);
 }

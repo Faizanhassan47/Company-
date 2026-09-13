@@ -13,7 +13,6 @@
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: 9999px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -96,7 +95,6 @@
   letter-spacing: 0.06em;
   color: #4ade80;
   white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   pointer-events: none;
 }
 
@@ -104,6 +102,7 @@
   .case-nav-text {
     display: none;
   }
+
   .case-nav-item {
     padding: 5px 8px;
   }

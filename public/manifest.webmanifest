@@ -1,0 +1,29 @@
+{
+  "name": "Tekmora Solutions | Enterprise Software",
+  "short_name": "Tekmora",
+  "description": "Enterprise software engineering studio building custom web applications, offline-first mobile products, and internal ERP systems.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090a0f",
+  "theme_color": "#090a0f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/brand-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": [
+    "business",
+    "productivity",
+    "developer tools"
+  ]
+}

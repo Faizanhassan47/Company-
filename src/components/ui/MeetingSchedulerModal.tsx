@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, X, Check, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Calendar, X, Check, ArrowRight, ShieldCheck, Download, ExternalLink } from 'lucide-react';
 import './MeetingSchedulerModal.css';
 
 interface MeetingSchedulerModalProps {
@@ -41,45 +41,96 @@ export const MeetingSchedulerModal: React.FC<MeetingSchedulerModalProps> = ({
   const [time, setTime] = useState('14:00 GMT');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isBooked, setIsBooked] = useState(false);
+  const [calendarData, setCalendarData] = useState<{
+    googleUrl: string;
+    outlookUrl: string;
+    office365Url: string;
+    icsContent: string;
+  } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name) return;
-
     setIsSubmitting(true);
-    const chosenTypeObj = CALL_TYPES.find(t => t.id === selectedType);
-    const typeTitle = chosenTypeObj ? chosenTypeObj.title : selectedType;
 
-    const payload = {
-      name,
-      email,
-      company: 'Scheduled via Discovery Call Booker',
-      projectType: `Discovery Call: ${typeTitle}`,
-      timeline: `Requested Date: ${date || 'Earliest available'} at ${time}`,
-      budget: 'Consultation',
-      projectStage: 'Discovery Workshop',
-      requestNDA: true,
-      details: `Client booked an architectural session:
-- Session: ${typeTitle}
-- Preferred Date: ${date || 'Earliest opening'}
-- Time Window: ${time}
-- Mutual NDA automatically requested.`,
-      _subject: `📅 New Discovery Call Request from ${name}`
+    const chosenType = CALL_TYPES.find(t => t.id === selectedType);
+    const title = `Tekmora Solutions: ${chosenType ? chosenType.title : 'Architectural Discovery'}`;
+    const details = `Tekmora Discovery Consultation with ${name || 'Client'}.\n\nSession: ${chosenType?.title}\nScope: ${chosenType?.desc}\nLead Email: ${email}\n\nMeeting link will be dispatched prior to session. Contact: info@tekmorasolution.com`;
+    
+    const hourMap: Record<string, number> = {
+      '10:00 GMT': 10,
+      '14:00 GMT': 14,
+      '16:00 GMT': 16,
+      '19:00 GMT': 19,
     };
+    const targetHour = hourMap[time] ?? 14;
+    
+    let baseDate: Date;
+    if (date) {
+      baseDate = new Date(`${date}T00:00:00Z`);
+    } else {
+      baseDate = new Date();
+      baseDate.setDate(baseDate.getDate() + 1);
+    }
+    baseDate.setUTCHours(targetHour, 0, 0, 0);
+    const endDate = new Date(baseDate.getTime() + 30 * 60 * 1000);
+
+    const formatGoogle = (dt: Date) => dt.toISOString().replace(/-|:|\.\d\d\d/g, '');
+    const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatGoogle(baseDate)}/${formatGoogle(endDate)}&details=${encodeURIComponent(details)}&location=${encodeURIComponent('Tekmora Virtual Briefing Room (Google Meet)')}`;
+    const outlookUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(title)}&startdt=${baseDate.toISOString()}&enddt=${endDate.toISOString()}&body=${encodeURIComponent(details)}&location=${encodeURIComponent('Tekmora Virtual Briefing Room')}`;
+    const office365Url = `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(title)}&startdt=${baseDate.toISOString()}&enddt=${endDate.toISOString()}&body=${encodeURIComponent(details)}&location=${encodeURIComponent('Tekmora Virtual Briefing Room')}`;
+
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Tekmora Solutions//Discovery Scheduler//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:REQUEST',
+      'BEGIN:VEVENT',
+      `SUMMARY:${title}`,
+      `DESCRIPTION:${details.replace(/\n/g, '\\n')}`,
+      `DTSTART:${formatGoogle(baseDate)}`,
+      `DTEND:${formatGoogle(endDate)}`,
+      'LOCATION:Tekmora Virtual Briefing Room',
+      'ORGANIZER;CN="Tekmora Solutions":mailto:info@tekmorasolution.com',
+      `ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=${name || 'Client'}:mailto:${email}`,
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    setCalendarData({ googleUrl, outlookUrl, office365Url, icsContent });
 
     try {
       await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          name,
+          email,
+          projectType: `Discovery Session: ${chosenType?.title}`,
+          timeline: `Scheduled Slot: ${date || 'Next Business Day'} at ${time}`,
+          budget: 'Discovery Phase (Complimentary)',
+          requirements: `Client scheduled an architectural discovery session.\nFocus: ${chosenType?.title}\nSlot: ${date || 'Flexible'} @ ${time}`,
+          ndaRequested: true,
+        })
       });
-      setIsBooked(true);
     } catch {
-      // Fallback
-      setIsBooked(true);
+      // non-blocking
     } finally {
       setIsSubmitting(false);
+      setIsBooked(true);
     }
+  };
+
+  const handleDownloadIcs = () => {
+    if (!calendarData?.icsContent) return;
+    const blob = new Blob([calendarData.icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'tekmora-discovery-session.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleReset = () => {
@@ -128,13 +179,58 @@ export const MeetingSchedulerModal: React.FC<MeetingSchedulerModalProps> = ({
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(34,197,94,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
                   <Check size={22} />
                 </div>
-                <h4>Discovery Call Requested</h4>
+                <h4>Discovery Call Reserved</h4>
                 <p>
-                  We have received your booking request for <strong>{name}</strong>. A calendar invite and meeting link have been routed to <strong>{email}</strong> via our Hostinger dispatch system.
+                  We have registered your session for <strong>{name}</strong>. A confirmation has been routed to <strong>{email}</strong>.
                 </p>
+
+                <div className="calendar-sync-card">
+                  <div className="calendar-sync-header">
+                    <Calendar size={13} className="text-orange" />
+                    <span>1-CLICK CALENDAR SYNC</span>
+                  </div>
+                  <div className="calendar-sync-buttons">
+                    <a
+                      href={calendarData?.googleUrl || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cal-btn cal-btn-google font-mono"
+                    >
+                      <ExternalLink size={12} />
+                      <span>Google Calendar</span>
+                    </a>
+                    <a
+                      href={calendarData?.outlookUrl || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cal-btn cal-btn-outlook font-mono"
+                    >
+                      <ExternalLink size={12} />
+                      <span>Outlook Web</span>
+                    </a>
+                    <a
+                      href={calendarData?.office365Url || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cal-btn cal-btn-o365 font-mono"
+                    >
+                      <ExternalLink size={12} />
+                      <span>Office 365</span>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={handleDownloadIcs}
+                      className="cal-btn cal-btn-ics font-mono"
+                    >
+                      <Download size={12} />
+                      <span>Download .ICS File</span>
+                    </button>
+                  </div>
+                </div>
+
                 <button
                   type="button"
-                  className="btn btn-primary btn-sm font-mono mt-4"
+                  className="btn btn-secondary btn-sm font-mono mt-2"
                   onClick={handleReset}
                 >
                   Close Window
