@@ -112,19 +112,6 @@ export const NetworkStatus: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Docked Status Pill (Bottom Left) */}
-      <button
-        type="button"
-        className="network-docked-pill font-mono"
-        onClick={() => setIsModalOpen(true)}
-        title="View Live Enterprise SLA & Telemetry"
-        aria-label="View Live Enterprise SLA and Edge Telemetry"
-      >
-        <span className="telemetry-live-dot" />
-        <span className="telemetry-label-main">99.99% SLA</span>
-        <span className="telemetry-sep">//</span>
-        <span className="telemetry-label-sub">EDGE HEALTH</span>
-      </button>
 
       {/* Enterprise SLA & Telemetry Modal */}
       <AnimatePresence>

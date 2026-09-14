@@ -1,197 +1,56 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, CheckCircle2, Cpu, Filter } from 'lucide-react';
+import { ArrowRight, Bot, Boxes, BrainCircuit, Check, CloudCog, Code2, Database, Filter, Globe2, LockKeyhole, Smartphone, Workflow } from 'lucide-react';
 import { SERVICES_DATA, type ServiceDetail } from '../../data/services';
 import { SEOHead } from '../../components/seo/SEOHead';
-import { ServiceMarketMatrix } from '../../components/sections/Services/ServiceMarketMatrix';
-import { TechRadarSection } from '../../components/sections/TechRadar/TechRadarSection';
-import { ProcurementFAQSection } from '../../components/sections/ProcurementFAQ/ProcurementFAQSection';
-import { EngagementModelsSection } from '../../components/sections/EngagementModels/EngagementModelsSection';
 import './ServicesPage.css';
 
+const categories = [
+  ['all', 'All Services'],
+  ['ai-automation', 'AI & Automation'],
+  ['saas-modernization', 'SaaS & Products'],
+  ['enterprise-cloud', 'Enterprise & Cloud'],
+  ['security-systems', 'Security & Systems'],
+] as const;
+
+const getIcon = (service: ServiceDetail) => {
+  const slug = service.slug;
+  if (slug.includes('mobile')) return Smartphone;
+  if (slug.includes('agent')) return Bot;
+  if (slug.includes('ai') || slug.includes('rag')) return BrainCircuit;
+  if (slug.includes('security') || slug.includes('auth')) return LockKeyhole;
+  if (slug.includes('cloud') || slug.includes('devops')) return CloudCog;
+  if (slug.includes('warehouse') || slug.includes('wms')) return Boxes;
+  if (slug.includes('data') || slug.includes('analytics')) return Database;
+  if (slug.includes('integration') || slug.includes('automation')) return Workflow;
+  if (slug.includes('web') || slug.includes('wordpress')) return Globe2;
+  return Code2;
+};
+
 export const ServicesPage: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [activeCategory, setActiveCategory] = useState('all');
+  const services = useMemo(() => activeCategory === 'all' ? SERVICES_DATA : SERVICES_DATA.filter(service => service.category === activeCategory), [activeCategory]);
 
-  const filterTabs = [
-    { id: 'all', label: 'All Disciplines', count: SERVICES_DATA.length },
-    { id: 'ai-automation', label: 'AI & Automation', count: SERVICES_DATA.filter(s => s.category === 'ai-automation').length },
-    { id: 'saas-modernization', label: 'SaaS & Modernization', count: SERVICES_DATA.filter(s => s.category === 'saas-modernization').length },
-    { id: 'enterprise-cloud', label: 'Enterprise & DevOps', count: SERVICES_DATA.filter(s => s.category === 'enterprise-cloud').length },
-    { id: 'security-systems', label: 'Security & Rescue', count: SERVICES_DATA.filter(s => s.category === 'security-systems').length },
-  ];
+  return <main className="services-page" id="main-content">
+    <SEOHead title="Software Engineering Services | Tekmora" description="Explore Tekmora's AI, SaaS, enterprise, cloud, security, web, mobile, and systems integration services." canonical="https://tekmorasolution.com/services" />
 
-  const filteredServices = useMemo(() => {
-    if (activeCategory === 'all') return SERVICES_DATA;
-    return SERVICES_DATA.filter(service => service.category === activeCategory);
-  }, [activeCategory]);
+    <section className="sp-hero">
+      <div className="sp-hero-glow" />
+      <div className="container sp-hero-grid">
+        <div><p className="sp-kicker">Engineering Services</p><h1>Software Built<br />Around <span>How Your<br />Business Works.</span></h1></div>
+        <div className="sp-hero-copy"><p>From AI-powered workflows to enterprise platforms, we design and build dependable digital products around real users, operational constraints, and measurable business outcomes.</p><div className="sp-hero-actions"><a href="#services-catalog" className="sp-btn sp-btn-primary">Explore Services <ArrowRight size={15} /></a><Link to="/contact" className="sp-btn sp-btn-ghost">Discuss a Project</Link></div><div className="sp-hero-proof"><span><strong>{SERVICES_DATA.length}+</strong>Engineering capabilities</span><span><strong>100%</strong>Client IP ownership</span><span><strong>End-to-end</strong>Delivery & support</span></div></div>
+      </div>
+    </section>
 
-  return (
-    <main className="services-page" id="main-content">
-      <SEOHead
-        title="Engineering Services & Market Capabilities | Tekmora"
-        description="Tekmora builds custom web platforms, AI workflow automations, autonomous agent systems, multi-tenant SaaS, enterprise ERP portals, and warehouse systems."
-        canonical="https://tekmorasolution.com/services"
-      />
+    <section className="sp-catalog" id="services-catalog"><div className="container">
+      <div className="sp-section-head"><div><p className="sp-kicker">What We Build</p><h2>Engineering Capabilities<br />for Modern Operations</h2></div><p>Select a discipline to explore the systems, platforms, and workflows we engineer.</p></div>
+      <div className="sp-filter"><span><Filter size={13} /> Filter by</span>{categories.map(([id, label]) => <button type="button" className={activeCategory === id ? 'active' : ''} onClick={() => setActiveCategory(id)} key={id}>{label}<small>{id === 'all' ? SERVICES_DATA.length : SERVICES_DATA.filter(s => s.category === id).length}</small></button>)}</div>
+      <motion.div layout className="sp-services-grid"><AnimatePresence mode="popLayout">{services.map((service, index) => { const Icon = getIcon(service); return <motion.article layout initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: .97 }} transition={{ duration: .22 }} key={`${service.slug}-${index}`}><div className="sp-card-top"><div className="sp-card-icon"><Icon size={22} /></div><span>{service.number}</span></div><small>{service.category.replace('-', ' & ')}</small><h3>{service.title}</h3><p>{service.shortDesc}</p><div className="sp-capabilities">{service.keyCapabilities.slice(0, 2).map(cap => <span key={cap.title}><Check size={11} />{cap.title}</span>)}</div><Link to={`/services/${service.slug}`}>Explore Service <ArrowRight size={14} /></Link></motion.article> })}</AnimatePresence></motion.div>
+    </div></section>
 
-      {/* Hero */}
-      <section className="services-page-hero section">
-        <div className="container">
-          <div className="section-meta">
-            <span className="section-number font-mono">01</span>
-            <span>// CORE ENGINEERING DISCIPLINES</span>
-            <span className="meta-sep font-mono">FULL-LIFECYCLE SOFTWARE SERVICES</span>
-          </div>
+    <section className="sp-approach"><div className="container"><div className="sp-section-head"><div><p className="sp-kicker">How We Work</p><h2>From Operational Problem<br />to Production System</h2></div><p>A clear process keeps technical decisions connected to the business result.</p></div><div className="sp-steps">{[['01', 'Discover', 'We study the workflow, users, constraints, and success measures.'], ['02', 'Architect', 'We define the product, data model, integrations, and delivery roadmap.'], ['03', 'Build', 'Senior engineers deliver in visible, testable iterations.'], ['04', 'Launch & Evolve', 'We deploy safely, monitor performance, and support continued growth.']].map(([n, t, d]) => <div key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></div>)}</div></div></section>
 
-          <h1 className="services-page-title font-display">
-            CUSTOM SOFTWARE<br />
-            <span className="italic-accent">BUILT FOR REAL OPERATIONS.</span>
-          </h1>
-
-          <p className="services-page-lead">
-            We don’t resell generic software packages or skin pre-made templates. We engineer bespoke platforms, autonomous AI workflows, multi-tenant SaaS platforms, and enterprise integrations that fit the exact way your business functions.
-          </p>
-
-          <div className="services-hero-anchors font-mono">
-            <a href="#market-matrix" className="hero-anchor-link">
-              <span>View Market Attractiveness Matrix</span>
-              <ArrowUpRight size={13} />
-            </a>
-            <span className="anchor-sep">/</span>
-            <a href="#services-catalog" className="hero-anchor-link">
-              <span>Explore Technical Specifications ({SERVICES_DATA.length})</span>
-              <ArrowUpRight size={13} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 02: Market Attractiveness & Strategy Matrix (From User Roadmap) */}
-      <ServiceMarketMatrix />
-
-      {/* 03: Comprehensive Services Directory */}
-      <section className="services-directory-section section section-border-top" id="services-catalog">
-        <div className="container">
-          <div className="directory-header-row">
-            <div>
-              <div className="section-meta">
-                <span className="section-number font-mono">03</span>
-                <span>// DETAILED TECHNICAL SPECIFICATIONS</span>
-                <span className="meta-sep font-mono">PRODUCTION SPECIFICATIONS</span>
-              </div>
-              <h2 className="directory-title font-display">
-                ENGINEERING DISCIPLINES CATALOG.
-              </h2>
-            </div>
-
-            {/* Category Filter Tabs */}
-            <div className="services-category-tabs font-mono">
-              <div className="tabs-label">
-                <Filter size={13} className="text-orange" />
-                <span>FILTER:</span>
-              </div>
-              <div className="tabs-list">
-                {filterTabs.map(tab => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveCategory(tab.id)}
-                    className={`cat-tab-btn ${activeCategory === tab.id ? 'active' : ''}`}
-                  >
-                    <span>{tab.label}</span>
-                    <span className="tab-count font-mono">{tab.count}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Service Cards Stack */}
-          <div className="services-cards-stack">
-            <AnimatePresence mode="popLayout">
-              {filteredServices.map((service: ServiceDetail) => (
-                <motion.article 
-                  className="service-detail-card spotlight-card" 
-                  key={service.slug}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <div className="service-card-left">
-                    <div className="service-meta-top font-mono">
-                      <span className="text-orange">SERVICE {service.number}</span>
-                      <span className="meta-sep">/</span>
-                      <span className="service-cat-pill">{service.category?.toUpperCase() || 'CORE'}</span>
-                      <span className="meta-sep">/</span>
-                      <span>{service.primaryTopic}</span>
-                    </div>
-
-                    <h2 className="service-card-title font-display">
-                      <Link to={`/services/${service.slug}`}>{service.title}</Link>
-                    </h2>
-
-                    <p className="service-card-desc">{service.overview}</p>
-
-                    <div className="service-card-capabilities">
-                      {service.keyCapabilities.slice(0, 3).map(cap => (
-                        <div key={cap.title} className="cap-item">
-                          <CheckCircle2 size={14} className="text-orange cap-icon" />
-                          <div>
-                            <strong>{cap.title}:</strong> {cap.description}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="service-card-action font-mono">
-                      <Link to={`/services/${service.slug}`} className="btn btn-sm btn-orange">
-                        <span>VIEW FULL {service.title.toUpperCase()} SPECIFICATION</span>
-                        <ArrowUpRight size={14} />
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="service-card-right">
-                    <div className="service-spec-panel font-mono">
-                      <div className="panel-header">
-                        <Cpu size={14} className="text-orange" />
-                        <span>PRODUCTION TECH STACK</span>
-                      </div>
-
-                      <div className="panel-tech-groups">
-                        {service.technicalStack.map(group => (
-                          <div key={group.category} className="tech-grp">
-                            <span className="grp-label">{group.category}:</span>
-                            <span className="grp-items">{group.items.join(', ')}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="panel-footer">
-                        <span className="footer-status text-green">● ARCHITECTURE TESTED</span>
-                        <Link to={`/services/${service.slug}`} className="panel-link">
-                          <span>Read FAQs</span>
-                          <ArrowUpRight size={12} />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </motion.article>
-              ))}
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
-
-      {/* Engagement Models */}
-      <EngagementModelsSection />
-
-      {/* Production Technology Radar Matrix */}
-      <TechRadarSection />
-
-      {/* Enterprise Procurement & Security FAQ */}
-      <ProcurementFAQSection />
-    </main>
-  );
+    <section className="sp-assurance"><div className="container sp-assurance-grid"><div><p className="sp-kicker">Built for the Long Term</p><h2>Serious Engineering.<br /><span>Clear Partnership.</span></h2></div><div className="sp-assurance-list">{['Direct access to senior engineers', 'Full source code and IP ownership', 'Security and data integrity by design', 'Documented, maintainable architecture', 'Transparent scope and delivery milestones', 'Post-launch support and evolution'].map(item => <p key={item}><span><Check size={12} /></span>{item}</p>)}</div></div></section>
+  </main>;
 };

@@ -1,236 +1,39 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, Check, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, Code, Globe, Layout } from 'lucide-react';
-import { PROJECTS, type CaseStudy } from '../../data/projects';
+import { PROJECTS } from '../../data/projects';
 import { SEOHead } from '../../components/seo/SEOHead';
-import { MagneticButton } from '../../components/ui/MagneticButton';
 import { trackEvent } from '../../utils/analytics';
-import { DomeInterfaceGraphic } from '../../components/visuals/DomeInterfaceGraphic';
-import { MatrixMobileGraphic } from '../../components/visuals/MatrixMobileGraphic';
-import { GrnWorkflowGraphic } from '../../components/visuals/GrnWorkflowGraphic';
-import { SapAnalyticsGraphic } from '../../components/visuals/SapAnalyticsGraphic';
-import { QuranAyatGraphic } from '../../components/visuals/QuranAyatGraphic';
-import { CitiBooksGraphic } from '../../components/visuals/CitiBooksGraphic';
-import { ShoestopsGraphic } from '../../components/visuals/ShoestopsGraphic';
-import { CommentsFusionGraphic } from '../../components/visuals/CommentsFusionGraphic';
-import { TranscendGraphic } from '../../components/visuals/TranscendGraphic';
 import './WorkPage.css';
 
-const filterTabs = [
-  { label: 'All', value: 'all' },
-  { label: 'Enterprise', value: 'enterprise' },
-  { label: 'Web Apps', value: 'web-apps' },
-  { label: 'Mobile Apps', value: 'mobile' },
-  { label: 'E-commerce', value: 'ecommerce' },
-  { label: 'Data & BI', value: 'data-bi' }
-];
-
-const renderGraphic = (slug: string) => {
-  switch (slug) {
-    case 'dome-enterprise': return <DomeInterfaceGraphic />;
-    case 'matrix-field-service': return <MatrixMobileGraphic />;
-    case 'warehouse-grn-automation': return <GrnWorkflowGraphic />;
-    case 'sap-b1-production-dashboard': return <SapAnalyticsGraphic />;
-    case 'quran-ayat-app': return <QuranAyatGraphic />;
-    case 'citi-books-platform': return <CitiBooksGraphic />;
-    case 'shoestops': return <ShoestopsGraphic />;
-    case 'comments-fusion': return <CommentsFusionGraphic />;
-    case 'transcend-healthcare': return <TranscendGraphic />;
-    default:
-      return null;
-  }
-};
-
-const renderProjectCard = (project: CaseStudy, isFullWidth: boolean) => {
-  const visualContent = project.imageUrl ? (
-    <img src={project.imageUrl} alt={`${project.title} interface preview`} className="project-card-img" loading="lazy" decoding="async" />
-  ) : (
-    <div className="project-card-graphic">
-      {renderGraphic(project.slug) || (
-        <div className="fallback-poster">
-          <div className="fallback-title font-display">{project.title}</div>
-        </div>
-      )}
-    </div>
-  );
-
-  return (
-    <motion.article 
-      layout
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className={`project-card ${isFullWidth ? 'project-card-full' : 'project-card-half'}`} 
-      key={project.id}
-    >
-      <div className="project-card-content">
-        <div className="project-card-header font-mono">
-          <span className="project-num">{project.number}</span>
-          <span className="project-cat-sep">—</span>
-          <span className="project-cat">{isFullWidth ? 'FEATURED PROJECT' : project.category}</span>
-        </div>
-
-        <h3 className="project-card-title font-display">
-          {project.title}
-        </h3>
-
-        <p className="project-card-desc">
-          {project.tagline}
-        </p>
-
-        <div className="project-card-tech font-mono">
-          {project.technologies.slice(0, 4).map((tech) => (
-            <span key={tech} className="tech-pill">
-              <Code size={12} /> {tech}
-            </span>
-          ))}
-        </div>
-
-        <Link to={`/work/${project.slug}`} className="project-card-btn" onClick={() => trackEvent('project_open', 'portfolio', project.slug)}>
-          View Project <ArrowRight size={16} />
-        </Link>
-      </div>
-
-      <div className="project-card-visual">
-        {visualContent}
-      </div>
-    </motion.article>
-  );
-};
+const filters = [
+  ['all', 'All Work'], ['enterprise', 'Enterprise'], ['mobile', 'Mobile'],
+  ['business-platforms', 'Web Platforms'], ['warehouse-sap', 'ERP & Operations'],
+  ['ecommerce', 'E-commerce'], ['healthcare', 'Healthcare'], ['company-websites', 'Websites'],
+] as const;
 
 export const WorkPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const projects = useMemo(() => activeFilter === 'all' ? PROJECTS : PROJECTS.filter(project => project.filterCategory === activeFilter), [activeFilter]);
+  const featured = projects[0];
+  const remaining = projects.slice(1);
 
-  // Map filters to internal categories for demo
-  const getMappedCategory = (filter: string) => {
-    if (filter === 'all') return 'all';
-    if (filter === 'web-apps') return 'business-platforms';
-    if (filter === 'data-bi') return 'warehouse-sap';
-    return filter;
-  };
+  return <main className="work-page" id="main-content">
+    <SEOHead title="Selected Work & Software Portfolio | Tekmora" description="Explore web, mobile, enterprise, healthcare, e-commerce, ERP, and operational software engineered by Tekmora." canonical="https://tekmorasolution.com/work" />
 
-  const visibleProjects = useMemo(() => {
-    const mapped = getMappedCategory(activeFilter);
-    if (mapped === 'all') return PROJECTS;
-    return PROJECTS.filter(project => project.filterCategory === mapped);
-  }, [activeFilter]);
+    <section className="wp-hero"><div className="wp-glow" /><div className="container wp-hero-grid"><div><p className="wp-kicker">Selected Work</p><h1>Real Products.<br /><span>Real Outcomes.</span></h1></div><div className="wp-hero-copy"><p>We design and engineer digital products that solve difficult operational problems—from customer-facing mobile apps to the systems running businesses behind the scenes.</p><a href="#project-gallery" className="wp-btn wp-btn-primary">Explore Our Work <ArrowRight size={15} /></a><div className="wp-proof"><span><strong>{PROJECTS.length}+</strong>Products delivered</span><span><strong>8+</strong>Industries served</span><span><strong>100%</strong>Client focused</span></div></div></div></section>
 
-  return (
-    <main className="work-page" id="main-content">
-      <SEOHead
-        title="Our Work & Portfolio | Tekmora"
-        description="Explore verified custom web applications, mobile tools, enterprise ERP systems, and warehouse automation workflows built by Tekmora."
-        canonical="https://tekmorasolution.com/work"
-      />
+    <section className="wp-gallery" id="project-gallery"><div className="container">
+      <div className="wp-gallery-head"><div><p className="wp-kicker">Project Library</p><h2>Built Across Products,<br />Platforms & Operations</h2></div><p>Filter the portfolio by product type or industry.</p></div>
+      <div className="wp-filter"><span><Filter size={13} /> Filter</span>{filters.map(([value, label]) => <button type="button" key={value} className={activeFilter === value ? 'active' : ''} onClick={() => setActiveFilter(value)}>{label}<small>{value === 'all' ? PROJECTS.length : PROJECTS.filter(p => p.filterCategory === value).length}</small></button>)}</div>
 
-      {/* Hero Section */}
-      <section className="work-page-hero">
-        <div className="container work-hero-grid">
-          <div className="work-hero-content">
-            <span className="hero-subtitle font-mono">OUR WORK</span>
-            <h1 className="work-page-title font-display">
-              Software that moves businesses <span className="text-orange">forward.</span>
-            </h1>
-            <p className="work-page-lead">
-              From enterprise platforms to mobile applications, we design and build reliable software solutions that solve real world problems.
-            </p>
-          </div>
+      <AnimatePresence mode="wait"><motion.div key={activeFilter} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: .25 }}>
+        {featured ? <Link className="wp-featured" to={`/work/${featured.slug}`} onClick={() => trackEvent('project_open', 'portfolio', featured.slug)}><div className="wp-featured-copy"><span>{featured.number} / Featured Project</span><h2>{featured.title}</h2><p>{featured.tagline}</p><div>{featured.technologies.slice(0, 5).map(tech => <small key={tech}>{tech}</small>)}</div><strong>View Case Study <ArrowRight size={14} /></strong></div><div className="wp-featured-image">{featured.imageUrl || featured.thumbnailUrl ? <img src={featured.imageUrl ?? featured.thumbnailUrl} alt={`${featured.title} project interface`} /> : <div>{featured.title}</div>}</div></Link> : <div className="wp-empty">No projects found in this category.</div>}
+        <div className="wp-grid">{remaining.map(project => <Link className="wp-card" to={`/work/${project.slug}`} key={project.id} onClick={() => trackEvent('project_open', 'portfolio', project.slug)}><div className="wp-card-image">{project.imageUrl || project.thumbnailUrl ? <img src={project.imageUrl ?? project.thumbnailUrl} alt={`${project.title} project interface`} loading="lazy" /> : <div>{project.title}</div>}<span>{project.year}</span></div><div className="wp-card-copy"><small>{project.category}</small><h3>{project.title}</h3><p>{project.tagline}</p><div>{project.technologies.slice(0, 3).map(tech => <span key={tech}>{tech}</span>)}</div><strong>View Project <ArrowRight size={13} /></strong></div></Link>)}</div>
+      </motion.div></AnimatePresence>
+    </div></section>
 
-          <div className="work-hero-stats">
-            <div className="hero-ideas-arrow">
-               <div className="ideas-text font-display">Ideas<br/>into Impact</div>
-               <svg viewBox="0 0 200 80" className="hero-arrow-svg">
-                  <path d="M20,60 Q80,10 180,30" stroke="var(--accent-orange)" fill="transparent" strokeWidth="3" strokeLinecap="round" />
-                  <polygon points="180,30 165,20 170,40" fill="var(--accent-orange)" />
-               </svg>
-            </div>
-            <div className="stat-list">
-              <div className="stat-item">
-                <div className="stat-icon"><Layout size={18} className="text-orange"/></div>
-                <div className="stat-data">
-                  <span className="stat-val font-display">15+</span>
-                  <span className="stat-label">Projects Delivered</span>
-                </div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-icon"><Globe size={18} className="text-orange"/></div>
-                <div className="stat-data">
-                  <span className="stat-val font-display">8+</span>
-                  <span className="stat-label">Industries Served</span>
-                </div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-icon"><ArrowUpRight size={18} className="text-orange"/></div>
-                <div className="stat-data">
-                  <span className="stat-val font-display">100%</span>
-                  <span className="stat-label">Client Focused</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Filters and Grid */}
-      <section className="work-gallery-section">
-        <div className="container">
-          <div className="filter-tabs-container">
-            {filterTabs.map(tab => {
-              const isSelected = activeFilter === tab.value;
-              return (
-                <button
-                  key={tab.value}
-                  className={`filter-tab-pill ${isSelected ? 'is-active' : ''}`}
-                  onClick={() => setActiveFilter(tab.value)}
-                  type="button"
-                  aria-pressed={isSelected}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="work-grid">
-            <AnimatePresence mode="popLayout">
-              {visibleProjects.map((project, idx) => {
-                // Full width for 1st and 4th items in "all" view, or if only 1 item
-                const isFullWidth = (activeFilter === 'all' && (idx === 0 || idx === 3)) || visibleProjects.length === 1;
-                return renderProjectCard(project, isFullWidth);
-              })}
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="work-cta-section">
-        <div className="container">
-          <div className="cta-box">
-            <span className="cta-subtitle font-mono">LET'S BUILD TOGETHER</span>
-            <h2 className="cta-title font-display">
-              Have a <span className="text-orange">system</span> in mind?
-            </h2>
-            <p className="cta-desc">
-              Let's discuss your idea and turn it into a reliable, scalable solution.
-            </p>
-            <div className="cta-actions">
-              <MagneticButton strength={0.25}>
-                <Link to="/contact" className="btn btn-primary">
-                  Start a Project <ArrowRight size={16} />
-                </Link>
-              </MagneticButton>
-              <MagneticButton strength={0.15}>
-                <Link to="/contact" className="btn btn-outline-light">
-                  Get in Touch
-                </Link>
-              </MagneticButton>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+    <section className="wp-results"><div className="container"><div><p className="wp-kicker">The Standard</p><h2>More Than a<br /><span>Good-Looking Product.</span></h2></div><div className="wp-results-list">{['Built around real user workflows', 'Engineered for reliability and scale', 'Clear ownership and maintainable code', 'Measured against business outcomes'].map(item => <p key={item}><i><Check /></i>{item}</p>)}</div></div></section>
+  </main>;
 };

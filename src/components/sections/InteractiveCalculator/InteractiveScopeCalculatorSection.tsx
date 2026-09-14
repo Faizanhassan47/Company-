@@ -8,8 +8,8 @@ import './InteractiveScopeCalculatorSection.css';
 // Base pricing config (extremely low / startup pricing as requested)
 const PRICING = {
   platforms: {
-    web: { min: 150, max: 250, weeks: 2 },
-    mobile: { min: 200, max: 350, weeks: 3 },
+    web: { min: 250, max: 400, weeks: 2 },
+    mobile: { min: 300, max: 650, weeks: 3 },
     erp: { min: 300, max: 500, weeks: 4 },
     sap: { min: 400, max: 600, weeks: 4 },
     wp: { min: 100, max: 200, weeks: 1 }

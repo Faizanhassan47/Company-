@@ -1,228 +1,39 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownRight, ArrowUpRight, Code2, Copy, Check, Database, Server } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrambleText } from '../../ui/ScrambleText';
-import { TrustMarquee } from '../../ui/TrustMarquee';
-import { MagneticButton } from '../../ui/MagneticButton';
-import { staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from '../../../utils/animations';
 import './HeroSection.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const TECHNICAL_CONTRACTS: Record<string, string> = {
-  warehouse: `// Warehouse Inventory & Dispatch Contract
-export interface WarehouseTransaction {
-  id: string;
-  stationId: 'DOCK-04' | 'PACK-02' | 'STORAGE-A';
-  operatorId: string;
-  grnNumber: string;
-  items: Array<{
-    sku: string;
-    barcode: string;
-    scannedQuantity: number;
-    targetBin: string;
-    verifiedAt: string;
-  }>;
-  syncState: 'LOCAL_SQLITE_COMMITTED' | 'SAP_B1_SYNCED';
-  checksum: string;
-}`,
-  sapSync: `// SAP Business One Service Layer Safe Handshake
-export async function syncGRNToSAP(tx: WarehouseTransaction): Promise<SyncResult> {
-  const session = await sapClient.getAuthenticatedSession();
-  const payload = {
-    DocType: 'dDocument_Items',
-    CardCode: tx.supplierCode,
-    DocDate: new Date().toISOString(),
-    DocumentLines: tx.items.map(item => ({
-      ItemCode: item.sku,
-      Quantity: item.scannedQuantity,
-      WarehouseCode: tx.targetWarehouse
-    }))
-  };
-
-  return await sapClient.post('/PurchaseDeliveryNotes', payload, {
-    headers: { 'X-Idempotency-Key': tx.checksum }
-  });
-}`,
-  fieldMobile: `// Offline-First Mobile Local Queue Schema
-export const MobileSyncQueueSchema = {
-  name: 'sync_queue',
-  primaryKey: 'id',
-  properties: {
-    id: 'string',
-    endpoint: 'string',
-    payload: 'string', // Encrypted JSON
-    retryCount: { type: 'int', default: 0 },
-    createdAt: 'date',
-    status: 'string' // 'PENDING' | 'IN_FLIGHT' | 'COMMITTED'
-  }
-};`
-};
-
-export const HeroSection: React.FC = () => {
-  const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<'warehouse' | 'sapSync' | 'fieldMobile'>('warehouse');
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(TECHNICAL_CONTRACTS[activeTab]);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  useGSAP(() => {
-    // Parallax the technical blueprint box so it moves up slightly faster
-    gsap.to('.technical-blueprint-box', {
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.2,
-      },
-      y: -100,
-      ease: 'none',
-    });
-  }, []);
-
-  return (
-    <section className="hero-section" id="hero" style={{ position: 'relative' }}>
-      <motion.div 
-        className="container hero-container"
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Top Status Bar */}
-        <motion.div className="hero-status-row font-mono" variants={fadeInUp}>
-          <div className="hero-status-tag">
-            <span className="status-indicator-dot" />
-            <span>{t('hero.status')}</span>
-          </div>
-          <div className="hero-status-reach">{t('hero.reach')}</div>
-        </motion.div>
-
-        {/* Main 2-Column Grid */}
-        <div className="hero-grid">
-          {/* Left: Editorial Positioning */}
-          <motion.div className="hero-editorial-col" variants={fadeInLeft}>
-            <h1 className="hero-main-title font-display">
-              <ScrambleText text={t('hero.title_1') || ''} delay={0.2} /><br />
-              <ScrambleText text={t('hero.title_2') || ''} delay={0.4} /><br />
-              <span className="hero-title-italic italic-accent">
-                <ScrambleText text={t('hero.title_3') || ''} delay={0.6} />
-              </span>
-            </h1>
-
-            <p className="hero-lead-text">
-              {t('hero.lead')}
-            </p>
-
-            {/* Core Tenets Bullets */}
-            <div className="hero-tenets-list font-mono">
-              <div className="hero-tenet-item">
-                <span className="tenet-num">01</span>
-                <span>{t('hero.tenet_1')}</span>
-              </div>
-              <div className="hero-tenet-item">
-                <span className="tenet-num">02</span>
-                <span>{t('hero.tenet_2')}</span>
-              </div>
-              <div className="hero-tenet-item">
-                <span className="tenet-num">03</span>
-                <span>{t('hero.tenet_3')}</span>
-              </div>
-            </div>
-
-            {/* Action Row */}
-            <div className="hero-cta-row font-mono">
-              <MagneticButton strength={0.25}>
-                <Link to="/contact" className="btn btn-primary hero-action-btn">
-                  <span>{t('hero.cta_primary')}</span>
-                  <ArrowUpRight size={16} />
-                </Link>
-              </MagneticButton>
-              <MagneticButton strength={0.15}>
-                <a href="#services" className="hero-link-secondary">
-                  <span>{t('hero.cta_secondary')}</span>
-                  <ArrowDownRight size={15} />
-                </a>
-              </MagneticButton>
-            </div>
-          </motion.div>
-
-          {/* Right: Technical Blueprint & Contract Inspector */}
-          <motion.div className="hero-code-col" variants={fadeInRight}>
-            <div className="technical-blueprint-box">
-              <div className="blueprint-titlebar font-mono">
-                <div className="blueprint-tabs">
-                  <button
-                    type="button"
-                    className={`blueprint-tab ${activeTab === 'warehouse' ? 'is-active' : ''}`}
-                    onClick={() => setActiveTab('warehouse')}
-                  >
-                    <Database size={12} />
-                    <span>WarehouseContract.ts</span>
-                  </button>
-                  <button
-                    type="button"
-                    className={`blueprint-tab ${activeTab === 'sapSync' ? 'is-active' : ''}`}
-                    onClick={() => setActiveTab('sapSync')}
-                  >
-                    <Server size={12} />
-                    <span>SAPServiceLayer.ts</span>
-                  </button>
-                  <button
-                    type="button"
-                    className={`blueprint-tab ${activeTab === 'fieldMobile' ? 'is-active' : ''}`}
-                    onClick={() => setActiveTab('fieldMobile')}
-                  >
-                    <Code2 size={12} />
-                    <span>OfflineQueue.ts</span>
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  className="blueprint-copy-btn font-mono"
-                  onClick={handleCopy}
-                  title={t('hero.copy')}
-                  aria-label={t('hero.copy')}
-                >
-                  {copied ? <Check size={12} className="text-green" /> : <Copy size={12} />}
-                  <span>{copied ? t('hero.copied') : t('hero.copy')}</span>
-                </button>
-              </div>
-
-              <div className="blueprint-content font-mono">
-                <pre>
-                  <code>{TECHNICAL_CONTRACTS[activeTab]}</code>
-                </pre>
-              </div>
-
-              <div className="blueprint-footer font-mono">
-                <div className="footer-spec-item">
-                  <span className="footer-spec-label">CONTRACT:</span>
-                  <span className="text-primary">STRICT TYPESCRIPT 5.x</span>
-                </div>
-                <div className="footer-spec-item">
-                  <span className="footer-spec-label">VALIDATION:</span>
-                  <span className="text-green">● TYPE CHECKED</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+export const HeroSection: React.FC = () => (
+  <section className="hero-section" id="hero">
+    <div className="hero-atmosphere" aria-hidden="true" />
+    <div className="container hero-container">
+      <motion.div className="hero-copy" initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65 }}>
+        <p className="hero-kicker">Ideas • Products • Real Impact.</p>
+        <h1>We Build<br />Digital Products<br />That <span>Move<br />Business.</span></h1>
+        <p className="hero-lead">From MVPs to enterprise systems, we design and develop web and mobile solutions that help startups and businesses launch faster, operate smarter, and scale confidently.</p>
+        <div className="hero-actions">
+          <Link to="/contact" className="hero-primary">Start a Project <ArrowRight size={16} /></Link>
+          <Link to="/work" className="hero-secondary">See Our Work</Link>
+        </div>
+        <div className="hero-stats">
+          <div><strong>50+</strong><small>Projects Delivered</small></div>
+          <div><strong>30+</strong><small>Happy Clients</small></div>
+          <div><strong>98%</strong><small>Client Satisfaction</small></div>
         </div>
       </motion.div>
 
-      {/* Enterprise Trust Marquee at the bottom of the hero */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 10 }}>
-        <TrustMarquee />
-      </div>
-    </section>
-  );
-};
+      <motion.div className="hero-devices" initial={{ opacity: 0, x: 35 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .8, delay: .15 }} aria-label="Tekmora product dashboard preview">
+        <div className="hero-laptop">
+          <div className="hero-screen">
+            <header><b>✦ tekmora.</b><span>•••</span></header>
+            <div className="hero-dashboard"><aside><i /><i /><i /><i /></aside><div className="hero-dashboard-main"><p>Good morning 👋</p><small>Product Overview</small><div className="hero-dashboard-stats"><span><b>12,480</b><small>Total Users</small></span><span><b>$24.8K</b><small>Revenue</small></span><span><b>4.6%</b><small>Conversion</small></span></div><div className="hero-chart"><svg viewBox="0 0 420 110"><polyline points="0,92 55,76 105,84 155,57 205,69 255,43 305,51 350,24 390,32 420,10" /></svg></div></div></div>
+          </div>
+          <div className="hero-laptop-base" />
+        </div>
+        <div className="hero-phone"><div className="hero-notch" /><b>✦ tekmora.</b><h3>Ideas<br />Into<br /><span>Impact.</span></h3><i>→</i></div>
+        <div className="hero-note">Build<br />Scale<br />Grow ↗</div>
+      </motion.div>
+    </div>
+  </section>
+);

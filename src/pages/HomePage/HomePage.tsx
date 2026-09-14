@@ -1,7 +1,5 @@
 import React, { lazy, Suspense } from 'react';
 import { HeroSection } from '../../components/sections/Hero/HeroSection';
-import { LogoCloudSection } from '../../components/sections/LogoCloud/LogoCloudSection';
-import { MetricsSection } from '../../components/sections/Metrics/MetricsSection';
 import { SEOHead } from '../../components/seo/SEOHead';
 
 const BusinessProblemsSection = lazy(() => import('../../components/sections/BusinessProblems/BusinessProblemsSection').then(m => ({ default: m.BusinessProblemsSection })));
@@ -29,20 +27,12 @@ export const HomePage: React.FC = () => {
       {/* 01: Hero */}
       <HeroSection />
 
-      {/* 02: Credibility / Trust */}
-      <LogoCloudSection />
-
-      {/* 03: Results / Numbers */}
-      <MetricsSection />
-
-      {/* 03.5: Process / Approach (Moved to 09) */}
-
       <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading...</div>}>
+      {/* 02: Services */}
+      <ServiceMatrixSection />
+
         {/* 04: Problems We Solve (Problem -> Solution) */}
         <BusinessProblemsSection />
-
-      {/* 05: Services (Matrix) */}
-      <ServiceMatrixSection />
 
       {/* 05.5: Operational Assurance */}
       <OperationalAssuranceSection />

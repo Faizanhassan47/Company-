@@ -1,12 +1,11 @@
-import React, { useRef, useState } from 'react';
-import { 
+import React, { useRef } from 'react';
+import {
   Globe, Monitor,
   ShieldCheck, Lock, ShieldAlert,
   Box, Server, Activity, Settings, Zap,
   CreditCard, Link as LinkIcon, Mail, Cloud,
   Database, Layers,
-  Cloudy, Package, RefreshCw,
-  Terminal, Copy, Check, Code2
+  Cloudy, Package, RefreshCw
 } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -127,22 +126,21 @@ COMMIT; -- Atomicity guaranteed across multi-tenant clusters`
   }
 };
 
-type SnippetTab = keyof typeof SNIPPETS;
+// Retained as the source for the upcoming interactive code-preview treatment.
+void SNIPPETS;
 
 export const ArchitectureFlowchartSection: React.FC = () => {
   const container = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState<SnippetTab>('sap');
-  const [copied, setCopied] = useState(false);
 
   useGSAP(() => {
     if (!container.current) return;
-    
-    gsap.fromTo('.arch-node', 
+
+    gsap.fromTo('.arch-node',
       { opacity: 0, y: 20 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.6, 
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
         stagger: 0.05,
         ease: "power2.out",
         scrollTrigger: {
@@ -152,12 +150,6 @@ export const ArchitectureFlowchartSection: React.FC = () => {
       }
     );
   }, { scope: container });
-
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(SNIPPETS[activeTab].code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <section className="architecture-section" ref={container}>
@@ -169,7 +161,7 @@ export const ArchitectureFlowchartSection: React.FC = () => {
               <span className="arch-tier-separator">//</span>
               <span className="arch-tier-title">{tier.title}</span>
             </div>
-            
+
             <div className="arch-nodes-container">
               {tier.nodes.map((node, nodeIndex) => (
                 <div key={nodeIndex} className="arch-node spotlight-card">
@@ -189,71 +181,6 @@ export const ArchitectureFlowchartSection: React.FC = () => {
           </div>
         ))}
 
-        {/* Live 2D Enterprise API & Telemetry Playground */}
-        <div className="arch-terminal-wrapper spotlight-card">
-          <div className="arch-terminal-header font-mono">
-            <div className="terminal-dots">
-              <span className="dot dot-red" />
-              <span className="dot dot-yellow" />
-              <span className="dot dot-green" />
-              <span className="terminal-title">LIVE ARCHITECTURAL CONTRACT TELEMETRY</span>
-            </div>
-            <div className="terminal-live-pill">
-              <span className="telemetry-live-dot" />
-              <span>LIVE EDGE ENVIRONMENT</span>
-            </div>
-          </div>
-
-          <div className="arch-terminal-tabs font-mono">
-            <button
-              type="button"
-              className={`terminal-tab-btn ${activeTab === 'sap' ? 'active' : ''}`}
-              onClick={() => setActiveTab('sap')}
-            >
-              <Terminal size={12} className="text-orange" />
-              <span>01 // SAP SERVICE LAYER</span>
-            </button>
-            <button
-              type="button"
-              className={`terminal-tab-btn ${activeTab === 'ws' ? 'active' : ''}`}
-              onClick={() => setActiveTab('ws')}
-            >
-              <Zap size={12} className="text-orange" />
-              <span>02 // WEBSOCKET STREAM</span>
-            </button>
-            <button
-              type="button"
-              className={`terminal-tab-btn ${activeTab === 'sql' ? 'active' : ''}`}
-              onClick={() => setActiveTab('sql')}
-            >
-              <Code2 size={12} className="text-orange" />
-              <span>03 // ACID SQL TRANSACTION</span>
-            </button>
-          </div>
-
-          <div className="arch-terminal-subbar font-mono">
-            <div className="endpoint-info">
-              <span className={`method-badge method-${activeTab}`}>{SNIPPETS[activeTab].method}</span>
-              <span className="endpoint-url">{SNIPPETS[activeTab].endpoint}</span>
-            </div>
-            <div className="endpoint-actions">
-              <span className="status-badge text-green">{SNIPPETS[activeTab].status}</span>
-              <button
-                type="button"
-                className="copy-snippet-btn font-mono"
-                onClick={handleCopyCode}
-                title="Copy code to clipboard"
-              >
-                {copied ? <Check size={12} className="text-green" /> : <Copy size={12} />}
-                <span>{copied ? 'COPIED' : 'COPY'}</span>
-              </button>
-            </div>
-          </div>
-
-          <pre className="arch-terminal-code font-mono">
-            <code>{SNIPPETS[activeTab].code}</code>
-          </pre>
-        </div>
       </div>
     </section>
   );

@@ -1,201 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Globe, ShieldCheck, Code2 } from 'lucide-react';
+import { ArrowRight, Check, Code2, Eye, Handshake, ShieldCheck, Target, Users } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
-import { TrustEcosystemSection } from '../../components/sections/TrustEcosystem/TrustEcosystemSection';
-import { TestimonialsSection } from '../../components/sections/Testimonials/TestimonialsSection';
 import './AboutPage.css';
 
-export const AboutPage: React.FC = () => {
-  return (
-    <main className="about-page" id="main-content">
-      <SEOHead
-        title="About Tekmora | Custom Software Engineering Company"
-        description="Tekmora is a focused custom software engineering company operating globally and working worldwide, building web, mobile and enterprise systems around real operational workflows."
-        canonical="https://tekmorasolution.com/about"
-      />
+const values = [
+  { icon: Target, title: 'Purpose Over Features', text: 'Every technical decision starts with the operational outcome it needs to create.' },
+  { icon: ShieldCheck, title: 'Own the Quality', text: 'We take responsibility for the details—from data integrity to the final user experience.' },
+  { icon: Handshake, title: 'Work in the Open', text: 'Clear communication, visible progress, and honest technical guidance throughout delivery.' },
+  { icon: Users, title: 'Build for People', text: 'Software succeeds when it genuinely makes everyday work clearer and easier.' },
+];
 
-      {/* Hero */}
-      <section className="about-hero section">
-        <div className="container">
-          <div className="section-meta">
-            <span className="section-number">01</span>
-            <span>// COMPANY IDENTITY</span>
-            <span className="meta-sep font-mono">POSITIONING & PHILOSOPHY</span>
-          </div>
+export const AboutPage: React.FC = () => <main className="about-page" id="main-content">
+  <SEOHead title="About Tekmora | People Who Build What's Next" description="Tekmora is a software engineering team building dependable web, mobile, AI, and enterprise products around real operations." canonical="https://tekmorasolution.com/about" />
 
-          <div className="about-hero-grid">
-            <div className="about-hero-text">
-              <h1 className="about-title font-display">
-                BUILT AROUND<br />
-                <span className="italic-accent">THE WORK.</span>
-              </h1>
+  <section className="ap-hero"><div className="ap-glow" /><div className="container ap-hero-grid">
+    <div className="ap-hero-copy"><p className="ap-kicker">About Tekmora</p><h1>People Who Build<br /><span>What's Next.</span></h1><p>We're a focused team of developers, designers, and problem solvers turning ambitious ideas into reliable digital products. We combine deep engineering with a product mindset to help businesses move faster and grow with confidence.</p><div className="ap-actions"><Link className="ap-btn ap-btn-primary" to="/contact">Work With Us <ArrowRight size={15} /></Link><Link className="ap-btn ap-btn-ghost" to="/work">See Our Work</Link></div></div>
+    <div className="ap-hero-image"><img src="/images/enterprise-office.jpg" alt="Tekmora team collaborating" /><div className="ap-image-copy">Build<br />Innovate<br />Scale<br /><span>Together.</span></div><i>✦</i></div>
+  </div></section>
 
-              <div className="about-lead-block">
-                <p className="lead-highlight">
-                  Tekmora is a focused software development company building web, mobile and enterprise products for real operational environments.
-                </p>
-                <p>
-                  We begin by understanding how the business works, where existing processes fail and what users need to complete their work reliably.
-                </p>
-                <p>
-                  Our goal is not to add technology where it is unnecessary. It is to create a clear, maintainable system that solves the right problem.
-                </p>
-              </div>
-            </div>
+  <section className="ap-proof"><div className="container ap-proof-grid">{[['50+','Projects Delivered'],['30+','Happy Clients'],['5+','Industries Served'],['98%','Client Satisfaction']].map(([value,label]) => <div key={label}><strong>{value}</strong><small>{label}</small></div>)}<p>From ambitious startups to established operations, we help teams turn difficult problems into products that make an impact.</p></div></section>
 
-            <div className="about-hero-photo-card spotlight-card">
-              <img
-                src="/images/code-screen.jpg"
-                alt="Tekmora Modern Code Editor & Architecture"
-                className="about-code-img"
-              />
-              <div className="about-photo-glass font-mono">
-                <div className="about-glass-tag">
-                  <Code2 size={12} className="text-orange" />
-                  <span>DETERMINISTIC CODEBASE</span>
-                </div>
-                <div className="about-glass-sub">TypeScript • React • Node.js • Express • SAP B1</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <section className="ap-story"><div className="container">
+    <div className="ap-section-head"><div><p className="ap-kicker">Why We Exist</p><h2>Driven by Impact.<br /><span>Guided by Purpose.</span></h2></div><p>Technology should create real opportunities, reduce friction, and give people better ways to work. That belief shapes how we plan, build, and support every product.</p></div>
+    <div className="ap-purpose-grid"><article><Target /><small>Our Mission</small><h3>Turn complex operations into clear digital systems.</h3><p>We build dependable products that solve meaningful problems and create room for businesses to grow.</p></article><article><Eye /><small>Our Vision</small><h3>Become the trusted engineering partner behind ambitious products.</h3><p>Long-term relationships, honest technical direction, and software designed to keep delivering value.</p></article><div className="ap-purpose-image"><img src="/images/code-screen.jpg" alt="Software engineering in progress" /><span><Code2 />Product thinking.<br />Engineering discipline.</span></div></div>
+  </div></section>
 
-      {/* Trust & Certified Telemetry Ecosystem Strip */}
-      <TrustEcosystemSection />
+  <section className="ap-values"><div className="container"><div className="ap-section-head"><div><p className="ap-kicker">How We Work</p><h2>Values That Show Up<br />in the <span>Work.</span></h2></div><p>Not a poster on the wall—these are the standards we use to make decisions and work with clients.</p></div><div className="ap-values-grid">{values.map(({icon:Icon,title,text},index) => <article key={title}><div><Icon /><span>0{index+1}</span></div><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-      {/* Location & Operating Standard */}
-      <section className="about-location-strip section section-border-top section-border-bottom">
-        <div className="container">
-          <div className="location-split-grid font-mono">
-            <div className="loc-box spotlight-card">
-              <div className="loc-head">
-                <Globe size={16} className="text-orange" />
-                <span>GLOBAL REACH</span>
-              </div>
-              <div className="loc-main font-display">WORLDWIDE</div>
-              <div className="loc-sub">Deep full-stack engineering, system integration, and mobile architecture.</div>
-            </div>
+  <section className="ap-team"><div className="container ap-team-grid"><div className="ap-team-image"><img src="/images/coding-workspace.jpg" alt="Tekmora engineering workspace" /><span>✦ <b>tekmora.</b></span></div><div className="ap-team-copy"><p className="ap-kicker">The Team</p><h2>Small Team.<br /><span>Serious Capability.</span></h2><p>We keep the team close to the work. Clients collaborate directly with the people designing and building their product—without layers of account management or lost context.</p><div className="ap-checks">{['Senior engineering involvement','Cross-functional product thinking','Direct, practical communication','Long-term technical ownership'].map(item => <span key={item}><i><Check /></i>{item}</span>)}</div><Link to="/contact">Meet Your Product Team <ArrowRight size={14} /></Link></div></div></section>
 
-            <div className="loc-box spotlight-card">
-              <div className="loc-head">
-                <MapPin size={16} className="text-orange" />
-                <span>DISTRIBUTED ENGINEERING</span>
-              </div>
-              <div className="loc-main font-display">TIMEZONE ALIGNED</div>
-              <div className="loc-sub">Serving international commercial, manufacturing, logistics, and digital enterprises.</div>
-            </div>
-
-            <div className="loc-box spotlight-card">
-              <div className="loc-head">
-                <ShieldCheck size={16} className="text-green" />
-                <span>OPERATING STANDARD</span>
-              </div>
-              <div className="loc-main font-display">ZERO JARGON</div>
-              <div className="loc-sub">Clear technical decisions, direct communication, and documented architectures.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Company Philosophy & Core Tenets */}
-      <section className="section about-tenets-section section-border-bottom">
-        <div className="container">
-          <div className="section-meta">
-            <span className="section-number">02</span>
-            <span>// BRAND PHILOSOPHY</span>
-          </div>
-
-          <h2 className="about-subhead font-display">COMPLEX BEHIND THE SCENES. SIMPLE WHERE IT MATTERS.</h2>
-
-          <div className="tenets-grid">
-            <div className="tenet-card">
-              <span className="tenet-num font-mono text-orange">01</span>
-              <h3 className="tenet-title font-display">We like solving the difficult parts.</h3>
-              <p className="tenet-desc">
-                When spreadsheets become unmanageable, when warehouse docks bottleneck, or when field technicians need reliable tools in basements with zero cellular reception—that is where we do our best work.
-              </p>
-            </div>
-
-            <div className="tenet-card">
-              <span className="tenet-num font-mono text-orange">02</span>
-              <h3 className="tenet-title font-display">Every project begins with understanding.</h3>
-              <p className="tenet-desc">
-                We never start by pushing a predetermined technology stack. We study user habits, edge-case exceptions, and system handoffs first. Software must fit the business, not vice-versa.
-              </p>
-            </div>
-
-            <div className="tenet-card">
-              <span className="tenet-num font-mono text-orange">03</span>
-              <h3 className="tenet-title font-display">Built for real workflows and real users.</h3>
-              <p className="tenet-desc">
-                Real software is used by busy operators, warehouse clerks in gloves, and mobile teams under time pressure. Ergonomic touch targets, fast keyboard shortcuts, and instant feedback are foundational.
-              </p>
-            </div>
-
-            <div className="tenet-card">
-              <span className="tenet-num font-mono text-orange">04</span>
-              <h3 className="tenet-title font-display">Small by design. Serious about the work.</h3>
-              <p className="tenet-desc">
-                We maintain an agile, focused structure without middle-management bloat. When you work with Tekmora, you communicate directly with the engineers building your platform.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Engineering Capabilities & Stack Overview */}
-      <section className="section about-stack-section section-border-bottom">
-        <div className="container">
-          <div className="section-meta">
-            <span className="section-number">03</span>
-            <span>// TECHNICAL FOUNDATIONS</span>
-          </div>
-
-          <h2 className="about-subhead font-display">THE TEKMORA TECHNOLOGY OVERVIEW</h2>
-
-          <div className="about-stack-table-card font-mono">
-            <div className="stack-table-row">
-              <span className="st-layer">CLIENT & INTERFACE</span>
-              <span className="st-tools">React, Next.js (SSR / SSG), React Native, Expo, Tailwind CSS, TypeScript</span>
-            </div>
-            <div className="stack-table-row">
-              <span className="st-layer">APIS & BACKEND</span>
-              <span className="st-tools">Node.js, Express, REST APIs, WebSockets, PHP 8.x, JWT Authentication</span>
-            </div>
-            <div className="stack-table-row">
-              <span className="st-layer">DATABASE & PERSISTENCE</span>
-              <span className="st-tools">Microsoft SQL Server, PostgreSQL, MongoDB, SQLite (Mobile Offline), Redis</span>
-            </div>
-            <div className="stack-table-row">
-              <span className="st-layer">ERP & INTEGRATIONS</span>
-              <span className="st-tools">SAP Business One Service Layer, DI API, OCR Document Ingestion, Thermal Print Protocols</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Executive Outcomes & Testimonials */}
-      <TestimonialsSection />
-
-      {/* Contact CTA */}
-      <section className="section about-cta-section">
-        <div className="container">
-          <div className="about-cta-card">
-            <h2 className="about-cta-title font-display">
-              HAVE AN OPERATIONAL SYSTEM<br />
-              <span className="italic-accent">TO DESIGN OR BUILD?</span>
-            </h2>
-            <p className="about-cta-lead">
-              No sales script—tell us what you are trying to build and what problems need solving.
-            </p>
-            <Link to="/contact" className="btn btn-orange btn-lg font-mono">
-              <span>START A PROJECT INQUIRY ↗</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-};
+  <section className="ap-cta"><div className="container"><div><p className="ap-kicker">Let's Build Together</p><h2>Have a Project in Mind?</h2><p>Tell us what you're working on. We'll help you find the clearest path forward.</p></div><Link className="ap-btn ap-btn-primary" to="/contact">Start a Project <ArrowRight size={15} /></Link></div></section>
+</main>;
