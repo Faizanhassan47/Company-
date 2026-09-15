@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Calculator, Check, AlertCircle, Share2, ArrowRight, GitMerge, FileCode2, LayoutGrid, Download, CheckCheck, Sparkles
@@ -96,7 +96,10 @@ const PRESETS = [
 ];
 
 export const InteractiveScopeCalculatorSection: React.FC = () => {
-  const [currency, setCurrency] = useState<Currency>('USD');
+  const [currency, setCurrency] = useState<Currency>(() => {
+    const saved = window.localStorage.getItem('tekmora-currency');
+    return Object.hasOwn(CURRENCY_RATES, saved || '') ? saved as Currency : 'USD';
+  });
   const [activePreset, setActivePreset] = useState<string | null>('mvp');
   
   // State for selections
@@ -113,6 +116,12 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
   const [cadence, setCadence] = useState<'standard' | 'expedited'>('expedited');
   const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleCurrencyChange = (event: Event) => setCurrency((event as CustomEvent<Currency>).detail);
+    window.addEventListener('tekmora-currency-change', handleCurrencyChange);
+    return () => window.removeEventListener('tekmora-currency-change', handleCurrencyChange);
+  }, []);
 
   const applyPreset = (preset: typeof PRESETS[number]) => {
     setActivePreset(preset.id);
@@ -338,7 +347,10 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
                 <button 
                   key={c} 
                   className={currency === c ? 'active' : ''}
-                  onClick={() => setCurrency(c)}
+                  onClick={() => {
+                    window.localStorage.setItem('tekmora-currency', c);
+                    window.dispatchEvent(new CustomEvent('tekmora-currency-change', { detail: c }));
+                  }}
                 >
                   {c}
                 </button>

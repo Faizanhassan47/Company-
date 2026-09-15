@@ -1,3 +1,7 @@
+.home-page {
+    position: relative;
+}
+
 .site-wrapper:has(.tm-home) {
     --bg-main: #090a0a;
     --bg-card: #111212;

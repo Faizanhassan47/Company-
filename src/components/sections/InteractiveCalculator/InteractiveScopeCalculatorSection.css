@@ -5,7 +5,7 @@
   font-family: var(--font-body, sans-serif);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .interactive-calc-section {
     background-color: var(--bg-main, #090909);
     color: var(--text-primary, #F8FAFC);
@@ -68,7 +68,7 @@
   color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cc-buttons button { border-color: rgba(255,255,255,0.1); color: #cbd5e1; }
 }
 
@@ -191,7 +191,7 @@
   padding-top: 3rem;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .calc-main-split { border-color: rgba(255,255,255,0.1); }
 }
 
@@ -236,7 +236,7 @@
   letter-spacing: 0.1em;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cog-title { color: #cbd5e1; }
 }
 
@@ -266,7 +266,7 @@
   background: var(--accent-orange-dim, rgba(255,77,28,0.05));
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .calc-checkbox, .calc-radio { border-color: rgba(255,255,255,0.1); background: #111; }
   .calc-checkbox:hover, .calc-radio:hover { background: #1a1a1a; }
   .calc-checkbox.active, .calc-radio.active { border-color: var(--accent-orange, #FF4D1C); background: rgba(255,77,28,0.1); }
@@ -308,7 +308,7 @@
   border-radius: 50%;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cc-box, .cr-circle { border-color: rgba(255,255,255,0.2); }
 }
 
@@ -323,7 +323,7 @@
   padding-top: 2rem;
   border-top: 1px solid var(--border-subtle, rgba(0,0,0,0.1));
 }
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .calc-blueprint { border-color: rgba(255,255,255,0.1); }
 }
 
@@ -381,7 +381,7 @@
   background: var(--border-subtle, rgba(0,0,0,0.1));
   margin: 16px 10px 0;
 }
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cb-line { background: rgba(255,255,255,0.1); }
 }
 
@@ -396,7 +396,7 @@
   gap: 2rem;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .calc-estimate-card { 
     background: var(--bg-elevated, #111); 
     border-color: rgba(255,255,255,0.1);
@@ -410,7 +410,7 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-subtle, rgba(0,0,0,0.1));
 }
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cec-header { border-color: rgba(255,255,255,0.1); }
 }
 
@@ -465,7 +465,7 @@
   font-weight: 500;
   width: fit-content;
 }
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cec-complexity-pill { border-color: rgba(255,255,255,0.2); }
 }
 .cec-complexity-pill .dot {
@@ -488,7 +488,7 @@
   border-radius: 4px;
   color: var(--text-secondary, #475569);
 }
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cec-tag { border-color: rgba(255,255,255,0.2); color: #cbd5e1; }
 }
 
@@ -543,13 +543,13 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cec-btn-secondary { border-color: rgba(255,255,255,0.2); color: #94A3B8; }
 }
 .cec-btn-secondary:hover {
   background: var(--bg-hover, rgba(0,0,0,0.05));
 }
-@media (prefers-color-scheme: dark) {
+@media (min-width: 0) {
   .cec-btn-secondary:hover { background: rgba(255,255,255,0.05); }
 }
 

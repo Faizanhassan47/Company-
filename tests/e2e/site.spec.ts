@@ -20,15 +20,10 @@ test('unknown routes render the recovery page', async ({ page }) => {
   await expect(page.getByText(/not found|404/i).first()).toBeVisible();
 });
 
-test('theme preference persists after reload', async ({ page }) => {
+test('site uses the permanent black theme', async ({ page }) => {
   await page.goto('/');
-  const initialTheme = await page.locator('html').getAttribute('data-theme');
-  await page.getByRole('button', { name: /search systems/i }).click();
-  await page.getByRole('button', { name: /toggle theme/i }).click();
-  const nextTheme = initialTheme === 'dark' ? 'light' : 'dark';
-  await expect(page.locator('html')).toHaveAttribute('data-theme', nextTheme);
-  await page.reload();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', nextTheme);
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme', /./);
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(9, 9, 9)');
 });
 
 test('page scroll progress exposes an accessible name', async ({ page }) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Layers, Cpu, Globe, BookOpen, ArrowRight, CornerDownLeft, Sun, Mail, Calculator, Check } from 'lucide-react';
+import { Search, X, Layers, Cpu, Globe, BookOpen, ArrowRight, CornerDownLeft, Mail, Calculator, Check } from 'lucide-react';
 import { PROJECTS } from '../../data/projects';
 import { SERVICES_DATA } from '../../data/services';
 import { INDUSTRIES_DATA } from '../../data/industries';
@@ -50,19 +50,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       document.body.style.overflow = '';
     }
   }, [isOpen]);
-
-  const handleToggleTheme = () => {
-    const currentTheme = document.documentElement.dataset.theme || 'light';
-    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem('tekmora-theme', nextTheme);
-    window.dispatchEvent(new CustomEvent('theme-change', { detail: nextTheme }));
-    document.querySelector('meta[name="theme-color"]')?.setAttribute(
-      'content',
-      nextTheme === 'dark' ? '#090909' : '#FFFFFF'
-    );
-    showToast(`Switched to ${nextTheme.toUpperCase()} theme`);
-  };
 
   const handleCopyEmail = async () => {
     try {
@@ -161,10 +148,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
             {/* Quick Action Command Chips (When no query or for instant triggers) */}
             <div className="cmd-quick-actions font-mono">
-              <button type="button" className="quick-action-chip" onClick={handleToggleTheme}>
-                <Sun size={12} className="text-orange" />
-                <span>TOGGLE THEME</span>
-              </button>
               <button type="button" className="quick-action-chip" onClick={() => handleSelect('/contact')}>
                 <Calculator size={12} className="text-orange" />
                 <span>ESTIMATE SCOPE</span>

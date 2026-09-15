@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Calculator, Clock, Check, Sparkles, Zap, Cpu, Layers, ArrowRight, DollarSign, Share2, GitBranch } from 'lucide-react';
 import { fadeInUp } from '../../utils/animations';
@@ -59,9 +59,18 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>(['web']);
   const [selectedModules, setSelectedModules] = useState<string[]>(['rbac']);
   const [speed, setSpeed] = useState<'standard' | 'expedited' | 'blitz'>('standard');
-  const [currency, setCurrency] = useState<CurrencyType>('USD');
+  const [currency, setCurrency] = useState<CurrencyType>(() => {
+    const saved = window.localStorage.getItem('tekmora-currency');
+    return ['USD', 'EUR', 'GBP', 'PKR'].includes(saved || '') ? saved as CurrencyType : 'USD';
+  });
   const [applied, setApplied] = useState(false);
   const [copiedSummary, setCopiedSummary] = useState(false);
+
+  useEffect(() => {
+    const handleCurrencyChange = (event: Event) => setCurrency((event as CustomEvent<CurrencyType>).detail);
+    window.addEventListener('tekmora-currency-change', handleCurrencyChange);
+    return () => window.removeEventListener('tekmora-currency-change', handleCurrencyChange);
+  }, []);
 
   const togglePlatform = (id: string) => {
     setSelectedPlatforms(prev =>
@@ -200,7 +209,10 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                 key={curr}
                 type="button"
                 className={`curr-btn ${currency === curr ? 'curr-active' : ''}`}
-                onClick={() => setCurrency(curr)}
+                onClick={() => {
+                  window.localStorage.setItem('tekmora-currency', curr);
+                  window.dispatchEvent(new CustomEvent('tekmora-currency-change', { detail: curr }));
+                }}
               >
                 {curr}
               </button>

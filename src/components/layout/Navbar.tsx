@@ -22,58 +22,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
   const location = useLocation();
   const { t } = useTranslation();
 
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = window.localStorage.getItem('tekmora-theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    return 'light';
-  });
-
-
-  useEffect(() => {
-    const handleThemeChange = (e: Event) => {
-      const customEvent = e as CustomEvent<string>;
-      if (customEvent.detail === 'dark' || customEvent.detail === 'light') {
-        setTheme(customEvent.detail);
-      }
-    };
-    window.addEventListener('theme-change', handleThemeChange);
-    return () => window.removeEventListener('theme-change', handleThemeChange);
-  }, []);
-
-  // Listen to device / operating system theme changes in real-time
-  useEffect(() => {
-    const mql = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleDeviceThemeChange = (e: MediaQueryListEvent) => {
-      const savedTheme = window.localStorage.getItem('tekmora-theme');
-      if (!savedTheme) {
-        const deviceTheme = e.matches ? 'dark' : 'light';
-        setTheme(deviceTheme);
-        document.documentElement.dataset.theme = deviceTheme;
-        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-        if (metaThemeColor) {
-          metaThemeColor.setAttribute('content', deviceTheme === 'dark' ? '#090909' : '#FFFFFF');
-        }
-      }
-    };
-
-    mql.addEventListener('change', handleDeviceThemeChange);
-    return () => mql.removeEventListener('change', handleDeviceThemeChange);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'dark' ? '#090909' : '#FFFFFF');
-    }
-  }, [theme]);
-
-
-
-
   // Handle scroll state and progress indicator
   useEffect(() => {
     const handleScroll = () => {
@@ -196,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
             })}
           </nav>
 
-          {/* Header Actions: Quick Search, Theme Toggle, Start Project CTA */}
+          {/* Header Actions: Quick Search and Start Project CTA */}
           <div className="header-actions">
             {/* Quick Search Button */}
             {onOpenSearch && (

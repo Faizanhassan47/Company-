@@ -1,6 +1,7 @@
 import React from 'react';
 import { ContactSection } from '../../components/sections/Contact/ContactSection';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { CurrencyBar } from '../../components/ui/CurrencyBar';
 import './ContactPage.css';
 
 export const ContactPage: React.FC = () => {
@@ -11,6 +12,7 @@ export const ContactPage: React.FC = () => {
         description="Discuss your software development requirements with Tekmora. Direct technical consultation on web platforms, mobile apps, enterprise systems, and SAP integrations."
         canonical="https://tekmorasolution.com/contact"
       />
+      <CurrencyBar />
 
       {/* Hero */}
       <section className="contact-page-hero section">

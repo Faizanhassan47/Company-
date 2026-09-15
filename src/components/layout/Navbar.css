@@ -154,7 +154,7 @@
   transition: all var(--transition-fast);
 }
 
-:root[data-theme='dark'] .header-primary-cta {
+.header-primary-cta {
   background: #FFFFFF;
   color: #090909;
 }

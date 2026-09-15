@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Command, X } from 'lucide-react';
@@ -19,18 +19,6 @@ export const KeyboardShortcutsModal: React.FC<KeyboardShortcutsModalProps> = ({
   const lastKeyRef = useRef<string | null>(null);
   const keyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const toggleTheme = useCallback(() => {
-    const currentTheme = document.documentElement.dataset.theme || 'light';
-    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem('tekmora-theme', nextTheme);
-    window.dispatchEvent(new CustomEvent('theme-change', { detail: nextTheme }));
-    document.querySelector('meta[name="theme-color"]')?.setAttribute(
-      'content',
-      nextTheme === 'dark' ? '#090909' : '#FFFFFF'
-    );
-  }, []);
-
   // Global keydown listeners for shortcuts and opening the HUD
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -49,13 +37,6 @@ export const KeyboardShortcutsModal: React.FC<KeyboardShortcutsModalProps> = ({
       if (e.key === '?' && !isOpen) {
         e.preventDefault();
         window.dispatchEvent(new CustomEvent('open-shortcuts-hud'));
-        return;
-      }
-
-      // Toggle theme on 't' or 'T'
-      if ((e.key === 't' || e.key === 'T') && !e.metaKey && !e.ctrlKey && !isOpen) {
-        e.preventDefault();
-        toggleTheme();
         return;
       }
 
@@ -93,11 +74,10 @@ export const KeyboardShortcutsModal: React.FC<KeyboardShortcutsModalProps> = ({
       window.removeEventListener('keydown', handleKeyDown);
       if (keyTimerRef.current) clearTimeout(keyTimerRef.current);
     };
-  }, [isOpen, navigate, onClose, toggleTheme]);
+  }, [isOpen, navigate, onClose]);
 
   const shortcuts = [
     { desc: 'Open Command Palette / Search', keys: ['⌘ / Ctrl', 'K'], action: onOpenSearch },
-    { desc: 'Toggle Dark / Light Theme', keys: ['T'], action: toggleTheme },
     { desc: 'Go to Home', keys: ['G', 'H'], action: () => { onClose(); navigate('/'); } },
     { desc: 'Go to Work / Portfolio', keys: ['G', 'W'], action: () => { onClose(); navigate('/work'); } },
     { desc: 'Go to Contact', keys: ['G', 'C'], action: () => { onClose(); navigate('/contact'); } },
