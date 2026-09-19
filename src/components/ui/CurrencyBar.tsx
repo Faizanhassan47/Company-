@@ -28,4 +28,23 @@ export const CurrencyBar: React.FC = () => {
     window.localStorage.setItem('tekmora-currency', nextCurrency);
     window.dispatchEvent(new CustomEvent('tekmora-currency-change', { detail: nextCurrency }));
   };
+
+  return (
+    <div className="page-currency-bar">
+      <div className="container page-currency-inner">
+        <div className="page-currency-label">SELECT CURRENCY</div>
+        <div className="page-currency-options">
+          {CURRENCIES.map((c) => (
+            <button
+              key={c}
+              className={`page-currency-button ${c === currency ? 'is-active' : ''}`}
+              onClick={() => selectCurrency(c)}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };

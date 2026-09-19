@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { HeroSection } from '../../components/sections/Hero/HeroSection';
 import { SEOHead } from '../../components/seo/SEOHead';
-import { CurrencyBar } from '../../components/ui/CurrencyBar';
 
 const BusinessProblemsSection = lazy(() => import('../../components/sections/BusinessProblems/BusinessProblemsSection').then(m => ({ default: m.BusinessProblemsSection })));
 const CapabilitiesMapSection = lazy(() => import('../../components/sections/CapabilitiesMap/CapabilitiesMapSection').then(m => ({ default: m.CapabilitiesMapSection })));
@@ -24,7 +23,6 @@ export const HomePage: React.FC = () => {
         description="Tekmora engineers robust operational software—connecting inventory, dispatch, ERPs, and custom workflows into unified enterprise platforms."
         canonical="https://tekmorasolution.com/"
       />
-      <CurrencyBar />
       
       {/* 01: Hero */}
       <HeroSection />
