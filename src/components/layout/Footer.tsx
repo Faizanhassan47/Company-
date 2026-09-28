@@ -10,43 +10,12 @@ export const Footer: React.FC = () => {
   return (
     <footer className="site-footer">
       <div className="container">
-        {/* Top Direct Action Banner */}
-        <motion.div
-          className="footer-action-banner"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-        >
-          <div className="action-banner-left">
-            <div className="action-kicker font-mono">
-              <span className="live-status-dot" />
-              <span>DIRECT TECHNICAL CONSULTATION</span>
-            </div>
-            <h2 className="action-banner-title font-display">
-              HAVE A COMPLEX WORKFLOW<br />
-              <span className="italic-accent">THAT NEEDS BUILDING?</span>
-            </h2>
-          </div>
-
-          <div className="action-banner-right font-mono">
-            <Link to="/contact" className="btn btn-primary footer-cta-btn">
-              <span>Start a Project Inquiry</span>
-              <ArrowUpRight size={16} />
-            </Link>
-            <a href="mailto:info@tekmorasolution.com" className="footer-direct-email">
-              <Mail size={14} className="text-orange" />
-              <span>info@tekmorasolution.com</span>
-            </a>
-          </div>
-        </motion.div>
-
         {/* Main Footer Layout */}
         <motion.div
           className="footer-main-grid"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={staggerContainer}
         >
           {/* Column 1: Brand & Positioning */}
@@ -55,7 +24,7 @@ export const Footer: React.FC = () => {
               <TekmoraLogo height={32} />
             </div>
             <p className="footer-about-text">
-              Tekmora is an independent software engineering studio. We build bespoke web platforms, offline-first mobile applications, and internal database systems for real business operations.
+              Tekmora is an independent software engineering studio. We design, develop, and scale web applications, mobile platforms, and custom operational systems.
             </p>
             <div className="footer-operating-mode font-mono">
               <span className="mode-dot" />
@@ -65,37 +34,43 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Navigation Directory */}
           <motion.div className="footer-nav-group" variants={fadeInUp}>
-            <div className="footer-group-header font-mono">DIRECTORY</div>
-            <ul className="footer-nav-links font-mono">
-              <li><Link to="/services">Services & Disciplines</Link></li>
-              <li><Link to="/industries">Industries Served</Link></li>
-              <li><Link to="/#process">Delivery Process</Link></li>
-              <li><Link to="/about">About the Studio</Link></li>
+            <div className="footer-group-header font-mono">COMPANY</div>
+            <ul className="footer-nav-links">
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/work">Selected Work</Link></li>
+              <li><Link to="/services">Services & Stack</Link></li>
               <li><Link to="/contact">Start a Project</Link></li>
             </ul>
           </motion.div>
 
           {/* Column 3: Specialized Capabilities */}
           <motion.div className="footer-nav-group" variants={fadeInUp}>
-            <div className="footer-group-header font-mono">DISCIPLINES</div>
-            <ul className="footer-nav-links font-mono">
-              <li><Link to="/services/ai-integration-workflow-automation">AI & Workflow Automation</Link></li>
+            <div className="footer-group-header font-mono">SERVICES</div>
+            <ul className="footer-nav-links">
+              <li><Link to="/services/custom-software-development">Custom Software</Link></li>
+              <li><Link to="/services/web-application-development">Web Applications</Link></li>
+              <li><Link to="/services/mobile-app-development">Mobile Applications</Link></li>
               <li><Link to="/services/saas-engineering-modernization">SaaS Engineering</Link></li>
-              <li><Link to="/services/ai-agents-process-automation">Autonomous AI Agents</Link></li>
-              <li><Link to="/services/production-hardening-code-rescue">Production Code Rescue</Link></li>
-              <li><Link to="/services/sap-business-one-integration">SAP Business One Sync</Link></li>
-              <li><Link to="/services/warehouse-management-systems">Warehouse Systems (WMS)</Link></li>
             </ul>
           </motion.div>
 
-          {/* Column 4: Standards & Legal */}
+          {/* Column 4: Contact & Social */}
           <motion.div className="footer-nav-group" variants={fadeInUp}>
-            <div className="footer-group-header font-mono">STANDARDS</div>
-            <ul className="footer-nav-links font-mono">
-              <li><span className="spec-tag">TypeScript 5.x Strict</span></li>
-              <li><span className="spec-tag">100% Client IP Ownership</span></li>
-              <li><span className="spec-tag">ACID Database Integrity</span></li>
-              <li className="footer-legal-row">
+            <div className="footer-group-header font-mono">CONNECT</div>
+            <ul className="footer-nav-links">
+              <li>
+                <a href="mailto:hello@tekmorasolution.com" className="footer-connect-link">
+                  <Mail size={15} className="text-orange" />
+                  <span>hello@tekmorasolution.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/company/tekmora" target="_blank" rel="noopener noreferrer" className="footer-connect-link">
+                  <span>LinkedIn</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </li>
+              <li className="footer-legal-row font-mono">
                 <Link to="/privacy">Privacy</Link>
                 <span className="sep">•</span>
                 <Link to="/terms">Terms</Link>
@@ -109,11 +84,14 @@ export const Footer: React.FC = () => {
           className="footer-bottom-row font-mono"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={fadeInUp}
         >
           <div className="footer-copyright">
-            © {new Date().getFullYear()} TEKMORA. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} TEKMORA SOLUTION. ALL RIGHTS RESERVED.
+          </div>
+          <div className="footer-tagline">
+            SOFTWARE ENGINEERED FOR REAL BUSINESSES.
           </div>
         </motion.div>
       </div>

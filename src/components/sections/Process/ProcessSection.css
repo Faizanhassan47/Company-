@@ -1,145 +1,196 @@
-/* Process Section (Buraq AI Delivery Process Style) */
+/* ==========================================================================
+   Process Section - Numbered Timeline & Lifecycle Layout
+   ========================================================================== */
 
-.process-section {
-  background-color: var(--bg-secondary);
-  padding-top: clamp(4rem, 8vw, 7.5rem);
-  padding-bottom: clamp(4rem, 8vw, 7.5rem);
-  border-bottom: 1px solid var(--border-subtle);
+.process-clean-section {
+  background-color: #0d0d10;
+  padding: 7.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.process-header-block {
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
-  max-width: 780px;
+.process-header-box {
+  max-width: 820px;
+  margin-bottom: 4rem;
 }
 
-.process-main-headline {
-  font-size: clamp(2.2rem, 4.5vw, 4.2rem);
-  line-height: 1.02;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 1.2rem;
+.process-title {
+  font-size: clamp(2.5rem, 3.8vw, 3.6rem);
+  line-height: 1.12;
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.025em;
+  text-transform: none;
 }
 
-.process-subtitle {
-  font-size: clamp(1rem, 1.3vw, 1.2rem);
-  line-height: 1.65;
-  color: var(--text-secondary);
+.process-lead-text {
+  font-size: 1.15rem;
+  line-height: 1.68;
+  color: #a1a1aa;
+  margin: 0;
 }
 
-/* 4 Cards Grid */
-.process-cards-grid-4 {
+/* Timeline Navigation Strip */
+.process-timeline-bar {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  background: #121216;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.6rem;
 }
 
-@media (max-width: 900px) {
-  .process-cards-grid-4 {
+.timeline-step-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 0.5rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.timeline-step-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.timeline-step-btn.active {
+  background: rgba(255, 77, 28, 0.12);
+  border-color: #ff4d1c;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.step-btn-num {
+  color: #ff4d1c;
+  font-weight: 700;
+}
+
+.step-btn-name {
+  white-space: nowrap;
+}
+
+/* Active Step Panel */
+.process-active-view {
+  min-height: 280px;
+}
+
+.active-step-panel {
+  background: #141419;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 3.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.active-step-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.active-step-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.meta-badge {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.meta-sep {
+  color: #71717a;
+}
+
+.meta-time {
+  color: #a1a1aa;
+}
+
+.active-step-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.015em;
+}
+
+.active-step-summary {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #a1a1aa;
+  margin: 0;
+}
+
+.active-step-right {
+  background: #191920;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+.deliv-headline {
+  display: block;
+  font-size: 0.72rem;
+  color: #71717a;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.deliv-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.deliv-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #d4d4d8;
+  line-height: 1.45;
+}
+
+.deliv-check {
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .process-timeline-bar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .active-step-panel {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 2rem;
   }
 }
 
-.process-delivery-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: clamp(1.8rem, 3.2vw, 2.6rem);
-  position: relative;
-  overflow: hidden;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
-}
+@media (max-width: 640px) {
+  .process-timeline-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.process-delivery-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-medium);
-}
-
-/* Giant Stylized Watermark Numeral */
-.process-card-num-watermark {
-  position: absolute;
-  top: -10px;
-  right: 14px;
-  font-size: clamp(6rem, 10vw, 9rem);
-  font-weight: 900;
-  line-height: 1;
-  color: var(--text-primary);
-  opacity: 0.03;
-  pointer-events: none;
-  user-select: none;
-  transition: opacity var(--transition-fast);
-}
-
-.process-delivery-card:hover .process-card-num-watermark {
-  opacity: 0.07;
-  color: var(--accent-orange);
-}
-
-.process-card-inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.process-pill-row {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 12px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-full);
-  width: fit-content;
-  font-size: 9.5px;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-}
-
-.process-badge-name {
-  color: var(--text-dim);
-}
-
-.process-card-title {
-  font-size: 1.45rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-primary);
-}
-
-.process-card-desc {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-.process-card-bullets {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border-subtle);
-  font-size: 10.5px;
-  color: var(--text-primary);
-}
-
-.process-card-bullets li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.process-card-accent-line {
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(90deg, var(--accent-orange), transparent);
-  margin-top: 8px;
-  opacity: 0.4;
-  transition: opacity var(--transition-fast);
-}
-
-.process-delivery-card:hover .process-card-accent-line {
-  opacity: 1;
+  .process-clean-section {
+    padding: 5rem 0;
+  }
 }

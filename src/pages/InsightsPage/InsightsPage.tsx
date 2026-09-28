@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, BookOpen, Calendar, Clock, Search, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, Calendar, Clock, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { INSIGHTS_DATA } from '../../data/insights';
 import { SEOHead } from '../../components/seo/SEOHead';
@@ -48,23 +48,21 @@ export const InsightsPage: React.FC = () => {
 
       <section className="ip-featured">
         <div className="container">
-          <div className="ip-section-label"><span>01</span><p>Featured dispatch</p></div>
+          <div className="ip-section-label font-mono"><span>01</span><p>FEATURED DISPATCH</p></div>
           <Link className="ip-feature-card" to={`/insights/${featured.slug}`}>
             <div className="ip-feature-art" aria-hidden="true">
               <div className="ip-art-grid" />
-              <div className="ip-orbit ip-orbit-lg" />
-              <div className="ip-orbit ip-orbit-sm" />
-              <span className="ip-node ip-node-a">ERP</span>
-              <span className="ip-node ip-node-b">API</span>
-              <span className="ip-node ip-node-c">DATA</span>
-              <div className="ip-art-core"><Sparkles size={20} /><b>CONNECTED<br />OPERATIONS</b></div>
+              <div className="ip-art-core">
+                <BookOpen size={24} className="text-orange" style={{ marginBottom: '8px' }} />
+                <b>CONNECTED<br />OPERATIONS</b>
+              </div>
             </div>
             <div className="ip-feature-copy">
               <div className="ip-feature-meta font-mono"><span>{featured.category}</span><span>{featured.number}</span></div>
               <h2>{featured.title}</h2>
               <p>{featured.summary}</p>
-              <div className="ip-reading-meta"><span><Clock size={13} />{featured.readingTime}</span><span><Calendar size={13} />{featured.publishDate}</span></div>
-              <span className="ip-read-link">Read the full dispatch <ArrowRight size={16} /></span>
+              <div className="ip-reading-meta font-mono"><span><Clock size={13} />{featured.readingTime}</span><span><Calendar size={13} />{featured.publishDate}</span></div>
+              <span className="ip-read-link font-mono">Read the full dispatch <ArrowRight size={16} /></span>
             </div>
           </Link>
         </div>

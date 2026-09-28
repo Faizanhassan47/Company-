@@ -1,18 +1,72 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { SERVICES_DATA } from '../../data/services';
+import { SERVICES_DATA, type ServiceDetail } from '../../data/services';
 import { PROJECTS } from '../../data/projects';
-import { ArrowLeft, ArrowUpRight, HelpCircle, ArrowDownRight, Briefcase, Zap } from 'lucide-react';
+import {
+  ArrowLeft, ArrowRight, ArrowUpRight,
+  HelpCircle, Zap
+} from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { trackEvent } from '../../utils/analytics';
 import './ServiceDetailPage.css';
+
+// Slug alias resolver
+const resolveService = (slug?: string): ServiceDetail | undefined => {
+  if (!slug) return undefined;
+  const match = SERVICES_DATA.find(s => s.slug === slug);
+  if (match) return match;
+
+  // Aliases
+  if (slug === 'saas-development') {
+    return SERVICES_DATA.find(s => s.slug === 'saas-engineering-modernization');
+  }
+  if (slug === 'ui-ux-design' || slug === 'ui-ux-product-design') {
+    return SERVICES_DATA.find(s => s.slug === 'ui-ux-product-design') || {
+      slug: 'ui-ux-product-design',
+      number: '05',
+      category: 'saas-modernization',
+      title: 'UI/UX & Product Design',
+      shortDesc: 'Product discovery, user journeys, wireframes, interface systems, and design tokens.',
+      tagline: 'Designing intuitive, high-clarity user interfaces for complex operational systems.',
+      primaryTopic: 'UI/UX & Product Design Services',
+      heroHeadline: 'USER INTERFACES DESIGNED FOR CLARITY AND PERFORMANCE.',
+      overview: 'Tekmora designs digital product interfaces that reduce cognitive friction and streamline complex business operations. We combine rigorous user journey mapping with modern design systems and clickable Figma prototypes.',
+      keyCapabilities: [
+        { title: 'Product Discovery & Workflow Mapping', description: 'Deconstructing end-user operational tasks and creating logical navigation hierarchies.' },
+        { title: 'Interactive Figma Prototypes', description: 'Clickable wireframes and prototypes allowing rapid usability testing prior to development.' },
+        { title: 'Design Tokens & Component Systems', description: 'Standardized color, typography, spacing, and state variables for seamless developer handoff.' },
+        { title: 'High-Density Operational Dashboards', description: 'Data grids, filtering controls, and telemetry charts optimized for daily professional use.' }
+      ],
+      technicalStack: [
+        { category: 'Design Tools', items: ['Figma', 'FigJam', 'Tokens Studio', 'Framer'] },
+        { category: 'UI Systems', items: ['Design Tokens', 'Atomic Design', 'WCAG AA Accessibility'] }
+      ],
+      developmentProcess: [
+        { phase: '01', name: 'User & Workflow Discovery', description: 'We map tasks, friction points, and user goals across each role.' },
+        { phase: '02', name: 'Wireframing & Information Architecture', description: 'We establish layout grids, navigation flows, and core action patterns.' },
+        { phase: '03', name: 'High-Fidelity Visual Design', description: 'We apply brand aesthetics, typography hierarchy, and state styling.' },
+        { phase: '04', name: 'Design System & Handoff', description: 'We export documented token specs and inspectable components for engineering.' }
+      ],
+      faqs: [
+        { question: 'Do you provide the complete Figma files upon completion?', answer: 'Yes. You receive 100% ownership of all organized Figma components, variants, and design token libraries.' },
+        { question: 'Can you work directly with our existing development team?', answer: 'Yes. We deliver structured developer handoff files with precise spacing, token variables, and responsive layout guidelines.' }
+      ],
+      relevantProjectSlugs: ['citi-books-platform', 'dome-enterprise', 'shoestops']
+    };
+  }
+  if (slug === 'product-engineering') {
+    return SERVICES_DATA.find(s => s.slug === 'performance-scaling-cloud-devops');
+  }
+  return undefined;
+};
 
 export const ServiceDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
-  const service = SERVICES_DATA.find(s => s.slug === slug);
+  const service = resolveService(slug);
   const relevantProjects = service
-    ? PROJECTS.filter(p => service.relevantProjectSlugs.includes(p.slug))
+    ? PROJECTS.filter(p => service.relevantProjectSlugs?.includes(p.slug))
     : [];
 
   useEffect(() => {
@@ -21,14 +75,17 @@ export const ServiceDetailPage: React.FC = () => {
 
   if (!service) {
     return (
-      <main className="service-not-found container section" id="main-content">
+      <main className="service-not-found container" id="main-content" style={{ padding: '140px 0', textAlign: 'center' }}>
         <SEOHead
           title="Service Not Found | Tekmora"
           description="The requested service discipline could not be located."
         />
-        <h1 className="font-display">SERVICE NOT FOUND</h1>
-        <p className="text-secondary mt-4">The requested engineering service could not be located.</p>
-        <button onClick={() => navigate('/services')} className="btn btn-orange font-mono mt-6">
+        <span className="sd-kicker">404 DISCIPLINE</span>
+        <h1 style={{ fontSize: '2.5rem', margin: '1rem 0', color: '#fafafa' }}>Service Not Found</h1>
+        <p style={{ color: '#a1a1aa', maxWidth: '480px', margin: '0 auto 2rem' }}>
+          The requested software engineering service could not be located.
+        </p>
+        <button onClick={() => navigate('/services')} className="btn btn-orange font-mono">
           <ArrowLeft size={16} /> View All Services
         </button>
       </main>
@@ -53,66 +110,67 @@ export const ServiceDetailPage: React.FC = () => {
     <main className="service-detail-page" id="main-content">
       <SEOHead
         title={`${service.title} Services | Tekmora`}
-        description={`${service.overview}`}
+        description={service.overview}
         canonical={`https://tekmorasolution.com/services/${service.slug}`}
         type="service"
         jsonLd={serviceJsonLd}
       />
 
-      {/* Breadcrumb & Hero */}
-      <section className="service-hero-section section-border-bottom">
-        <div className="container">
-          <div className="service-breadcrumb font-mono">
-            <Link to="/services" className="back-link">
+      {/* 1. Hero */}
+      <section className="sd-hero-section">
+        <div className="container sd-hero-container">
+          <div className="sd-breadcrumb font-mono">
+            <Link to="/services" className="sd-back-link">
               <ArrowLeft size={14} />
               <span>All Services</span>
             </Link>
-            <span className="sep">/</span>
-            <span className="text-orange">{service.number}</span>
+            <span className="sd-divider">//</span>
+            <span className="sd-cat-label">{service.category.replace('-', ' ')}</span>
           </div>
 
-          <div className="service-header-content">
-            <div className="service-kicker font-mono">DISCIPLINE // {service.number}</div>
-            <h1 className="service-headline font-display">{service.heroHeadline}</h1>
-            <p className="service-lead-tagline">{service.overview}</p>
-            
-            {service.architectureApproach && (
-              <div className="service-arch-approach font-mono">
-                <span className="text-orange">ARCHITECTURAL APPROACH:</span> {service.architectureApproach}
-              </div>
-            )}
+          <div className="sd-header-content">
+            <span className="sd-kicker">DISCIPLINE {service.number}</span>
+            <h1 className="sd-title">{service.title}</h1>
+            <p className="sd-tagline">{service.tagline}</p>
+            <p className="sd-overview">{service.overview}</p>
 
-            <div className="service-hero-actions font-mono">
-              <Link to="/contact" className="btn btn-primary">
+            <div className="sd-hero-actions">
+              <Link
+                to="/contact"
+                className="btn btn-orange font-mono"
+                onClick={() => trackEvent('service_cta_click', 'conversion', service.slug)}
+              >
                 <span>Start a {service.title} Project</span>
-                <ArrowUpRight size={15} />
+                <ArrowRight size={16} />
               </Link>
-              <a href="#capabilities" className="btn btn-secondary">
-                <span>Explore Capabilities</span>
-                <ArrowDownRight size={15} />
+              <a href="#capabilities" className="btn btn-secondary font-mono">
+                <span>View Capabilities</span>
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Business Problems We Solve */}
+      {/* 2. Business Problems We Solve */}
       {service.businessProblems && service.businessProblems.length > 0 && (
-        <section className="section business-problems-section section-border-bottom">
+        <section className="sd-problems-section">
           <div className="container">
-             <div className="section-meta">
-              <span className="section-number">01</span>
-              <span>// OPERATIONAL CHALLENGES</span>
+            <div className="sd-section-intro">
+              <span className="sd-kicker">OPERATIONAL BOTTLENECKS</span>
+              <h2 className="sd-section-heading">Problems We Solve</h2>
+              <p className="sd-section-sub">
+                Common obstacles organizations face before deploying this solution.
+              </p>
             </div>
-            
-            <h2 className="subhead-display font-display">BUSINESS PROBLEMS WE SOLVE</h2>
-            
-            <div className="problems-grid">
+
+            <div className="sd-problems-grid">
               {service.businessProblems.map((prob, idx) => (
-                <div key={idx} className="problem-card">
-                  <div className="problem-icon"><Zap size={20} className="text-orange" /></div>
-                  <h3 className="problem-title font-display">{prob.title}</h3>
-                  <p className="problem-desc">{prob.description}</p>
+                <div key={idx} className="sd-problem-card">
+                  <div className="sd-prob-icon-wrap">
+                    <Zap size={18} className="text-orange" />
+                  </div>
+                  <h3 className="sd-prob-title">{prob.title}</h3>
+                  <p className="sd-prob-desc">{prob.description}</p>
                 </div>
               ))}
             </div>
@@ -120,47 +178,48 @@ export const ServiceDetailPage: React.FC = () => {
         </section>
       )}
 
-      {/* Key Architectural Capabilities */}
-      <section className="section capabilities-detail-section section-border-bottom" id="capabilities">
+      {/* 3. Key Capabilities & What We Deliver */}
+      <section className="sd-capabilities-section" id="capabilities">
         <div className="container">
-          <div className="section-meta">
-            <span className="section-number">{service.businessProblems ? '02' : '01'}</span>
-            <span>// ARCHITECTURAL CAPABILITIES</span>
-            <span className="meta-sep font-mono">WHAT WE DELIVER</span>
+          <div className="sd-section-intro">
+            <span className="sd-kicker">CAPABILITIES</span>
+            <h2 className="sd-section-heading">What We Build & Deliver</h2>
+            <p className="sd-section-sub">
+              Core architectural and technical deliverables included in our {service.title} engagements.
+            </p>
           </div>
 
-          <div className="capabilities-detail-grid">
+          <div className="sd-capabilities-grid">
             {service.keyCapabilities.map((cap, idx) => (
-              <div key={cap.title} className="cap-detail-card">
-                <div className="cap-idx font-mono text-orange">0{idx + 1}</div>
-                <h2 className="cap-title font-display">{cap.title}</h2>
-                <p className="cap-desc">{cap.description}</p>
+              <div key={cap.title} className="sd-cap-card">
+                <span className="sd-cap-idx font-mono">0{idx + 1}</span>
+                <h3 className="sd-cap-title">{cap.title}</h3>
+                <p className="sd-cap-desc">{cap.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Production Stack & Delivery Process */}
-      <section className="section stack-process-section section-border-bottom">
+      {/* 4. Production Tech Stack & Execution Process */}
+      <section className="sd-tech-process-section">
         <div className="container">
-          <div className="stack-process-split">
-            {/* Left: Production Stack */}
-            <div className="tech-stack-column">
-              <div className="section-meta">
-                <span className="section-number">{service.businessProblems ? '03' : '02'}</span>
-                <span>// PRODUCTION TECH STACK</span>
-              </div>
-              <h2 className="subhead-display font-display">VERIFIED TECHNOLOGIES</h2>
-              <p className="subhead-desc">Restrained, battle-tested tools selected for long-term operational maintainability.</p>
+          <div className="sd-split-grid">
+            {/* Tech Stack */}
+            <div className="sd-stack-col">
+              <span className="sd-kicker">TECHNOLOGY</span>
+              <h2 className="sd-section-heading">Verified Tech Stack</h2>
+              <p className="sd-section-sub">
+                Battle-tested tools selected for long-term maintainability, speed, and reliability.
+              </p>
 
-              <div className="tech-categories-list font-mono">
+              <div className="sd-tech-list">
                 {service.technicalStack.map(group => (
-                  <div key={group.category} className="tech-group-item">
-                    <div className="group-name">{group.category}</div>
-                    <div className="group-pills">
+                  <div key={group.category} className="sd-tech-group">
+                    <span className="sd-group-title font-mono">{group.category}</span>
+                    <div className="sd-group-badges">
                       {group.items.map(item => (
-                        <span key={item} className="tech-badge">{item}</span>
+                        <span key={item} className="sd-tech-badge">{item}</span>
                       ))}
                     </div>
                   </div>
@@ -168,21 +227,21 @@ export const ServiceDetailPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Development Process */}
-            <div className="dev-process-column">
-              <div className="section-meta">
-                <span className="section-number">{service.businessProblems ? '04' : '03'}</span>
-                <span>// EXECUTION METHODOLOGY</span>
-              </div>
-              <h2 className="subhead-display font-display">PHASED LIFECYCLE</h2>
+            {/* Development Process */}
+            <div className="sd-process-col">
+              <span className="sd-kicker">EXECUTION</span>
+              <h2 className="sd-section-heading">Development Process</h2>
+              <p className="sd-section-sub">
+                Phased engineering lifecycle from discovery to production handoff.
+              </p>
 
-              <div className="process-timeline font-mono">
+              <div className="sd-timeline-list">
                 {service.developmentProcess.map(step => (
-                  <div key={step.phase} className="process-step-item">
-                    <span className="step-phase text-orange">{step.phase}</span>
-                    <div className="step-body">
-                      <strong className="step-title">{step.name}</strong>
-                      <p className="step-desc">{step.description}</p>
+                  <div key={step.phase} className="sd-timeline-step">
+                    <span className="sd-step-num font-mono">{step.phase}</span>
+                    <div className="sd-step-info">
+                      <strong className="sd-step-name">{step.name}</strong>
+                      <p className="sd-step-desc">{step.description}</p>
                     </div>
                   </div>
                 ))}
@@ -192,34 +251,31 @@ export const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Relevant Projects Showcase */}
+      {/* 5. Relevant Project Case Studies */}
       {relevantProjects.length > 0 && (
-        <section className="section relevant-projects-section section-border-bottom">
+        <section className="sd-projects-section">
           <div className="container">
-            <div className="section-meta">
-              <span className="section-number">{service.businessProblems ? '05' : '04'}</span>
-              <span>// PROVEN TRACK RECORD</span>
-              <span className="meta-sep font-mono">RELEVANT CASE STUDIES</span>
+            <div className="sd-section-intro">
+              <span className="sd-kicker">PROVEN WORK</span>
+              <h2 className="sd-section-heading">Related Case Studies</h2>
+              <p className="sd-section-sub">
+                Real software systems engineered by Tekmora in this discipline.
+              </p>
             </div>
 
-            <h2 className="subhead-display font-display">SELECTED {service.title.toUpperCase()} SYSTEMS</h2>
-
-            <div className="relevant-cards-grid">
+            <div className="sd-projects-grid">
               {relevantProjects.map(proj => (
-                <article key={proj.id} className="relevant-card">
-                  <div className="relevant-meta font-mono">
-                    <span className="text-orange">{proj.number}</span> / {proj.category}
+                <article key={proj.id} className="sd-project-card">
+                  <div className="sd-proj-meta font-mono">
+                    <span className="text-orange">{proj.number}</span> // {proj.category}
                   </div>
-                  <h3 className="relevant-title font-display">
+                  <h3 className="sd-proj-title">
                     <Link to={`/work/${proj.slug}`}>{proj.title}</Link>
                   </h3>
-                  <p className="relevant-tagline">{proj.tagline}</p>
-                  <div className="relevant-tech font-mono">
-                    {proj.technologies.slice(0, 3).join(' • ')}
-                  </div>
-                  <div className="relevant-action font-mono">
-                    <Link to={`/work/${proj.slug}`} className="btn-link case-link">
-                      <span>READ CASE STUDY</span>
+                  <p className="sd-proj-tagline">{proj.tagline}</p>
+                  <div className="sd-proj-action">
+                    <Link to={`/work/${proj.slug}`} className="sd-proj-link font-mono">
+                      <span>View Case Study</span>
                       <ArrowUpRight size={14} />
                     </Link>
                   </div>
@@ -229,21 +285,24 @@ export const ServiceDetailPage: React.FC = () => {
           </div>
         </section>
       )}
-      
-      {/* Industries Section */}
-      {service.industries && service.industries.length > 0 && (
-        <section className="section service-industries-section section-border-bottom">
+
+      {/* 6. Practical FAQs */}
+      {service.faqs && service.faqs.length > 0 && (
+        <section className="sd-faq-section">
           <div className="container">
-            <div className="section-meta">
-              <span className="section-number">{service.businessProblems ? '06' : '05'}</span>
-              <span>// PRIMARY DOMAINS</span>
+            <div className="sd-section-intro">
+              <span className="sd-kicker">QUESTIONS</span>
+              <h2 className="sd-section-heading">Frequently Asked Questions</h2>
             </div>
-            <h2 className="subhead-display font-display">INDUSTRIES WE SERVE</h2>
-            <div className="industries-list font-mono">
-              {service.industries.map((ind, idx) => (
-                <div key={idx} className="industry-chip">
-                   <Briefcase size={14} />
-                   <span>{ind.toUpperCase()}</span>
+
+            <div className="sd-faq-list">
+              {service.faqs.map((faq, fIdx) => (
+                <div key={fIdx} className="sd-faq-item">
+                  <div className="sd-faq-q-wrap">
+                    <HelpCircle size={16} className="text-orange" />
+                    <h3 className="sd-faq-q">{faq.question}</h3>
+                  </div>
+                  <p className="sd-faq-a">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -251,52 +310,25 @@ export const ServiceDetailPage: React.FC = () => {
         </section>
       )}
 
-      {/* FAQs Section */}
-      <section className="section service-faq-section section-border-bottom">
-        <div className="container">
-          <div className="section-meta">
-            <span className="section-number">{service.businessProblems ? (service.industries ? '07' : '06') : '05'}</span>
-            <span>// FREQUENTLY ASKED QUESTIONS</span>
-          </div>
-
-          <h2 className="subhead-display font-display">PRACTICAL QUESTIONS ANSWERED</h2>
-
-          <div className="faq-accordion-list">
-            {service.faqs.map((faq, fIdx) => (
-              <div key={fIdx} className="faq-item">
-                <div className="faq-q-row">
-                  <HelpCircle size={16} className="text-orange" />
-                  <h3 className="faq-question font-display">{faq.question}</h3>
-                </div>
-                <p className="faq-answer">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Direct CTA */}
-      <section className="section service-cta-section">
-        <div className="container">
-          <div className="service-cta-banner">
-            <h2 className="cta-banner-title font-display">
-              {service.ctaHeadline ? (
-                <span dangerouslySetInnerHTML={{ __html: service.ctaHeadline.replace('\n', '<br />') }} />
-              ) : (
-                <>
-                  READY TO BUILD YOUR<br />
-                  <span className="italic-accent">{service.title.toUpperCase()}?</span>
-                </>
-              )}
-            </h2>
-            <p className="cta-banner-desc">
-              {service.ctaDesc || 'Tell us about your operational workflows, required integrations, or user requirements.'}
+      {/* 7. Bottom Conversion CTA */}
+      <section className="sd-bottom-cta">
+        <div className="container sd-cta-container">
+          <div className="sd-cta-content">
+            <span className="sd-kicker">START A PROJECT</span>
+            <h2 className="sd-cta-heading">Ready to build your {service.title}?</h2>
+            <p className="sd-cta-sub">
+              Tell us about your product requirements, operational constraints, or system goals. We’ll provide direct architectural advice and a realistic delivery plan.
             </p>
-            <div className="cta-banner-action font-mono">
-              <Link to="/contact" className="btn btn-orange btn-lg">
-                <span>START A PROJECT INQUIRY ↗</span>
-              </Link>
-            </div>
+          </div>
+          <div className="sd-cta-action">
+            <Link
+              to="/contact"
+              className="btn btn-orange font-mono"
+              onClick={() => trackEvent('service_detail_bottom_cta', 'lead', service.slug)}
+            >
+              <span>Discuss Your Project</span>
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>

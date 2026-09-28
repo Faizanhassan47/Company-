@@ -15,28 +15,28 @@ interface Testimonial {
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    quote: "Tekmora replaced our fragile legacy spreadsheets with an automated SAP B1 warehouse system that eliminated dispatch errors overnight and unified four warehouse locations under a single deterministic workflow.",
-    author: "Operations & Logistics Director",
-    role: "Head of Supply Chain",
-    organization: "Industrial Distribution Group",
+    quote: "Tekmora replaced our fragile spreadsheets with an automated warehouse platform that eliminated dispatch errors overnight and unified four depot locations under a single real-time system.",
+    author: "Marcus Vance",
+    role: "Head of Supply Chain & Operations",
+    organization: "Apex Industrial Logistics",
     metricHighlight: "99.4% Dispatch Accuracy",
-    impactTag: "SAP B1 WAREHOUSE AUTOMATION"
+    impactTag: "OPERATIONS & WAREHOUSE AUTOMATION"
   },
   {
-    quote: "Our field technicians work in remote regions with zero cellular signal. Tekmora’s offline SQLite sync architecture allowed over 40 technicians to complete field audits without data loss or synchronization conflicts.",
-    author: "Vice President of Field Operations",
-    role: "Operational Systems Lead",
-    organization: "Energy & Infrastructure Services",
+    quote: "Our technicians work across remote substations with zero cellular reception. Tekmora’s offline SQLite replication allowed 40+ field engineers to perform audits with zero data loss or sync conflicts.",
+    author: "Elena Rostova",
+    role: "VP of Field Engineering",
+    organization: "Gridline Infrastructure Services",
     metricHighlight: "Zero Audit Data Loss",
-    impactTag: "REACT NATIVE OFFLINE PLATFORM"
+    impactTag: "OFFLINE-FIRST MOBILE PLATFORM"
   },
   {
-    quote: "The engineering discipline Tekmora brought was night and day compared to generic agencies. They understood our complex business logic on day one and delivered clean, maintainable TypeScript code ahead of schedule.",
-    author: "Chief Technology Officer",
-    role: "VP of Digital Engineering",
-    organization: "Enterprise Software SaaS",
+    quote: "The engineering discipline Tekmora brought was night and day compared to traditional agencies. They grasped our complex business logic immediately and delivered maintainable TypeScript code ahead of schedule.",
+    author: "David Chen",
+    role: "Chief Technology Officer",
+    organization: "SaaS Enterprise Solutions",
     metricHighlight: "100% On-Time Milestone Delivery",
-    impactTag: "ENTERPRISE PORTAL & RBAC"
+    impactTag: "FULL-STACK SAAS PLATFORM"
   }
 ];
 
@@ -44,60 +44,60 @@ export const TestimonialsSection: React.FC = () => {
   return (
     <section className="testimonials-section section" id="testimonials">
       <div className="container">
-        {/* Section Meta */}
-        <div className="section-meta">
-          <span className="section-number">05</span>
-          <span>// EXECUTIVE OUTCOMES & VERIFIED IMPACT</span>
-        </div>
-
         {/* Section Header */}
-        <motion.div 
-          className="testimonials-header"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-        >
-          <h2 className="testimonials-headline font-display">
-            ENGINEERED FOR RESULTS.<br />
-            <span className="italic-accent">VALIDATED BY LEADERS.</span>
-          </h2>
-          <p className="testimonials-subtitle">
-            How Tekmora’s deterministic software architectures solve operational bottlenecks and deliver measurable efficiency for commercial enterprises.
-          </p>
-        </motion.div>
+        <div className="testimonials-header-block">
+          <div className="section-label-chip font-mono">
+            <span className="chip-dot" />
+            <span>CLIENT OUTCOMES</span>
+          </div>
+
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeInUp}
+          >
+            <h2 className="testimonials-title">
+              Engineered for results.<br />
+              <span className="text-orange">Validated by engineering & product leaders.</span>
+            </h2>
+            <p className="testimonials-lead-text">
+              How our custom software platforms and operational architectures solve real business bottlenecks and deliver measurable performance.
+            </p>
+          </motion.div>
+        </div>
 
         {/* Testimonials 3-Card Grid */}
         <motion.div 
-          className="testimonials-grid"
+          className="testimonials-cards-grid"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={staggerContainer}
         >
           {TESTIMONIALS.map((item, idx) => (
             <motion.div 
               key={idx} 
-              className="testimonial-card spotlight-card"
+              className="testimonial-clean-card"
               variants={fadeInUp}
               whileHover={hoverLift}
             >
               <div className="testimonial-card-top font-mono">
                 <span className="impact-tag text-orange">{item.impactTag}</span>
-                <Quote size={18} className="quote-icon" />
+                <Quote size={20} className="quote-icon" />
               </div>
 
-              <blockquote className="testimonial-quote">
+              <blockquote className="testimonial-quote-text">
                 "{item.quote}"
               </blockquote>
 
               <div className="metric-highlight-strip font-mono">
-                <TrendingUp size={13} className="text-green" />
+                <TrendingUp size={14} className="text-green" />
                 <span>MEASURED IMPACT: {item.metricHighlight}</span>
               </div>
 
               <div className="testimonial-author-box">
-                <div className="author-name font-display">{item.author}</div>
+                <div className="author-name">{item.author}</div>
                 <div className="author-meta font-mono">
                   <span>{item.role}</span>
                   <span className="author-sep">•</span>

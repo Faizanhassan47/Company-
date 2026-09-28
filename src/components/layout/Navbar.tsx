@@ -43,16 +43,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
   }, []);
 
   const navLabels: Record<string, string> = {
-    about: t('nav.about', 'About'),
+    home: t('nav.home', 'Home'),
     services: t('nav.services', 'Services'),
     work: t('nav.work', 'Work'),
-    industries: t('nav.industries', 'Industries'),
-    insights: t('nav.insights', 'Insights'),
-    contact: t('nav.start_project', 'Contact')
+    about: t('nav.about', 'About'),
+    contact: t('nav.contact', 'Contact')
   };
   const navLinks = publicRoutes
     .filter(route => route.nav)
-    .map(route => ({ label: navLabels[route.id], to: route.path }));
+    .map(route => ({ label: navLabels[route.id] || route.id, to: route.path }));
 
   return (
     <>
@@ -73,7 +72,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
           aria-valuemax={100}
         />
 
-
         <div className="container header-container">
           {/* Brand Logo with Official tk Mark + Wordmark */}
           <Link to="/" className="brand-lockup" aria-label="Tekmora Home">
@@ -83,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
           {/* Desktop Pill Navigation Links */}
           <nav className="desktop-nav-pill-dock" aria-label="Primary Navigation">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
+              const isActive = link.to === '/' ? location.pathname === '/' : location.pathname.startsWith(link.to);
 
               if (link.to === '/services') {
                 return (
@@ -102,28 +100,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
 
                     {servicesDropdownOpen && (
                       <div className="mega-menu-panel">
-                        <div className="mega-menu-grid">
+                        <div className="mega-menu-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }}>
                           <div className="mega-column">
                             <h4 className="mega-col-title font-mono">Software Engineering</h4>
                             <Link to="/services/custom-software-development">Custom Software</Link>
                             <Link to="/services/web-application-development">Web Applications</Link>
+                          </div>
+                          <div className="mega-column">
+                            <h4 className="mega-col-title font-mono">Mobile & SaaS</h4>
                             <Link to="/services/mobile-app-development">Mobile Apps</Link>
+                            <Link to="/services/saas-engineering-modernization">SaaS Development</Link>
                           </div>
                           <div className="mega-column">
-                            <h4 className="mega-col-title font-mono">Enterprise Systems</h4>
-                            <Link to="/services/warehouse-management-systems">ERP / WMS</Link>
-                            <Link to="/services/sap-business-one-integration">SAP Integration</Link>
-                            <Link to="/services/ai-integration-workflow-automation">Workflow Automation</Link>
-                          </div>
-                          <div className="mega-column">
-                            <h4 className="mega-col-title font-mono">Data</h4>
-                            <Link to="/services/data-bi-analytics">Power BI</Link>
-                            <Link to="/services/data-bi-analytics">Data Analytics</Link>
-                          </div>
-                          <div className="mega-column">
-                            <h4 className="mega-col-title font-mono">Web</h4>
-                            <Link to="/services/wordpress-development">WordPress</Link>
-                            <Link to="/services/wordpress-development">Custom Plugins</Link>
+                            <h4 className="mega-col-title font-mono">Design & Scale</h4>
+                            <Link to="/services/ui-ux-product-design">UI/UX & Product Design</Link>
+                            <Link to="/services/performance-scaling-cloud-devops">Product Engineering</Link>
                           </div>
                         </div>
                       </div>

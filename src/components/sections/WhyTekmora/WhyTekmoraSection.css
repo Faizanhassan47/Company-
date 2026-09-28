@@ -1,59 +1,125 @@
-.why-section {
-  padding-bottom: clamp(4rem, 8vw, 8rem);
-  background-color: var(--bg-main);
+/* ==========================================================================
+   Why Tekmora Section - Spacious Engineering Pillars
+   ========================================================================== */
+
+.why-clean-section {
+  background-color: #0e0e11;
+  padding: 7.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.why-heading-block {
-  margin-top: 1.5rem;
-  margin-bottom: clamp(3rem, 6vw, 4rem);
-  max-width: 800px;
+.why-header-box {
+  max-width: 820px;
+  margin-bottom: 4.5rem;
 }
 
-.why-lead-desc {
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-  line-height: 1.65;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin-top: 1.5rem;
+.why-title {
+  font-size: clamp(2.5rem, 3.8vw, 3.6rem);
+  line-height: 1.12;
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.025em;
+  text-transform: none;
 }
 
-.system-thinking-container {
-  display: flex;
-  justify-content: flex-start;
-  max-width: 800px;
+.why-lead-text {
+  font-size: 1.15rem;
+  line-height: 1.68;
+  color: #a1a1aa;
+  margin: 0;
 }
 
-.system-flow {
+.why-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.25rem;
+}
+
+.why-pillar-card {
+  background: #131317;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 3rem 2.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
+  justify-content: space-between;
+  transition: all 0.25s ease;
 }
 
-.flow-layer {
-  width: 100%;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 1.2rem;
-  text-align: center;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
-}
-
-.flow-layer:hover {
+.why-pillar-card:hover {
+  border-color: rgba(255, 77, 28, 0.35);
+  background: #16161c;
   transform: translateY(-2px);
-  border-color: var(--accent-orange);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
 }
 
-.layer-content {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: 0.05em;
+.pillar-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
-.flow-arrow {
-  padding: 8px 0;
-  color: var(--accent-orange);
+.pillar-icon-box {
+  width: 46px;
+  height: 46px;
+  background: rgba(255, 77, 28, 0.08);
+  border: 1px solid rgba(255, 77, 28, 0.22);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff4d1c;
+}
+
+.pillar-num {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.pillar-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0 0 0.85rem 0;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.pillar-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #d4d4d8;
+  margin: 0 0 1.5rem 0;
+  font-weight: 500;
+}
+
+.pillar-detail-box {
+  background: #191920;
+  border-left: 2px solid #ff4d1c;
+  padding: 1rem 1.25rem;
+  border-radius: 0 5px 5px 0;
+}
+
+.pillar-detail-text {
+  font-size: 0.92rem;
+  color: #a1a1aa;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .why-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-clean-section {
+    padding: 5rem 0;
+  }
+
+  .why-pillar-card {
+    padding: 2.25rem 1.75rem;
+  }
 }

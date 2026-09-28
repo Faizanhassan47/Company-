@@ -1,71 +1,56 @@
+/* ============================================================
+   404 NOT FOUND PAGE - MINIMAL & ON-BRAND
+   ============================================================ */
+
 .not-found-page {
-  position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding-top: var(--header-height);
+  padding: 120px 0 80px;
+  background-color: #08080a;
+  color: #fafafa;
 }
 
-.not-found-content {
-  position: relative;
-  z-index: 10;
-  max-width: 600px;
+.not-found-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-6);
-}
-
-.not-found-terminal {
-  display: flex;
   align-items: center;
-  gap: var(--spacing-2);
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
-  background: var(--bg-card);
-  padding: 8px 16px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.not-found-headline {
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  line-height: 0.95;
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-2);
+.not-found-code {
+  font-size: clamp(4rem, 8vw, 6rem);
+  font-weight: 800;
+  color: #ff4d1c;
+  line-height: 1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.05em;
+}
+
+.not-found-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0 0 1rem;
+  text-transform: none;
 }
 
 .not-found-desc {
-  font-size: var(--font-size-md);
-  color: var(--text-secondary);
-  max-width: 480px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #a1a1aa;
+  margin: 0 0 2rem;
+  max-width: 460px;
 }
 
 .not-found-actions {
   display: flex;
   align-items: center;
-  gap: var(--spacing-4);
-  margin-top: var(--spacing-4);
+  gap: 16px;
   flex-wrap: wrap;
-}
-
-.not-found-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.03;
-  user-select: none;
-}
-
-.giant-404 {
-  font-size: 40vw;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--text-primary);
-  white-space: nowrap;
+  justify-content: center;
 }

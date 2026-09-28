@@ -1,39 +1,256 @@
 import React, { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, Check, Filter } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PROJECTS } from '../../data/projects';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { trackEvent } from '../../utils/analytics';
 import './WorkPage.css';
 
-const filters = [
-  ['all', 'All Work'], ['enterprise', 'Enterprise'], ['mobile', 'Mobile'],
-  ['business-platforms', 'Web Platforms'], ['warehouse-sap', 'ERP & Operations'],
-  ['ecommerce', 'E-commerce'], ['healthcare', 'Healthcare'], ['company-websites', 'Websites'],
+const FILTER_CATEGORIES = [
+  { id: 'all', label: 'All Projects' },
+  { id: 'enterprise', label: 'Enterprise & ERP' },
+  { id: 'mobile', label: 'Mobile Applications' },
+  { id: 'ecommerce', label: 'E-Commerce' },
+  { id: 'business-platforms', label: 'Web Platforms & Automation' },
+  { id: 'healthcare', label: 'Healthcare' }
 ] as const;
 
 export const WorkPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const projects = useMemo(() => activeFilter === 'all' ? PROJECTS : PROJECTS.filter(project => project.filterCategory === activeFilter), [activeFilter]);
-  const featured = projects[0];
-  const remaining = projects.slice(1);
 
-  return <main className="work-page" id="main-content">
-    <SEOHead title="Selected Work & Software Portfolio | Tekmora" description="Explore web, mobile, enterprise, healthcare, e-commerce, ERP, and operational software engineered by Tekmora." canonical="https://tekmorasolution.com/work" />
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'all') return PROJECTS;
+    if (activeFilter === 'enterprise') {
+      return PROJECTS.filter(p => p.filterCategory === 'enterprise' || p.filterCategory === 'warehouse-sap');
+    }
+    return PROJECTS.filter(p => p.filterCategory === activeFilter);
+  }, [activeFilter]);
 
-    <section className="wp-hero"><div className="wp-glow" /><div className="container wp-hero-grid"><div><p className="wp-kicker">Selected Work</p><h1>Real Products.<br /><span>Real Outcomes.</span></h1></div><div className="wp-hero-copy"><p>We design and engineer digital products that solve difficult operational problems—from customer-facing mobile apps to the systems running businesses behind the scenes.</p><a href="#project-gallery" className="wp-btn wp-btn-primary">Explore Our Work <ArrowRight size={15} /></a><div className="wp-proof"><span><strong>{PROJECTS.length}+</strong>Products delivered</span><span><strong>8+</strong>Industries served</span><span><strong>100%</strong>Client focused</span></div></div></div></section>
+  return (
+    <main className="work-page" id="main-content">
+      <SEOHead
+        title="Software Projects & Case Studies | Tekmora"
+        description="Explore software products and custom engineering systems built by Tekmora for startups, commercial operations, and enterprises."
+        canonical="https://tekmorasolution.com/work"
+      />
 
-    <section className="wp-gallery" id="project-gallery"><div className="container">
-      <div className="wp-gallery-head"><div><p className="wp-kicker">Project Library</p><h2>Built Across Products,<br />Platforms & Operations</h2></div><p>Filter the portfolio by product type or industry.</p></div>
-      <div className="wp-filter"><span><Filter size={13} /> Filter</span>{filters.map(([value, label]) => <button type="button" key={value} className={activeFilter === value ? 'active' : ''} onClick={() => setActiveFilter(value)}>{label}<small>{value === 'all' ? PROJECTS.length : PROJECTS.filter(p => p.filterCategory === value).length}</small></button>)}</div>
+      {/* Hero Section */}
+      <section className="work-hero">
+        <div className="container work-hero-container">
+          <div className="work-hero-content">
+            <span className="work-kicker">SELECTED WORK</span>
+            <h1 className="work-hero-title">
+              Software built for <br />
+              <span className="text-orange">real business problems.</span>
+            </h1>
+            <p className="work-hero-lead">
+              We design and engineer digital software products for startups and growing businesses—from customer-facing web and mobile applications to the mission-critical systems running operations behind the scenes.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <AnimatePresence mode="wait"><motion.div key={activeFilter} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: .25 }}>
-        {featured ? <Link className="wp-featured" to={`/work/${featured.slug}`} onClick={() => trackEvent('project_open', 'portfolio', featured.slug)}><div className="wp-featured-copy"><span>{featured.number} / Featured Project</span><h2>{featured.title}</h2><p>{featured.tagline}</p><div>{featured.technologies.slice(0, 5).map(tech => <small key={tech}>{tech}</small>)}</div><strong>View Case Study <ArrowRight size={14} /></strong></div><div className="wp-featured-image">{featured.imageUrl || featured.thumbnailUrl ? <img src={featured.imageUrl ?? featured.thumbnailUrl} alt={`${featured.title} project interface`} /> : <div>{featured.title}</div>}</div></Link> : <div className="wp-empty">No projects found in this category.</div>}
-        <div className="wp-grid">{remaining.map(project => <Link className="wp-card" to={`/work/${project.slug}`} key={project.id} onClick={() => trackEvent('project_open', 'portfolio', project.slug)}><div className="wp-card-image">{project.imageUrl || project.thumbnailUrl ? <img src={project.imageUrl ?? project.thumbnailUrl} alt={`${project.title} project interface`} loading="lazy" /> : <div>{project.title}</div>}<span>{project.year}</span></div><div className="wp-card-copy"><small>{project.category}</small><h3>{project.title}</h3><p>{project.tagline}</p><div>{project.technologies.slice(0, 3).map(tech => <span key={tech}>{tech}</span>)}</div><strong>View Project <ArrowRight size={13} /></strong></div></Link>)}</div>
-      </motion.div></AnimatePresence>
-    </div></section>
+      {/* Portfolio Filter Navigation */}
+      <section className="work-filter-bar">
+        <div className="container filter-container">
+          <div className="filter-pill-list" role="tablist" aria-label="Portfolio category filter">
+            {FILTER_CATEGORIES.map(cat => {
+              const isActive = activeFilter === cat.id;
+              const count = cat.id === 'all'
+                ? PROJECTS.length
+                : cat.id === 'enterprise'
+                  ? PROJECTS.filter(p => p.filterCategory === 'enterprise' || p.filterCategory === 'warehouse-sap').length
+                  : PROJECTS.filter(p => p.filterCategory === cat.id).length;
 
-    <section className="wp-results"><div className="container"><div><p className="wp-kicker">The Standard</p><h2>More Than a<br /><span>Good-Looking Product.</span></h2></div><div className="wp-results-list">{['Built around real user workflows', 'Engineered for reliability and scale', 'Clear ownership and maintainable code', 'Measured against business outcomes'].map(item => <p key={item}><i><Check /></i>{item}</p>)}</div></div></section>
-  </main>;
+              return (
+                <button
+                  type="button"
+                  key={cat.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`filter-pill ${isActive ? 'filter-pill--active' : ''}`}
+                  onClick={() => setActiveFilter(cat.id)}
+                >
+                  <span>{cat.label}</span>
+                  <span className="filter-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial Project Showcase List */}
+      <section className="work-showcase-section">
+        <div className="container">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFilter}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="editorial-showcase-list"
+            >
+              {filteredProjects.map((project, index) => {
+                const isReversed = index % 2 === 1;
+                const projectImage = project.imageUrl || project.thumbnailUrl || '/images/projects/dome-enterprise.jpg';
+
+                return (
+                  <article
+                    className={`editorial-project-card ${isReversed ? 'editorial-project-card--reversed' : ''}`}
+                    key={project.id}
+                  >
+                    {/* Visual Media Column */}
+                    <div className="project-media-col">
+                      <Link
+                        to={`/work/${project.slug}`}
+                        className="project-image-link"
+                        onClick={() => trackEvent('view_case_study', 'portfolio', project.slug)}
+                        aria-label={`View ${project.title} case study`}
+                      >
+                        <div className="project-image-frame">
+                          <img
+                            src={projectImage}
+                            alt={`${project.title} system interface preview`}
+                            className="project-main-image"
+                            loading={index < 2 ? 'eager' : 'lazy'}
+                          />
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Content Column */}
+                    <div className="project-info-col">
+                      <div className="project-meta-kicker">
+                        <span className="project-num">{project.number}</span>
+                        <span className="project-divider">//</span>
+                        <span className="project-category">{project.category}</span>
+                      </div>
+
+                      <h2 className="project-headline">
+                        <Link to={`/work/${project.slug}`}>{project.title}</Link>
+                      </h2>
+
+                      <p className="project-tagline">{project.tagline}</p>
+
+                      {/* Business Problem & What Tekmora Built */}
+                      <div className="project-narrative-block">
+                        <div className="narrative-item">
+                          <strong className="narrative-label">The Problem:</strong>
+                          <p className="narrative-text">{project.clientProblem}</p>
+                        </div>
+                        <div className="narrative-item">
+                          <strong className="narrative-label">What We Built:</strong>
+                          <p className="narrative-text">{project.developmentApproach}</p>
+                        </div>
+                      </div>
+
+                      {/* Deliverables / Services */}
+                      {project.services && project.services.length > 0 && (
+                        <div className="project-services-pills">
+                          {project.services.slice(0, 3).map(service => (
+                            <span key={service} className="service-tag">
+                              <CheckCircle2 size={13} className="service-tag-icon" />
+                              {service}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Technology Stack Tags */}
+                      <div className="project-tech-row">
+                        {project.technologies.slice(0, 5).map(tech => (
+                          <span key={tech} className="tech-badge">{tech}</span>
+                        ))}
+                      </div>
+
+                      {/* Real Factual Outcome where available */}
+                      {project.outcome && (
+                        <div className="project-outcome-box">
+                          <span className="outcome-title">Outcome:</span>
+                          <span className="outcome-text">{project.outcome}</span>
+                        </div>
+                      )}
+
+                      {/* Action Link */}
+                      <div className="project-action-wrap">
+                        <Link
+                          to={`/work/${project.slug}`}
+                          className="project-cta-link"
+                          onClick={() => trackEvent('view_case_study', 'portfolio', project.slug)}
+                        >
+                          <span>View Case Study</span>
+                          <ArrowUpRight size={16} className="cta-arrow-icon" />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* Engineering Standards */}
+      <section className="work-standards-section">
+        <div className="container standards-container">
+          <div className="standards-intro">
+            <span className="work-kicker">ENGINEERING PRINCIPLES</span>
+            <h2 className="standards-title">
+              Software built for the <br />
+              <span className="text-orange">long term.</span>
+            </h2>
+            <p className="standards-desc">
+              We hold every codebase to rigorous technical and architectural standards.
+            </p>
+          </div>
+
+          <div className="standards-grid">
+            <div className="standard-card">
+              <span className="standard-num">01</span>
+              <h3>User-Centric Architecture</h3>
+              <p>Designed around the actual physical and operational reality of the people doing the work daily.</p>
+            </div>
+            <div className="standard-card">
+              <span className="standard-num">02</span>
+              <h3>Performance & Reliability</h3>
+              <p>Engineered for sub-200ms latency, strict database indexing, and fault-tolerant concurrency.</p>
+            </div>
+            <div className="standard-card">
+              <span className="standard-num">03</span>
+              <h3>100% Client Ownership</h3>
+              <p>Clean, maintainable source code, complete documentation, and zero proprietary lock-in.</p>
+            </div>
+            <div className="standard-card">
+              <span className="standard-num">04</span>
+              <h3>Factual Measurable Impact</h3>
+              <p>Every feature is measured against genuine workflow speed, reduction in errors, and operational clarity.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Conversion CTA */}
+      <section className="work-bottom-cta">
+        <div className="container work-cta-container">
+          <div className="work-cta-text">
+            <span className="work-kicker">LET'S BUILD</span>
+            <h2 className="work-cta-heading">Have a product to build?</h2>
+            <p className="work-cta-sub">
+              Tell us about your product idea, operational bottlenecks, or system requirements. We'll review your scope and provide direct engineering feedback.
+            </p>
+          </div>
+          <div className="work-cta-action">
+            <Link to="/contact" className="btn btn-orange font-mono">
+              <span>Start a Project</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 };

@@ -1,125 +1,146 @@
-import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
-import { staggerContainer, fadeInUp, hoverLift } from '../../../utils/animations';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { fadeInUp } from '../../../utils/animations';
 import './ProcessSection.css';
 
 interface ProcessStep {
-  num: string;
-  badge: string;
-  title: string;
-  description: string;
-  points: string[];
+  number: string;
+  name: string;
+  duration: string;
+  summary: string;
+  deliverables: string[];
 }
 
-export const ProcessSection: React.FC = () => {
-  const { t } = useTranslation();
+const PROCESS_STEPS: ProcessStep[] = [
+  {
+    number: '01',
+    name: 'Discovery',
+    duration: 'Week 1',
+    summary: 'We dive deep into your business requirements, existing technical constraints, user personas, and operational goals.',
+    deliverables: ['Technical Architecture Blueprint', 'System Scope & Requirements Document', 'Milestone Schedule & Risk Analysis']
+  },
+  {
+    number: '02',
+    name: 'Product Design',
+    duration: 'Weeks 1–2',
+    summary: 'We map user journeys, design high-fidelity interactive wireframes, and establish the product design system.',
+    deliverables: ['Clickable Prototype (Figma)', 'Design System Tokens & Components', 'Database Entity Relationship Diagram (ERD)']
+  },
+  {
+    number: '03',
+    name: 'Development',
+    duration: 'Structured Sprints',
+    summary: 'Frontend, backend, APIs, and cloud infrastructure are developed in bi-weekly iterative sprints with regular demos.',
+    deliverables: ['Strict TypeScript Codebase', 'Bi-Weekly Staging Deployments', 'REST / GraphQL API Endpoints']
+  },
+  {
+    number: '04',
+    name: 'Testing & QA',
+    duration: 'Continuous QA',
+    summary: 'Automated end-to-end testing, query latency benchmarking, cross-browser audits, and security vulnerability scans.',
+    deliverables: ['Automated Playwright QA Suites', 'Database Indexing & Load Testing', 'Cross-Device Usability Verification']
+  },
+  {
+    number: '05',
+    name: 'Launch',
+    duration: 'Production Deploy',
+    summary: 'The software is deployed to production cloud infrastructure with zero-downtime deployment pipelines and monitoring.',
+    deliverables: ['Cloud CI/CD Pipeline', 'Real-Time Health & Error Monitoring', 'Admin Documentation & Team Onboarding']
+  },
+  {
+    number: '06',
+    name: 'Support & Scale',
+    duration: 'Long-Term Partnership',
+    summary: 'Tekmora acts as your ongoing engineering partner—shipping new feature iterations, maintaining uptime, and optimizing performance.',
+    deliverables: ['Guaranteed SLA Response Times', 'Continuous Database Optimization', 'Feature Enhancements & Scaling']
+  }
+];
 
-  const processSteps: ProcessStep[] = useMemo(() => [
-    {
-      num: '01',
-      badge: t('process.s1_badge'),
-      title: t('process.s1_title'),
-      description: t('process.s1_desc'),
-      points: [t('process.s1_p1'), t('process.s1_p2'), t('process.s1_p3')]
-    },
-    {
-      num: '02',
-      badge: t('process.s2_badge'),
-      title: t('process.s2_title'),
-      description: t('process.s2_desc'),
-      points: [t('process.s2_p1'), t('process.s2_p2'), t('process.s2_p3')]
-    },
-    {
-      num: '03',
-      badge: t('process.s3_badge'),
-      title: t('process.s3_title'),
-      description: t('process.s3_desc'),
-      points: [t('process.s3_p1'), t('process.s3_p2'), t('process.s3_p3')]
-    },
-    {
-      num: '04',
-      badge: t('process.s4_badge'),
-      title: t('process.s4_title'),
-      description: t('process.s4_desc'),
-      points: [t('process.s4_p1'), t('process.s4_p2'), t('process.s4_p3')]
-    }
-  ], [t]);
+export const ProcessSection: React.FC = () => {
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="section process-section section-border-bottom" id="process">
+    <section className="section process-clean-section" id="process">
       <div className="container">
-        {/* Section Meta */}
-        <div className="section-meta">
-          <span className="section-number">05</span>
-          <span>// {t('process.section_meta')}</span>
+        {/* Section Header */}
+        <div className="process-header-box">
+          <div className="section-label-chip font-mono">
+            <span className="chip-dot" />
+            <span>OUR PROCESS</span>
+          </div>
+
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeInUp}
+          >
+            <h2 className="process-title">
+              From idea to production.<br />
+              <span className="text-orange">A structured engineering lifecycle.</span>
+            </h2>
+            <p className="process-lead-text">
+              We eliminate guesswork with predictable milestones, transparent progress demos, and direct access to senior engineers at every phase.
+            </p>
+          </motion.div>
         </div>
 
-        {/* Section Header */}
-        <motion.div 
-          className="process-header-block"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-        >
-          <h2 className="process-main-headline font-display">
-            {t('process.title_1')}<br />
-            <span className="italic-accent">{t('process.title_2')}</span>
-          </h2>
-          <p className="process-subtitle">
-            {t('process.subtitle')}
-          </p>
-        </motion.div>
-
-        {/* 4 Cards Grid with Giant Background Numbers (Buraq AI Style) */}
-        <motion.div 
-          className="process-cards-grid-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-        >
-          {processSteps.map((step) => (
-            <motion.div 
-              key={step.num} 
-              className="process-delivery-card spotlight-card"
-              variants={fadeInUp}
-              whileHover={hoverLift}
+        {/* Numbered Step Navigation Bar */}
+        <div className="process-timeline-bar font-mono">
+          {PROCESS_STEPS.map((step, idx) => (
+            <button
+              key={step.number}
+              type="button"
+              className={`timeline-step-btn ${activeStep === idx ? 'active' : ''}`}
+              onClick={() => setActiveStep(idx)}
             >
-              {/* Giant Stylized Background Watermark Numeral */}
-              <div className="process-card-num-watermark font-display" aria-hidden="true">
-                {step.num}
-              </div>
+              <span className="step-btn-num">{step.number}</span>
+              <span className="step-btn-name">{step.name}</span>
+            </button>
+          ))}
+        </div>
 
-              <div className="process-card-inner">
-                {/* Step Badge Pill */}
-                <div className="process-pill-row font-mono">
-                  <span className="process-num-pill text-orange">{step.num}</span>
-                  <span className="process-badge-name">{step.badge}</span>
+        {/* Interactive Active Step Detail Card */}
+        <div className="process-active-view">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              className="active-step-panel"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+            >
+              <div className="active-step-left">
+                <div className="active-step-meta font-mono">
+                  <span className="meta-badge text-orange">PHASE {PROCESS_STEPS[activeStep].number}</span>
+                  <span className="meta-sep">//</span>
+                  <span className="meta-time">{PROCESS_STEPS[activeStep].duration}</span>
                 </div>
 
-                {/* Title & Description */}
-                <h3 className="process-card-title font-display">{step.title}</h3>
-                <p className="process-card-desc">{step.description}</p>
+                <h3 className="active-step-title">
+                  {PROCESS_STEPS[activeStep].name}
+                </h3>
 
-                {/* Bullets */}
-                <ul className="process-card-bullets font-mono">
-                  {step.points.map((pt, pIdx) => (
-                    <li key={pIdx}>
-                      <CheckCircle2 size={12} className="text-orange" />
-                      <span>{pt}</span>
+                <p className="active-step-summary">
+                  {PROCESS_STEPS[activeStep].summary}
+                </p>
+              </div>
+
+              <div className="active-step-right">
+                <span className="deliv-headline font-mono">DELIVERABLES & OUTCOMES:</span>
+                <ul className="deliv-items-list">
+                  {PROCESS_STEPS[activeStep].deliverables.map((deliv, i) => (
+                    <li key={i} className="deliv-item">
+                      <span className="deliv-check text-orange font-mono">✓</span>
+                      <span>{deliv}</span>
                     </li>
                   ))}
                 </ul>
-
-                {/* Accent Bottom Line */}
-                <div className="process-card-accent-line" />
               </div>
             </motion.div>
-          ))}
-        </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
