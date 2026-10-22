@@ -90,7 +90,7 @@ export const HeroSection: React.FC = () => {
                 <ShieldCheck size={13} className="text-orange" />
                 <span>app.tekmora.com/operations/telemetry</span>
               </div>
-              <div className="window-status">
+              <div className="hero-window-status">
                 <span className="status-live-dot" />
                 <span>ONLINE 99.99%</span>
               </div>

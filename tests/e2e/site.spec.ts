@@ -26,6 +26,21 @@ test('site uses the permanent black theme', async ({ page }) => {
   await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(9, 9, 9)');
 });
 
+test('homepage dashboard preview does not overflow a phone viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 393, height: 852 });
+  await page.goto('/');
+  await expect(page.locator('.product-window-frame')).toBeVisible();
+
+  const layout = await page.evaluate(() => ({
+    viewportWidth: window.innerWidth,
+    documentWidth: document.documentElement.scrollWidth,
+    previewRight: document.querySelector('.product-window-frame')?.getBoundingClientRect().right ?? 0
+  }));
+
+  expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth);
+  expect(layout.previewRight).toBeLessThanOrEqual(layout.viewportWidth);
+});
+
 test('page scroll progress exposes an accessible name', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('[role="progressbar"]')).toHaveAccessibleName('Page scroll progress');
