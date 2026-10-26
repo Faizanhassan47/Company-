@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import type { IncomingMessage, ServerResponse } from 'http';
 import nodemailer from 'nodemailer';
 
@@ -80,10 +82,17 @@ export default async function handler(req: IncomingMessage & { body?: any }, res
 
     const smtpHost = process.env.SMTP_HOST || 'smtp.hostinger.com';
     const smtpPort = parseInt(process.env.SMTP_PORT || '465', 10);
-    const smtpUser = process.env.SMTP_USER || 'info@tekmorasolution.com';
-    const smtpPass = process.env.SMTP_PASS || 'Techmora472@';
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
     const fromName = process.env.MAIL_FROM_NAME || 'Tekmora Solutions';
-    const fromEmail = process.env.MAIL_FROM_EMAIL || 'info@tekmorasolution.com';
+    const fromEmail = process.env.MAIL_FROM_EMAIL || smtpUser;
+
+    if (!smtpUser || !smtpPass || !fromEmail) {
+      res.statusCode = 503;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ error: 'Email service is not configured.' }));
+      return;
+    }
 
     const transporter = nodemailer.createTransport({
       host: smtpHost,
