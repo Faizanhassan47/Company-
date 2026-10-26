@@ -60,6 +60,7 @@ export const SEOHead: React.FC<SEOProps> = ({
       { name: 'twitter:image', content: socialImage },
       { name: 'twitter:title', content: formattedTitle },
       { name: 'twitter:description', content: description }
+      ,{ name: 'author', content: 'Tekmora' }
     ];
 
     metaTags.forEach((meta) => {
@@ -105,11 +106,51 @@ export const SEOHead: React.FC<SEOProps> = ({
       ]
     };
 
-    const schemaToInject = jsonLd
-      ? Array.isArray(jsonLd)
-        ? [defaultOrganizationSchema, ...jsonLd]
-        : [defaultOrganizationSchema, jsonLd]
-      : defaultOrganizationSchema;
+    const websiteSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Tekmora',
+      url: 'https://tekmorasolution.com/',
+      publisher: { '@type': 'Organization', name: 'Tekmora' }
+    };
+
+    const breadcrumbParts = window.location.pathname.split('/').filter(Boolean);
+    const breadcrumbSchema = breadcrumbParts.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tekmorasolution.com/' },
+            ...breadcrumbParts.map((part, index) => ({
+              '@type': 'ListItem',
+              position: index + 2,
+              name: part.replace(/-/g, ' ').replace(/\b\w/g, character => character.toUpperCase()),
+              item: `https://tekmorasolution.com/${breadcrumbParts.slice(0, index + 1).join('/')}`
+            }))
+          ]
+        }
+      : null;
+
+    const suppliedSchemas = jsonLd
+      ? Array.isArray(jsonLd) ? jsonLd : [jsonLd]
+      : [];
+    const hasBreadcrumbSchema = suppliedSchemas.some(schema => schema['@type'] === 'BreadcrumbList');
+    const pageSchema = {
+      '@context': 'https://schema.org',
+      '@type': type === 'article' ? 'Article' : 'WebPage',
+      name: formattedTitle,
+      description,
+      url: currentUrl,
+      inLanguage: 'en-US'
+    };
+
+    const schemaToInject = [
+      defaultOrganizationSchema,
+      websiteSchema,
+      pageSchema,
+      ...suppliedSchemas,
+      ...(breadcrumbSchema && !hasBreadcrumbSchema ? [breadcrumbSchema] : [])
+    ];
 
     scriptTag.textContent = JSON.stringify(schemaToInject);
 
