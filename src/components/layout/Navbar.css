@@ -305,10 +305,10 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-primary);
-  text-transform: uppercase;
+  text-transform: none;
 }
 
-  text-transform: none;
+.mobile-link-arrow {
   color: var(--text-dim);
   transition: transform var(--transition-fast);
 }
