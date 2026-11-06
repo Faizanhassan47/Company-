@@ -142,9 +142,9 @@ export const ProjectInquirySection: React.FC = () => {
           <div className="inquiry-info-col">
             <div className="info-card">
               <span className="info-card-label font-mono">DIRECT INQUIRY</span>
-              <a href="mailto:hello@tekmorasolution.com" className="direct-email-link">
+              <a href="mailto:info@tekmorasolution.com" className="direct-email-link">
                 <Mail size={20} className="text-orange" />
-                <span>hello@tekmorasolution.com</span>
+                <span>info@tekmorasolution.com</span>
               </a>
               <p className="info-card-sub">
                 Prefer email? Send your project brief, wireframes, or RFP documents directly to our senior engineering team.
@@ -342,7 +342,7 @@ export const ProjectInquirySection: React.FC = () => {
 
                   {showError && (
                     <div className="form-error-banner font-mono">
-                      Routing error. Please try again or email hello@tekmorasolution.com directly.
+                      Routing error. Please try again or email info@tekmorasolution.com directly.
                     </div>
                   )}
 

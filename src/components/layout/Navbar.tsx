@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Search } from 'lucide-react';
+import { Menu, X, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { TekmoraLogo } from '../ui/TekmoraLogo';
 import { MagneticButton } from '../ui/MagneticButton';
 import './Navbar.css';
@@ -14,9 +14,8 @@ interface NavbarProps {
   onOpenSearch?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const location = useLocation();
@@ -83,46 +82,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
             {navLinks.map((link) => {
               const isActive = link.to === '/' ? location.pathname === '/' : location.pathname.startsWith(link.to);
 
-              if (link.to === '/services') {
-                return (
-                  <div
-                    key={link.label}
-                    className="nav-dropdown-wrapper"
-                    onMouseEnter={() => setServicesDropdownOpen(true)}
-                    onMouseLeave={() => setServicesDropdownOpen(false)}
-                  >
-                    <Link
-                      to={link.to}
-                      className={`nav-pill-item ${isActive ? 'nav-pill--active' : ''}`}
-                    >
-                      <span className="nav-pill-text">{link.label}</span>
-                    </Link>
-
-                    {servicesDropdownOpen && (
-                      <div className="mega-menu-panel">
-                        <div className="mega-menu-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }}>
-                          <div className="mega-column">
-                            <h4 className="mega-col-title font-mono">Software Engineering</h4>
-                            <Link to="/services/custom-software-development">Custom Software</Link>
-                            <Link to="/services/web-application-development">Web Applications</Link>
-                          </div>
-                          <div className="mega-column">
-                            <h4 className="mega-col-title font-mono">Mobile & SaaS</h4>
-                            <Link to="/services/mobile-app-development">Mobile Apps</Link>
-                            <Link to="/services/saas-engineering-modernization">SaaS Development</Link>
-                          </div>
-                          <div className="mega-column">
-                            <h4 className="mega-col-title font-mono">Design & Scale</h4>
-                            <Link to="/services/ui-ux-product-design">UI/UX & Product Design</Link>
-                            <Link to="/services/performance-scaling-cloud-devops">Product Engineering</Link>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
               return (
                 <Link
                   key={link.label}
@@ -137,23 +96,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
 
           {/* Header Actions: Quick Search and Start Project CTA */}
           <div className="header-actions">
-            {/* Quick Search Button */}
-            {onOpenSearch && (
-              <button
-                type="button"
-                className="header-search-btn"
-                onClick={onOpenSearch}
-                aria-label="Search systems, services, and technical notes (Cmd+K)"
-                title="Search (Cmd+K / Ctrl+K)"
-              >
-                <Search size={14} className="search-btn-icon" />
-                <span className="search-btn-text">Search</span>
-              </button>
-            )}
-
-
-
-            {/* Primary Action Button with 2D Magnetic Pull */}
             <MagneticButton>
               <Link
                 to="/contact"
@@ -165,8 +107,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenSearch }) =
                   }
                 }}
               >
-                <span>Start a project</span>
-                <ArrowUpRight size={14} className="cta-icon" />
+                <span>Start a Project</span>
+                <ArrowRight size={14} className="cta-icon" />
               </Link>
             </MagneticButton>
 

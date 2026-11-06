@@ -3,9 +3,9 @@
    ========================================================================== */
 
 .site-footer {
-  background-color: #060608;
+  background-color: #070708;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 6rem 0 2.5rem;
+  padding: 4.5rem 0 1.75rem;
   position: relative;
 }
 
@@ -55,10 +55,11 @@
 }
 
 .footer-group-header {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #71717a;
-  letter-spacing: 0.08em;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
 }
 
 .footer-nav-links {

@@ -21,6 +21,12 @@ function apiContactPlugin(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), apiContactPlugin()],
+  server: {
+    watch: {
+      // Chrome locks unfinished downloads. Watching them crashes the dev server on Windows.
+      ignored: ['**/.git/**', '**/node_modules/**', '**/*.crdownload']
+    }
+  },
   build: {
     rollupOptions: {
       output: {

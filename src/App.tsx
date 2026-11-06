@@ -4,15 +4,14 @@ import { initAnalytics, trackPageView } from './utils/analytics';
 import { AnimatePresence } from 'framer-motion';
 import { PageTransition } from './components/layout/PageTransition';
 import { Navbar } from './components/layout/Navbar';
+import { MovingField } from './components/studio/MovingField';
 import { Footer } from './components/layout/Footer';
 import { Preloader } from './components/layout/Preloader';
 import { SmoothScroll } from './components/layout/SmoothScroll';
-import { FilmGrain } from './components/layout/FilmGrain';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { CookieBanner } from './components/ui/CookieBanner';
 import { LiveChat } from './components/layout/LiveChat';
 import { TerminalEasterEgg } from './components/ui/TerminalEasterEgg';
-import { SwissGrid } from './components/layout/SwissGrid';
 import { BackToTop } from './components/ui/BackToTop';
 import { NetworkStatus } from './components/ui/NetworkStatus';
 import { KeyboardShortcutsModal } from './components/ui/KeyboardShortcutsModal';
@@ -98,14 +97,7 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <SmoothScroll>
-        {/* Architectural Background Grid */}
-        <SwissGrid />
-
-        {/* Auto Scroll To Top on Route Changes */}
         <ScrollToTop />
-
-        {/* Global Cinematic Noise */}
-        <FilmGrain />
 
         {/* Quick Search Command Palette (Cmd+K) */}
         {searchOpen && (
@@ -142,6 +134,7 @@ export const App: React.FC = () => {
 
         {/* Site Layout */}
         <div className="site-wrapper">
+          <MovingField />
           <a className="skip-link" href="#main-content">Skip to content</a>
           <Navbar onOpenSearch={() => setSearchOpen(true)} />
 

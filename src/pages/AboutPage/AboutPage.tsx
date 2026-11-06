@@ -1,57 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Compass, MessagesSquare, RefreshCcw, ShieldCheck } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
-import { trackEvent } from '../../utils/analytics';
+import { ScenePhoto, STUDIO_PHOTOS } from '../../components/studio/ProductMockups';
+import { Reveal } from '../../components/studio/StudioMotion';
+import { TekmoraLogo } from '../../components/ui/TekmoraLogo';
 import './AboutPage.css';
 
 const PRINCIPLES = [
   {
-    number: '01',
-    title: 'Build What Matters',
-    description: 'We don’t build features for the sake of complexity. Every line of code, database index, and user interface component must directly serve a verified business or operational outcome.'
+    title: 'Build what matters',
+    description: 'Focus on real problems.',
+    icon: Compass
   },
   {
-    number: '02',
-    title: 'Communicate Directly',
-    description: 'No account managers, bloated communication layers, or lost context. Clients collaborate directly with the senior engineers and product designers actively building their software.'
+    title: 'Communicate directly',
+    description: 'Clear, honest and practical.',
+    icon: MessagesSquare
   },
   {
-    number: '03',
-    title: 'Engineer for Change',
-    description: 'Business requirements evolve. We architect modular, well-documented systems with strict type safety that your team can maintain, scale, or hand over with zero friction.'
+    title: 'Engineer for change',
+    description: 'Flexible, maintainable and scalable.',
+    icon: RefreshCcw
   },
   {
-    number: '04',
-    title: 'Own the Outcome',
-    description: 'We don’t just deliver code and disappear. We take end-to-end technical responsibility—from initial architecture and threat modeling to deployment, monitoring, and post-launch stability.'
-  }
-];
-
-const WORKING_MODEL_ITEMS = [
-  {
-    title: 'Direct Technical Access',
-    description: 'Direct Slack channel and weekly video check-ins with your engineering lead.'
-  },
-  {
-    title: 'Product-First Mindset',
-    description: 'We challenge assumptions to ensure the software solves the actual underlying problem.'
-  },
-  {
-    title: '100% Intellectual Property Ownership',
-    description: 'All repositories, design assets, and database schemas are 100% owned by you from day one.'
-  },
-  {
-    title: 'Visible 2-Week Sprints',
-    description: 'Continuous delivery with working staging environments you can test at every milestone.'
-  },
-  {
-    title: 'Rigorous Quality & Security',
-    description: 'Automated test suites, type-checked contracts, and security audits baked into every build.'
-  },
-  {
-    title: 'Long-Term Partnership',
-    description: 'Optional ongoing SLA retainers to ensure your systems remain fast and secure as you scale.'
+    title: 'Own the outcome',
+    description: 'We take responsibility for the results.',
+    icon: ShieldCheck
   }
 ];
 
@@ -60,172 +35,81 @@ export const AboutPage: React.FC = () => {
     <main className="about-page" id="main-content">
       <SEOHead
         title="About Tekmora | Software Engineering Studio"
-        description="Tekmora is a focused software engineering studio. We build custom web applications, mobile apps, and internal platforms for startups and commercial businesses."
+        description="Tekmora is a focused engineering studio that partners with businesses and founders to design, build and improve digital products."
         canonical="https://tekmorasolution.com/about"
       />
 
-      {/* 1. Hero Section */}
       <section className="about-hero">
-        <div className="container about-hero-container">
-          <div className="about-hero-content">
-            <span className="about-kicker">ABOUT TEKMORA</span>
-            <h1 className="about-hero-title">
-              Small team. <br />
-              <span className="text-orange">Serious engineering.</span>
-            </h1>
-            <p className="about-hero-lead">
-              Tekmora is an independent software engineering studio. We partner with founders, growing companies, and commercial operators to design, build, and maintain digital products that solve real operational problems.
-            </p>
-          </div>
+        <div className="container about-hero-grid">
+          <Reveal>
+            <p className="studio-kicker">About Tekmora</p>
+            <h1>A focused engineering studio building <span className="serif-accent">meaningful products.</span></h1>
+          </Reveal>
+          <ScenePhoto src={STUDIO_PHOTOS.office} alt="Studio workspace" className="about-photo">
+            <div className="scene-mark">
+              <TekmoraLogo height={22} />
+            </div>
+          </ScenePhoto>
         </div>
       </section>
 
-      {/* 2. Story / Who We Are & Why We Exist */}
-      <section className="about-story-section">
+      <section className="about-story">
         <div className="container about-story-grid">
-          <div className="about-story-col">
-            <span className="about-kicker">WHO WE ARE</span>
-            <h2 className="about-section-heading">
-              Why Tekmora Exists
-            </h2>
-            <p className="about-body-text">
-              Too many businesses are stuck between two bad options: off-the-shelf SaaS products that force clumsy workarounds, or large generic IT consultancies that assign junior developers behind layers of account managers.
+          <div>
+            <h2>Our story</h2>
+            <p>
+              Tekmora was founded with a simple goal — to build high-quality software that solves real problems.
             </p>
-            <p className="about-body-text">
-              We started Tekmora to provide a better model: a focused, founder-led software studio where businesses work directly with experienced engineers who genuinely understand system architecture, product design, and business constraints.
+            <p>
+              We work closely with founders and businesses, combining engineering discipline and a practical, outcome-focused approach to turn ideas into reliable, scalable products.
             </p>
           </div>
-
-          <div className="about-story-col">
-            <div className="about-image-card">
-              <img
-                src="/images/coding-workspace.jpg"
-                alt="Tekmora engineering studio workspace"
-                className="about-workspace-img"
-              />
-              <div className="about-image-caption font-mono">
-                <span>TEKMORA STUDIO // FOCUSED PRODUCT ENGINEERING</span>
-              </div>
-            </div>
+          <div className="about-stats">
+            <div><strong>3+</strong><span>Years of experience</span></div>
+            <div><strong>5+</strong><span>Industries served</span></div>
+            <div><strong>100%</strong><span>Project delivery</span></div>
           </div>
         </div>
       </section>
 
-      {/* 3. Core Principles */}
-      <section className="about-principles-section">
+      <section className="about-principles">
         <div className="container">
-          <div className="about-section-intro">
-            <span className="about-kicker">OUR STANDARDS</span>
-            <h2 className="about-section-heading">How We Think & Operate</h2>
-            <p className="about-section-sub">
-              These principles guide every technical decision, architecture recommendation, and client partnership.
-            </p>
+          <h2>Our principles</h2>
+          <div className="principle-grid">
+            {PRINCIPLES.map(item => {
+              const Icon = item.icon;
+              return (
+                <article key={item.title}>
+                  <Icon size={18} />
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              );
+            })}
           </div>
-
-          <div className="about-principles-grid">
-            {PRINCIPLES.map(p => (
-              <div className="about-principle-card" key={p.number}>
-                <span className="about-principle-num font-mono">{p.number}</span>
-                <h3 className="about-principle-title">{p.title}</h3>
-                <p className="about-principle-desc">{p.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. The Working Model */}
-      <section className="about-model-section">
-        <div className="container">
-          <div className="about-section-intro">
-            <span className="about-kicker">ENGAGEMENT MODEL</span>
-            <h2 className="about-section-heading">What Working With Us Looks Like</h2>
-            <p className="about-section-sub">
-              Clear expectations, continuous visibility, and zero bureaucratic overhead.
-            </p>
-          </div>
-
-          <div className="about-model-grid">
-            {WORKING_MODEL_ITEMS.map((item, idx) => (
-              <div className="about-model-card" key={idx}>
-                <CheckCircle2 size={20} className="model-check-icon text-orange" />
-                <div className="about-model-info">
-                  <h3 className="about-model-title">{item.title}</h3>
-                  <p className="about-model-desc">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. What We Specialize In */}
-      <section className="about-focus-section">
-        <div className="container about-focus-container">
-          <div className="about-focus-left">
-            <span className="about-kicker">SPECIALIZATION</span>
-            <h2 className="about-section-heading">
-              Our Core Technical Disciplines
-            </h2>
-            <p className="about-body-text">
-              We specialize in custom web applications, mobile engineering, multi-tenant SaaS platforms, internal operations hubs, and database integrations.
-            </p>
-            <div className="about-focus-links">
-              <Link to="/services" className="btn btn-secondary font-mono">
-                <span>Explore Services</span>
-                <ArrowRight size={14} />
-              </Link>
-              <Link to="/work" className="btn-link font-mono text-orange">
-                <span>View Selected Work →</span>
-              </Link>
+          <div className="about-model">
+            <ScenePhoto src={STUDIO_PHOTOS.engineers} alt="Team working in the studio" className="about-model-photo" />
+            <div>
+              <h2>Our working model</h2>
+              <ul>
+                <li>Direct collaboration with the team</li>
+                <li>Product-focused thinking</li>
+                <li>Iterative and transparent delivery</li>
+                <li>Long-term partnership and support</li>
+              </ul>
             </div>
           </div>
-
-          <div className="about-focus-right">
-            <div className="about-tech-matrix">
-              <div className="tech-matrix-group">
-                <span className="matrix-title font-mono">Frontend</span>
-                <span className="matrix-tags">React • Next.js • TypeScript • Tailwind CSS • Framer Motion</span>
-              </div>
-              <div className="tech-matrix-group">
-                <span className="matrix-title font-mono">Backend & APIs</span>
-                <span className="matrix-tags">Node.js • Express • REST • GraphQL • WebSockets</span>
-              </div>
-              <div className="tech-matrix-group">
-                <span className="matrix-title font-mono">Mobile</span>
-                <span className="matrix-tags">React Native • Expo • Offline SQLite • iOS • Android</span>
-              </div>
-              <div className="tech-matrix-group">
-                <span className="matrix-title font-mono">Databases & Cloud</span>
-                <span className="matrix-tags">PostgreSQL (RLS) • SQL Server • MongoDB • Redis • Docker • AWS</span>
-              </div>
+          <div className="band-cta">
+            <div>
+              <h2>Have something ambitious to build?</h2>
+              <p>Tell us about the product and we’ll show how we can help.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Bottom CTA */}
-      <section className="about-bottom-cta">
-        <div className="container about-cta-container">
-          <div className="about-cta-content">
-            <span className="about-kicker">START A CONVERSATION</span>
-            <h2 className="about-cta-heading">Have something ambitious to build?</h2>
-            <p className="about-cta-sub">
-              Tell us about your project or operational goals. We’ll provide candid technical guidance and a clear plan to bring it to life.
-            </p>
-          </div>
-          <div className="about-cta-action">
-            <Link
-              to="/contact"
-              className="btn btn-orange font-mono"
-              onClick={() => trackEvent('about_cta_click', 'conversion', 'start_conversation')}
-            >
-              <span>Start a Conversation</span>
-              <ArrowRight size={16} />
-            </Link>
+            <Link to="/contact" className="studio-btn">Start a Conversation <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>
     </main>
   );
 };
+
+export default AboutPage;

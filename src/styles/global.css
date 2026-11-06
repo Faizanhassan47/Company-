@@ -103,10 +103,10 @@ h5,
 h6 {
   font-family: var(--font-display);
   color: var(--text-primary);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.08;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  text-transform: none;
 }
 
 p {

@@ -35,8 +35,8 @@ const FEATURED_PROJECTS: ProjectFeature[] = [
       { label: 'Daily Volume', val: '14,800+ Txns' }
     ],
     slug: 'dome-enterprise',
-    imageSrc: '/images/projects/dome-enterprise.jpg',
-    imageAlt: 'DOME Enterprise Logistics and Dispatch Platform interface',
+    imageSrc: '/projects/dome.jpg',
+    imageAlt: 'DOME digital office platform dashboard',
     visualPosition: 'right'
   },
   {

@@ -1,10 +1,11 @@
 {
   "nav": {
-    "work": "WORK",
-    "services": "SERVICES",
-    "industries": "INDUSTRIES",
-    "insights": "INSIGHTS",
-    "about": "ABOUT",
+    "home": "Home",
+    "work": "Work",
+    "services": "Services",
+    "industries": "Industries",
+    "insights": "Insights",
+    "about": "About",
     "start_project": "START PROJECT"
   },
   "footer": {
