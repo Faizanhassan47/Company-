@@ -6,45 +6,45 @@ import './ServicesPage.css';
 const SHOWCASE = [
   {
     code: '01',
-    title: 'Custom software',
+    title: 'Custom Software Development',
     slug: 'custom-software-development',
-    summary: 'Internal tools, workflow systems and integrations built around how your team already works.',
-    stack: 'APIs · automation · ops tooling'
+    summary: 'Build software around the way your business operates, instead of forcing every process into an off-the-shelf product.',
+    examples: 'Internal tools, dashboards, client portals, workflow systems'
   },
   {
     code: '02',
-    title: 'Web applications',
+    title: 'Web Development',
     slug: 'web-application-development',
-    summary: 'Customer portals, admin systems and product surfaces that stay fast as usage grows.',
-    stack: 'SaaS · portals · dashboards'
+    summary: 'Develop websites and web applications that help customers, employees, and partners access the information and functionality they need.',
+    examples: 'Web platforms, business websites, account portals, online applications'
   },
   {
     code: '03',
-    title: 'Mobile apps',
+    title: 'Mobile App Development',
     slug: 'mobile-app-development',
-    summary: 'iOS and Android products with solid UX, offline support and reliable device features.',
-    stack: 'Flutter · React Native · .NET MAUI'
+    summary: 'Create mobile applications designed for the devices, interactions, and workflows your users depend on.',
+    examples: 'Customer apps, service apps, field-work apps, mobile product interfaces'
   },
   {
     code: '04',
-    title: 'SaaS products',
+    title: 'SaaS Development',
     slug: 'saas-engineering-modernization',
-    summary: 'From first release to a product you can sell, scale and keep improving over time.',
-    stack: 'MVP · architecture · iteration'
+    summary: 'Develop cloud-based software products with the features required to manage users, subscriptions, access, and everyday product operations.',
+    examples: 'Multi-user platforms, subscription products, admin dashboards'
   },
   {
     code: '05',
-    title: 'Product design',
+    title: 'UI/UX Design',
     slug: 'ui-ux-product-design',
-    summary: 'Interfaces that make complex work feel simple — research, flows and design systems.',
-    stack: 'UX · UI · systems'
+    summary: 'Plan workflows and design interfaces that help people understand and use your product.',
+    examples: 'Wireframes, user flows, prototypes, application interface design'
   },
   {
     code: '06',
-    title: 'Engineering & scale',
+    title: 'Integrations & Software Engineering',
     slug: 'performance-scaling-cloud-devops',
-    summary: 'Ongoing work to harden, speed up and extend products already in production.',
-    stack: 'performance · cloud · refactor'
+    summary: 'Improve how your software systems exchange information and support day-to-day operations.',
+    examples: 'APIs, third-party integrations, existing-system improvements, technical maintenance'
   }
 ] as const;
 
@@ -52,8 +52,8 @@ export const ServicesPage: React.FC = () => {
   return (
     <main className="services-page" id="main-content">
       <SEOHead
-        title="Software Development Services | Tekmora"
-        description="Custom software, web apps, mobile products, SaaS platforms, product design and long-term engineering support."
+        title="Software Development Services — Tekmora Solutions"
+        description="Custom software, web applications, mobile apps, SaaS products, UI/UX design, and integrations for businesses with specific development needs."
         canonical="https://tekmorasolution.com/services"
       />
 
@@ -70,16 +70,16 @@ export const ServicesPage: React.FC = () => {
               ))}
             </nav>
             <Link to="/contact" className="sv-rail-cta">
-              Start a project →
+              Discuss Your Project →
             </Link>
           </aside>
 
           <div className="sv-main">
             <header className="sv-intro">
-              <p className="sv-meta">Tekmora · engineering services</p>
-              <h1>What we build for startups and operating businesses.</h1>
+              <p className="sv-meta">Software development services</p>
+              <h1>Software development services</h1>
               <p className="sv-lede">
-                We take products from a rough brief to something people use every day — web, mobile, SaaS and the custom systems around them.
+                We help businesses develop digital products and software systems for specific needs. Whether the goal is launching an application, managing internal operations, or improving an existing platform, we work from the requirements to define a practical development approach.
               </p>
             </header>
 
@@ -88,14 +88,14 @@ export const ServicesPage: React.FC = () => {
                 <article className="sv-item" key={item.slug} id={item.slug}>
                   <div className="sv-item-top">
                     <span className="sv-code">{item.code}</span>
-                    <span className="sv-stack">{item.stack}</span>
+                    <span className="sv-stack">{item.examples}</span>
                   </div>
                   <h2>
                     <Link to={`/services/${item.slug}`}>{item.title}</Link>
                   </h2>
                   <p>{item.summary}</p>
                   <Link to={`/services/${item.slug}`} className="sv-more">
-                    Open service notes →
+                    Explore this service →
                   </Link>
                 </article>
               ))}
@@ -104,17 +104,17 @@ export const ServicesPage: React.FC = () => {
             <footer className="sv-foot">
               <div>
                 <p className="sv-meta">Next</p>
-                <h2>If you’re unsure which lane fits, send the brief anyway.</h2>
+                <h2>Tell us what you’re planning.</h2>
                 <p>
-                  We’ll reply with a short read on scope, approach and whether we’re the right team.
+                  Share the problem, the users, and what you need the software to do. We’ll review the requirements and discuss possible next steps.
                 </p>
               </div>
               <div className="sv-foot-actions">
                 <Link to="/contact" className="sv-btn">
-                  Write to us
+                  Discuss Your Project
                 </Link>
                 <Link to="/work" className="sv-link">
-                  Look at shipped work
+                  View Projects
                 </Link>
               </div>
             </footer>

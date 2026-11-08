@@ -58,8 +58,8 @@ test('page scroll progress exposes an accessible name', async ({ page }) => {
 
 test('project inquiry exposes accessible required fields', async ({ page }) => {
   await page.goto('/contact');
-  await expect(page.getByLabel(/your name/i).first()).toBeVisible();
-  await expect(page.getByLabel(/email/i).first()).toHaveAttribute('type', 'email');
+  await expect(page.getByLabel(/full name|your name/i).first()).toBeVisible();
+  await expect(page.getByLabel(/work email|email/i).first()).toHaveAttribute('type', 'email');
 });
 
 test('public pages expose complete SEO metadata', async ({ page }) => {

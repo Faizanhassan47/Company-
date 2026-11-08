@@ -118,6 +118,13 @@
   margin-bottom: 14px;
 }
 
+.form-helper {
+  margin: -6px 0 16px;
+  color: #a8a8b0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
 .aside-card dl {
   display: grid;
   gap: 12px;

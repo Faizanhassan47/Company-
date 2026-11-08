@@ -20,39 +20,8 @@ const resolveService = (slug?: string): ServiceDetail | undefined => {
   if (slug === 'saas-development') {
     return SERVICES_DATA.find(s => s.slug === 'saas-engineering-modernization');
   }
-  if (slug === 'ui-ux-design' || slug === 'ui-ux-product-design') {
-    return SERVICES_DATA.find(s => s.slug === 'ui-ux-product-design') || {
-      slug: 'ui-ux-product-design',
-      number: '05',
-      category: 'saas-modernization',
-      title: 'UI/UX & Product Design',
-      shortDesc: 'Product discovery, user journeys, wireframes, interface systems, and design tokens.',
-      tagline: 'Designing intuitive, high-clarity user interfaces for complex operational systems.',
-      primaryTopic: 'UI/UX & Product Design Services',
-      heroHeadline: 'USER INTERFACES DESIGNED FOR CLARITY AND PERFORMANCE.',
-      overview: 'Tekmora designs digital product interfaces that reduce cognitive friction and streamline complex business operations. We combine rigorous user journey mapping with modern design systems and clickable Figma prototypes.',
-      keyCapabilities: [
-        { title: 'Product Discovery & Workflow Mapping', description: 'Deconstructing end-user operational tasks and creating logical navigation hierarchies.' },
-        { title: 'Interactive Figma Prototypes', description: 'Clickable wireframes and prototypes allowing rapid usability testing prior to development.' },
-        { title: 'Design Tokens & Component Systems', description: 'Standardized color, typography, spacing, and state variables for seamless developer handoff.' },
-        { title: 'High-Density Operational Dashboards', description: 'Data grids, filtering controls, and telemetry charts optimized for daily professional use.' }
-      ],
-      technicalStack: [
-        { category: 'Design Tools', items: ['Figma', 'FigJam', 'Tokens Studio', 'Framer'] },
-        { category: 'UI Systems', items: ['Design Tokens', 'Atomic Design', 'WCAG AA Accessibility'] }
-      ],
-      developmentProcess: [
-        { phase: '01', name: 'User & Workflow Discovery', description: 'We map tasks, friction points, and user goals across each role.' },
-        { phase: '02', name: 'Wireframing & Information Architecture', description: 'We establish layout grids, navigation flows, and core action patterns.' },
-        { phase: '03', name: 'High-Fidelity Visual Design', description: 'We apply brand aesthetics, typography hierarchy, and state styling.' },
-        { phase: '04', name: 'Design System & Handoff', description: 'We export documented token specs and inspectable components for engineering.' }
-      ],
-      faqs: [
-        { question: 'Do you provide the complete Figma files upon completion?', answer: 'Yes. You receive 100% ownership of all organized Figma components, variants, and design token libraries.' },
-        { question: 'Can you work directly with our existing development team?', answer: 'Yes. We deliver structured developer handoff files with precise spacing, token variables, and responsive layout guidelines.' }
-      ],
-      relevantProjectSlugs: ['citi-books-platform', 'dome-enterprise', 'shoestops']
-    };
+  if (slug === 'ui-ux-design') {
+    return SERVICES_DATA.find(s => s.slug === 'ui-ux-product-design');
   }
   if (slug === 'product-engineering') {
     return SERVICES_DATA.find(s => s.slug === 'performance-scaling-cloud-devops');
@@ -109,7 +78,7 @@ export const ServiceDetailPage: React.FC = () => {
   return (
     <main className="service-detail-page" id="main-content">
       <SEOHead
-        title={`${service.title} Services | Tekmora`}
+        title={`${service.title} — Tekmora Solutions`}
         description={service.overview}
         canonical={`https://tekmorasolution.com/services/${service.slug}`}
         type="service"
@@ -130,7 +99,7 @@ export const ServiceDetailPage: React.FC = () => {
 
           <div className="sd-header-content">
             <span className="sd-kicker">DISCIPLINE {service.number}</span>
-            <h1 className="sd-title">{service.title}</h1>
+            <h1 className="sd-title">{service.heroHeadline}</h1>
             <p className="sd-tagline">{service.tagline}</p>
             <p className="sd-overview">{service.overview}</p>
 
@@ -140,7 +109,7 @@ export const ServiceDetailPage: React.FC = () => {
                 className="btn btn-orange font-mono"
                 onClick={() => trackEvent('service_cta_click', 'conversion', service.slug)}
               >
-                <span>Start a {service.title} Project</span>
+                <span>Discuss Your Project</span>
                 <ArrowRight size={16} />
               </Link>
               <a href="#capabilities" className="btn btn-secondary font-mono">

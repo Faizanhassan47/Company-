@@ -28,9 +28,9 @@ const matches = (project: CaseStudy, filter: string) => {
 const SHOWCASE: Record<string, { name: string; category: string; summary: string; tags: string[] }> = {
   'dome-enterprise': {
     name: 'DOME',
-    category: 'Digital office platform',
-    summary: 'One workspace for operations, people, finance and support.',
-    tags: ['Operations', 'HR', 'Finance']
+    category: 'Business operations and reporting',
+    summary: 'A system involving operational workflows, access permissions, audit trails, and reporting functionality.',
+    tags: ['Operations', 'Permissions', 'Reporting']
   },
   'matrix-field-service': {
     name: 'Matrix',
@@ -101,18 +101,18 @@ export const WorkPage: React.FC = () => {
   return (
     <main className="work-page" id="main-content">
       <SEOHead
-        title="Software Projects & Case Studies | Tekmora"
-        description="A selection of products we've designed and engineered for businesses across different industries."
+        title="Software Projects & Case Studies — Tekmora"
+        description="Browse software projects from Tekmora Solutions, including the problems they address, features developed, and technical decisions involved."
         canonical="https://tekmorasolution.com/work"
       />
 
       <section className="work-hero">
         <div className="container">
           <Reveal>
-            <p className="studio-kicker">Our work</p>
-            <h1>Software built for real <span className="serif-accent">business problems.</span></h1>
+            <p className="studio-kicker">Projects</p>
+            <h1>Software projects and selected work</h1>
             <p className="studio-lead">
-              A selection of products we’ve designed and engineered for businesses across different industries.
+              A look at software projects, the requirements behind them, and the development work involved. Each case study explains the system, its functionality, and the decisions that shaped the implementation.
             </p>
           </Reveal>
           <div className="filter-pills" role="tablist" aria-label="Project filters">
@@ -163,10 +163,10 @@ export const WorkPage: React.FC = () => {
 
           <div className="work-glow">
             <div>
-              <h2>Have a product to build?</h2>
-              <p>Let’s turn your idea into a reliable, scalable product.</p>
+              <h2>Tell us what you’re planning.</h2>
+              <p>Whether you’re starting a new product or improving an existing one, share what you need.</p>
             </div>
-            <Link to="/contact" className="studio-btn">Start a Project <ArrowRight size={16} /></Link>
+            <Link to="/contact" className="studio-btn">Discuss Your Project <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>

@@ -10,44 +10,110 @@ const FEATURED = [
   {
     slug: 'dome-enterprise',
     name: 'DOME',
-    line: 'Digital office for operations, people and finance',
-    tag: 'Enterprise'
+    line: 'Business operations software with workflows, access, and reporting.',
+    tag: 'Case study'
   },
   {
     slug: 'glucotrack-cgm',
     name: 'GlucoTrack',
-    line: 'Live glucose readings, sensor pairing and clinical record',
+    line: 'Mobile glucose monitoring with sensor pairing and clinical records.',
     tag: 'Healthcare'
   },
   {
     slug: 'matrix-field-service',
     name: 'Matrix',
-    line: 'Jobs, live tracking and equipment scan for field teams',
+    line: 'Field service app for jobs, tracking, and equipment checks.',
     tag: 'Mobile'
   },
   {
     slug: 'warehouse-grn-automation',
     name: 'WPS',
-    line: 'Scan and track with a production dashboard on SAP',
+    line: 'Warehouse production workflows with scanning and reporting.',
     tag: 'Operations'
   }
 ] as const;
 
 const SERVICES = [
-  { title: 'Custom software', href: '/services/custom-software-development' },
-  { title: 'Web applications', href: '/services/web-application-development' },
-  { title: 'Mobile apps', href: '/services/mobile-app-development' },
-  { title: 'SaaS products', href: '/services/saas-engineering-modernization' }
+  {
+    title: 'Custom Software Development',
+    href: '/services/custom-software-development',
+    text: 'Applications built to support your processes, users, and business requirements.'
+  },
+  {
+    title: 'Web Development',
+    href: '/services/web-application-development',
+    text: 'Websites, dashboards, portals, and browser-based applications.'
+  },
+  {
+    title: 'Mobile App Development',
+    href: '/services/mobile-app-development',
+    text: 'Mobile applications for customers, teams, and everyday workflows.'
+  },
+  {
+    title: 'SaaS Development',
+    href: '/services/saas-engineering-modernization',
+    text: 'Subscription platforms with accounts, permissions, and product management.'
+  },
+  {
+    title: 'UI/UX Design',
+    href: '/services/ui-ux-product-design',
+    text: 'Interfaces designed around what users need to accomplish.'
+  },
+  {
+    title: 'Integrations & Engineering',
+    href: '/services/performance-scaling-cloud-devops',
+    text: 'Connect systems, improve applications, and support ongoing releases.'
+  }
 ] as const;
 
-const TECH = ['React', 'Next.js', 'Node.js', 'Python', 'Flutter', '.NET', 'PostgreSQL', 'AWS'] as const;
+const PROCESS = [
+  {
+    title: 'Understand the requirements',
+    text: 'Discuss the business problem, target users, existing systems, and priorities.'
+  },
+  {
+    title: 'Define the scope',
+    text: 'Identify features, technical considerations, milestones, and expected deliverables.'
+  },
+  {
+    title: 'Design and develop',
+    text: 'Build the agreed functionality, review progress, and address feedback.'
+  },
+  {
+    title: 'Test and launch',
+    text: 'Check the product against acceptance criteria and prepare it for release.'
+  },
+  {
+    title: 'Plan what comes next',
+    text: 'Discuss maintenance, improvements, and future development as needed.'
+  }
+] as const;
+
+const PRINCIPLES = [
+  {
+    title: 'Clear requirements',
+    text: 'Everyone should understand what is being built and why.'
+  },
+  {
+    title: 'Practical technical decisions',
+    text: 'Technology choices should reflect the project’s needs and constraints.'
+  },
+  {
+    title: 'Visible progress',
+    text: 'Clients should know what is done, what is in progress, and what needs a decision.'
+  },
+  {
+    title: 'Code that can be maintained',
+    text: 'Think beyond the first release and account for future changes.'
+  }
+] as const;
 
 export const HomePage: React.FC = () => {
   return (
     <main className="home-page studio-home" id="main-content">
       <SEOHead
-        title="Tekmora Solution | Software Engineering for Startups & Businesses"
-        description="Tekmora designs and develops web applications, mobile products, SaaS platforms and custom software from idea to production."
+        title="Tekmora Solutions — Custom Software & App Development"
+        description="Tekmora Solutions develops custom software, web applications, mobile apps, and SaaS products. Explore our services and discuss your project requirements."
         canonical="https://tekmorasolution.com/"
       />
 
@@ -55,36 +121,57 @@ export const HomePage: React.FC = () => {
         <div className="home-hero-stage">
           <div className="home-hero-copy">
             <Reveal>
-              <p className="home-brand">Tekmora</p>
-              <p className="studio-kicker">Software engineering for startups &amp; businesses</p>
+              <p className="studio-kicker">Tekmora Solutions / Software development</p>
               <h1>
-                Software that businesses <br /> <span className="serif-accent"> rely on.</span>
+                Custom software for the way your
+                <span className="serif-accent"> business works.</span>
               </h1>
               <p className="studio-lead">
-                Web apps, mobile products, SaaS platforms and custom software — designed and engineered end to end.
+                Need a new application or a better way to manage your operations? We build web platforms, mobile apps, SaaS products, and business software around your requirements.
               </p>
               <div className="home-actions">
                 <Link to="/contact" className="studio-btn">
-                  Start a Project <ArrowRight size={16} />
+                  Discuss Your Project <ArrowRight size={16} />
                 </Link>
                 <Link to="/work" className="studio-btn-ghost">
-                  View Our Work
+                  Explore Our Work
                 </Link>
               </div>
             </Reveal>
           </div>
 
           <div className="product-window-frame home-hero-visual">
-            <ProjectPoster slug="matrix-field-service" />
+            <ProjectPoster slug="dome-enterprise" />
           </div>
         </div>
       </section>
 
-      <section className="home-marquee" aria-label="Engineering with modern technologies">
-        <div className="home-marquee-track">
-          {[...TECH, ...TECH].map((item, index) => (
-            <span key={`${item}-${index}`}>{item}</span>
-          ))}
+      <section className="home-services">
+        <div className="container">
+          <Reveal className="home-section-head">
+            <p className="studio-kicker">Software development services</p>
+            <h2>Different businesses need different kinds of software.</h2>
+            <p className="home-section-lead">
+              Some need a product built from scratch. Others need to improve an existing system, connect their tools, or make an application easier to use. Here’s where we can help.
+            </p>
+          </Reveal>
+          <ul className="home-service-grid">
+            {SERVICES.map((service, index) => (
+              <li key={service.href}>
+                <Link to={service.href}>
+                  <span>0{index + 1}</span>
+                  <strong>{service.title}</strong>
+                  <p>{service.text}</p>
+                  <em>
+                    Learn more <ArrowRight size={14} />
+                  </em>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link to="/services" className="text-link home-services-all">
+            Explore All Services <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
@@ -92,11 +179,14 @@ export const HomePage: React.FC = () => {
         <div className="container">
           <Reveal className="home-work-head">
             <div>
-              <p className="studio-kicker">Selected work</p>
-              <h2>Products shipping in the real world.</h2>
+              <p className="studio-kicker">A closer look at our work</p>
+              <h2>Projects, requirements, and what was built.</h2>
+              <p className="home-section-lead">
+                Browse examples of software projects, including the problems they address, features developed, and technical decisions involved.
+              </p>
             </div>
             <Link to="/work" className="text-link">
-              All projects <ArrowRight size={16} />
+              View Projects <ArrowRight size={16} />
             </Link>
           </Reveal>
 
@@ -136,43 +226,37 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="home-services">
-        <div className="container home-services-grid">
+      <section className="home-process">
+        <div className="container">
           <Reveal>
-            <p className="studio-kicker">What we build</p>
-            <h2>Engineering from first idea to a product people use.</h2>
+            <p className="studio-kicker">How a project moves forward</p>
+            <h2>A practical path from conversation to release.</h2>
           </Reveal>
-          <ul className="home-service-list">
-            {SERVICES.map((service, index) => (
-              <li key={service.href}>
-                <Link to={service.href}>
-                  <span>0{index + 1}</span>
-                  <strong>{service.title}</strong>
-                  <ArrowRight size={16} aria-hidden="true" />
-                </Link>
+          <ol className="home-process-list">
+            {PROCESS.map((step, index) => (
+              <li key={step.title}>
+                <span>0{index + 1}</span>
+                <strong>{step.title}</strong>
+                <p>{step.text}</p>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </section>
 
-      <section className="home-proof" aria-label="Studio record">
-        <div className="container home-proof-row">
-          <div>
-            <strong>18</strong>
-            <span>Shipped products</span>
-          </div>
-          <div>
-            <strong>100%</strong>
-            <span>Delivery rate</span>
-          </div>
-          <div>
-            <strong>5+</strong>
-            <span>Industries</span>
-          </div>
-          <div>
-            <strong>Remote-first</strong>
-            <span>Long-term support</span>
+      <section className="home-principles">
+        <div className="container">
+          <Reveal>
+            <p className="studio-kicker">What matters when building software</p>
+            <h2>Working principles, not marketing slogans.</h2>
+          </Reveal>
+          <div className="home-principle-grid">
+            {PRINCIPLES.map(item => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -181,16 +265,13 @@ export const HomePage: React.FC = () => {
         <div className="container home-close-panel">
           <Reveal>
             <p className="studio-kicker">Next step</p>
-            <h2>
-              Have a product to build?
-              <span className="serif-accent"> Let’s talk.</span>
-            </h2>
+            <h2>Tell us what you’re planning.</h2>
             <p>
-              Tell us what you’re building. We’ll reply with a clear point of view within one business day.
+              Whether you’re starting a new product or improving an existing one, share what you need. We’ll review the requirements and discuss possible next steps.
             </p>
             <div className="home-actions">
               <Link to="/contact" className="studio-btn">
-                Start a Conversation <ArrowRight size={16} />
+                Discuss Your Project <ArrowRight size={16} />
               </Link>
               <Link to="/about" className="studio-btn-ghost">
                 About Tekmora

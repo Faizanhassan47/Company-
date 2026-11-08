@@ -44,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const navLabels: Record<string, string> = {
     home: t('nav.home', 'Home'),
     services: t('nav.services', 'Services'),
-    work: t('nav.work', 'Work'),
+    work: t('nav.work', 'Projects'),
     about: t('nav.about', 'About'),
     contact: t('nav.contact', 'Contact')
   };
@@ -161,15 +161,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
           <div className="mobile-nav-footer">
             <div className="mobile-meta font-mono">
-              <div>GLOBAL // WORKING WORLDWIDE</div>
-              <div className="text-orange">WE BUILD THE SYSTEMS BUSINESSES RUN ON.</div>
+              <div>SOFTWARE DEVELOPMENT</div>
+              <div className="text-orange">SOFTWARE BUILT AROUND YOUR BUSINESS.</div>
             </div>
             <Link
               to="/contact"
               className="btn btn-orange w-full font-mono mt-4"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Start a project ↗
+              Start a Project ↗
             </Link>
           </div>
         </div>

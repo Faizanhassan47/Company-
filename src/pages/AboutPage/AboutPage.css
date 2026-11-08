@@ -10,17 +10,30 @@
   letter-spacing: -0.04em;
 }
 
+.about-hero-copy {
+  max-width: 820px;
+}
+
 .about-hero-grid,
 .about-story-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: center;
+  align-items: start;
+}
+
+.about-story-grid--text {
+  align-items: start;
 }
 
 .about-page h1 {
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
-  line-height: 1.04;
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  line-height: 1.06;
+  margin-top: 12px;
+  max-width: 16ch;
+}
+
+.about-hero .studio-lead + .studio-lead {
   margin-top: 12px;
 }
 
@@ -109,7 +122,6 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: 18px;
-  min-height: 180px;
 }
 
 .principle-grid svg {
@@ -118,7 +130,7 @@
 
 .principle-grid h3 {
   font-size: 1.05rem;
-  margin: 14px 0 8px;
+  margin: 0 0 8px;
 }
 
 .principle-grid p {

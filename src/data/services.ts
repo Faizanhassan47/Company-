@@ -280,67 +280,67 @@ export const SERVICES_DATA: ServiceDetail[] = [
     relevantProjectSlugs: ['warehouse-grn-automation', 'comments-fusion', 'dome-enterprise']
   },
 
-  // 02: SaaS Engineering & Modernization
+  // 02: SaaS Development
   {
     slug: 'saas-engineering-modernization',
     number: '02',
     category: 'saas-modernization',
-    title: 'SaaS Engineering & Product Modernization',
-    shortDesc: 'Ground-up multi-tenant SaaS architecture, legacy modernization, subscription billing and high-concurrency platforms.',
-    tagline: 'Engineered for exponential subscriber scale, flawless multi-tenancy, and high recurring margins.',
-    primaryTopic: 'SaaS engineering & legacy product modernization',
-    heroHeadline: 'BUILD NEW SAAS PLATFORMS OR MODERNIZE LEGACY ARCHITECTURES.',
-    overview: 'Tekmora builds high-margin, scalable B2B SaaS platforms from scratch and rescues aging, fragile software products through systematic modernization. Whether you need a ground-up multi-tenant platform with Stripe billing or a zero-downtime migration from a slow monolith to modular microservices, our team delivers battle-tested architectures.',
+    title: 'SaaS Development',
+    shortDesc: 'Cloud-based software products with accounts, permissions, subscriptions, and product operations.',
+    tagline: 'Build your SaaS product on a practical foundation.',
+    primaryTopic: 'SaaS product development',
+    heroHeadline: 'Build your SaaS product on a practical foundation.',
+    overview: 'A SaaS product needs more than its core features. User access, account management, subscriptions, and everyday administration all contribute to how the product operates. We develop cloud-based software with the features required to manage users, access, and day-to-day product work.',
     keyCapabilities: [
       {
-        title: 'Multi-Tenant Architecture & Data Isolation',
-        description: 'Robust tenant partitioning with schema-per-tenant, database-per-tenant, or partitioned row-level security (RLS) ensuring total data privacy.'
+        title: 'Authentication and permissions',
+        description: 'Account access, roles, and permission models that match how different users should work in the product.'
       },
       {
-        title: 'Legacy Monolith Refactoring & Migration',
-        description: 'Strangler-fig migrations decomposing monolithic codebases into performant Next.js frontends and decoupled API microservices without business disruption.'
+        title: 'Subscription and account handling',
+        description: 'Subscription flows, plan changes, and related account operations planned around the product’s commercial model.'
       },
       {
-        title: 'Subscription Tiers & Metered Billing',
-        description: 'Seamless Stripe Billing and Paddle integrations supporting flat-rate subscriptions, seat-based pricing, overage metering, and automated dunning.'
+        title: 'Application dashboards',
+        description: 'Product surfaces where customers and operators complete everyday tasks and review status.'
       },
       {
-        title: 'High-Throughput API Gateway',
-        description: 'Rate-limited, token-bucket protected REST and GraphQL endpoints designed for thousands of concurrent requests with sub-50ms response times.'
+        title: 'Administrative tools',
+        description: 'Back-office controls for managing users, content, configuration, and operational support.'
       },
       {
-        title: 'Admin Portals & Customer Self-Service',
-        description: 'Dedicated back-office consoles for customer impersonation, churn analytics, feature flagging, and automated onboarding funnels.'
+        title: 'Integrations and workflows',
+        description: 'Connections to payment providers, email services, analytics, and other systems the product depends on.'
       }
     ],
     technicalStack: [
-      { category: 'Frontend', items: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
-      { category: 'Backend & APIs', items: ['Node.js', 'Fastify / Express', 'Go', 'GraphQL', 'REST'] },
-      { category: 'Databases & Isolation', items: ['PostgreSQL (RLS)', 'Supabase', 'Redis', 'Prisma / Drizzle'] },
-      { category: 'Payments & Infrastructure', items: ['Stripe Billing', 'Stripe Tax', 'Docker', 'AWS ECS', 'Vercel'] }
+      { category: 'Product surface', items: ['React', 'Next.js', 'TypeScript'] },
+      { category: 'Application services', items: ['Node.js', 'REST APIs', 'PostgreSQL'] },
+      { category: 'Product operations', items: ['Auth', 'Roles', 'Billing integrations'] },
+      { category: 'Delivery', items: ['Cloud hosting', 'CI/CD', 'Monitoring'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Product Scope & Unit Economics', description: 'We map tenant models, pricing tiers, subscriber journeys, and technical bottlenecks.' },
-      { phase: '02', name: 'Database & Security Schema', description: 'We architect partitioned relational schemas, auth boundaries, and Stripe subscription webhooks.' },
-      { phase: '03', name: 'Modular Full-Stack Build', description: 'We implement customer-facing portals, administrative consoles, and billing workflows in parallel.' },
-      { phase: '04', name: 'Load & Concurrency Testing', description: 'We simulate thousands of concurrent tenant requests and automated subscription lifecycle events.' },
-      { phase: '05', name: 'Zero-Downtime Deployment', description: 'We execute blue-green releases, automated database migrations, and real-time error tracking.' }
+      { phase: '01', name: 'Product requirements', description: 'Identify the users, core workflows, and what the first useful release needs to include.' },
+      { phase: '02', name: 'Foundation planning', description: 'Define accounts, permissions, data model, and the operational features around the product.' },
+      { phase: '03', name: 'Build the release', description: 'Develop the agreed product features with room for review and feedback.' },
+      { phase: '04', name: 'Test and prepare launch', description: 'Validate critical paths, account flows, and release readiness.' },
+      { phase: '05', name: 'Continue development', description: 'Plan maintenance, improvements, and the next set of product work.' }
     ],
     faqs: [
       {
-        question: 'Can you modernize an existing SaaS application without causing customer downtime?',
-        answer: 'Yes. We utilize the strangler-fig pattern, incrementally replacing legacy endpoints and frontend views behind a reverse proxy so your paying subscribers never experience service interruptions.'
+        question: 'Do we need every SaaS feature in the first release?',
+        answer: 'No. An early release should focus on the functionality that matters most to the intended users. Additional features can be planned as requirements become clearer.'
       },
       {
-        question: 'Which multi-tenancy model do you recommend for B2B SaaS?',
-        answer: 'For most applications, a shared database with PostgreSQL Row-Level Security (RLS) offers the optimal balance of speed, cost efficiency, and tenant isolation. For strict enterprise compliance (HIPAA/SOC2), we implement schema-isolated databases.'
+        question: 'Can you work on an existing SaaS product?',
+        answer: 'Yes. We can review the current architecture, product gaps, and proposed changes before agreeing an approach.'
       },
       {
-        question: 'How do you handle subscription renewals, proration, and payment failures?',
-        answer: 'We build idempotent webhook listeners for Stripe events, ensuring that subscription downgrades, upgrades with proration, card expiry retries, and access revocations happen automatically.'
+        question: 'How do you plan for continued development?',
+        answer: 'Documented requirements, maintainable architecture, testing, and clear release processes help create a foundation for future work.'
       }
     ],
-    relevantProjectSlugs: ['dome-enterprise', 'leoedge-dashboard', 'grabzer-admin', 'citi-books-platform']
+    relevantProjectSlugs: ['dome-enterprise', 'citi-books-platform']
   },
 
   // 03: AI Agents & Business Process Automation
@@ -721,67 +721,67 @@ export const SERVICES_DATA: ServiceDetail[] = [
     relevantProjectSlugs: ['grabzer-admin', 'leoedge-dashboard', 'dome-enterprise']
   },
 
-  // 09: Performance, Reliability & Cloud DevOps
+  // 09: Integrations & Software Engineering
   {
     slug: 'performance-scaling-cloud-devops',
     number: '09',
     category: 'enterprise-cloud',
-    title: 'Performance, Reliability & Cloud DevOps',
-    shortDesc: 'Sub-second p99 latencies, Redis caching layers, query execution profiling, Docker, Kubernetes, and automated CI/CD.',
-    tagline: 'High-availability cloud infrastructure and extreme performance optimization for high-throughput platforms.',
-    primaryTopic: 'Application performance engineering & cloud DevOps',
-    heroHeadline: 'MAXIMIZE SYSTEM SPEED, RESILIENCE, AND CLOUD SCALABILITY.',
-    overview: 'Tekmora diagnoses performance bottlenecks, optimizes database queries, and designs robust cloud infrastructure. Whether your web application slows to a crawl during traffic spikes or your deployments are manual and error-prone, we tune your architecture for sub-100ms response times and 99.99% operational uptime.',
+    title: 'Integrations & Software Engineering',
+    shortDesc: 'Connect applications, develop APIs, improve existing systems, and support ongoing releases.',
+    tagline: 'Make your existing software work better together.',
+    primaryTopic: 'API integration and software engineering',
+    heroHeadline: 'Make your existing software work better together.',
+    overview: 'Businesses often use multiple tools to handle different tasks. We help connect applications, develop integrations, and improve existing software where manual handoffs or technical limitations are getting in the way.',
     keyCapabilities: [
       {
-        title: 'Database Query Optimization & Indexing',
-        description: 'Deep EXPLAIN ANALYZE profiling, dead-lock elimination, composite index tuning, and read-replica offloading.'
+        title: 'System integrations',
+        description: 'Pass information between websites, CRMs, ERPs, and other tools your team already relies on.'
       },
       {
-        title: 'Multi-Tier Redis Caching Strategies',
-        description: 'Stale-while-revalidate caching, distributed cache invalidation, and session stores slashing primary database query loads by up to 90%.'
+        title: 'API development',
+        description: 'Build and maintain APIs that let applications exchange data reliably.'
       },
       {
-        title: 'Automated CI/CD & Preview Deployments',
-        description: 'Zero-downtime deployment pipelines using GitHub Actions, automated database schema migrations, and per-PR preview environments.'
+        title: 'Existing-system improvements',
+        description: 'Fix recurring issues, improve workflows, or add functionality to software already in use.'
       },
       {
-        title: 'Containerization & Cloud Infrastructure (IaC)',
-        description: 'Dockerized microservices orchestrated on AWS ECS / EKS or Kubernetes, provisioned predictably using Terraform.'
+        title: 'Technical maintenance',
+        description: 'Support releases, address defects, and keep systems workable as requirements change.'
       },
       {
-        title: 'Full-Stack Observability & APM',
-        description: 'Comprehensive telemetry dashboards tracking p50/p95/p99 latency, error budgets, memory saturation, and CPU utilization.'
+        title: 'Technical discovery',
+        description: 'Review architecture, available APIs, dependencies, access requirements, and constraints before committing to an approach.'
       }
     ],
     technicalStack: [
-      { category: 'Cloud Providers', items: ['AWS', 'Google Cloud Platform (GCP)', 'Microsoft Azure', 'Cloudflare'] },
-      { category: 'DevOps & Containers', items: ['Docker', 'Kubernetes', 'Terraform', 'GitHub Actions'] },
-      { category: 'Caching & Data', items: ['Redis', 'Memcached', 'PostgreSQL Read-Replicas', 'Cloudflare CDN'] },
-      { category: 'Observability', items: ['Prometheus', 'Grafana', 'Datadog', 'Sentry'] }
+      { category: 'Integration', items: ['REST APIs', 'Webhooks', 'Middleware'] },
+      { category: 'Application work', items: ['Node.js', 'TypeScript', 'SQL databases'] },
+      { category: 'Connected systems', items: ['CRM', 'ERP', 'Third-party services'] },
+      { category: 'Delivery', items: ['Staging environments', 'Release support', 'Monitoring'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Telemetry & Latency Audit', description: 'We benchmark p99 response times, profile database slow queries, and identify bottlenecks.' },
-      { phase: '02', name: 'Database & Caching Optimization', description: 'We add targeted indices, refactor N+1 queries, and implement Redis caching layers.' },
-      { phase: '03', name: 'Infrastructure as Code (IaC)', description: 'We codify cloud environments with Terraform and configure containerized build runners.' },
-      { phase: '04', name: 'Stress & Chaos Benchmarks', description: 'We simulate heavy traffic spikes with k6 to verify auto-scaling and zero-downtime releases.' },
-      { phase: '05', name: 'Monitoring & Alerting Handover', description: 'We set up real-time Slack/PagerDuty alerts for latency anomalies and error rate spikes.' }
+      { phase: '01', name: 'Technical discovery', description: 'Review the existing architecture, APIs, dependencies, and constraints.' },
+      { phase: '02', name: 'Define the approach', description: 'Agree what should be connected, improved, or rebuilt and in what order.' },
+      { phase: '03', name: 'Implement the change', description: 'Develop the integration or improvement with review points along the way.' },
+      { phase: '04', name: 'Validate and release', description: 'Test the connected workflows and prepare the change for production use.' },
+      { phase: '05', name: 'Support what comes next', description: 'Discuss monitoring, maintenance, and later improvements if needed.' }
     ],
     faqs: [
       {
-        question: 'How do you diagnose why our web application is slow?',
-        answer: 'We install non-intrusive APM profilers that trace the complete request lifecycle: network transport, server CPU execution, ORM overhead, and individual database SQL query wait times to pinpoint the exact millisecond bottleneck.'
+        question: 'Can you work on an existing application?',
+        answer: 'Yes. We can review an existing system to understand its architecture, current issues, and proposed changes before determining a suitable approach.'
       },
       {
-        question: 'Can you migrate our manual hosting to automated AWS infrastructure?',
-        answer: 'Yes. We migrate fragile VPS setups to modern containerized AWS/GCP architectures with automated CI/CD pipelines, SSL certificate renewal, and automated nightly database backups.'
+        question: 'Do all projects require a full rebuild?',
+        answer: 'No. Sometimes the right approach is to fix a recurring issue, improve a workflow, or add functionality to a system already in use.'
       },
       {
-        question: 'What performance improvement can we realistically expect?',
-        answer: 'In typical modernization engagements, we achieve an 80% to 95% reduction in API response times, slashing multi-second page loads down to under 200 milliseconds.'
+        question: 'What determines the scope of an integration?',
+        answer: 'Available APIs, data ownership, authentication, error handling, and the business workflows that depend on the connection all affect scope.'
       }
     ],
-    relevantProjectSlugs: ['dome-enterprise', 'shoestops', 'sap-b1-production-dashboard']
+    relevantProjectSlugs: ['warehouse-grn-automation', 'dome-enterprise']
   },
 
   // 10: Maintenance Retainers
@@ -910,130 +910,130 @@ export const SERVICES_DATA: ServiceDetail[] = [
     relevantProjectSlugs: ['shoestops', 'comments-fusion', 'citi-books-platform']
   },
 
-  // 12: Web Application Development (Existing)
+  // 12: Web Development
   {
     slug: 'web-application-development',
     number: '12',
     category: 'saas-modernization',
-    title: 'Web Application Development',
-    shortDesc: 'Custom React and Next.js applications connected to secure APIs, databases and business workflows.',
-    tagline: 'Custom web platforms engineered for operational precision and zero-latency interaction.',
-    primaryTopic: 'Custom web application development',
-    heroHeadline: 'WEB PLATFORMS BUILT FOR OPERATIONAL RELIABILITY.',
-    overview: 'Tekmora designs and develops custom web applications, multi-tenant SaaS portals, customer self-service hubs, and high-throughput internal platforms. We build using modern React and Next.js architectures with strict component isolation, predictable state management, and optimized server-side rendering for search visibility and instant interaction.',
+    title: 'Web Development',
+    shortDesc: 'Websites, dashboards, portals, and browser-based applications.',
+    tagline: 'Web applications designed around real use.',
+    primaryTopic: 'Web application development',
+    heroHeadline: 'Web applications designed around real use.',
+    overview: 'From customer-facing websites to complex browser-based applications, we develop web experiences with attention to usability, functionality, and long-term maintenance. The technical approach depends on whether the product needs to communicate information or help people complete ongoing tasks.',
     keyCapabilities: [
       {
-        title: 'React & Next.js Core Architecture',
-        description: 'Server-side rendering (SSR), static site generation (SSG), and incremental static regeneration (ISR) tailored for maximum performance and crawlability.'
+        title: 'Business websites',
+        description: 'Sites that communicate what you offer and help visitors take the next step.'
       },
       {
-        title: 'Business & Customer Portals',
-        description: 'Secure, authenticated multi-user portals with role-based access control, profile management, and interactive data grids.'
+        title: 'Web platforms and portals',
+        description: 'Account-based applications where customers, employees, or partners manage information and complete work.'
       },
       {
-        title: 'High-Throughput API Integration',
-        description: 'REST and WebSocket connections handling high concurrent event streams, telemetry feeds, and deterministic transactions.'
+        title: 'Dashboards and admin tools',
+        description: 'Interfaces for reviewing status, managing records, and supporting day-to-day operations.'
       },
       {
-        title: 'Database Schema & Performance',
-        description: 'Normalized SQL Server, PostgreSQL, and MongoDB architectures designed with strict relational constraints and indexing.'
+        title: 'Responsive application interfaces',
+        description: 'Layouts and interactions that remain usable across desktop and mobile browsers.'
       },
       {
-        title: 'Authentication & Audit Security',
-        description: 'Tokenized JWT and session management, encrypted data transfers, and immutable transaction audit logs.'
+        title: 'Connected services',
+        description: 'Integration with existing APIs, databases, and third-party tools where the product needs them.'
       }
     ],
     technicalStack: [
-      { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
-      { category: 'Backend & APIs', items: ['Node.js', 'Express', 'REST APIs', 'WebSockets', 'GraphQL'] },
-      { category: 'Database & Caching', items: ['PostgreSQL', 'SQL Server', 'MongoDB', 'Redis'] },
-      { category: 'Deployment & CI/CD', items: ['Docker', 'Vercel', 'AWS', 'Automated Pipelines'] }
+      { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript'] },
+      { category: 'Backend & APIs', items: ['Node.js', 'REST APIs'] },
+      { category: 'Data', items: ['PostgreSQL', 'SQL Server'] },
+      { category: 'Delivery', items: ['Cloud hosting', 'CI/CD'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Workflow Scoping', description: 'We map user journeys, operational data flows, and security requirements to prevent scope drift.' },
-      { phase: '02', name: 'Architecture & Wireframes', description: 'We design responsive UI components, state machines, and relational schemas before writing code.' },
-      { phase: '03', name: 'Full-Stack Development', description: 'We build frontend clients and backend microservices with end-to-end TypeScript validation.' },
-      { phase: '04', name: 'Stress & Accessibility Testing', description: 'We test concurrent queries, network latency, and WCAG AA contrast standards.' },
-      { phase: '05', name: 'Deployment & Monitoring', description: 'We configure production monitoring, telemetry dashboards, and maintenance plans.' }
+      { phase: '01', name: 'Clarify the purpose', description: 'Separate website goals from application workflows and identify the users involved.' },
+      { phase: '02', name: 'Define scope', description: 'Agree pages, features, data needs, and integration requirements.' },
+      { phase: '03', name: 'Design and develop', description: 'Build the agreed interface and functionality with review points along the way.' },
+      { phase: '04', name: 'Test and launch', description: 'Check usability, key flows, and release readiness.' },
+      { phase: '05', name: 'Maintain and improve', description: 'Support updates and later improvements as needs change.' }
     ],
     faqs: [
       {
-        question: 'Why build a custom web application instead of buying an off-the-shelf SaaS?',
-        answer: 'Off-the-shelf SaaS tools force your organization to adapt your business workflows to their rigid constraints. Custom software fits your exact operational steps, eliminates perpetual per-seat license fees, and keeps 100% of your data under your control.'
+        question: 'What’s the difference between a website and a web application?',
+        answer: 'A business website communicates information and helps visitors take action. A web application allows users to complete tasks, manage data, and interact with a system over time.'
       },
       {
-        question: 'How do you ensure web application security?',
-        answer: 'We enforce HTTPS encryption, parameterized queries against SQL injection, strict CORS policies, tokenized JWT authentication with HttpOnly cookies, and granular row-level access control.'
+        question: 'What considerations affect web project scope?',
+        answer: 'Accessibility, responsive layouts, performance, account management, data handling, and integration with existing services all influence scope.'
       },
       {
-        question: 'Can you migrate legacy web portals to modern Next.js?',
-        answer: 'Yes. We frequently execute phased migrations from monolithic legacy applications to modular Next.js platforms without causing downtime for active business users.'
+        question: 'Can you improve an existing web application?',
+        answer: 'Yes. We can review the current product, identify practical improvements, and plan changes without assuming a full rebuild.'
       }
     ],
-    relevantProjectSlugs: ['dome-enterprise', 'shoestops', 'comments-fusion', 'citi-books-platform']
+    relevantProjectSlugs: ['dome-enterprise', 'citi-books-platform']
   },
 
-  // 13: Mobile App Development (Existing)
+  // 13: Mobile App Development
   {
     slug: 'mobile-app-development',
     number: '13',
     category: 'enterprise-cloud',
     title: 'Mobile App Development',
-    shortDesc: 'React Native and Expo applications for customers, employees and field operations.',
-    tagline: 'Cross-platform mobile applications engineered for demanding physical environments.',
-    primaryTopic: 'React Native mobile app development',
-    heroHeadline: 'MOBILE SOFTWARE ENGINEERED FOR REAL-WORLD OPERATIONS.',
-    overview: 'Tekmora builds high-performance cross-platform mobile applications for iOS and Android using React Native and Expo. We specialize in field-service applications, offline data capture tools, and polished consumer companion apps that function flawlessly regardless of cell signal strength.',
+    shortDesc: 'Mobile applications for customers, teams, and everyday workflows.',
+    tagline: 'Mobile apps that make everyday tasks easier.',
+    primaryTopic: 'Mobile app development',
+    heroHeadline: 'Mobile apps that make everyday tasks easier.',
+    overview: 'We develop mobile applications for businesses that want to reach customers, deliver services, or give teams access to tools while they’re on the move. Before building screens, we focus on what users need to do and which interactions should stay simple.',
     keyCapabilities: [
       {
-        title: 'Cross-Platform React Native & Expo',
-        description: 'Single codebase powering native iOS and Android apps with unified logic, native UI performance, and fast over-the-air updates.'
+        title: 'User accounts and profiles',
+        description: 'Sign-in, account settings, and role-based access when the product needs them.'
       },
       {
-        title: 'Offline-First Persistence & SQLite',
-        description: 'Local SQLite and asynchronous queue engines that allow users to fill forms, take photos, and collect signatures without internet connection.'
+        title: 'Notifications and updates',
+        description: 'Timely alerts that help users return to important tasks or status changes.'
       },
       {
-        title: 'Field-Service & Geolocation Workflows',
-        description: 'Battery-efficient background GPS tracking, dispatch routing, and geocoded photographic verification.'
+        title: 'Dashboards and data entry',
+        description: 'Mobile screens for reviewing information and submitting work from the field or on the go.'
       },
       {
-        title: 'Hardware & Sensor Integration',
-        description: 'Native device camera controls, barcode/QR scanning, Bluetooth thermal printing, and biometric authentication.'
+        title: 'Scheduling and service workflows',
+        description: 'Flows that support appointments, jobs, or recurring mobile tasks.'
       },
       {
-        title: 'Push Notifications & Dispatch Sync',
-        description: 'Real-time job dispatch alerts, appointment reminders, and instant status updates between mobile agents and back-office teams.'
+        title: 'API-connected functionality',
+        description: 'Mobile clients connected to backend services and existing business systems.'
       }
     ],
     technicalStack: [
-      { category: 'Mobile Framework', items: ['React Native', 'Expo', 'TypeScript'] },
-      { category: 'Local Storage', items: ['SQLite', 'AsyncStorage', 'WatermelonDB'] },
-      { category: 'Hardware APIs', items: ['Camera', 'Geolocation', 'Biometrics', 'Bluetooth'] },
-      { category: 'Backend Synchronization', items: ['Node.js', 'REST APIs', 'WebSockets', 'Cloud Storage'] }
+      { category: 'Mobile', items: ['React Native', 'Expo', 'TypeScript'] },
+      { category: 'Device features', items: ['Camera', 'Notifications', 'Local storage'] },
+      { category: 'Backend', items: ['Node.js', 'REST APIs'] },
+      { category: 'Delivery', items: ['Test builds', 'App store release support'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Field Environment Discovery', description: 'We analyze lighting conditions, glove usage, network availability, and device hardware constraints.' },
-      { phase: '02', name: 'Offline Data Modeling', description: 'We design local SQLite schemas and conflict-resolution algorithms for concurrent offline edits.' },
-      { phase: '03', name: 'Native Component Engineering', description: 'We build ergonomic touch interfaces with haptic feedback and rapid input shortcuts.' },
-      { phase: '04', name: 'Device Matrix QA', description: 'We test across diverse iOS and Android form factors, screen resolutions, and battery thresholds.' },
-      { phase: '05', name: 'App Store Deployment', description: 'We handle Apple App Store, Google Play Store compliance, and enterprise MDM distributions.' }
+      { phase: '01', name: 'User journey discovery', description: 'Understand what users need to do, how often they will use the app, and which actions must feel immediate.' },
+      { phase: '02', name: 'Platform planning', description: 'Consider device support, offline needs, security, performance, and update requirements.' },
+      { phase: '03', name: 'Design and develop', description: 'Build the agreed screens and functionality with reviewable progress.' },
+      { phase: '04', name: 'Device testing', description: 'Validate key flows across the target devices and usage conditions.' },
+      { phase: '05', name: 'Release and follow-up', description: 'Prepare store or internal distribution and discuss ongoing updates.' }
     ],
     faqs: [
       {
-        question: 'Why choose React Native over separate native Swift and Kotlin applications?',
-        answer: 'React Native allows a single engineering team to deliver 95%+ shared code across iOS and Android, drastically cutting development and maintenance costs while maintaining 60 FPS native performance.'
+        question: 'Do I need separate iOS and Android projects?',
+        answer: 'Not always. Cross-platform approaches can share much of the product logic when the requirements and device features allow it. The right choice depends on the project.'
       },
       {
-        question: 'How do offline workflows handle sync conflicts when connectivity returns?',
-        answer: 'We employ deterministic timestamp diffing and server-side reconciliation rules to resolve conflicting edits cleanly without data loss or user confusion.'
+        question: 'What should be decided before development starts?',
+        answer: 'Device support, offline requirements, security expectations, performance needs, and how updates will be released should be considered early.'
       },
       {
-        question: 'Can field workers scan barcodes with standard phone cameras?',
-        answer: 'Yes. We integrate native camera scanning libraries optimized for low light and damaged barcodes, eliminating the need for expensive dedicated scanner hardware.'
+        question: 'Can you work with an existing backend?',
+        answer: 'Yes. Mobile apps often connect to existing APIs. We review those interfaces as part of planning.'
       }
     ],
-    relevantProjectSlugs: ['matrix-field-service', 'quran-ayat-app', 'fitness-mobile-app', 'citi-books-platform']
+    relevantProjectSlugs: ['matrix-field-service', 'glucotrack-cgm', 'quran-ayat-app']
   },
 
   // 14: Enterprise Software Development (Existing)
@@ -1293,37 +1293,92 @@ export const SERVICES_DATA: ServiceDetail[] = [
     number: 'C01',
     category: 'enterprise-cloud',
     title: 'Custom Software Development',
-    shortDesc: 'Bespoke enterprise applications engineered for complex operational workflows.',
-    tagline: 'We build the software your business runs on.',
-    primaryTopic: 'Custom Enterprise Software',
-    heroHeadline: 'ENGINEERED FOR YOUR EXACT OPERATIONAL REALITY.',
-    overview: 'Generic SaaS products force you to adapt your business to their constraints. We build custom software that adapts perfectly to you—bridging the gap between your unique workflows, legacy systems, and future scale.',
-    architectureApproach: 'We favor modular monoliths or pragmatic microservices using React/Next.js and Node.js/C#. Architecture is designed around domain boundaries, ensuring the system can evolve without breaking.',
+    shortDesc: 'Applications built around your processes, users, and business requirements.',
+    tagline: 'Custom software built for your business.',
+    primaryTopic: 'Custom software development',
+    heroHeadline: 'Custom software built for your business.',
+    overview: 'Not every business process fits inside an existing tool. We develop custom applications for businesses that need software shaped around their users, workflows, and operational requirements.',
+    architectureApproach: 'We start by identifying user roles, required functionality, existing data, integrations, and delivery priorities. Those details become the basis for the agreed development scope.',
     keyCapabilities: [
-      { title: 'End-to-End Development', description: 'From architecture design to deployment, we handle the entire lifecycle.' },
-      { title: 'Legacy System Integration', description: 'Seamlessly connecting new platforms with existing ERPs or CRMs.' },
-      { title: 'High-Performance Architecture', description: 'Optimized for speed, concurrency, and reliability.' }
+      { title: 'Internal management systems', description: 'Software that supports the processes your team already runs day to day.' },
+      { title: 'Client and employee portals', description: 'Secure spaces where people access information and complete assigned work.' },
+      { title: 'Administrative dashboards', description: 'Views for reviewing status, managing records, and supporting decisions.' },
+      { title: 'Approval workflows', description: 'Structured paths for requests, reviews, and handoffs between roles.' },
+      { title: 'Connected business processes', description: 'Applications that link related work instead of leaving it in disconnected tools.' }
     ],
     technicalStack: [
-      { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind'] },
-      { category: 'Backend', items: ['Node.js', '.NET C#', 'PostgreSQL', 'Redis'] }
+      { category: 'Frontend', items: ['React', 'TypeScript'] },
+      { category: 'Backend', items: ['Node.js', 'SQL databases', 'REST APIs'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Discovery & Architecture', description: 'Mapping your business domain and technical constraints.' },
-      { phase: '02', name: 'Iterative Development', description: 'Sprint-based delivery with continuous feedback.' },
-      { phase: '03', name: 'Testing & QA', description: 'Rigorous automated and manual testing.' },
-      { phase: '04', name: 'Deployment & Training', description: 'Smooth rollout and user onboarding.' }
+      { phase: '01', name: 'Understand the requirements', description: 'Discuss the business problem, users, existing systems, and priorities.' },
+      { phase: '02', name: 'Define the scope', description: 'Identify features, technical considerations, milestones, and deliverables.' },
+      { phase: '03', name: 'Design and develop', description: 'Build the agreed functionality, review progress, and address feedback.' },
+      { phase: '04', name: 'Test and launch', description: 'Check the product against acceptance criteria and prepare it for release.' }
     ],
     faqs: [
-      { question: 'Do we own the source code?', answer: 'Yes, 100% ownership of the intellectual property transfers to you upon project completion.' },
-      { question: 'How do you handle maintenance?', answer: 'We offer dedicated SLAs and retainer packages for ongoing support and feature evolution.' }
+      {
+        question: 'How much does custom software development cost?',
+        answer: 'The cost depends on features, technical complexity, integrations, and delivery requirements. We can discuss your requirements before defining a scope and estimate.'
+      },
+      {
+        question: 'Do I need a complete specification?',
+        answer: 'No. A clear description of the problem, intended users, and desired functionality is a useful starting point.'
+      },
+      {
+        question: 'When does custom software make sense?',
+        answer: 'When teams rely on spreadsheets, disconnected systems, or repetitive manual tasks, purpose-built software can help bring the work into a more structured process.'
+      }
     ],
-    relevantProjectSlugs: ['dome-enterprise', 'citi-books-platform'],
+    relevantProjectSlugs: ['dome-enterprise', 'warehouse-grn-automation'],
     businessProblems: [
-      { title: 'Off-the-shelf software doesn\'t fit', description: 'You are using multiple disjointed tools with manual data entry in between.' },
-      { title: 'High licensing costs', description: 'Per-user SaaS fees are eating into your margins as your team scales.' }
+      { title: 'Off-the-shelf tools don’t fit', description: 'Important work is spread across spreadsheets and disconnected systems.' },
+      { title: 'Manual handoffs slow things down', description: 'Teams re-enter the same information or chase approvals outside a shared system.' }
     ],
-    industries: ['Logistics', 'Healthcare', 'Manufacturing', 'Finance']
+    industries: ['Operations', 'Services', 'Healthcare', 'Commerce']
+  },
+  {
+    slug: 'ui-ux-product-design',
+    number: 'C05B',
+    category: 'saas-modernization',
+    title: 'UI/UX Design',
+    shortDesc: 'Interfaces designed around what users need to accomplish.',
+    tagline: 'Product design that makes complex work easier.',
+    primaryTopic: 'UI/UX design services',
+    heroHeadline: 'Product design that makes complex work easier.',
+    overview: 'Clear interfaces begin with an understanding of what users are trying to accomplish. We design application experiences that connect business requirements with usable screens and workflows.',
+    keyCapabilities: [
+      { title: 'User flows', description: 'Map the tasks people need to complete and the steps involved.' },
+      { title: 'Wireframes', description: 'Structure screens and information before visual polish.' },
+      { title: 'Interface design', description: 'Design application screens that support real work.' },
+      { title: 'Interactive prototypes', description: 'Make interactions reviewable before full development.' },
+      { title: 'Development-ready specs', description: 'Clarify expected behavior enough for build, review, and testing.' }
+    ],
+    technicalStack: [
+      { category: 'Design', items: ['Figma', 'User flows', 'Prototypes'] },
+      { category: 'Handoff', items: ['Interface specs', 'Component notes', 'Review checkpoints'] }
+    ],
+    developmentProcess: [
+      { phase: '01', name: 'Understand the work', description: 'Examine the tasks users need to complete and the information they require.' },
+      { phase: '02', name: 'Structure the experience', description: 'Define flows, screen structure, and key interactions.' },
+      { phase: '03', name: 'Design the interface', description: 'Produce screen designs and prototypes for review.' },
+      { phase: '04', name: 'Prepare for development', description: 'Clarify behavior, states, and handoff details for engineering.' }
+    ],
+    faqs: [
+      {
+        question: 'What deliverables can a design engagement include?',
+        answer: 'Depending on the engagement, these may include user flows, wireframes, screen designs, interactive prototypes, and interface specifications.'
+      },
+      {
+        question: 'Do you design before development starts?',
+        answer: 'Design begins before the interface. We examine tasks and information needs first, then shape screens around that understanding.'
+      },
+      {
+        question: 'Can design work support an existing product?',
+        answer: 'Yes. Design can improve an existing application’s workflows and screens as well as shape a new product.'
+      }
+    ],
+    relevantProjectSlugs: ['dome-enterprise', 'citi-books-platform', 'glucotrack-cgm']
   },
   {
     slug: 'web-development',

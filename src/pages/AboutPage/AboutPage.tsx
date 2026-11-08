@@ -1,32 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Compass, MessagesSquare, RefreshCcw, ShieldCheck } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
-import { ScenePhoto, STUDIO_PHOTOS } from '../../components/studio/ProductMockups';
 import { Reveal } from '../../components/studio/StudioMotion';
-import { TekmoraLogo } from '../../components/ui/TekmoraLogo';
 import './AboutPage.css';
 
-const PRINCIPLES = [
+const THINKING = [
   {
-    title: 'Build what matters',
-    description: 'Focus on real problems.',
-    icon: Compass
+    title: 'Understand the work',
+    description: 'A feature only makes sense when we understand the people and processes it supports.'
   },
   {
-    title: 'Communicate directly',
-    description: 'Clear, honest and practical.',
-    icon: MessagesSquare
+    title: 'Make decisions deliberately',
+    description: 'The most complicated architecture isn’t always the right one. The solution should fit the requirements and available resources.'
   },
   {
-    title: 'Engineer for change',
-    description: 'Flexible, maintainable and scalable.',
-    icon: RefreshCcw
+    title: 'Be clear about trade-offs',
+    description: 'Scope, budget, performance, and development time all affect decisions. Those considerations should be discussed openly.'
   },
   {
-    title: 'Own the outcome',
-    description: 'We take responsibility for the results.',
-    icon: ShieldCheck
+    title: 'Build for change',
+    description: 'Requirements evolve. Software should be structured with future maintenance and development in mind.'
   }
 ];
 
@@ -34,77 +28,66 @@ export const AboutPage: React.FC = () => {
   return (
     <main className="about-page" id="main-content">
       <SEOHead
-        title="About Tekmora | Software Engineering Studio"
-        description="Tekmora is a focused engineering studio that partners with businesses and founders to design, build and improve digital products."
+        title="About Tekmora Solutions — Software Development Company"
+        description="Tekmora Solutions provides custom software development for businesses building new digital products or improving existing systems."
         canonical="https://tekmorasolution.com/about"
       />
 
       <section className="about-hero">
-        <div className="container about-hero-grid">
+        <div className="container about-hero-copy">
           <Reveal>
-            <p className="studio-kicker">About Tekmora</p>
-            <h1>A focused engineering studio building <span className="serif-accent">meaningful products.</span></h1>
+            <p className="studio-kicker">About Tekmora Solutions</p>
+            <h1>A software company focused on the work behind the product.</h1>
+            <p className="studio-lead">
+              Tekmora Solutions provides custom software development services for businesses building new digital products or improving existing systems.
+            </p>
+            <p className="studio-lead">
+              Our work covers web and mobile applications, SaaS platforms, product design, and software engineering. Each project starts with understanding what needs to be built, who will use it, and the practical constraints involved.
+            </p>
           </Reveal>
-          <ScenePhoto src={STUDIO_PHOTOS.office} alt="Studio workspace" className="about-photo">
-            <div className="scene-mark">
-              <TekmoraLogo height={22} />
-            </div>
-          </ScenePhoto>
         </div>
       </section>
 
       <section className="about-story">
-        <div className="container about-story-grid">
+        <div className="container about-story-grid about-story-grid--text">
           <div>
-            <h2>Our story</h2>
+            <h2>What we do</h2>
             <p>
-              Tekmora was founded with a simple goal — to build high-quality software that solves real problems.
+              Some projects start with an idea and a list of requirements. Others start with an existing application that needs new features, better workflows, or technical improvements.
             </p>
             <p>
-              We work closely with founders and businesses, combining engineering discipline and a practical, outcome-focused approach to turn ideas into reliable, scalable products.
+              We approach each engagement by understanding the current problem before deciding how the software should be developed.
             </p>
           </div>
-          <div className="about-stats">
-            <div><strong>3+</strong><span>Years of experience</span></div>
-            <div><strong>5+</strong><span>Industries served</span></div>
-            <div><strong>100%</strong><span>Project delivery</span></div>
+          <div>
+            <h2>How we work</h2>
+            <p>
+              Development is handled through a focused team assembled around each project’s needs. Clients work with the people responsible for planning, design, and delivery — not a large anonymous process.
+            </p>
+            <p>
+              Scope, priorities, and delivery expectations are agreed early so progress stays visible and decisions stay grounded in the work itself.
+            </p>
           </div>
         </div>
       </section>
 
       <section className="about-principles">
         <div className="container">
-          <h2>Our principles</h2>
+          <h2>How we think about software</h2>
           <div className="principle-grid">
-            {PRINCIPLES.map(item => {
-              const Icon = item.icon;
-              return (
-                <article key={item.title}>
-                  <Icon size={18} />
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </article>
-              );
-            })}
-          </div>
-          <div className="about-model">
-            <ScenePhoto src={STUDIO_PHOTOS.engineers} alt="Team working in the studio" className="about-model-photo" />
-            <div>
-              <h2>Our working model</h2>
-              <ul>
-                <li>Direct collaboration with the team</li>
-                <li>Product-focused thinking</li>
-                <li>Iterative and transparent delivery</li>
-                <li>Long-term partnership and support</li>
-              </ul>
-            </div>
+            {THINKING.map(item => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
           </div>
           <div className="band-cta">
             <div>
-              <h2>Have something ambitious to build?</h2>
-              <p>Tell us about the product and we’ll show how we can help.</p>
+              <h2>Get to know our work</h2>
+              <p>Browse selected projects to see how requirements turn into working software.</p>
             </div>
-            <Link to="/contact" className="studio-btn">Start a Conversation <ArrowRight size={16} /></Link>
+            <Link to="/work" className="studio-btn">Get to Know Our Work <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>

@@ -87,63 +87,63 @@ export const PROJECTS: CaseStudy[] = [
     id: 'dome-enterprise',
     slug: 'dome-enterprise',
     number: '01',
-    title: 'DOME Enterprise Platform',
-    client: 'Enterprise Commercial Operations',
-    tagline: 'An enterprise platform connecting finance, HR, CRM, sales, logistics, inventory, approvals and operational reporting.',
+    title: 'DOME — Business operations and reporting',
+    client: 'Internal product case study',
+    tagline: 'Business operations software with workflows, access permissions, audit trails, and reporting.',
     imageUrl: '/projects/dome.jpg',
     thumbnailUrl: '/projects/dome.jpg',
-    category: 'Enterprise Management Platform',
+    category: 'Business operations and reporting',
     filterCategory: 'enterprise',
     year: '2024',
-    role: 'Full-Stack Architecture & Engineering',
-    services: ['Enterprise Web Portal', 'Role-Based Access Control', 'Multi-Module ERP', 'Custom Reporting Engine'],
+    role: 'Product design and full-stack engineering',
+    services: ['Operations workflows', 'Role-based access', 'Audit trails', 'Reporting'],
     technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'SQL Server'],
-    clientProblem: 'The organization operated isolated legacy spreadsheets and disparate sub-systems for procurement, employee records, customer ticketing, and warehouse invoicing. Disconnected databases caused latency, duplicate entries, and a total lack of cross-departmental visibility for executive decision makers.',
-    usersAndContext: 'Used daily by 200+ multi-departmental personnel: HR managers, procurement officers, sales leads, logistics coordinators, and C-level executives requiring real-time operational status without system friction.',
-    developmentApproach: 'Tekmora designed a unified, modular architecture with strict design tokens, standardized data grid tables, centralized authentication with granular permission matrix, and real-time aggregation microservices.',
+    clientProblem: 'Operational work was spread across disconnected tools and manual processes, making permissions, handoffs, and reporting harder to manage consistently.',
+    usersAndContext: 'Intended for operational teams that need shared workflows, controlled access, and reporting across day-to-day business activity.',
+    developmentApproach: 'Tekmora developed DOME as a modular operations system with shared interface patterns, role-based permissions, audit logging, and reporting views shaped around the work people needed to complete.',
     technicalArchitecture: [
-      'Frontend: Scalable React architecture with custom design system, zero visual depth effects, keyboard shortcuts, and virtualized tables.',
-      'API Gateway: Express/Node.js middleware layer managing tokenized RBAC, audit logging, and payload validation.',
-      'Database: Normalized relational database schema with transactional integrity and partitioned reporting tables.',
-      'Integrations: Automated background cron workers reconciling invoices, CRM pipeline stages, and inventory levels.'
+      'Frontend: React application with shared table and workflow patterns across modules.',
+      'API layer: Node.js/Express services for authentication, permissions, and business operations.',
+      'Database: Relational schema supporting operational records, access control, and reporting queries.',
+      'Auditability: Logging for relevant changes so activity can be reviewed later.'
     ],
     keyFeatures: [
       {
-        title: 'Comprehensive Operations Hub',
-        description: 'Single-pane view for managing cross-department workflows, pending approvals, and operational health metrics.'
+        title: 'Operational workflows',
+        description: 'Structured processes for managing day-to-day operational work in one place.'
       },
       {
-        title: 'Granular Role & Department Access',
-        description: 'Enterprise permissions controlling module access, row-level data visibility, and approval authorization tiers.'
+        title: 'Role-based permissions',
+        description: 'Access controls that determine which actions different users are allowed to perform.'
       },
       {
-        title: 'High-Throughput Data Tables',
-        description: 'Standardized global table engine supporting multi-column sorting, sticky headers, advanced filtering, and instant export.'
+        title: 'Reporting views',
+        description: 'Reporting functionality for reviewing operational information without relying only on manual exports.'
       },
       {
-        title: 'Automated Audit Logging',
-        description: 'Immutable transaction trails recording user actions, status changes, and critical data updates.'
+        title: 'Audit trails',
+        description: 'Records of relevant changes so teams can review what happened and when.'
       }
     ],
     challengesAndDecisions: [
       {
-        challenge: 'Handling diverse departmental data models without creating bloated monolithic views.',
-        decision: 'Built an atomic component system and modular route layout where each department module shares uniform table and action patterns while keeping schema models isolated.'
+        challenge: 'Supporting different operational modules without creating disconnected interfaces.',
+        decision: 'Used shared layout and table patterns so each module stays consistent while keeping domain data separated.'
       },
       {
-        challenge: 'Preventing UI lag when rendering thousands of inventory and sales entries.',
-        decision: 'Implemented server-side pagination with windowed table rendering and structured debounce filters.'
+        challenge: 'Keeping larger operational datasets usable in the browser.',
+        decision: 'Relied on paginated data loading and focused filtering instead of rendering everything at once.'
       }
     ],
-    outcome: 'Eliminated duplicate data entry across 4 main departments, decreased monthly report generation time from 3 days to instantaneous automated export, and unified company operations under one consistent platform.',
-    lessonsOrImprovements: 'Moving forward, expanding the notification pipeline with webhook support and deeper offline caching for remote warehouse terminals.',
+    outcome: 'DOME provides a single operations system where workflows, permissions, audit history, and reporting can be handled together. Quantified improvements are not published here without verified baseline measurements.',
+    lessonsOrImprovements: 'Future work can extend notifications, deeper reporting, and additional operational modules as requirements expand.',
     visualType: 'full-interface',
     mockMetrics: [
-      { label: 'Department Modules', value: '7 Connected' },
-      { label: 'Report Latency', value: '< 200ms' },
-      { label: 'Active Personnel', value: '250+ Daily' }
+      { label: 'Focus', value: 'Operations' },
+      { label: 'Access model', value: 'Role-based' },
+      { label: 'Traceability', value: 'Audit trails' }
     ],
-    highlights: ['Unified ERP Portal', 'Granular RBAC', 'Automated Workflows', 'Standardized Design System']
+    highlights: ['Workflows', 'Permissions', 'Reporting', 'Audit trails']
   },
   {
     id: 'matrix-field-service',
