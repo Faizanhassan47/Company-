@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
-const siteUrl = 'https://tekmorasolution.com';
+const siteUrl = 'https://www.tekmorasolution.com';
 const routesUrl = new URL('../src/config/publicRoutes.json', import.meta.url);
 const outputUrl = new URL('../public/sitemap.xml', import.meta.url);
 const routes = JSON.parse(await readFile(routesUrl, 'utf8'));

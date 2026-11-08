@@ -30,7 +30,7 @@ export const AboutPage: React.FC = () => {
       <SEOHead
         title="About Tekmora Solutions — Software Development Company"
         description="Tekmora Solutions provides custom software development for businesses building new digital products or improving existing systems."
-        canonical="https://tekmorasolution.com/about"
+        canonical="https://www.tekmorasolution.com/about"
       />
 
       <section className="about-hero">

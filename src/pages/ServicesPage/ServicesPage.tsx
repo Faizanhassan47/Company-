@@ -54,7 +54,7 @@ export const ServicesPage: React.FC = () => {
       <SEOHead
         title="Software Development Services — Tekmora Solutions"
         description="Custom software, web applications, mobile apps, SaaS products, UI/UX design, and integrations for businesses with specific development needs."
-        canonical="https://tekmorasolution.com/services"
+        canonical="https://www.tekmorasolution.com/services"
       />
 
       <section className="sv">

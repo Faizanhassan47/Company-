@@ -108,7 +108,7 @@ export const ContactPage: React.FC = () => {
       <SEOHead
         title="Contact Tekmora Solutions — Discuss Your Project"
         description="Tell Tekmora Solutions what you’re planning. Share a short project description and we’ll review the requirements and discuss possible next steps."
-        canonical="https://tekmorasolution.com/contact"
+        canonical="https://www.tekmorasolution.com/contact"
       />
 
       <section className="contact-layout">

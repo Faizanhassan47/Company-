@@ -34,8 +34,8 @@ export const SEOHead: React.FC<SEOProps> = ({
     // 3. Update Canonical
     const currentUrl = canonical || `${window.location.origin}${window.location.pathname}`;
     const socialImage = image
-      ? new URL(image, 'https://tekmorasolution.com').href
-      : 'https://tekmorasolution.com/og-image.jpg';
+      ? new URL(image, 'https://www.tekmorasolution.com').href
+      : 'https://www.tekmorasolution.com/og-image.jpg';
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
@@ -92,8 +92,8 @@ export const SEOHead: React.FC<SEOProps> = ({
       '@type': 'Organization',
       name: 'Tekmora Solutions',
       alternateName: 'Tekmora',
-      url: 'https://tekmorasolution.com',
-      logo: 'https://tekmorasolution.com/brand-icon.svg',
+      url: 'https://www.tekmorasolution.com',
+      logo: 'https://www.tekmorasolution.com/brand-icon.svg',
       description: 'Tekmora Solutions builds custom software, web applications, mobile apps, and SaaS products for businesses.',
       sameAs: [
         'https://www.linkedin.com/company/tekmora-solution'
@@ -114,7 +114,7 @@ export const SEOHead: React.FC<SEOProps> = ({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'Tekmora Solutions',
-      url: 'https://tekmorasolution.com/',
+      url: 'https://www.tekmorasolution.com/',
       publisher: { '@type': 'Organization', name: 'Tekmora Solutions' }
     };
 
@@ -124,12 +124,12 @@ export const SEOHead: React.FC<SEOProps> = ({
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tekmorasolution.com/' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tekmorasolution.com/' },
             ...breadcrumbParts.map((part, index) => ({
               '@type': 'ListItem',
               position: index + 2,
               name: part.replace(/-/g, ' ').replace(/\b\w/g, character => character.toUpperCase()),
-              item: `https://tekmorasolution.com/${breadcrumbParts.slice(0, index + 1).join('/')}`
+              item: `https://www.tekmorasolution.com/${breadcrumbParts.slice(0, index + 1).join('/')}`
             }))
           ]
         }

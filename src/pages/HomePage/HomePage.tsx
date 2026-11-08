@@ -114,7 +114,7 @@ export const HomePage: React.FC = () => {
       <SEOHead
         title="Tekmora Solutions | Custom Software & App Development"
         description="We build custom software, web applications, mobile apps, and SaaS products for startups and businesses. Explore our services and discuss your project."
-        canonical="https://tekmorasolution.com/"
+        canonical="https://www.tekmorasolution.com/"
       />
 
       <section className="home-hero">

@@ -103,7 +103,7 @@ export const WorkPage: React.FC = () => {
       <SEOHead
         title="Software Projects & Case Studies — Tekmora"
         description="Browse software projects from Tekmora Solutions, including the problems they address, features developed, and technical decisions involved."
-        canonical="https://tekmorasolution.com/work"
+        canonical="https://www.tekmorasolution.com/work"
       />
 
       <section className="work-hero">

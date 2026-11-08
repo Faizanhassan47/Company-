@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-Sitemap: https://tekmorasolution.com/sitemap.xml
+Sitemap: https://www.tekmorasolution.com/sitemap.xml

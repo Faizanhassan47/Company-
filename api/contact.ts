@@ -263,7 +263,7 @@ export default async function handler(req: IncomingMessage & { body?: any }, res
                     <div style="color: #ffffff; font-weight: 600; margin-bottom: 2px;">Tekmora Solutions</div>
                     <div>Custom Web Applications, Mobile Systems & Enterprise Platforms</div>
                     <div style="margin-top: 6px;">
-                      <a href="https://tekmorasolution.com" style="color: #f97316; text-decoration: none;">tekmorasolution.com</a>
+                      <a href="https://www.tekmorasolution.com" style="color: #f97316; text-decoration: none;">tekmorasolution.com</a>
                       <span style="margin: 0 6px;">•</span>
                       <a href="mailto:info@tekmorasolution.com" style="color: #a1a1aa; text-decoration: none;">info@tekmorasolution.com</a>
                     </div>

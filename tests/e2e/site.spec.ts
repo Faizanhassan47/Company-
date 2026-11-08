@@ -79,7 +79,7 @@ test('public pages expose complete SEO metadata', async ({ page }) => {
     expect(seenTitles.has(title), `${path} has a duplicate title`).toBe(false);
     seenTitles.add(title);
     expect(description?.length, `${path} should have a description`).toBeGreaterThan(50);
-    expect(canonical, `${path} should have a canonical URL`).toBe(`https://tekmorasolution.com${path === '/' ? '/' : path}`);
+    expect(canonical, `${path} should have a canonical URL`).toBe(`https://www.tekmorasolution.com${path === '/' ? '/' : path}`);
     expect(h1Count, `${path} should have exactly one main heading`).toBe(1);
     expect(schemaCount, `${path} should expose structured data`).toBeGreaterThan(0);
   }

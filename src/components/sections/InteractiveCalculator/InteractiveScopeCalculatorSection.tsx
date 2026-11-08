@@ -212,7 +212,7 @@ export const InteractiveScopeCalculatorSection: React.FC = () => {
   };
 
   const handleCopySummary = () => {
-    const summaryText = `TEKMORA SOLUTIONS // ARCHITECTURAL ESTIMATE\nDelivery Window: ${estimate.weeksStr}\nInvestment Bracket: ${estimate.costStr}\nComplexity: ${estimate.complexity}\nRecommended Stack: ${estimate.stack.join(', ')}\nCadence: ${cadence.toUpperCase()}\nCurrency: ${currency}\nGenerated via https://tekmorasolution.com`;
+    const summaryText = `TEKMORA SOLUTIONS // ARCHITECTURAL ESTIMATE\nDelivery Window: ${estimate.weeksStr}\nInvestment Bracket: ${estimate.costStr}\nComplexity: ${estimate.complexity}\nRecommended Stack: ${estimate.stack.join(', ')}\nCadence: ${cadence.toUpperCase()}\nCurrency: ${currency}\nGenerated via https://www.tekmorasolution.com`;
     navigator.clipboard.writeText(summaryText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);

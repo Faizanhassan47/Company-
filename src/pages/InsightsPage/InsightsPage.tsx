@@ -22,7 +22,7 @@ export const InsightsPage: React.FC = () => {
       <SEOHead
         title="Engineering Insights & Architecture Notes | Tekmora"
         description="Practical notes on software architecture, AI, SAP integration, mobile engineering, data integrity, and operational systems."
-        canonical="https://tekmorasolution.com/insights"
+        canonical="https://www.tekmorasolution.com/insights"
       />
 
       <section className="ip-hero">

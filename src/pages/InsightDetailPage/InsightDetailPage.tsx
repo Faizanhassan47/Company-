@@ -50,12 +50,12 @@ export const InsightDetailPage: React.FC = () => {
     author: {
       '@type': 'Organization',
       name: 'Tekmora Solutions',
-      url: 'https://tekmorasolution.com'
+      url: 'https://www.tekmorasolution.com'
     },
     publisher: {
       '@type': 'Organization',
       name: 'Tekmora Solutions',
-      logo: 'https://tekmorasolution.com/brand-icon.svg'
+      logo: 'https://www.tekmorasolution.com/brand-icon.svg'
     },
     datePublished: article.publishDate,
     dateModified: article.updatedDate
@@ -66,7 +66,7 @@ export const InsightDetailPage: React.FC = () => {
       <SEOHead
         title={`${article.title} | Tekmora Insights`}
         description={article.summary}
-        canonical={`https://tekmorasolution.com/insights/${article.slug}`}
+        canonical={`https://www.tekmorasolution.com/insights/${article.slug}`}
         type="article"
         jsonLd={articleJsonLd}
       />
