@@ -28,6 +28,7 @@ const AboutPage = lazy(() => import('@/pages/AboutPage').then(module => ({ defau
 const InsightsPage = lazy(() => import('@/pages/InsightsPage').then(module => ({ default: module.InsightsPage })));
 const InsightDetailPage = lazy(() => import('@/pages/InsightDetailPage').then(module => ({ default: module.InsightDetailPage })));
 const ContactPage = lazy(() => import('@/pages/ContactPage').then(module => ({ default: module.ContactPage })));
+const AgencyPartnersPage = lazy(() => import('@/pages/AgencyPartnersPage').then(module => ({ default: module.AgencyPartnersPage })));
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage').then(module => ({ default: module.PrivacyPage })));
 const TermsPage = lazy(() => import('@/pages/TermsPage').then(module => ({ default: module.TermsPage })));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage').then(module => ({ default: module.NotFoundPage })));
@@ -56,6 +57,7 @@ const AnimatedRoutes = () => {
         <Route path="/insights" element={<PageTransition><InsightsPage /></PageTransition>} />
         <Route path="/insights/:slug" element={<PageTransition><InsightDetailPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/agency-partners" element={<PageTransition><AgencyPartnersPage /></PageTransition>} />
         <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsPage /></PageTransition>} />
 

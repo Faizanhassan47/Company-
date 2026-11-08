@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { TECH_EXPERTISE } from '../../data/company';
 import { ProjectPoster } from '../../components/studio/ProjectPosters';
 import { Reveal } from '../../components/studio/StudioMotion';
 import './HomePage.css';
@@ -10,8 +11,8 @@ const FEATURED = [
   {
     slug: 'dome-enterprise',
     name: 'DOME',
-    line: 'Business operations software with workflows, access, and reporting.',
-    tag: 'Case study'
+    line: 'Internal product: operations workflows, permissions, audit trails, and reporting.',
+    tag: 'Internal product'
   },
   {
     slug: 'glucotrack-cgm',
@@ -230,6 +231,46 @@ export const HomePage: React.FC = () => {
               Build Something Similar <ArrowRight size={16} />
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="home-tech">
+        <div className="container">
+          <Reveal className="home-section-head">
+            <p className="studio-kicker">Technical expertise</p>
+            <h2>Technologies used on real project work.</h2>
+            <p className="home-section-lead">
+              A short list of stacks Tekmora actually uses. The right choice always depends on the product requirements and constraints.
+            </p>
+          </Reveal>
+          <div className="home-tech-grid">
+            {TECH_EXPERTISE.map(item => (
+              <article key={item.name}>
+                <h3>{item.name}</h3>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-agency">
+        <div className="container home-agency-panel">
+          <Reveal>
+            <p className="studio-kicker">Agency partnerships</p>
+            <h2>Your development partner, behind the scenes.</h2>
+            <p>
+              Need additional engineering capacity for a client project? Tekmora can discuss development partnerships for web applications, custom software, SaaS products, and mobile development.
+            </p>
+            <div className="home-actions">
+              <Link to="/agency-partners" className="studio-btn">
+                Explore Agency Partnerships <ArrowRight size={16} />
+              </Link>
+              <Link to="/contact?type=Custom%20software%20or%20web%20application&ref=agency-partners" className="studio-btn-ghost">
+                Discuss a Partnership
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

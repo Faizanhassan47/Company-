@@ -120,10 +120,24 @@ export const CaseStudyPage: React.FC = () => {
             </div>
           )}
           {project.slug === 'dome-enterprise' && (
-            <div className="cgm-gallery dome-gallery">
-              <img src="/projects/dome-landing.jpg" alt="DOME landing visual, one workspace for connected operations" />
-              <img src="/projects/dome-logo.png" alt="DOME digital office product mark" />
-              <img src="/projects/dome.jpg" alt="DOME digital office platform poster" />
+            <div className="dome-evidence">
+              <p className="case-kind-note">
+                DOME is an internal product case study. The visuals below document the product concept and presentation materials. Additional application-interface screenshots can be added as permission-cleared captures become available.
+              </p>
+              <div className="cgm-gallery dome-gallery">
+                <figure>
+                  <img src="/projects/dome-landing.jpg" alt="DOME product presentation showing connected business operations" />
+                  <figcaption>Product presentation — operations overview</figcaption>
+                </figure>
+                <figure>
+                  <img src="/projects/dome.jpg" alt="DOME digital office platform visual" />
+                  <figcaption>Product visual — digital office system</figcaption>
+                </figure>
+                <figure>
+                  <img src="/projects/dome-logo.png" alt="DOME product mark" />
+                  <figcaption>Product mark</figcaption>
+                </figure>
+              </div>
             </div>
           )}
         </div>

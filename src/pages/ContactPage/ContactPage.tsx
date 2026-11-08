@@ -123,11 +123,11 @@ export const ContactPage: React.FC = () => {
             <div className="contact-next">
               <h2>What happens after you inquire</h2>
               <ol>
-                <li>We review your note and any links or documents you share.</li>
-                <li>We reply with clarifying questions or an initial point of view on scope.</li>
-                <li>If it looks like a fit, we schedule a short discussion to align on next steps.</li>
+                <li>We review the requirements and any links or documents you share.</li>
+                <li>If the project appears suitable, we arrange a discussion.</li>
+                <li>We agree on scope and next steps before providing a proposal.</li>
               </ol>
-              <p>A short call is available if that is easier than writing everything up front.</p>
+              <p>You do not need a complete specification to start. A clear description of the problem and users is enough.</p>
             </div>
 
             <ul className="contact-facts">
@@ -215,15 +215,31 @@ export const ContactPage: React.FC = () => {
             </div>
             <div className="aside-card aside-call">
               <Calendar size={18} />
-              <h2>Prefer a call?</h2>
-              <p>Request a short call and we’ll arrange a time to discuss requirements and next steps.</p>
-              <a
-                className="studio-btn-ghost"
-                href="mailto:info@tekmorasolution.com?subject=Project%20call%20request"
-                onClick={() => trackEvent('contact_call_request', 'conversion', 'request_call')}
-              >
-                Request a Call <ArrowRight size={16} />
-              </a>
+              <h2>{env.calendarUrl ? 'Schedule a discovery call' : 'Prefer a call?'}</h2>
+              <p>
+                {env.calendarUrl
+                  ? 'Book a short discovery call based on available time slots. Bring a brief description of the project — a full specification is not required.'
+                  : 'Request a short call and we’ll arrange a time to discuss requirements and next steps.'}
+              </p>
+              {env.calendarUrl ? (
+                <a
+                  className="studio-btn"
+                  href={env.calendarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('contact_schedule_click', 'conversion', 'discovery_call')}
+                >
+                  Schedule a Discovery Call <ArrowRight size={16} />
+                </a>
+              ) : (
+                <a
+                  className="studio-btn-ghost"
+                  href="mailto:info@tekmorasolution.com?subject=Project%20call%20request"
+                  onClick={() => trackEvent('contact_call_request', 'conversion', 'request_call')}
+                >
+                  Request a Call <ArrowRight size={16} />
+                </a>
+              )}
             </div>
           </aside>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { FOUNDER } from '../../data/company';
 import { Reveal } from '../../components/studio/StudioMotion';
 import './AboutPage.css';
 
@@ -72,25 +73,51 @@ export const AboutPage: React.FC = () => {
       </section>
 
       <section className="about-story">
-        <div className="container about-story-grid about-story-grid--text">
-          <div>
-            <h2>Leadership and delivery</h2>
-            <p>
-              Tekmora Solutions is led by the people who scope, design, and ship the work. Prospects should be able to identify who is responsible for delivery, not just a company brand.
-            </p>
-            <p>
-              Founder biography, professional background, and photos will be published here once the company-approved details and media are confirmed. Until then, project case studies remain the clearest evidence of the work.
-            </p>
-          </div>
-          <div>
-            <h2>What we can share today</h2>
-            <p>
-              Selected projects, service pages, and a direct contact path. If you want to discuss a product idea, an internal workflow, or an existing system, start with a short project note.
-            </p>
-            <p>
-              Prefer email first? Write to <a href="mailto:info@tekmorasolution.com">info@tekmorasolution.com</a>.
-            </p>
-          </div>
+        <div className="container">
+          {FOUNDER.publish && FOUNDER.name && FOUNDER.photoUrl ? (
+            <div className="about-founder">
+              <img src={FOUNDER.photoUrl} alt={FOUNDER.name} className="about-founder-photo" />
+              <div>
+                <p className="studio-kicker">Founder</p>
+                <h2>{FOUNDER.name}</h2>
+                <p className="about-founder-role">{FOUNDER.role}</p>
+                <p>{FOUNDER.shortBio}</p>
+                {FOUNDER.responsibilities.length > 0 && (
+                  <ul className="about-founder-list">
+                    {FOUNDER.responsibilities.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {FOUNDER.linkedInUrl && (
+                  <a href={FOUNDER.linkedInUrl} target="_blank" rel="noopener noreferrer">
+                    LinkedIn profile
+                  </a>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="about-story-grid about-story-grid--text">
+              <div>
+                <h2>Leadership and delivery</h2>
+                <p>
+                  Tekmora Solutions is led by the people who scope, design, and ship the work. Prospects should be able to identify who is responsible for delivery, not just a company brand.
+                </p>
+                <p>
+                  Founder name, photograph, and professional background will appear here as soon as the approved details are added in the company profile. Until then, project case studies are the clearest evidence of the work.
+                </p>
+              </div>
+              <div>
+                <h2>What we can share today</h2>
+                <p>
+                  Selected projects, service pages, and a direct contact path. If you want to discuss a product idea, an internal workflow, or an existing system, start with a short project note.
+                </p>
+                <p>
+                  Prefer email first? Write to <a href="mailto:info@tekmorasolution.com">info@tekmorasolution.com</a>.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

@@ -46,6 +46,45 @@
   text-decoration: underline;
 }
 
+.about-founder {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: start;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: #101114;
+}
+
+.about-founder-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #0c0d11;
+}
+
+.about-founder-role {
+  margin: 0 0 12px;
+  color: #ff4d1c;
+  font-weight: 600;
+}
+
+.about-founder-list {
+  margin: 14px 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: #a8a8b0;
+}
+
+@media (max-width: 720px) {
+  .about-founder {
+    grid-template-columns: 1fr;
+  }
+}
+
 .about-photo {
   min-height: 380px;
 }
