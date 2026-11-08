@@ -1,3 +1,5 @@
+export type PortfolioKind = 'client' | 'internal' | 'demonstration' | 'selected';
+
 export interface CaseStudy {
   id: string;
   slug: string;
@@ -7,6 +9,8 @@ export interface CaseStudy {
   tagline: string;
   category: string;
   filterCategory: 'enterprise' | 'mobile' | 'ecommerce' | 'business-platforms' | 'healthcare' | 'warehouse-sap' | 'company-websites';
+  /** How this entry should be presented in the portfolio. Default: selected. */
+  portfolioKind?: PortfolioKind;
   year: string;
   role: string;
   services: string[];
@@ -28,6 +32,13 @@ export interface CaseStudy {
   thumbnailUrl?: string;
 }
 
+export const PORTFOLIO_KIND_LABEL: Record<PortfolioKind, string> = {
+  client: 'Client project',
+  internal: 'Internal product',
+  demonstration: 'Demonstration project',
+  selected: 'Selected work'
+};
+
 export const PROJECTS: CaseStudy[] = [
   {
     id: 'glucotrack-cgm',
@@ -40,6 +51,7 @@ export const PROJECTS: CaseStudy[] = [
     thumbnailUrl: '/projects/glucotrack-phones.jpg',
     category: 'Healthcare & Mobile Platform',
     filterCategory: 'healthcare',
+    portfolioKind: 'selected',
     year: '2026',
     role: 'Full-Stack & Mobile Architecture',
     services: ['Mobile Application', 'Backend REST API', 'Bluetooth Low Energy (BLE)', 'Hardware Simulation'],
@@ -94,6 +106,7 @@ export const PROJECTS: CaseStudy[] = [
     thumbnailUrl: '/projects/dome.jpg',
     category: 'Business operations and reporting',
     filterCategory: 'enterprise',
+    portfolioKind: 'internal',
     year: '2024',
     role: 'Product design and full-stack engineering',
     services: ['Operations workflows', 'Role-based access', 'Audit trails', 'Reporting'],
@@ -156,6 +169,7 @@ export const PROJECTS: CaseStudy[] = [
     thumbnailUrl: '/projects/matrix.jpg',
     category: 'Mobile Field Operations',
     filterCategory: 'mobile',
+    portfolioKind: 'selected',
     year: '2023 — 2024',
     role: 'Mobile Architecture & API Integration',
     services: ['Cross-Platform Mobile App', 'Offline Sync Engine', 'Geolocation Dispatch', 'Digital Work Orders'],
@@ -497,6 +511,7 @@ export const PROJECTS: CaseStudy[] = [
     thumbnailUrl: '/projects/ayat.jpg',
     category: 'Mobile Application',
     filterCategory: 'mobile',
+    portfolioKind: 'demonstration',
     year: '2023',
     role: 'Mobile Product Design & Engineering',
     services: ['Mobile App Design', 'React Native Development', 'Offline Audio & Text Storage', 'Astronomical Calculations'],
@@ -603,6 +618,7 @@ export const PROJECTS: CaseStudy[] = [
     thumbnailUrl: '/projects/fitness.jpg',
     category: 'Mobile Application',
     filterCategory: 'mobile',
+    portfolioKind: 'demonstration',
     year: '2023',
     role: 'Mobile Engineering & UI Architecture',
     services: ['Mobile App Development', 'Offline Telemetry', 'Interactive Workout Engine', 'Health Analytics'],

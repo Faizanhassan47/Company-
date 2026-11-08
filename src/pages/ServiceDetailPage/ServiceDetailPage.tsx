@@ -125,10 +125,10 @@ export const ServiceDetailPage: React.FC = () => {
         <section className="sd-problems-section">
           <div className="container">
             <div className="sd-section-intro">
-              <span className="sd-kicker">OPERATIONAL BOTTLENECKS</span>
-              <h2 className="sd-section-heading">Problems We Solve</h2>
+              <span className="sd-kicker">EXAMPLE PROBLEMS</span>
+              <h2 className="sd-section-heading">When this service is useful</h2>
               <p className="sd-section-sub">
-                Common obstacles organizations face before deploying this solution.
+                Realistic situations where this kind of work usually makes sense.
               </p>
             </div>
 
@@ -152,10 +152,10 @@ export const ServiceDetailPage: React.FC = () => {
         <div className="container">
           <div className="sd-section-intro">
             <span className="sd-kicker">CAPABILITIES</span>
-            <h2 className="sd-section-heading">What We Build & Deliver</h2>
-            <p className="sd-section-sub">
-              Core architectural and technical deliverables included in our {service.title} engagements.
-            </p>
+              <h2 className="sd-section-heading">What we can deliver</h2>
+              <p className="sd-section-sub">
+                Tangible deliverables that typically appear in {service.title.toLowerCase()} engagements.
+              </p>
           </div>
 
           <div className="sd-capabilities-grid">
@@ -177,9 +177,9 @@ export const ServiceDetailPage: React.FC = () => {
             {/* Tech Stack */}
             <div className="sd-stack-col">
               <span className="sd-kicker">TECHNOLOGY</span>
-              <h2 className="sd-section-heading">Verified Tech Stack</h2>
+              <h2 className="sd-section-heading">Technology considerations</h2>
               <p className="sd-section-sub">
-                Battle-tested tools selected for long-term maintainability, speed, and reliability.
+                Tools and platforms we commonly use when they fit the project requirements and constraints.
               </p>
 
               <div className="sd-tech-list">

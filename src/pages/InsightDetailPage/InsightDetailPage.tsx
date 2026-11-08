@@ -49,12 +49,12 @@ export const InsightDetailPage: React.FC = () => {
     description: article.summary,
     author: {
       '@type': 'Organization',
-      name: 'Tekmora',
+      name: 'Tekmora Solutions',
       url: 'https://tekmorasolution.com'
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Tekmora',
+      name: 'Tekmora Solutions',
       logo: 'https://tekmorasolution.com/brand-icon.svg'
     },
     datePublished: article.publishDate,

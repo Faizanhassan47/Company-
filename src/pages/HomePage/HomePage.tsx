@@ -112,8 +112,8 @@ export const HomePage: React.FC = () => {
   return (
     <main className="home-page studio-home" id="main-content">
       <SEOHead
-        title="Tekmora Solutions — Custom Software & App Development"
-        description="Tekmora Solutions develops custom software, web applications, mobile apps, and SaaS products. Explore our services and discuss your project requirements."
+        title="Tekmora Solutions | Custom Software & App Development"
+        description="We build custom software, web applications, mobile apps, and SaaS products for startups and businesses. Explore our services and discuss your project."
         canonical="https://tekmorasolution.com/"
       />
 
@@ -130,7 +130,7 @@ export const HomePage: React.FC = () => {
                 Need a new application or a better way to manage your operations? We build web platforms, mobile apps, SaaS products, and business software around your requirements.
               </p>
               <div className="home-actions">
-                <Link to="/contact" className="studio-btn">
+                <Link to="/contact?type=Not%20sure%20yet" className="studio-btn">
                   Discuss Your Project <ArrowRight size={16} />
                 </Link>
                 <Link to="/work" className="studio-btn-ghost">
@@ -223,6 +223,13 @@ export const HomePage: React.FC = () => {
               ))}
             </div>
           </div>
+
+          <div className="home-work-cta">
+            <p>Need operations software, reporting, or a similar internal system?</p>
+            <Link to="/contact?type=Custom%20software%20or%20web%20application&ref=dome-enterprise" className="studio-btn">
+              Build Something Similar <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -270,11 +277,11 @@ export const HomePage: React.FC = () => {
               Whether you’re starting a new product or improving an existing one, share what you need. We’ll review the requirements and discuss possible next steps.
             </p>
             <div className="home-actions">
-              <Link to="/contact" className="studio-btn">
+              <Link to="/contact?type=Not%20sure%20yet" className="studio-btn">
                 Discuss Your Project <ArrowRight size={16} />
               </Link>
-              <Link to="/about" className="studio-btn-ghost">
-                About Tekmora
+              <Link to="/contact?type=Existing%20system%20or%20integration" className="studio-btn-ghost">
+                Discuss an Existing System
               </Link>
             </div>
           </Reveal>

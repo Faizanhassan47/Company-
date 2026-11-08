@@ -71,6 +71,29 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
+      <section className="about-story">
+        <div className="container about-story-grid about-story-grid--text">
+          <div>
+            <h2>Leadership and delivery</h2>
+            <p>
+              Tekmora Solutions is led by the people who scope, design, and ship the work. Prospects should be able to identify who is responsible for delivery, not just a company brand.
+            </p>
+            <p>
+              Founder biography, professional background, and photos will be published here once the company-approved details and media are confirmed. Until then, project case studies remain the clearest evidence of the work.
+            </p>
+          </div>
+          <div>
+            <h2>What we can share today</h2>
+            <p>
+              Selected projects, service pages, and a direct contact path. If you want to discuss a product idea, an internal workflow, or an existing system, start with a short project note.
+            </p>
+            <p>
+              Prefer email first? Write to <a href="mailto:info@tekmorasolution.com">info@tekmorasolution.com</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="about-principles">
         <div className="container">
           <h2>How we think about software</h2>

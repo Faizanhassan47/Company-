@@ -23,6 +23,32 @@
   max-width: 640px;
 }
 
+.contact-next {
+  margin: 28px 0 24px;
+  max-width: 42ch;
+}
+
+.contact-next h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+}
+
+.contact-next ol {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: #b4b4bb;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.contact-next p {
+  margin: 12px 0 0;
+  color: #8d8d96;
+  font-size: 14px;
+}
+
 .inquiry-form {
   display: grid;
   gap: 14px;

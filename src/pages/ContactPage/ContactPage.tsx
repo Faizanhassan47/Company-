@@ -120,13 +120,33 @@ export const ContactPage: React.FC = () => {
               Tell us what you’re planning, what you’re trying to solve, or what needs improvement in your existing software. You don’t need a complete technical specification to start the conversation.
             </p>
 
+            <div className="contact-next">
+              <h2>What happens after you inquire</h2>
+              <ol>
+                <li>We review your note and any links or documents you share.</li>
+                <li>We reply with clarifying questions or an initial point of view on scope.</li>
+                <li>If it looks like a fit, we schedule a short discussion to align on next steps.</li>
+              </ol>
+              <p>A short call is available if that is easier than writing everything up front.</p>
+            </div>
+
             <ul className="contact-facts">
               <li>
                 <Mail size={16} />
-                <a href="mailto:info@tekmorasolution.com">info@tekmorasolution.com</a>
+                <a
+                  href="mailto:info@tekmorasolution.com"
+                  onClick={() => trackEvent('contact_email_click', 'conversion', 'mailto')}
+                >
+                  info@tekmorasolution.com
+                </a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/company/tekmora-solution" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.linkedin.com/company/tekmora-solution"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('contact_linkedin_click', 'engagement', 'linkedin')}
+                >
                   Company LinkedIn
                 </a>
               </li>
@@ -197,7 +217,13 @@ export const ContactPage: React.FC = () => {
               <Calendar size={18} />
               <h2>Prefer a call?</h2>
               <p>Request a short call and we’ll arrange a time to discuss requirements and next steps.</p>
-              <a className="studio-btn-ghost" href="mailto:info@tekmorasolution.com?subject=Project%20call%20request">Request a Call <ArrowRight size={16} /></a>
+              <a
+                className="studio-btn-ghost"
+                href="mailto:info@tekmorasolution.com?subject=Project%20call%20request"
+                onClick={() => trackEvent('contact_call_request', 'conversion', 'request_call')}
+              >
+                Request a Call <ArrowRight size={16} />
+              </a>
             </div>
           </aside>
         </div>

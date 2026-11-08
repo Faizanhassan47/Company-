@@ -50,17 +50,17 @@ export const SEOHead: React.FC<SEOProps> = ({
       { property: 'og:description', content: description },
       { property: 'og:url', content: currentUrl },
       { property: 'og:type', content: type === 'article' ? 'article' : 'website' },
-      { property: 'og:site_name', content: 'Tekmora' },
+      { property: 'og:site_name', content: 'Tekmora Solutions' },
       { property: 'og:locale', content: 'en_US' },
       { property: 'og:image', content: socialImage },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
-      { property: 'og:image:alt', content: 'Tekmora enterprise software engineering' },
+      { property: 'og:image:alt', content: 'Tekmora Solutions — custom software and app development' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:image', content: socialImage },
       { name: 'twitter:title', content: formattedTitle },
-      { name: 'twitter:description', content: description }
-      ,{ name: 'author', content: 'Tekmora' }
+      { name: 'twitter:description', content: description },
+      { name: 'author', content: 'Tekmora Solutions' }
     ];
 
     metaTags.forEach((meta) => {
@@ -90,28 +90,32 @@ export const SEOHead: React.FC<SEOProps> = ({
     const defaultOrganizationSchema = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Tekmora',
+      name: 'Tekmora Solutions',
+      alternateName: 'Tekmora',
       url: 'https://tekmorasolution.com',
       logo: 'https://tekmorasolution.com/brand-icon.svg',
-      description: 'Tekmora builds custom web platforms, mobile applications, enterprise systems and operational integrations for real business operations.',
+      description: 'Tekmora Solutions builds custom software, web applications, mobile apps, and SaaS products for businesses.',
+      sameAs: [
+        'https://www.linkedin.com/company/tekmora-solution'
+      ],
+      email: 'info@tekmorasolution.com',
       areaServed: 'Worldwide',
-      serviceArea: 'Global',
       knowsAbout: [
-        'Custom Web Application Development',
-        'React Native Mobile App Development',
-        'Enterprise Software Architecture',
-        'SAP Business One Integration',
-        'Warehouse Management Systems',
-        'Custom WordPress Solutions'
+        'Custom Software Development',
+        'Web Application Development',
+        'Mobile App Development',
+        'SaaS Product Development',
+        'UI/UX Design',
+        'API Integration and Software Engineering'
       ]
     };
 
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Tekmora',
+      name: 'Tekmora Solutions',
       url: 'https://tekmorasolution.com/',
-      publisher: { '@type': 'Organization', name: 'Tekmora' }
+      publisher: { '@type': 'Organization', name: 'Tekmora Solutions' }
     };
 
     const breadcrumbParts = window.location.pathname.split('/').filter(Boolean);

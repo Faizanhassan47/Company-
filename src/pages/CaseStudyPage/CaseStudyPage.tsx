@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { PROJECTS, type CaseStudy } from '../../data/projects';
+import { PORTFOLIO_KIND_LABEL, PROJECTS, type CaseStudy, type PortfolioKind } from '../../data/projects';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { ProjectVisual, TechLogos } from '../../components/studio/ProductMockups';
+import { trackEvent } from '../../utils/analytics';
 import './CaseStudyPage.css';
 
 const TABS = ['Overview', 'Challenge', 'Solution', 'Features', 'Engineering', 'Outcome'] as const;
@@ -11,18 +12,25 @@ const TABS = ['Overview', 'Challenge', 'Solution', 'Features', 'Engineering', 'O
 const FEATURED: Record<string, { name: string; category: string; summary: string; tags: string[]; overview: string; challenge: string; solution: string; stats: { value: string; label: string }[] }> = {
   'dome-enterprise': {
     name: 'DOME',
-    category: 'Digital office platform',
-    summary: 'One workspace for operations, people, finance and support.',
-    tags: ['Operations', 'HR', 'Finance'],
-    overview: 'DOME is the digital office teams sign in to for day-to-day work: requests, attendance, support and the modules around the business.',
-    challenge: 'People were moving between separate tools for requests, support and day-to-day operations.',
-    solution: 'A single workspace with self service, support paths and the operational modules the team already uses.',
+    category: 'Business operations and reporting',
+    summary: 'Operational workflows, access permissions, audit trails, and reporting in one system.',
+    tags: ['Operations', 'Permissions', 'Reporting'],
+    overview: 'DOME is an internal product case study: a business operations system involving workflows, role-based access, audit trails, and reporting. This page explains the requirements, implementation approach, and Tekmora’s contribution.',
+    challenge: 'Operational work was spread across disconnected tools and manual processes, making permissions, handoffs, and reporting harder to manage consistently.',
+    solution: 'A modular operations system with shared interface patterns, role-based permissions, audit logging, and reporting views shaped around the work people needed to complete.',
     stats: [
-      { value: 'Live', label: 'Employee workspace' },
-      { value: 'HR', label: 'Self service' },
-      { value: 'SAP', label: 'Connected support' }
+      { value: 'Operations', label: 'Focus' },
+      { value: 'Role-based', label: 'Access model' },
+      { value: 'Audit trails', label: 'Traceability' }
     ]
   }
+};
+
+const similarProjectNeed = (project: CaseStudy) => {
+  if (project.filterCategory === 'mobile' || project.filterCategory === 'healthcare') return 'Mobile application';
+  if (project.filterCategory === 'ecommerce' || project.filterCategory === 'business-platforms') return 'SaaS product';
+  if (project.filterCategory === 'warehouse-sap') return 'Existing system or integration';
+  return 'Custom software or web application';
 };
 
 const shortName = (project: CaseStudy) => FEATURED[project.slug]?.name ?? project.title;
@@ -68,6 +76,9 @@ export const CaseStudyPage: React.FC = () => {
   const overview = featured?.overview ?? project.usersAndContext;
   const challenge = featured?.challenge ?? project.clientProblem;
   const solution = featured?.solution ?? project.developmentApproach;
+  const portfolioKind: PortfolioKind = project.portfolioKind ?? 'selected';
+  const kindLabel = PORTFOLIO_KIND_LABEL[portfolioKind];
+  const contactHref = `/contact?type=${encodeURIComponent(similarProjectNeed(project))}&ref=${encodeURIComponent(project.slug)}`;
 
   return (
     <main className="case-page" id="main-content">
@@ -86,10 +97,13 @@ export const CaseStudyPage: React.FC = () => {
             <span>/</span>
             {name}
           </p>
-          <p className="studio-kicker">Case study</p>
+          <p className="studio-kicker">Case study · {kindLabel}</p>
           <h1>{name}</h1>
           <p className="case-category">{category}</p>
           <p className="studio-lead">{summary}</p>
+          <p className="case-kind-note">
+            Portfolio category: {kindLabel}. This entry documents the system, Tekmora’s contribution, and the technical decisions involved.
+          </p>
           <div className="tag-row">
             {tags.map(service => (
               <span className="soft-tag" key={service}>{service}</span>
@@ -249,10 +263,21 @@ export const CaseStudyPage: React.FC = () => {
 
           <div className="band-cta">
             <div>
-              <h2>Next project</h2>
-              <p>{nextProject.title}</p>
+              <h2>Build something similar</h2>
+              <p>If you need a comparable system, tell us about the workflow, users, and constraints. We’ll review the requirements and discuss next steps.</p>
             </div>
-            <Link to={`/work/${nextProject.slug}`} className="studio-btn">Continue <ArrowRight size={16} /></Link>
+            <div className="case-cta-actions">
+              <Link
+                to={contactHref}
+                className="studio-btn"
+                onClick={() => trackEvent('case_study_cta', 'conversion', project.slug)}
+              >
+                Build Something Similar <ArrowRight size={16} />
+              </Link>
+              <Link to={`/work/${nextProject.slug}`} className="studio-btn-ghost">
+                Next project <ArrowRight size={16} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

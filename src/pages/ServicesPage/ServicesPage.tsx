@@ -79,7 +79,10 @@ export const ServicesPage: React.FC = () => {
               <p className="sv-meta">Software development services</p>
               <h1>Software development services</h1>
               <p className="sv-lede">
-                We help businesses develop digital products and software systems for specific needs. Whether the goal is launching an application, managing internal operations, or improving an existing platform, we work from the requirements to define a practical development approach.
+                We help businesses develop digital products and software systems for specific needs. That includes building new applications from requirements, and improving existing products when workflows, integrations, or interfaces need practical changes.
+              </p>
+              <p className="sv-lede">
+                Whether the goal is launching an application, managing internal operations, or strengthening a system already in use, we start from the problem and define a development approach that fits the constraints.
               </p>
             </header>
 
@@ -110,8 +113,11 @@ export const ServicesPage: React.FC = () => {
                 </p>
               </div>
               <div className="sv-foot-actions">
-                <Link to="/contact" className="sv-btn">
-                  Discuss Your Project
+                <Link to="/contact?type=Not%20sure%20yet" className="sv-btn">
+                  Discuss Your Product Idea
+                </Link>
+                <Link to="/contact?type=Existing%20system%20or%20integration" className="sv-link">
+                  Discuss an Existing System
                 </Link>
                 <Link to="/work" className="sv-link">
                   View Projects

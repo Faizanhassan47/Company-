@@ -37,6 +37,15 @@
   margin-top: 12px;
 }
 
+.about-story a {
+  color: #ff4d1c;
+  text-decoration: none;
+}
+
+.about-story a:hover {
+  text-decoration: underline;
+}
+
 .about-photo {
   min-height: 380px;
 }

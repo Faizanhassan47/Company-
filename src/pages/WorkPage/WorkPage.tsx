@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PROJECTS, type CaseStudy } from '../../data/projects';
+import { PORTFOLIO_KIND_LABEL, PROJECTS, type CaseStudy } from '../../data/projects';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { ProjectVisual } from '../../components/studio/ProductMockups';
 import { Reveal } from '../../components/studio/StudioMotion';
@@ -114,6 +114,9 @@ export const WorkPage: React.FC = () => {
             <p className="studio-lead">
               A look at software projects, the requirements behind them, and the development work involved. Each case study explains the system, its functionality, and the decisions that shaped the implementation.
             </p>
+            <p className="studio-lead work-kind-note">
+              Entries are labeled as client projects, internal products, demonstration work, or selected work so the portfolio stays clear about what each item represents.
+            </p>
           </Reveal>
           <div className="filter-pills" role="tablist" aria-label="Project filters">
             {FILTERS.map(filter => (
@@ -145,7 +148,10 @@ export const WorkPage: React.FC = () => {
                       <ProjectVisual slug={project.slug} />
                     </div>
                     <div className="work-case-copy">
-                      <p className="work-case-sub">{card.category}</p>
+                      <p className="work-case-sub">
+                        <span className="work-kind-badge">{PORTFOLIO_KIND_LABEL[project.portfolioKind ?? 'selected']}</span>
+                        {card.category}
+                      </p>
                       <h2>{card.name}</h2>
                       <p>{card.summary}</p>
                       <div className="tag-row">

@@ -20,6 +20,141 @@ export interface InsightArticle {
 
 export const INSIGHTS_DATA: InsightArticle[] = [
   {
+    slug: 'custom-software-vs-off-the-shelf',
+    number: '11',
+    category: 'Product Decisions',
+    title: 'Custom Software vs. Off-the-Shelf Software: When Should a Business Build Its Own System?',
+    tagline: 'A practical decision guide for founders and operators choosing between buying software and building it.',
+    summary: 'How to decide whether an off-the-shelf product is enough, or whether your workflow, data, and constraints justify custom software development.',
+    readingTime: '7 min read',
+    publishDate: 'November 8, 2026',
+    updatedDate: 'November 8, 2026',
+    author: 'Tekmora Solutions',
+    sections: [
+      {
+        heading: 'Start with the work, not the tool',
+        paragraphs: [
+          'The useful question is not “Should we build software?” It is “What work needs to happen, who does it, and where does the current process break?” Off-the-shelf software is often the right answer when the workflow is common and the product already covers most of it.',
+          'Custom software becomes relevant when the process itself is part of how the business competes, when people spend too much time moving data between tools, or when an existing product cannot support required permissions, reporting, or integrations without awkward workarounds.'
+        ]
+      },
+      {
+        heading: 'Signals that off-the-shelf may be enough',
+        paragraphs: [
+          'The workflow is standard across many companies. You can accept the product’s defaults with light configuration. Your team can live with its reporting and permission model. Integrations exist for the systems you already use. The total subscription cost is acceptable for the number of people who need access.',
+          'In those cases, buying a product is usually faster and cheaper than commissioning a custom build.'
+        ]
+      },
+      {
+        heading: 'Signals that custom software may be warranted',
+        paragraphs: [
+          'Staff repeatedly copy data between spreadsheets and SaaS tools. Approvals happen over chat or email because the system cannot express the real decision path. Reporting requires manual exports every week. Field or warehouse work needs offline behavior the product does not support. Per-seat pricing becomes expensive for people who only need a few focused actions.',
+          'When several of those signals appear together, a purpose-built application can reduce friction even if the first release is intentionally narrow.'
+        ],
+        callout: 'Do not start with a technology preference. Start with users, tasks, data ownership, and the cost of the current workaround.'
+      },
+      {
+        heading: 'A practical way to decide',
+        paragraphs: [
+          'Write down the five most important tasks people must complete. Note which tools they use today, what breaks, and what a successful week would look like. Then estimate the cost of continuing with workarounds for the next year versus the cost of a focused first release.',
+          'If an existing product covers most of those tasks with acceptable trade-offs, buy it. If the gaps are structural and expensive, plan a custom system around the highest-value workflows first and leave secondary features for later.'
+        ]
+      }
+    ],
+    relatedServiceSlugs: ['custom-software-development', 'saas-engineering-modernization', 'web-application-development'],
+    relatedProjectSlugs: ['dome-enterprise', 'warehouse-grn-automation']
+  },
+  {
+    slug: 'what-it-takes-to-build-a-saas-mvp',
+    number: '12',
+    category: 'SaaS Development',
+    title: 'What Does It Take to Build a SaaS MVP?',
+    tagline: 'The foundations a first SaaS release actually needs beyond the core feature idea.',
+    summary: 'A practical look at the product, account, and delivery work required to launch a usable SaaS MVP without overbuilding.',
+    readingTime: '8 min read',
+    publishDate: 'November 8, 2026',
+    updatedDate: 'November 8, 2026',
+    author: 'Tekmora Solutions',
+    sections: [
+      {
+        heading: 'An MVP is a usable product, not a pitch deck',
+        paragraphs: [
+          'A SaaS MVP should let a real user complete the core job that justifies paying for the product. That usually means one primary workflow, clear account access, and enough administration to operate the product day to day.',
+          'It does not need every future pricing tier, every integration, or a complete marketing site before the product itself can be tested with early customers.'
+        ]
+      },
+      {
+        heading: 'Core product work',
+        paragraphs: [
+          'Define the primary user and the one outcome the first release must achieve. Map the screens and data required for that outcome. Cut anything that does not help a user finish that job or help you learn whether the product is valuable.',
+          'Keep secondary features on a later list. The first release should be narrow enough to ship, review, and improve.'
+        ]
+      },
+      {
+        heading: 'Foundations around the feature',
+        paragraphs: [
+          'Most SaaS products also need authentication, roles or permissions, basic account settings, and an admin path for supporting users. Billing can wait if early customers can be onboarded manually, but the product still needs a clear way to create accounts and control access.',
+          'Document what is in scope for the MVP and what is explicitly deferred so development time is not spent on adjacent ideas mid-build.'
+        ],
+        callout: 'The MVP should answer whether users will complete the core workflow repeatedly. Everything else is supporting evidence or later work.'
+      },
+      {
+        heading: 'Delivery and learning loop',
+        paragraphs: [
+          'Plan a release that can be put in front of a small group of users. Capture where they get stuck, which steps they skip, and which requests appear repeatedly. Use that feedback to decide the next slice of work.',
+          'A practical SaaS foundation is maintainable code, clear requirements, and a release process that makes the next improvement cheaper than the first one.'
+        ]
+      }
+    ],
+    relatedServiceSlugs: ['saas-engineering-modernization', 'ui-ux-product-design', 'web-application-development'],
+    relatedProjectSlugs: ['dome-enterprise', 'citi-books-platform']
+  },
+  {
+    slug: 'how-to-plan-a-business-dashboard',
+    number: '13',
+    category: 'Internal Tools',
+    title: 'How to Plan a Business Dashboard or Internal Management System',
+    tagline: 'A planning checklist for dashboards and internal tools that support real operational work.',
+    summary: 'How to define users, decisions, data sources, and permissions before building an internal dashboard or management system.',
+    readingTime: '7 min read',
+    publishDate: 'November 8, 2026',
+    updatedDate: 'November 8, 2026',
+    author: 'Tekmora Solutions',
+    sections: [
+      {
+        heading: 'Dashboards exist to support decisions',
+        paragraphs: [
+          'An internal dashboard is useful when it helps someone decide or act. If it only displays charts that nobody uses in weekly work, it becomes another report that gets ignored.',
+          'Before designing screens, identify the decisions the system should support: which orders need attention, which approvals are waiting, which inventory issues block fulfillment, or which customers need follow-up.'
+        ]
+      },
+      {
+        heading: 'Define users and permissions early',
+        paragraphs: [
+          'Different roles need different views and actions. An operator may need a short task list. A manager may need status across a team. An administrator may need configuration and audit history.',
+          'List roles, what each role can see, and what each role can change. Permission mistakes are expensive to unwind after the interface is already built.'
+        ]
+      },
+      {
+        heading: 'Map the data before the visual design',
+        paragraphs: [
+          'Identify where each field comes from, how often it updates, and whether the source is trustworthy enough for operational decisions. Note manual steps that currently fill gaps between systems.',
+          'A dashboard that depends on stale exports or inconsistent spreadsheet columns will not become reliable just because the interface looks polished.'
+        ],
+        callout: 'Plan the source of truth first. Visual design should follow the data and the decisions, not the other way around.'
+      },
+      {
+        heading: 'Ship a narrow first version',
+        paragraphs: [
+          'Start with one workflow and one primary audience. Include the filters, statuses, and actions people need to complete that workflow. Add secondary modules after the first path is used in real work.',
+          'This approach keeps scope honest and makes it easier to measure whether the system reduced manual effort or simply relocated it.'
+        ]
+      }
+    ],
+    relatedServiceSlugs: ['custom-software-development', 'web-application-development', 'ui-ux-product-design'],
+    relatedProjectSlugs: ['dome-enterprise', 'warehouse-grn-automation', 'leoedge-dashboard']
+  },
+  {
     slug: 'how-sap-business-one-integrations-connect-operational-applications',
     number: '01',
     category: 'ERP & Systems Integration',

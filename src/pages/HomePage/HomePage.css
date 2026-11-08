@@ -380,6 +380,26 @@
   margin-top: 22px;
 }
 
+.home-work-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: #101114;
+}
+
+.home-work-cta p {
+  margin: 0;
+  color: #d4d4d8;
+  font-size: 15px;
+  max-width: 48ch;
+}
+
 .home-process-list {
   list-style: none;
   margin: 28px 0 0;

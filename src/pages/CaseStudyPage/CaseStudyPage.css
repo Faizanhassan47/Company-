@@ -34,6 +34,20 @@
   margin-bottom: 12px;
 }
 
+.case-kind-note {
+  margin: 0 0 8px;
+  max-width: 54ch;
+  color: #8d8d96;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.case-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .case-hero .tag-row {
   margin-top: 18px;
 }

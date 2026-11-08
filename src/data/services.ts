@@ -340,6 +340,16 @@ export const SERVICES_DATA: ServiceDetail[] = [
         answer: 'Documented requirements, maintainable architecture, testing, and clear release processes help create a foundation for future work.'
       }
     ],
+    businessProblems: [
+      {
+        title: 'The idea is clear, but the product foundation is not',
+        description: 'You know the core feature users need, but accounts, permissions, and admin tools still need to be planned before a usable release.'
+      },
+      {
+        title: 'An existing product is hard to extend',
+        description: 'New requests keep colliding with an architecture or interface that was never designed for ongoing product development.'
+      }
+    ],
     relevantProjectSlugs: ['dome-enterprise', 'citi-books-platform']
   },
 
@@ -781,6 +791,16 @@ export const SERVICES_DATA: ServiceDetail[] = [
         answer: 'Available APIs, data ownership, authentication, error handling, and the business workflows that depend on the connection all affect scope.'
       }
     ],
+    businessProblems: [
+      {
+        title: 'Systems do not exchange information cleanly',
+        description: 'Teams re-enter the same records across tools because the applications were never connected for the workflow they support.'
+      },
+      {
+        title: 'An existing application needs targeted improvement',
+        description: 'A full rebuild is unnecessary, but recurring bugs, missing features, or fragile integrations are slowing daily work.'
+      }
+    ],
     relevantProjectSlugs: ['warehouse-grn-automation', 'dome-enterprise']
   },
 
@@ -970,6 +990,16 @@ export const SERVICES_DATA: ServiceDetail[] = [
         answer: 'Yes. We can review the current product, identify practical improvements, and plan changes without assuming a full rebuild.'
       }
     ],
+    businessProblems: [
+      {
+        title: 'Customers or staff need a browser-based workspace',
+        description: 'Important tasks still depend on email threads, shared folders, or a website that cannot support accounts and ongoing work.'
+      },
+      {
+        title: 'The current web product is difficult to use or maintain',
+        description: 'People avoid the tool, or every small change takes longer than it should because the interface and structure grew without a clear plan.'
+      }
+    ],
     relevantProjectSlugs: ['dome-enterprise', 'citi-books-platform']
   },
 
@@ -1031,6 +1061,16 @@ export const SERVICES_DATA: ServiceDetail[] = [
       {
         question: 'Can you work with an existing backend?',
         answer: 'Yes. Mobile apps often connect to existing APIs. We review those interfaces as part of planning.'
+      }
+    ],
+    businessProblems: [
+      {
+        title: 'Work happens away from a desk',
+        description: 'Teams or customers need to complete tasks on a phone, but the current process still depends on paper, chat messages, or a desktop-only system.'
+      },
+      {
+        title: 'The mobile experience is incomplete',
+        description: 'An existing product has a website or back office, but the mobile journey users actually need is missing or unreliable.'
       }
     ],
     relevantProjectSlugs: ['matrix-field-service', 'glucotrack-cgm', 'quran-ayat-app']
@@ -1376,6 +1416,16 @@ export const SERVICES_DATA: ServiceDetail[] = [
       {
         question: 'Can design work support an existing product?',
         answer: 'Yes. Design can improve an existing application’s workflows and screens as well as shape a new product.'
+      }
+    ],
+    businessProblems: [
+      {
+        title: 'Users get stuck in the product',
+        description: 'The business rules exist, but screens and flows make everyday tasks slower or more confusing than they should be.'
+      },
+      {
+        title: 'Development needs clearer interface direction',
+        description: 'Engineering is ready to build, but user flows, states, and expected behavior are still too ambiguous to implement confidently.'
       }
     ],
     relevantProjectSlugs: ['dome-enterprise', 'citi-books-platform', 'glucotrack-cgm']
