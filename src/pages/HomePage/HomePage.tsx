@@ -350,7 +350,7 @@ export const HomePage: React.FC = () => {
             <p className="studio-kicker">Common questions</p>
             <h2>Clear answers for buyers and AI search.</h2>
             <p className="home-section-lead">
-              Short answers about what Tekmora builds, who it’s for, and how a project starts.
+              Short answers about Tekmora’s services, ERP/warehouse/dashboard work, who it’s for, and how a project starts.
             </p>
           </Reveal>
           <div className="home-faq-list">

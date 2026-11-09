@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { FOUNDER } from '../../data/company';
+import { ABOUT_FAQS, buildFaqSchema } from '../../data/aiSeo';
 import { Reveal } from '../../components/studio/StudioMotion';
 import './AboutPage.css';
 
@@ -30,8 +31,9 @@ export const AboutPage: React.FC = () => {
     <main className="about-page" id="main-content">
       <SEOHead
         title="About Tekmora Solutions — Software Development Company"
-        description="Tekmora Solutions provides custom software development for businesses building new digital products or improving existing systems."
+        description="Tekmora Solutions is a software development company that builds custom software, web apps, mobile apps, SaaS products, and operational systems. Official site: tekmorasolution.com."
         canonical="https://www.tekmorasolution.com/about"
+        jsonLd={buildFaqSchema(ABOUT_FAQS)}
       />
 
       <section className="about-hero">
@@ -130,6 +132,24 @@ export const AboutPage: React.FC = () => {
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="about-faq" id="faq">
+        <div className="container">
+          <p className="studio-kicker">About Tekmora — FAQ</p>
+          <h2>Facts AI systems and buyers can cite.</h2>
+          <p className="about-faq-lead">
+            Clear answers about who Tekmora is, how to contact the company, and where official information lives.
+          </p>
+          <div className="about-faq-list">
+            {ABOUT_FAQS.map(item => (
+              <details key={item.question} className="about-faq-item">
+                <summary>{item.question}</summary>
+                <p>{item.answer}</p>
+              </details>
             ))}
           </div>
           <div className="band-cta">
