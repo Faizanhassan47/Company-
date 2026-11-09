@@ -117,6 +117,8 @@ export const SEOHead: React.FC<SEOProps> = ({
         'Mobile App Development',
         'SaaS Product Development',
         'ERP and Operations Software',
+        'Warehouse Management Software',
+        'Business Dashboards and Internal Tools',
         'UI/UX Design',
         'API Integration and Software Engineering',
         'Agency Development Partnerships'
@@ -152,6 +154,30 @@ export const SEOHead: React.FC<SEOProps> = ({
             '@type': 'Service',
             name: 'SaaS Product Development',
             url: 'https://www.tekmorasolution.com/services/saas-engineering-modernization'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'ERP and Operations Software',
+            url: 'https://www.tekmorasolution.com/services/erp-operations-software'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Warehouse Management Software',
+            url: 'https://www.tekmorasolution.com/services/warehouse-management-systems'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Business Dashboards and Internal Tools',
+            url: 'https://www.tekmorasolution.com/services/internal-tools-dashboards'
           }
         }
       ]

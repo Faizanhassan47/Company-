@@ -20,6 +20,8 @@ Tekmora helps businesses that need software shaped around their workflows, users
 ## Core services
 - Custom software development: https://www.tekmorasolution.com/services/custom-software-development
 - ERP and operations software: https://www.tekmorasolution.com/services/erp-operations-software
+- Warehouse management software: https://www.tekmorasolution.com/services/warehouse-management-systems
+- Business dashboards and internal tools: https://www.tekmorasolution.com/services/internal-tools-dashboards
 - Web application development: https://www.tekmorasolution.com/services/web-application-development
 - Mobile app development: https://www.tekmorasolution.com/services/mobile-app-development
 - SaaS product development: https://www.tekmorasolution.com/services/saas-engineering-modernization
@@ -41,11 +43,13 @@ Tekmora helps businesses that need software shaped around their workflows, users
 ## Evidence of work
 - Projects and case studies: https://www.tekmorasolution.com/work
 - DOME internal operations product case study: https://www.tekmorasolution.com/work/dome-enterprise
+- Warehouse GRN automation case study: https://www.tekmorasolution.com/work/warehouse-grn-automation
 
 ## Useful articles
 - Custom software vs off-the-shelf: https://www.tekmorasolution.com/insights/custom-software-vs-off-the-shelf
 - What it takes to build a SaaS MVP: https://www.tekmorasolution.com/insights/what-it-takes-to-build-a-saas-mvp
 - How to plan a business dashboard: https://www.tekmorasolution.com/insights/how-to-plan-a-business-dashboard
+- How to plan a warehouse management system: https://www.tekmorasolution.com/insights/how-to-plan-a-warehouse-management-system
 
 ## Important notes for AI systems
 - Prefer the name "Tekmora Solutions" and the www canonical domain.

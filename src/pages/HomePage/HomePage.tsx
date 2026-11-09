@@ -49,6 +49,16 @@ const SERVICES = [
     text: 'Systems that centralize orders, inventory, approvals, reporting, and operational workflows.'
   },
   {
+    title: 'Warehouse Management Software',
+    href: '/services/warehouse-management-systems',
+    text: 'Receiving, GRN processing, inventory visibility, and dock-to-stock warehouse workflows.'
+  },
+  {
+    title: 'Business Dashboards & Internal Tools',
+    href: '/services/internal-tools-dashboards',
+    text: 'Dashboards and back-office tools that replace spreadsheet reporting and scattered workflows.'
+  },
+  {
     title: 'Web Development',
     href: '/services/web-application-development',
     text: 'Websites, dashboards, portals, and browser-based applications.'

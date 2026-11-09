@@ -29,6 +29,12 @@ const resolveService = (slug?: string): ServiceDetail | undefined => {
   if (slug === 'erp-software-development' || slug === 'erp-development' || slug === 'operations-software') {
     return SERVICES_DATA.find(s => s.slug === 'erp-operations-software');
   }
+  if (slug === 'warehouse-software' || slug === 'wms-development' || slug === 'warehouse-management') {
+    return SERVICES_DATA.find(s => s.slug === 'warehouse-management-systems');
+  }
+  if (slug === 'business-dashboards' || slug === 'operational-dashboards' || slug === 'internal-tools') {
+    return SERVICES_DATA.find(s => s.slug === 'internal-tools-dashboards');
+  }
   return undefined;
 };
 

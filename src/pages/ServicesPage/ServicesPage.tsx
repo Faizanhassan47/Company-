@@ -52,6 +52,20 @@ const SHOWCASE = [
     slug: 'erp-operations-software',
     summary: 'Custom systems that centralize orders, inventory, approvals, reporting, and day-to-day operational workflows.',
     examples: 'Operations hubs, inventory visibility, approvals, dashboards'
+  },
+  {
+    code: '08',
+    title: 'Warehouse Management Software',
+    slug: 'warehouse-management-systems',
+    summary: 'Custom warehouse software for receiving, GRN processing, inventory visibility, and dock-to-stock workflows.',
+    examples: 'Receiving consoles, GRN automation, PO matching, inventory visibility'
+  },
+  {
+    code: '09',
+    title: 'Business Dashboards & Internal Tools',
+    slug: 'internal-tools-dashboards',
+    summary: 'Custom dashboards and internal tools that replace spreadsheet reporting and fragmented back-office workflows.',
+    examples: 'KPI dashboards, admin consoles, approval queues, multi-source views'
   }
 ] as const;
 
@@ -60,7 +74,7 @@ export const ServicesPage: React.FC = () => {
     <main className="services-page" id="main-content">
       <SEOHead
         title="Software Development Services — Tekmora Solutions"
-        description="Custom software, ERP and operations systems, web apps, mobile apps, SaaS products, UI/UX design, and integrations from Tekmora Solutions."
+        description="Custom software, ERP, warehouse software, business dashboards, web apps, mobile apps, SaaS products, UI/UX design, and integrations from Tekmora Solutions."
         canonical="https://www.tekmorasolution.com/services"
       />
 

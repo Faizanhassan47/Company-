@@ -31,6 +31,8 @@ export const Footer: React.FC = () => {
             <ul className="footer-nav-links">
               <li><Link to="/services/custom-software-development">Custom Software</Link></li>
               <li><Link to="/services/erp-operations-software">ERP & Operations</Link></li>
+              <li><Link to="/services/warehouse-management-systems">Warehouse Software</Link></li>
+              <li><Link to="/services/internal-tools-dashboards">Dashboards & Internal Tools</Link></li>
               <li><Link to="/services/web-application-development">Web Development</Link></li>
               <li><Link to="/services/mobile-app-development">Mobile Apps</Link></li>
               <li><Link to="/services/saas-engineering-modernization">SaaS Development</Link></li>

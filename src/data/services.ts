@@ -668,67 +668,118 @@ export const SERVICES_DATA: ServiceDetail[] = [
     relevantProjectSlugs: ['shoestops', 'grabzer-admin', 'citi-books-platform']
   },
 
-  // 08: Internal Tools + Dashboards + Automation
+  // 08: Business Dashboards & Internal Tools
   {
     slug: 'internal-tools-dashboards',
     number: '08',
     category: 'enterprise-cloud',
-    title: 'Internal Tools + Dashboards + Automation',
-    shortDesc: 'High-density operational dashboards, real-time KPI telemetry, multi-step approval workflows, and back-office tools.',
-    tagline: 'Custom administrative consoles and operations dashboards engineered for speed and workflow accuracy.',
-    primaryTopic: 'Internal tools, operational dashboards & back-office automation',
-    heroHeadline: 'HIGH-DENSITY INTERNAL TOOLS THAT SUPERCHARGE OPERATIONS.',
-    overview: 'Tekmora designs custom internal tools, operations dashboards, and back-office software that replace clumsy spreadsheets and fragmented SaaS subscriptions. We build ergonomic, keyboard-friendly data management consoles with instant search, bulk actions, and live database telemetry tailored to your exact team workflows.',
+    title: 'Business Dashboards & Internal Tools',
+    shortDesc: 'Custom dashboards and internal tools that replace spreadsheet reporting and fragmented back-office workflows.',
+    tagline: 'Dashboards and internal tools built around the decisions your team makes every day.',
+    primaryTopic: 'Business dashboard and internal tools development',
+    heroHeadline: 'Business dashboards and internal tools that replace spreadsheet chaos.',
+    overview:
+      'When status lives in exports, shared drives, and chat threads, managers spend time assembling reports instead of acting on them. Tekmora builds custom business dashboards and internal tools that surface the right records, approvals, and metrics in one place—shaped around your roles, data sources, and operating cadence.',
+    architectureApproach:
+      'Identify the decisions people need to make, the source systems that hold the data, and the actions that should happen in the tool. Build a maintainable console with clear permissions and reporting before adding complexity.',
     keyCapabilities: [
       {
-        title: 'Virtualized High-Density Data Tables',
-        description: 'Multi-column sorting, sticky columns, inline editing, fuzzy filtering, and smooth scrolling across hundreds of thousands of rows.'
+        title: 'Operational dashboards',
+        description: 'Views for status, bottlenecks, exceptions, and KPIs without manual report assembly.'
       },
       {
-        title: 'Multi-Tier Approval & Triage Queues',
-        description: 'Configurable operational queues where managers review pending claims, orders, discounts, and dispatch requests with single-click actions.'
+        title: 'Internal admin tools',
+        description: 'Back-office consoles for searching records, updating status, and completing day-to-day work.'
       },
       {
-        title: 'Real-Time Telemetry & Metric Displays',
-        description: 'Live WebSocket metrics, charts, and warehouse/sales leaderboards designed for high-contrast executive and shop-floor displays.'
+        title: 'Approval and triage queues',
+        description: 'Structured lists for reviews, requests, and handoffs between roles.'
       },
       {
-        title: 'One-Click Bulk Actions & Excel Export',
-        description: 'Bulk status changes, automated invoice generation, CSV/Excel parsing, and formatted reporting with zero browser freeze.'
+        title: 'Role-based access',
+        description: 'Permissions that control what each role can view and change.'
       },
       {
-        title: 'Granular Role-Based Permissions',
-        description: 'Custom view and action permissions ensuring staff only view and execute workflows relevant to their operational responsibilities.'
+        title: 'Exports and bulk actions',
+        description: 'Practical exports and multi-record actions when teams still need spreadsheets or batch updates.'
+      },
+      {
+        title: 'Multi-source data views',
+        description: 'Combine SQL databases, ERP extracts, and APIs into one operational screen when a single system is not enough.'
       }
     ],
     technicalStack: [
-      { category: 'Frontend UI', items: ['React 19', 'TanStack Table', 'TanStack Query', 'Tailwind CSS'] },
-      { category: 'Data Visualization', items: ['Recharts', 'Tremor', 'Lucide Icons', 'HTML5 Canvas'] },
-      { category: 'Backend Engine', items: ['Node.js', 'Express', 'WebSockets', 'PostgreSQL / SQL Server'] },
-      { category: 'Export & Utilities', items: ['ExcelJS', 'PDFKit', 'Redis Pub/Sub'] }
+      { category: 'Application', items: ['React', 'TypeScript'] },
+      { category: 'Data', items: ['PostgreSQL', 'SQL Server', 'REST APIs'] },
+      { category: 'Reporting', items: ['Charts', 'Tables', 'Exports'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Operational Shadowing', description: 'We observe your internal operators to identify repetitive clicks, spreadsheet juggling, and pain points.' },
-      { phase: '02', name: 'Information Architecture', description: 'We design high-density wireframes prioritizing keyboard shortcuts and minimal visual noise.' },
-      { phase: '03', name: 'Data Pipeline Engineering', description: 'We build optimized SQL views and indices to ensure instant dashboard load times.' },
-      { phase: '04', name: 'Operator Testing & Iteration', description: 'We test with actual back-office personnel, refining table ergonomics and shortcut keys.' },
-      { phase: '05', name: 'Deployment & Training', description: 'We deploy the tool, integrate SSO, and provide interactive operator walkthroughs.' }
+      {
+        phase: '01',
+        name: 'Map decisions and data',
+        description: 'Identify who needs which views, where data lives today, and which manual steps waste the most time.'
+      },
+      {
+        phase: '02',
+        name: 'Define the first release',
+        description: 'Choose the dashboards, queues, and permissions that must work before expanding.'
+      },
+      {
+        phase: '03',
+        name: 'Build and review',
+        description: 'Develop the console with visible progress and feedback from actual operators.'
+      },
+      {
+        phase: '04',
+        name: 'Test with real scenarios',
+        description: 'Validate filters, permissions, and reporting against day-to-day cases.'
+      },
+      {
+        phase: '05',
+        name: 'Launch and expand',
+        description: 'Release the first useful tools, then add modules as reporting and workflow needs become clearer.'
+      }
     ],
     faqs: [
       {
-        question: 'Why build a custom internal dashboard instead of using Retool or Appsmith?',
-        answer: 'Low-code tools like Retool are great for simple prototypes, but become prohibitively expensive at scale ($50+/user/month) and hit strict performance walls with complex business logic, custom styling, or offline synchronization. Custom tools have zero per-user licensing fees and unlimited flexibility.'
+        question: 'Should we use a low-code tool or custom dashboards?',
+        answer:
+          'Low-code tools can work for simple prototypes. Custom dashboards make more sense when you need specific workflows, permissions, performance with your data model, or a tool that matches how your team already operates without per-seat product limits.'
       },
       {
-        question: 'Can internal dashboards connect to multiple databases simultaneously?',
-        answer: 'Yes. Our backend middleware can aggregate records from PostgreSQL, SQL Server, legacy ERPs, and third-party APIs into a single unified operational dashboard.'
+        question: 'Can a dashboard pull from more than one system?',
+        answer:
+          'Yes. Many projects combine SQL databases, ERP data, and third-party APIs into one operational view. The design starts from the decisions people need to make, then maps the required sources.'
       },
       {
-        question: 'How fast do data tables load when viewing millions of rows?',
-        answer: 'We utilize server-side pagination, database indexing, and client-side DOM virtualization so that only the ~30 visible rows are rendered, resulting in instant load times regardless of total dataset size.'
+        question: 'What evidence do you have for this kind of work?',
+        answer:
+          'Case studies such as DOME and related admin/dashboard projects show internal tools, permissions, and operational reporting. Review projects at tekmorasolution.com/work.'
+      },
+      {
+        question: 'How does a project start?',
+        answer:
+          'Share the reports or workflows that are painful today, the users involved, and the systems that hold the data. We review suitability and discuss scope before a proposal.'
       }
     ],
-    relevantProjectSlugs: ['grabzer-admin', 'leoedge-dashboard', 'dome-enterprise']
+    businessProblems: [
+      {
+        title: 'Reporting is assembled by hand',
+        description: 'Managers export from multiple tools and stitch status together in spreadsheets every week.'
+      },
+      {
+        title: 'Back-office work is scattered',
+        description: 'Approvals, record updates, and triage live in email, chat, and shared files instead of one console.'
+      },
+      {
+        title: 'People cannot see the same truth',
+        description: 'Different teams look at different extracts, so decisions are delayed or disputed.'
+      }
+    ],
+    industries: ['Operations', 'Services', 'Commerce', 'Healthcare'],
+    relevantProjectSlugs: ['dome-enterprise', 'grabzer-admin', 'leoedge-dashboard', 'sap-b1-production-dashboard'],
+    ctaHeadline: 'Discuss a dashboard or internal tools project',
+    ctaDesc: 'Tell us which reports or back-office workflows are manual today. We will review whether a focused dashboard or broader internal tool is the better path.'
   },
 
   // 09: Integrations & Software Engineering
@@ -1202,67 +1253,118 @@ export const SERVICES_DATA: ServiceDetail[] = [
     relevantProjectSlugs: ['sap-b1-production-dashboard', 'warehouse-grn-automation', 'dome-enterprise']
   },
 
-  // 16: Warehouse Management Systems (Existing)
+  // 16: Warehouse Management Systems
   {
     slug: 'warehouse-management-systems',
     number: '16',
     category: 'enterprise-cloud',
-    title: 'Warehouse Management Systems',
-    shortDesc: 'Operational software combining document extraction, purchase-order matching, batch handling and ERP inventory.',
-    tagline: 'Accelerate receiving, bin allocation, and inventory tracking with custom warehouse workflows.',
-    primaryTopic: 'Warehouse management system development',
-    heroHeadline: 'CUT DOCK BOTTLENECK WITH AUTOMATED WAREHOUSE WORKFLOWS.',
-    overview: 'Tekmora develops tailored warehouse management systems (WMS), receiving automation pipelines, and barcode-driven inventory tracking software. We replace manual paperwork at the dock with automated invoice parsing, purchase-order reconciliation, and direct ERP committing.',
+    title: 'Warehouse Management Software',
+    shortDesc: 'Custom warehouse software for receiving, GRN processing, inventory visibility, and dock-to-stock workflows.',
+    tagline: 'Warehouse software built around receiving, inventory, and floor operations.',
+    primaryTopic: 'Warehouse management software development',
+    heroHeadline: 'Warehouse software that reduces manual receiving and inventory work.',
+    overview:
+      'Many warehouses still rely on paper GRNs, spreadsheets, and re-keying into an ERP. Tekmora builds custom warehouse management software for receiving, purchase-order checks, inventory visibility, labeling, and floor workflows—so dock and stock data stay consistent without inventing a full packaged WMS when you only need the operational pieces that matter.',
+    architectureApproach:
+      'Start with the dock and floor process: documents, SKUs, exceptions, and where data must land in ERP or inventory systems. Build the first release around receiving and visibility, then expand to put-away, transfers, or labeling as the operation proves the workflow.',
     keyCapabilities: [
       {
-        title: 'Document Extraction & OCR',
-        description: 'Automated parsing of vendor packing slips and Goods Receipt Notes (GRNs) into structured line-item datasets.'
+        title: 'Receiving and GRN workflows',
+        description: 'Structured paths for goods receipt notes, packing slips, and inbound checks instead of paper-only dock processes.'
       },
       {
-        title: 'Purchase Order Reconciliation',
-        description: 'Algorithmic matching of incoming shipments against open purchase orders with tolerance and deviation checks.'
+        title: 'Purchase-order matching',
+        description: 'Compare inbound quantities and lines against open POs so mismatches are visible before stock is committed.'
       },
       {
-        title: 'Batch, Lot & Expiry Tracking',
-        description: 'Mandatory batch logging and expiration monitoring preventing spoiled inventory from entering circulation.'
+        title: 'Inventory visibility',
+        description: 'Shared records for received stock, locations, and status so teams stop reconciling conflicting spreadsheets.'
       },
       {
-        title: 'Bin Allocation & Stock Transfers',
-        description: 'Visual warehouse mapping and barcode-directed put-away routes for optimized warehouse space utilization.'
+        title: 'Batch and lot tracking',
+        description: 'Capture batch, lot, or expiry details when the operation requires them.'
       },
       {
-        title: 'Thermal Barcode & Pallet Labeling',
-        description: 'Instant generation of pallet identification labels and item barcodes directly upon receipt verification.'
+        title: 'Labels and scanning support',
+        description: 'Barcode or label steps that fit dock and floor devices when hardware is part of the process.'
+      },
+      {
+        title: 'ERP and system connections',
+        description: 'Push verified receipts and inventory updates into SAP Business One or other systems when integration is required.'
       }
     ],
     technicalStack: [
-      { category: 'Warehouse UI', items: ['React', 'Touch-Optimized Web UI', 'Rugged Mobile Interfaces'] },
-      { category: 'Parsing & OCR', items: ['PDF Parsers', 'OCR Vision Engines', 'Fuzzy SKU Matching'] },
-      { category: 'Backend & Queues', items: ['Node.js', 'Express', 'BullMQ / Redis', 'SQL Server'] },
-      { category: 'Hardware Protocols', items: ['ZPL Barcode Printing', 'Bluetooth Scanners', 'Handheld Terminals'] }
+      { category: 'Application', items: ['React', 'TypeScript', 'Touch-friendly web UI'] },
+      { category: 'Backend', items: ['Node.js', 'SQL Server', 'PostgreSQL', 'REST APIs'] },
+      { category: 'Operations', items: ['Document parsing', 'Barcode workflows', 'Queue-based processing'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Dock & Floor Audit', description: 'We observe physical receiving practices, pallet staging, and SKU labeling bottlenecks.' },
-      { phase: '02', name: 'Extraction Template Modeling', description: 'We configure parsing rules for key vendor delivery documents and invoice formats.' },
-      { phase: '03', name: 'Receiving Console Build', description: 'We build high-contrast touch screens highlighting SKU matches and discrepancy exceptions.' },
-      { phase: '04', name: 'Floor Stress Testing', description: 'We test multi-pallet concurrent scanning and label printing in simulated dock conditions.' },
-      { phase: '05', name: 'Go-Live & Support', description: 'We deploy to dockside workstations and rugged Android tablets with live operational support.' }
+      {
+        phase: '01',
+        name: 'Map dock and floor work',
+        description: 'Review receiving steps, documents, exceptions, devices, and where data is entered today.'
+      },
+      {
+        phase: '02',
+        name: 'Define the first release',
+        description: 'Choose the receiving, matching, and visibility features that must work before broader WMS modules.'
+      },
+      {
+        phase: '03',
+        name: 'Build and review',
+        description: 'Develop the console and integrations with checkpoints against real shipment scenarios.'
+      },
+      {
+        phase: '04',
+        name: 'Test with operational cases',
+        description: 'Validate mismatches, partial receipts, labeling, and ERP commits with sample dock work.'
+      },
+      {
+        phase: '05',
+        name: 'Launch and expand',
+        description: 'Release the first useful warehouse workflows, then plan put-away, transfers, or reporting next.'
+      }
     ],
     faqs: [
       {
-        question: 'How much faster is automated GRN processing compared to manual entry?',
-        answer: 'In our verified production deployments, receiving processing times dropped from 45 minutes per shipment to under 4 minutes, while eliminating human transposition errors.'
+        question: 'Do I need a full commercial WMS?',
+        answer:
+          'Not always. Many operations get more value from focused warehouse software that covers receiving, GRN processing, and inventory visibility first, then expands only where the floor still has friction.'
       },
       {
-        question: 'How do you handle invoices from new vendors with unfamiliar layouts?',
-        answer: 'Our extraction engine combines structural templates with heuristic fuzzy matching on SKU codes, vendor names, and quantity columns to adapt to novel invoice formats.'
+        question: 'Can this connect to SAP Business One or another ERP?',
+        answer:
+          'Yes. Some projects commit verified receipts into an existing ERP. Others keep a warehouse console as the working layer and sync selected fields. The right path depends on your current system and process.'
       },
       {
-        question: 'Can the WMS run on standard tablets or does it require industrial handhelds?',
-        answer: 'Our software is responsive and touch-optimized, running equally well on cost-effective consumer tablets, smartphones, and rugged industrial barcode scanners.'
+        question: 'What evidence do you have for warehouse work?',
+        answer:
+          'The warehouse GRN automation case study covers document-driven receiving and operational workflow software. Review it at tekmorasolution.com/work/warehouse-grn-automation.'
+      },
+      {
+        question: 'How does a project start?',
+        answer:
+          'Share how receiving works today, which documents and systems are involved, and where re-entry or mismatches happen. We review suitability and discuss scope before a proposal.'
       }
     ],
-    relevantProjectSlugs: ['warehouse-grn-automation', 'sap-b1-production-dashboard', 'dome-enterprise']
+    businessProblems: [
+      {
+        title: 'Dock work is still paper-heavy',
+        description: 'GRNs and packing slips are typed into spreadsheets or ERP screens after the fact, which slows receiving and introduces errors.'
+      },
+      {
+        title: 'Inventory counts disagree',
+        description: 'Floor, purchasing, and finance each maintain different views of what arrived and what is available.'
+      },
+      {
+        title: 'Exceptions are hard to catch',
+        description: 'Short shipments, wrong SKUs, and PO mismatches are discovered late because there is no shared receiving workflow.'
+      }
+    ],
+    industries: ['Warehouse', 'Distribution', 'Manufacturing', 'Logistics'],
+    relevantProjectSlugs: ['warehouse-grn-automation', 'sap-b1-production-dashboard', 'dome-enterprise'],
+    ctaHeadline: 'Discuss a warehouse software project',
+    ctaDesc: 'Tell us how receiving and inventory work today. We will review whether focused warehouse software or an ERP-connected workflow is the better path.'
   },
 
   // 17: WordPress Development (Existing)
