@@ -1378,6 +1378,118 @@ export const SERVICES_DATA: ServiceDetail[] = [
     industries: ['Operations', 'Services', 'Healthcare', 'Commerce']
   },
   {
+    slug: 'erp-operations-software',
+    number: 'C01B',
+    category: 'enterprise-cloud',
+    title: 'ERP & Operations Software',
+    shortDesc: 'Custom systems that centralize orders, inventory, approvals, reporting, and day-to-day operational workflows.',
+    tagline: 'Operations software built around how your business actually runs.',
+    primaryTopic: 'ERP and operations software development',
+    heroHeadline: 'ERP and operations software that centralizes real work.',
+    overview:
+      'Many businesses run on spreadsheets, chat threads, and disconnected tools. Tekmora develops custom ERP-style and operations systems that bring orders, inventory, approvals, permissions, audit trails, and reporting into one practical application shaped around your processes.',
+    architectureApproach:
+      'Start with the operational decisions people need to make every day. Define roles, workflows, data ownership, and reporting needs before choosing modules or technology. Build a maintainable system that can expand as processes mature.',
+    keyCapabilities: [
+      {
+        title: 'Operational workflows',
+        description: 'Structured paths for requests, handoffs, status updates, and approvals across teams.'
+      },
+      {
+        title: 'Inventory and order visibility',
+        description: 'Shared records for stock, orders, or operational items so teams stop reconciling conflicting spreadsheets.'
+      },
+      {
+        title: 'Role-based access',
+        description: 'Permissions that control what each role can view and change.'
+      },
+      {
+        title: 'Reporting and dashboards',
+        description: 'Views that help managers see status, bottlenecks, and exceptions without manual report assembly.'
+      },
+      {
+        title: 'Audit trails',
+        description: 'Records of important changes so activity can be reviewed later.'
+      },
+      {
+        title: 'Integrations when needed',
+        description: 'Connections to existing ERPs, accounting tools, or external APIs when the system must exchange data.'
+      }
+    ],
+    technicalStack: [
+      { category: 'Application', items: ['React', 'TypeScript', 'Node.js'] },
+      { category: 'Data', items: ['SQL Server', 'PostgreSQL', 'REST APIs'] },
+      { category: 'Operations features', items: ['RBAC', 'Workflows', 'Reporting', 'Audit logging'] }
+    ],
+    developmentProcess: [
+      {
+        phase: '01',
+        name: 'Map the operational work',
+        description: 'Identify users, decisions, current tools, and the bottlenecks that waste the most time.'
+      },
+      {
+        phase: '02',
+        name: 'Define the first release',
+        description: 'Choose the workflows, roles, and reports that must work in the initial system.'
+      },
+      {
+        phase: '03',
+        name: 'Build and review',
+        description: 'Develop modules with visible progress and feedback checkpoints.'
+      },
+      {
+        phase: '04',
+        name: 'Test with real scenarios',
+        description: 'Validate permissions, handoffs, and reporting against actual operating cases.'
+      },
+      {
+        phase: '05',
+        name: 'Launch and expand',
+        description: 'Release the first useful system, then plan additional modules as requirements become clearer.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do I need a full ERP, or a focused operations system?',
+        answer:
+          'Not every business needs a large packaged ERP. Many companies get better results from a focused system that covers the workflows causing the most friction first, then expands later.'
+      },
+      {
+        question: 'Can Tekmora work with an existing ERP such as SAP Business One?',
+        answer:
+          'Yes. Some projects improve or extend an existing ERP with custom portals, dashboards, or integrations. Others replace spreadsheet-based processes with a purpose-built operations application.'
+      },
+      {
+        question: 'What evidence do you have for this kind of work?',
+        answer:
+          'The DOME case study documents an internal operations product involving workflows, permissions, audit trails, and reporting. Review it at tekmorasolution.com/work/dome-enterprise.'
+      },
+      {
+        question: 'How does a project start?',
+        answer:
+          'Share the operational problem, the users involved, and any current tools. We review suitability, discuss scope if it looks like a fit, and agree next steps before a proposal.'
+      }
+    ],
+    businessProblems: [
+      {
+        title: 'Work is scattered across spreadsheets and chat',
+        description: 'Orders, stock, approvals, and status updates live in different places, so nobody trusts a single source of truth.'
+      },
+      {
+        title: 'Reporting takes too long',
+        description: 'Managers spend hours assembling status from exports instead of reviewing a shared operational view.'
+      },
+      {
+        title: 'Permissions and accountability are unclear',
+        description: 'Too many people can change records, or important changes leave no usable history.'
+      }
+    ],
+    industries: ['Operations', 'Distribution', 'Manufacturing', 'Services'],
+    relevantProjectSlugs: ['dome-enterprise', 'warehouse-grn-automation', 'sap-b1-production-dashboard'],
+    ctaHeadline: 'Discuss an operations software project',
+    ctaDesc: 'Tell us which workflows are manual today. We will review whether a focused custom system or an ERP extension is the better path.'
+  },
+  {
     slug: 'ui-ux-product-design',
     number: 'C05B',
     category: 'saas-modernization',

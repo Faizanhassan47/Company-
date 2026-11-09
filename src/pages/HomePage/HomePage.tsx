@@ -44,6 +44,11 @@ const SERVICES = [
     text: 'Applications built to support your processes, users, and business requirements.'
   },
   {
+    title: 'ERP & Operations Software',
+    href: '/services/erp-operations-software',
+    text: 'Systems that centralize orders, inventory, approvals, reporting, and operational workflows.'
+  },
+  {
     title: 'Web Development',
     href: '/services/web-application-development',
     text: 'Websites, dashboards, portals, and browser-based applications.'

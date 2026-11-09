@@ -45,6 +45,13 @@ const SHOWCASE = [
     slug: 'performance-scaling-cloud-devops',
     summary: 'Improve how your software systems exchange information and support day-to-day operations.',
     examples: 'APIs, third-party integrations, existing-system improvements, technical maintenance'
+  },
+  {
+    code: '07',
+    title: 'ERP & Operations Software',
+    slug: 'erp-operations-software',
+    summary: 'Custom systems that centralize orders, inventory, approvals, reporting, and day-to-day operational workflows.',
+    examples: 'Operations hubs, inventory visibility, approvals, dashboards'
   }
 ] as const;
 
@@ -53,7 +60,7 @@ export const ServicesPage: React.FC = () => {
     <main className="services-page" id="main-content">
       <SEOHead
         title="Software Development Services — Tekmora Solutions"
-        description="Custom software, web applications, mobile apps, SaaS products, UI/UX design, and integrations for businesses with specific development needs."
+        description="Custom software, ERP and operations systems, web apps, mobile apps, SaaS products, UI/UX design, and integrations from Tekmora Solutions."
         canonical="https://www.tekmorasolution.com/services"
       />
 

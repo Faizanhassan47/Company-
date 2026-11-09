@@ -30,6 +30,7 @@ export const Footer: React.FC = () => {
             <div className="footer-group-header">Services</div>
             <ul className="footer-nav-links">
               <li><Link to="/services/custom-software-development">Custom Software</Link></li>
+              <li><Link to="/services/erp-operations-software">ERP & Operations</Link></li>
               <li><Link to="/services/web-application-development">Web Development</Link></li>
               <li><Link to="/services/mobile-app-development">Mobile Apps</Link></li>
               <li><Link to="/services/saas-engineering-modernization">SaaS Development</Link></li>

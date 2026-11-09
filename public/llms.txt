@@ -19,6 +19,7 @@ Tekmora helps businesses that need software shaped around their workflows, users
 
 ## Core services
 - Custom software development: https://www.tekmorasolution.com/services/custom-software-development
+- ERP and operations software: https://www.tekmorasolution.com/services/erp-operations-software
 - Web application development: https://www.tekmorasolution.com/services/web-application-development
 - Mobile app development: https://www.tekmorasolution.com/services/mobile-app-development
 - SaaS product development: https://www.tekmorasolution.com/services/saas-engineering-modernization

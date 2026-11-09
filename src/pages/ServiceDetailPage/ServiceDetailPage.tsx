@@ -26,6 +26,9 @@ const resolveService = (slug?: string): ServiceDetail | undefined => {
   if (slug === 'product-engineering') {
     return SERVICES_DATA.find(s => s.slug === 'performance-scaling-cloud-devops');
   }
+  if (slug === 'erp-software-development' || slug === 'erp-development' || slug === 'operations-software') {
+    return SERVICES_DATA.find(s => s.slug === 'erp-operations-software');
+  }
   return undefined;
 };
 
@@ -301,14 +304,17 @@ export const ServiceDetailPage: React.FC = () => {
         <div className="container sd-cta-container">
           <div className="sd-cta-content">
             <span className="sd-kicker">START A PROJECT</span>
-            <h2 className="sd-cta-heading">Ready to build your {service.title}?</h2>
+            <h2 className="sd-cta-heading">
+              {service.ctaHeadline || `Ready to build your ${service.title}?`}
+            </h2>
             <p className="sd-cta-sub">
-              Tell us about your product requirements, operational constraints, or system goals. We’ll provide direct architectural advice and a realistic delivery plan.
+              {service.ctaDesc ||
+                'Tell us about your product requirements, operational constraints, or system goals. We’ll provide direct architectural advice and a realistic delivery plan.'}
             </p>
           </div>
           <div className="sd-cta-action">
             <Link
-              to="/contact"
+              to={`/contact?type=${encodeURIComponent('Custom software or web application')}&ref=${service.slug}`}
               className="btn btn-orange font-mono"
               onClick={() => trackEvent('service_detail_bottom_cta', 'lead', service.slug)}
             >
