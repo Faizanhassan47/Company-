@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { env } from '@/config/env';
+import { buildFaqSchema, HOME_FAQS } from '../../data/aiSeo';
 import { TECH_EXPERTISE } from '../../data/company';
 import { ProjectPoster } from '../../components/studio/ProjectPosters';
 import { Reveal } from '../../components/studio/StudioMotion';
@@ -118,6 +119,7 @@ export const HomePage: React.FC = () => {
         title="Tekmora Solutions | Custom Software & App Development"
         description="Custom software that solves real business problems — web apps, ERP-style operations systems, mobile apps, and SaaS products. Discuss your project with Tekmora Solutions."
         canonical="https://www.tekmorasolution.com/"
+        jsonLd={buildFaqSchema(HOME_FAQS)}
       />
 
       <section className="home-hero">
@@ -322,6 +324,26 @@ export const HomePage: React.FC = () => {
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-faq" id="faq">
+        <div className="container">
+          <Reveal className="home-section-head">
+            <p className="studio-kicker">Common questions</p>
+            <h2>Clear answers for buyers and AI search.</h2>
+            <p className="home-section-lead">
+              Short answers about what Tekmora builds, who it’s for, and how a project starts.
+            </p>
+          </Reveal>
+          <div className="home-faq-list">
+            {HOME_FAQS.map(item => (
+              <details key={item.question} className="home-faq-item">
+                <summary>{item.question}</summary>
+                <p>{item.answer}</p>
+              </details>
             ))}
           </div>
         </div>

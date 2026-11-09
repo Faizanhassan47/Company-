@@ -67,13 +67,30 @@ export const ServiceDetailPage: React.FC = () => {
     name: service.title,
     serviceType: service.primaryTopic,
     provider: {
+      '@id': 'https://www.tekmorasolution.com/#organization',
       '@type': 'Organization',
-      name: 'Tekmora',
+      name: 'Tekmora Solutions',
       url: 'https://www.tekmorasolution.com'
     },
     description: service.overview,
-    areaServed: 'Worldwide'
+    areaServed: 'Worldwide',
+    url: `https://www.tekmorasolution.com/services/${service.slug}`
   };
+
+  const faqJsonLd = service.faqs?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: service.faqs.map(faq => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer
+          }
+        }))
+      }
+    : null;
 
   return (
     <main className="service-detail-page" id="main-content">
@@ -82,7 +99,7 @@ export const ServiceDetailPage: React.FC = () => {
         description={service.overview}
         canonical={`https://www.tekmorasolution.com/services/${service.slug}`}
         type="service"
-        jsonLd={serviceJsonLd}
+        jsonLd={faqJsonLd ? [serviceJsonLd, faqJsonLd] : serviceJsonLd}
       />
 
       {/* 1. Hero */}

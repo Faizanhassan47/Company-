@@ -89,33 +89,87 @@ export const SEOHead: React.FC<SEOProps> = ({
 
     const defaultOrganizationSchema = {
       '@context': 'https://schema.org',
-      '@type': 'Organization',
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': 'https://www.tekmorasolution.com/#organization',
       name: 'Tekmora Solutions',
-      alternateName: 'Tekmora',
+      alternateName: ['Tekmora', 'Tekmora Solution'],
       url: 'https://www.tekmorasolution.com',
-      logo: 'https://www.tekmorasolution.com/brand-icon.svg',
-      description: 'Tekmora Solutions builds custom software, web applications, mobile apps, and SaaS products for businesses.',
-      sameAs: [
-        'https://www.linkedin.com/company/tekmora-solution'
-      ],
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.tekmorasolution.com/brand-icon.svg'
+      },
+      image: 'https://www.tekmorasolution.com/og-image.jpg',
+      description:
+        'Tekmora Solutions designs and develops custom software, web applications, mobile apps, and SaaS products that help businesses simplify operations and scale.',
+      sameAs: ['https://www.linkedin.com/company/tekmora-solution'],
       email: 'info@tekmorasolution.com',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: 'info@tekmorasolution.com',
+        url: 'https://www.tekmorasolution.com/contact',
+        availableLanguage: ['English']
+      },
       areaServed: 'Worldwide',
       knowsAbout: [
         'Custom Software Development',
         'Web Application Development',
         'Mobile App Development',
         'SaaS Product Development',
+        'ERP and Operations Software',
         'UI/UX Design',
-        'API Integration and Software Engineering'
+        'API Integration and Software Engineering',
+        'Agency Development Partnerships'
+      ],
+      makesOffer: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Custom Software Development',
+            url: 'https://www.tekmorasolution.com/services/custom-software-development'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Web Application Development',
+            url: 'https://www.tekmorasolution.com/services/web-application-development'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Mobile App Development',
+            url: 'https://www.tekmorasolution.com/services/mobile-app-development'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'SaaS Product Development',
+            url: 'https://www.tekmorasolution.com/services/saas-engineering-modernization'
+          }
+        }
       ]
     };
 
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
+      '@id': 'https://www.tekmorasolution.com/#website',
       name: 'Tekmora Solutions',
       url: 'https://www.tekmorasolution.com/',
-      publisher: { '@type': 'Organization', name: 'Tekmora Solutions' }
+      inLanguage: 'en-US',
+      publisher: { '@id': 'https://www.tekmorasolution.com/#organization' },
+      potentialAction: {
+        '@type': 'CommunicateAction',
+        target: 'https://www.tekmorasolution.com/contact',
+        name: 'Discuss Your Project'
+      }
     };
 
     const breadcrumbParts = window.location.pathname.split('/').filter(Boolean);

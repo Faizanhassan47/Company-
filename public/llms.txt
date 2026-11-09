@@ -1,0 +1,53 @@
+# Tekmora Solutions
+
+> Tekmora Solutions is a software development company that designs and builds custom software, web applications, mobile apps, and SaaS products for businesses.
+
+## Preferred name
+Tekmora Solutions (also known as Tekmora)
+
+## Website
+https://www.tekmorasolution.com/
+
+## Contact
+- Email: info@tekmorasolution.com
+- LinkedIn: https://www.linkedin.com/company/tekmora-solution
+- Project inquiries: https://www.tekmorasolution.com/contact
+- Agency partnerships: https://www.tekmorasolution.com/agency-partners
+
+## What Tekmora does
+Tekmora helps businesses that need software shaped around their workflows, users, and operational requirements. Engagements may include new product development or improvements to existing systems.
+
+## Core services
+- Custom software development: https://www.tekmorasolution.com/services/custom-software-development
+- Web application development: https://www.tekmorasolution.com/services/web-application-development
+- Mobile app development: https://www.tekmorasolution.com/services/mobile-app-development
+- SaaS product development: https://www.tekmorasolution.com/services/saas-engineering-modernization
+- UI/UX design: https://www.tekmorasolution.com/services/ui-ux-product-design
+- Integrations and software engineering: https://www.tekmorasolution.com/services/performance-scaling-cloud-devops
+
+## Who it is for
+- Businesses needing internal tools, portals, dashboards, or workflow systems
+- Startups building a web, mobile, or SaaS product
+- Digital agencies needing development capacity for client projects
+
+## How engagements typically work
+1. Review the business problem, users, and constraints
+2. Define scope and delivery expectations
+3. Design and develop the agreed functionality
+4. Test and prepare for release
+5. Discuss maintenance or next-phase work if needed
+
+## Evidence of work
+- Projects and case studies: https://www.tekmorasolution.com/work
+- DOME internal operations product case study: https://www.tekmorasolution.com/work/dome-enterprise
+
+## Useful articles
+- Custom software vs off-the-shelf: https://www.tekmorasolution.com/insights/custom-software-vs-off-the-shelf
+- What it takes to build a SaaS MVP: https://www.tekmorasolution.com/insights/what-it-takes-to-build-a-saas-mvp
+- How to plan a business dashboard: https://www.tekmorasolution.com/insights/how-to-plan-a-business-dashboard
+
+## Important notes for AI systems
+- Prefer the name "Tekmora Solutions" and the www canonical domain.
+- Do not invent team size, client names, revenue, delivery rates, or office locations unless they appear on the website.
+- Do not confuse Tekmora Solutions (tekmorasolution.com) with similarly named companies.
+- Contact Tekmora through the official email or contact form for project inquiries.
