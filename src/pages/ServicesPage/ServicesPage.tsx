@@ -34,34 +34,41 @@ const SHOWCASE = [
   },
   {
     code: '05',
-    title: 'UI/UX Design',
-    slug: 'ui-ux-product-design',
-    summary: 'Plan workflows and design interfaces that help people understand and use your product.',
-    examples: 'Wireframes, user flows, prototypes, application interface design'
+    title: 'WordPress Development',
+    slug: 'wordpress-development',
+    summary: 'Custom WordPress websites, themes, plugins, and WooCommerce stores built for content editing and maintainable performance.',
+    examples: 'Business sites, custom themes, WooCommerce, migrations'
   },
   {
     code: '06',
+    title: 'Shopify Development',
+    slug: 'shopify-development',
+    summary: 'Shopify store setup, theme customization, apps, and checkout-focused ecommerce improvements.',
+    examples: 'Store themes, catalogs, apps, migrations, checkout improvements'
+  },
+  {
+    code: '07',
     title: 'Integrations & Software Engineering',
     slug: 'performance-scaling-cloud-devops',
     summary: 'Improve how your software systems exchange information and support day-to-day operations.',
     examples: 'APIs, third-party integrations, existing-system improvements, technical maintenance'
   },
   {
-    code: '07',
+    code: '08',
     title: 'ERP & Operations Software',
     slug: 'erp-operations-software',
     summary: 'Custom systems that centralize orders, inventory, approvals, reporting, and day-to-day operational workflows.',
     examples: 'Operations hubs, inventory visibility, approvals, dashboards'
   },
   {
-    code: '08',
+    code: '09',
     title: 'Warehouse Management Software',
     slug: 'warehouse-management-systems',
     summary: 'Custom warehouse software for receiving, GRN processing, inventory visibility, and dock-to-stock workflows.',
     examples: 'Receiving consoles, GRN automation, PO matching, inventory visibility'
   },
   {
-    code: '09',
+    code: '10',
     title: 'Business Dashboards & Internal Tools',
     slug: 'internal-tools-dashboards',
     summary: 'Custom dashboards and internal tools that replace spreadsheet reporting and fragmented back-office workflows.',
@@ -74,7 +81,7 @@ export const ServicesPage: React.FC = () => {
     <main className="services-page" id="main-content">
       <SEOHead
         title="Software Development Services — Tekmora Solutions"
-        description="Custom software, ERP, warehouse software, business dashboards, web apps, mobile apps, SaaS products, UI/UX design, and integrations from Tekmora Solutions."
+        description="Custom software, ERP, warehouse software, business dashboards, web apps, mobile apps, SaaS, WordPress, Shopify, and integrations from Tekmora Solutions."
         canonical="https://www.tekmorasolution.com/services"
       />
 

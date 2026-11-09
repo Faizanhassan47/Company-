@@ -36,7 +36,8 @@ export const Footer: React.FC = () => {
               <li><Link to="/services/web-application-development">Web Development</Link></li>
               <li><Link to="/services/mobile-app-development">Mobile Apps</Link></li>
               <li><Link to="/services/saas-engineering-modernization">SaaS Development</Link></li>
-              <li><Link to="/services/ui-ux-product-design">UI/UX Design</Link></li>
+              <li><Link to="/services/wordpress-development">WordPress</Link></li>
+              <li><Link to="/services/shopify-development">Shopify</Link></li>
               <li><Link to="/services/performance-scaling-cloud-devops">Integrations & Engineering</Link></li>
             </ul>
           </div>

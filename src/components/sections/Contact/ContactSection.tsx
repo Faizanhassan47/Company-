@@ -128,6 +128,7 @@ export const ContactSection: React.FC = () => {
     'Enterprise System',
     'SAP & Warehouse',
     'WordPress Solutions',
+    'Shopify Store',
     'System Integrations'
   ];
 

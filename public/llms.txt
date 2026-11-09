@@ -1,6 +1,6 @@
 # Tekmora Solutions
 
-> Tekmora Solutions is a software development company that designs and builds custom software, web applications, mobile apps, SaaS products, ERP-style operations systems, warehouse software, and business dashboards for businesses.
+> Tekmora Solutions is a software development company that designs and builds custom software, web applications, mobile apps, SaaS products, ERP-style operations systems, warehouse software, business dashboards, WordPress sites, and Shopify stores for businesses.
 
 ## Preferred name
 Tekmora Solutions (also known as Tekmora)
@@ -27,7 +27,8 @@ Tekmora Solutions is a software development company at tekmorasolution.com. It b
 - Web application development
 - Mobile app development
 - SaaS product development
-- UI/UX design
+- WordPress development
+- Shopify development
 - Integrations and software engineering
 
 ### Who is Tekmora for?
@@ -52,7 +53,8 @@ No. Tekmora also improves existing systems with new features, workflows, integra
 - Web application development: https://www.tekmorasolution.com/services/web-application-development
 - Mobile app development: https://www.tekmorasolution.com/services/mobile-app-development
 - SaaS product development: https://www.tekmorasolution.com/services/saas-engineering-modernization
-- UI/UX design: https://www.tekmorasolution.com/services/ui-ux-product-design
+- WordPress development: https://www.tekmorasolution.com/services/wordpress-development
+- Shopify development: https://www.tekmorasolution.com/services/shopify-development
 - Integrations and software engineering: https://www.tekmorasolution.com/services/performance-scaling-cloud-devops
 - All services: https://www.tekmorasolution.com/services
 

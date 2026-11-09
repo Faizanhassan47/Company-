@@ -119,7 +119,8 @@ export const SEOHead: React.FC<SEOProps> = ({
         'ERP and Operations Software',
         'Warehouse Management Software',
         'Business Dashboards and Internal Tools',
-        'UI/UX Design',
+        'WordPress Development',
+        'Shopify Development',
         'API Integration and Software Engineering',
         'Agency Development Partnerships'
       ],
@@ -178,6 +179,22 @@ export const SEOHead: React.FC<SEOProps> = ({
             '@type': 'Service',
             name: 'Business Dashboards and Internal Tools',
             url: 'https://www.tekmorasolution.com/services/internal-tools-dashboards'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'WordPress Development',
+            url: 'https://www.tekmorasolution.com/services/wordpress-development'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Shopify Development',
+            url: 'https://www.tekmorasolution.com/services/shopify-development'
           }
         }
       ]

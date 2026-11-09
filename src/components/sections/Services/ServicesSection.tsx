@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Code, Globe, Smartphone, Cloud, Layout, Wrench } from 'lucide-react';
+import { ArrowUpRight, Code, Globe, Smartphone, Cloud, ShoppingBag, Wrench } from 'lucide-react';
 import { fadeInUp } from '../../../utils/animations';
 import './ServicesSection.css';
 
@@ -53,17 +53,26 @@ const SERVICES_DATA: ServiceItem[] = [
     slug: 'saas-engineering-modernization'
   },
   {
-    id: 'ui-ux-design',
+    id: 'wordpress-development',
     number: '05',
-    title: 'UI/UX & Product Design',
-    icon: <Layout size={24} className="service-icon" />,
-    summary: 'Ergonomic user interfaces designed around real user workflows, frictionless adoption, and concrete product conversion goals.',
-    deliverables: 'Design systems, interactive Figma prototypes, usability audits, and component specs.',
-    slug: 'custom-software-development'
+    title: 'WordPress Development',
+    icon: <Globe size={24} className="service-icon" />,
+    summary: 'Custom WordPress websites, themes, plugins, and WooCommerce stores built for content editing and maintainable performance.',
+    deliverables: 'Business sites, custom themes, WooCommerce, migrations, and CMS integrations.',
+    slug: 'wordpress-development'
+  },
+  {
+    id: 'shopify-development',
+    number: '06',
+    title: 'Shopify Development',
+    icon: <ShoppingBag size={24} className="service-icon" />,
+    summary: 'Shopify store setup, theme customization, apps, and checkout-focused ecommerce improvements.',
+    deliverables: 'Store themes, catalogs, apps, migrations, and checkout improvements.',
+    slug: 'shopify-development'
   },
   {
     id: 'product-engineering',
-    number: '06',
+    number: '07',
     title: 'Product Engineering & Scaling',
     icon: <Wrench size={24} className="service-icon" />,
     summary: 'Dedicated senior engineering support to continuously improve, maintain, index databases, and scale live digital products.',

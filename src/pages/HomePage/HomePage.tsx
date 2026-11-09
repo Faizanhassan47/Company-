@@ -74,9 +74,14 @@ const SERVICES = [
     text: 'Subscription platforms with accounts, permissions, and product management.'
   },
   {
-    title: 'UI/UX Design',
-    href: '/services/ui-ux-product-design',
-    text: 'Interfaces designed around what users need to accomplish.'
+    title: 'WordPress Development',
+    href: '/services/wordpress-development',
+    text: 'Custom WordPress sites, themes, plugins, and WooCommerce stores.'
+  },
+  {
+    title: 'Shopify Development',
+    href: '/services/shopify-development',
+    text: 'Shopify store setup, theme customization, apps, and checkout improvements.'
   },
   {
     title: 'Integrations & Engineering',
@@ -195,7 +200,7 @@ export const HomePage: React.FC = () => {
             {SERVICES.map((service, index) => (
               <li key={service.href}>
                 <Link to={service.href}>
-                  <span>0{index + 1}</span>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
                   <strong>{service.title}</strong>
                   <p>{service.text}</p>
                   <em>

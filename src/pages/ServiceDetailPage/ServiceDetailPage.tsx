@@ -35,6 +35,12 @@ const resolveService = (slug?: string): ServiceDetail | undefined => {
   if (slug === 'business-dashboards' || slug === 'operational-dashboards' || slug === 'internal-tools') {
     return SERVICES_DATA.find(s => s.slug === 'internal-tools-dashboards');
   }
+  if (slug === 'wordpress' || slug === 'woocommerce-development') {
+    return SERVICES_DATA.find(s => s.slug === 'wordpress-development');
+  }
+  if (slug === 'shopify' || slug === 'shopify-store-development' || slug === 'ecommerce-shopify') {
+    return SERVICES_DATA.find(s => s.slug === 'shopify-development');
+  }
   return undefined;
 };
 

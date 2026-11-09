@@ -1367,69 +1367,120 @@ export const SERVICES_DATA: ServiceDetail[] = [
     ctaDesc: 'Tell us how receiving and inventory work today. We will review whether focused warehouse software or an ERP-connected workflow is the better path.'
   },
 
-  // 17: WordPress Development (Existing)
+  // 17: WordPress Development
   {
     slug: 'wordpress-development',
     number: '17',
     category: 'saas-modernization',
     title: 'WordPress Development',
-    shortDesc: 'Custom WordPress websites, WooCommerce platforms and tailored functionality.',
-    tagline: 'Bespoke, high-performance WordPress engineering with zero page-builder bloat.',
-    primaryTopic: 'Custom WordPress development',
-    heroHeadline: 'CLEAN, TAILORED WORDPRESS ENGINEERING FOR SERIOUS BRANDS.',
-    overview: 'Tekmora creates custom WordPress and WooCommerce platforms built for longevity, security, and exceptional page speed. We write clean PHP themes, bespoke Gutenberg blocks, and custom backend plugins from scratch, rejecting slow visual page builders in favor of semantic, maintainable code.',
+    shortDesc: 'Custom WordPress websites, themes, plugins, and WooCommerce stores built for content editing and maintainable performance.',
+    tagline: 'WordPress sites and stores built around content, commerce, and practical maintenance.',
+    primaryTopic: 'WordPress development',
+    heroHeadline: 'WordPress development for business sites and online stores.',
+    overview:
+      'Tekmora builds and improves WordPress sites when a CMS-driven website or WooCommerce store is the right fit. Work can include custom themes, Gutenberg blocks, plugins, WooCommerce setup, migrations, performance cleanup, and integrations with forms, CRMs, or payment tools—without inventing unnecessary complexity.',
+    architectureApproach:
+      'Start from content structure, editing needs, and any commerce or integration requirements. Prefer maintainable themes and focused plugins over heavy page-builder stacks when performance and long-term ownership matter.',
     keyCapabilities: [
       {
-        title: '100% Custom PHP Themes',
-        description: 'Lightweight, semantic markup written from the ground up without Elementor or heavy visual builder dependencies.'
+        title: 'Custom themes and templates',
+        description: 'Themes structured around your pages, content types, and brand layout needs.'
       },
       {
-        title: 'Custom Gutenberg Block Systems',
-        description: 'Tailored React-powered editing blocks that give marketing teams creative freedom within strict brand guidelines.'
+        title: 'Editor-friendly blocks',
+        description: 'Gutenberg blocks and fields so marketing teams can update content without breaking design.'
       },
       {
-        title: 'Bespoke WooCommerce Architecture',
-        description: 'Streamlined checkout funnels, custom payment gateway integrations, and complex product configuration rules.'
+        title: 'WooCommerce stores',
+        description: 'Product catalogs, checkout flows, and payment setup when the business needs an online store on WordPress.'
       },
       {
-        title: 'Headless WordPress & REST APIs',
-        description: 'Using WordPress as a structured headless CMS powering modern Next.js and React frontend applications.'
+        title: 'Custom plugins and integrations',
+        description: 'Focused plugins or API connections when off-the-shelf options do not cover the workflow.'
       },
       {
-        title: 'Performance & Security Hardening',
-        description: '95+ Google PageSpeed scores, object caching, database query optimization, and strict server hardening.'
+        title: 'Performance and security cleanup',
+        description: 'Reduce bloat, improve loading behavior, and harden common WordPress risk areas on new or existing sites.'
+      },
+      {
+        title: 'Migrations and rebuilds',
+        description: 'Move or rebuild WordPress sites with URL mapping and content transfer planned carefully.'
       }
     ],
     technicalStack: [
-      { category: 'Core CMS', items: ['WordPress 6.x', 'PHP 8.2+', 'WooCommerce', 'MySQL / MariaDB'] },
-      { category: 'Frontend', items: ['HTML5', 'Vanilla CSS / SCSS', 'JavaScript', 'React Gutenberg Blocks'] },
-      { category: 'Performance', items: ['Redis Object Cache', 'Cloudflare CDN', 'WebP Optimization'] },
-      { category: 'Integrations', items: ['Custom REST Endpoints', 'Payment Gateways', 'CRM Webhooks'] }
+      { category: 'CMS', items: ['WordPress', 'PHP', 'MySQL / MariaDB'] },
+      { category: 'Commerce', items: ['WooCommerce', 'Payment gateways'] },
+      { category: 'Delivery', items: ['Custom themes', 'Gutenberg blocks', 'REST APIs'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Information Architecture', description: 'We define page hierarchies, custom post types (CPTs), and field structures.' },
-      { phase: '02', name: 'Theme & Block Development', description: 'We code custom PHP templates and custom React Gutenberg blocks.' },
-      { phase: '03', name: 'E-Commerce & Plugins', description: 'We build custom checkout workflows, payment hooks, and operational integrations.' },
-      { phase: '04', name: 'Performance Tuning', description: 'We minimize database queries, eliminate asset bloat, and achieve 95+ Core Web Vitals.' },
-      { phase: '05', name: 'Launch & Security Setup', description: 'We configure automated backups, SSL certificates, and firewall rules.' }
+      {
+        phase: '01',
+        name: 'Map content and goals',
+        description: 'Review pages, content owners, store needs, and current site constraints.'
+      },
+      {
+        phase: '02',
+        name: 'Define the first release',
+        description: 'Choose templates, commerce features, and integrations required for launch.'
+      },
+      {
+        phase: '03',
+        name: 'Build and review',
+        description: 'Develop themes, blocks, or store features with checkpoints for content editors.'
+      },
+      {
+        phase: '04',
+        name: 'Test and harden',
+        description: 'Check forms, checkout, permissions, redirects, and basic security settings.'
+      },
+      {
+        phase: '05',
+        name: 'Launch and handoff',
+        description: 'Deploy, confirm editing workflows, and outline maintenance or next-phase work.'
+      }
     ],
     faqs: [
       {
-        question: 'Why do you avoid visual page builders like Elementor or Divi?',
-        answer: 'Visual builders inject thousands of lines of redundant CSS and JavaScript, severely degrading page speed, Core Web Vitals, and SEO rankings. Custom themes load in milliseconds and are far easier to maintain.'
+        question: 'When does WordPress make sense?',
+        answer:
+          'WordPress fits well when non-developers need to edit content regularly, or when a marketing site or WooCommerce store needs a familiar CMS. Custom software may be better for complex operational workflows.'
       },
       {
-        question: 'Can our marketing team easily edit content without touching code?',
-        answer: 'Yes. We build custom native Gutenberg blocks tailored to your exact brand styles, giving your team intuitive visual editing while preserving design integrity.'
+        question: 'Do you rebuild slow Elementor sites?',
+        answer:
+          'Yes. Many projects start by replacing heavy page-builder setups with a cleaner theme and fewer plugins when the current site is hard to maintain or slow.'
       },
       {
-        question: 'How do you protect WordPress sites from security vulnerabilities?',
-        answer: 'We eliminate bloated third-party plugins, enforce strong authentication, disable XML-RPC, sanitize all database queries, and implement Web Application Firewalls (WAF).'
+        question: 'Can you work on an existing WordPress site?',
+        answer:
+          'Yes. Engagements can improve an existing site, add features, fix performance issues, or rebuild selected templates while keeping content and URLs stable where possible.'
+      },
+      {
+        question: 'How does a project start?',
+        answer:
+          'Share the current site or goals, what content needs to be editable, and any store or integration requirements. We review suitability and discuss scope before a proposal.'
       }
     ],
-    relevantProjectSlugs: ['seven-koncepts', 'bombay-fifty', 'lb908-dashboard', 'transcend-healthcare']
-  }
-,
+    businessProblems: [
+      {
+        title: 'The site is slow or hard to edit',
+        description: 'Page builders and plugin stacks make updates risky and load times poor.'
+      },
+      {
+        title: 'WooCommerce needs cleaner setup',
+        description: 'Products, checkout, or payments work, but the store is fragile or incomplete.'
+      },
+      {
+        title: 'Content and systems are disconnected',
+        description: 'Forms, CRM, or business tools are not connected cleanly to the WordPress site.'
+      }
+    ],
+    industries: ['Marketing', 'Commerce', 'Services', 'Publishing'],
+    relevantProjectSlugs: ['seven-koncepts', 'bombay-fifty', 'transcend-healthcare'],
+    ctaHeadline: 'Discuss a WordPress project',
+    ctaDesc: 'Tell us whether you need a new WordPress site, a WooCommerce store, or cleanup on an existing build.'
+  },
+
   {
     slug: 'custom-software-development',
     number: 'C01',
@@ -1867,40 +1918,115 @@ export const SERVICES_DATA: ServiceDetail[] = [
     industries: ['SaaS', 'E-commerce', 'B2B Services']
   },
   {
-    slug: 'wordpress-development',
+    slug: 'shopify-development',
     number: 'C08',
     category: 'saas-modernization',
-    title: 'WordPress & Custom Plugin Development',
-    shortDesc: 'Enterprise-grade WordPress engineering without the bloat.',
-    tagline: 'High-performance, secure, and custom WordPress solutions.',
-    primaryTopic: 'WordPress Engineering',
-    heroHeadline: 'ENTERPRISE WORDPRESS DEVELOPMENT.',
-    overview: 'We treat WordPress as a serious engineering platform. We strip out bloated page builders, write custom lightweight themes from scratch, and develop bespoke plugins for advanced functionality, delivering WordPress sites that load in milliseconds.',
-    architectureApproach: 'Custom PHP themes utilizing modern build tools (Vite/Tailwind). For maximum performance, we employ Headless WordPress architecture with a Next.js frontend.',
+    title: 'Shopify Development',
+    shortDesc: 'Shopify store setup, theme customization, apps, and checkout-focused ecommerce improvements.',
+    tagline: 'Shopify stores built for selling, not just launching a theme.',
+    primaryTopic: 'Shopify development',
+    heroHeadline: 'Shopify development for stores that need to sell cleanly.',
+    overview:
+      'Tekmora builds and improves Shopify stores when ecommerce is the priority. Work can include theme customization, product and collection setup, checkout improvements, Shopify apps, migrations, and integrations with shipping, inventory, or marketing tools—shaped around how the store actually needs to operate.',
+    architectureApproach:
+      'Start from the catalog, checkout path, and operational tools the store depends on. Customize the theme and add apps or integrations only where they support conversion or operations, keeping the store maintainable.',
     keyCapabilities: [
-      { title: 'Custom Theme Development', description: 'Pixel-perfect, zero-bloat themes tailored to your brand.' },
-      { title: 'Advanced Plugin Engineering', description: 'Custom PHP plugins for complex business logic and API integrations.' },
-      { title: 'Headless WordPress', description: 'Decoupling the CMS from the frontend for ultimate speed and security.' }
+      {
+        title: 'Theme customization',
+        description: 'Customize Shopify themes around brand layout, product pages, and merchandising needs.'
+      },
+      {
+        title: 'Store setup and catalog structure',
+        description: 'Products, collections, variants, and content pages organized for browsing and buying.'
+      },
+      {
+        title: 'Checkout and conversion improvements',
+        description: 'Refine cart, checkout, and key product flows when the current path loses sales.'
+      },
+      {
+        title: 'Apps and custom features',
+        description: 'Add Shopify apps or focused custom features when standard theme options are not enough.'
+      },
+      {
+        title: 'Integrations',
+        description: 'Connect shipping, inventory, accounting, or marketing tools when the store must exchange data.'
+      },
+      {
+        title: 'Migrations to Shopify',
+        description: 'Move catalogs and content into Shopify with redirects and launch checks planned carefully.'
+      }
     ],
     technicalStack: [
-      { category: 'Core Stack', items: ['PHP 8+', 'WordPress Core', 'MySQL'] },
-      { category: 'Frontend', items: ['Next.js (Headless)', 'Tailwind CSS', 'React (Gutenberg)'] }
+      { category: 'Platform', items: ['Shopify', 'Shopify Admin', 'Online Store'] },
+      { category: 'Storefront', items: ['Liquid themes', 'Theme customizer', 'Shopify apps'] },
+      { category: 'Integrations', items: ['Payments', 'Shipping', 'APIs'] }
     ],
     developmentProcess: [
-      { phase: '01', name: 'Architecture Planning', description: 'Defining Custom Post Types, taxonomies, and ACF fields.' },
-      { phase: '02', name: 'Backend Engineering', description: 'Building the plugins and headless GraphQL endpoints.' },
-      { phase: '03', name: 'Frontend Implementation', description: 'Developing the blazing fast user interface.' },
-      { phase: '04', name: 'Security & Optimization', description: 'Hardening the server and tuning caching layers.' }
+      {
+        phase: '01',
+        name: 'Map the store goals',
+        description: 'Review catalog, branding, checkout needs, and current tools.'
+      },
+      {
+        phase: '02',
+        name: 'Define the first release',
+        description: 'Choose theme work, apps, and integrations required to sell cleanly.'
+      },
+      {
+        phase: '03',
+        name: 'Build and review',
+        description: 'Customize the storefront and configure store operations with checkpoints.'
+      },
+      {
+        phase: '04',
+        name: 'Test purchase flows',
+        description: 'Validate product pages, cart, checkout, payments, and key integrations.'
+      },
+      {
+        phase: '05',
+        name: 'Launch and iterate',
+        description: 'Go live, then improve conversion or operations based on real store usage.'
+      }
     ],
     faqs: [
-      { question: 'Why is my current WordPress site so slow?', answer: 'Usually due to page builders (like Elementor), too many plugins, and unoptimized images. We build from scratch to eliminate this overhead.' },
-      { question: 'Can you migrate our site without losing SEO?', answer: 'Yes, we meticulously map and redirect all existing URLs to preserve your search rankings during migration.' }
+      {
+        question: 'Shopify or WooCommerce?',
+        answer:
+          'Shopify is often a strong fit when you want a hosted ecommerce platform with less server maintenance. WooCommerce can fit better when WordPress content and store ownership on your own hosting matter more. We can help compare based on your catalog and operations.'
+      },
+      {
+        question: 'Can you customize an existing Shopify store?',
+        answer:
+          'Yes. Many projects improve themes, product templates, apps, or checkout-related flows on stores that already exist.'
+      },
+      {
+        question: 'Do you migrate stores into Shopify?',
+        answer:
+          'Yes. Migrations can move products, collections, and content into Shopify with redirect planning so important URLs stay useful after launch.'
+      },
+      {
+        question: 'How does a project start?',
+        answer:
+          'Share the store goal, current platform if any, and what is broken in browsing or checkout today. We review suitability and discuss scope before a proposal.'
+      }
     ],
-    relevantProjectSlugs: ['transcend-healthcare'],
     businessProblems: [
-      { title: 'Security vulnerabilities', description: 'Your site is constantly targeted due to outdated, unmaintained plugins.' },
-      { title: 'Impossible to scale', description: 'Your WooCommerce store crashes during high-traffic sales events.' }
+      {
+        title: 'The theme does not support how you sell',
+        description: 'Product pages, variants, or merchandising layouts fight the catalog instead of helping customers buy.'
+      },
+      {
+        title: 'Checkout or apps feel fragile',
+        description: 'Extra apps and unfinished theme work create friction in cart, payments, or fulfillment.'
+      },
+      {
+        title: 'Operations are disconnected from the store',
+        description: 'Inventory, shipping, or marketing tools are not connected cleanly to Shopify.'
+      }
     ],
-    industries: ['Publishing', 'E-commerce', 'Corporate', 'Marketing']
+    industries: ['Ecommerce', 'Retail', 'Direct-to-consumer', 'Services'],
+    relevantProjectSlugs: ['bombay-fifty', 'seven-koncepts'],
+    ctaHeadline: 'Discuss a Shopify project',
+    ctaDesc: 'Tell us whether you need a new Shopify store, theme work, migration, or improvements to an existing shop.'
   }
 ];

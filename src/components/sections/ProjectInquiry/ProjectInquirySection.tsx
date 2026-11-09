@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   ArrowRight, ArrowUpRight, Check, Mail, 
-  Globe, Smartphone, Cloud, Code, Layout, HelpCircle 
+  Globe, Smartphone, Cloud, Code, ShoppingBag, HelpCircle 
 } from 'lucide-react';
 import './ProjectInquirySection.css';
 import { trackEvent } from '../../../utils/analytics';
@@ -12,7 +12,8 @@ const SERVICE_OPTIONS = [
   { id: 'mobile-app', label: 'Mobile Application', icon: <Smartphone size={18} /> },
   { id: 'saas', label: 'SaaS Product', icon: <Cloud size={18} /> },
   { id: 'custom-software', label: 'Custom Software', icon: <Code size={18} /> },
-  { id: 'ui-ux', label: 'UI/UX & Product Design', icon: <Layout size={18} /> },
+  { id: 'wordpress', label: 'WordPress', icon: <Globe size={18} /> },
+  { id: 'shopify', label: 'Shopify', icon: <ShoppingBag size={18} /> },
   { id: 'other', label: 'Other Engineering', icon: <HelpCircle size={18} /> }
 ];
 

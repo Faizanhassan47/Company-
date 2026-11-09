@@ -3,12 +3,17 @@ export const HOME_FAQS = [
   {
     question: 'What does Tekmora Solutions do?',
     answer:
-      'Tekmora Solutions designs and develops custom software, web applications, mobile apps, SaaS products, ERP-style operations systems, warehouse software, and business dashboards for companies that need technology built around how they work.'
+      'Tekmora Solutions designs and develops custom software, web applications, mobile apps, SaaS products, ERP-style operations systems, warehouse software, business dashboards, WordPress sites, and Shopify stores for companies that need technology built around how they work.'
   },
   {
     question: 'What services does Tekmora Solutions offer?',
     answer:
-      'Core services include custom software development, ERP and operations software, warehouse management software, business dashboards and internal tools, web application development, mobile app development, SaaS product development, UI/UX design, and integrations and software engineering. Service details are at tekmorasolution.com/services.'
+      'Core services include custom software development, ERP and operations software, warehouse management software, business dashboards and internal tools, web application development, mobile app development, SaaS product development, WordPress development, Shopify development, and integrations and software engineering. Service details are at tekmorasolution.com/services.'
+  },
+  {
+    question: 'Does Tekmora build WordPress and Shopify sites?',
+    answer:
+      'Yes. Tekmora offers WordPress development for business sites and WooCommerce stores, and Shopify development for ecommerce storefronts, themes, apps, and migrations. Details: tekmorasolution.com/services/wordpress-development and tekmorasolution.com/services/shopify-development.'
   },
   {
     question: 'Does Tekmora build ERP or operations software?',
