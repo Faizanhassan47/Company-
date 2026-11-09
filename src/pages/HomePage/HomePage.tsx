@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { env } from '@/config/env';
 import { TECH_EXPERTISE } from '../../data/company';
 import { ProjectPoster } from '../../components/studio/ProjectPosters';
 import { Reveal } from '../../components/studio/StudioMotion';
+import { trackEvent } from '../../utils/analytics';
 import './HomePage.css';
 
 const FEATURED = [
@@ -114,7 +116,7 @@ export const HomePage: React.FC = () => {
     <main className="home-page studio-home" id="main-content">
       <SEOHead
         title="Tekmora Solutions | Custom Software & App Development"
-        description="We build custom software, web applications, mobile apps, and SaaS products for startups and businesses. Explore our services and discuss your project."
+        description="Custom software that solves real business problems — web apps, ERP-style operations systems, mobile apps, and SaaS products. Discuss your project with Tekmora Solutions."
         canonical="https://www.tekmorasolution.com/"
       />
 
@@ -124,19 +126,35 @@ export const HomePage: React.FC = () => {
             <Reveal>
               <p className="studio-kicker">Tekmora Solutions / Software development</p>
               <h1>
-                Custom software for the way your
-                <span className="serif-accent"> business works.</span>
+                Custom software that solves
+                <span className="serif-accent"> real business problems.</span>
               </h1>
               <p className="studio-lead">
-                Need a new application or a better way to manage your operations? We build web platforms, mobile apps, SaaS products, and business software around your requirements.
+                We design and develop applications that centralize workflows, reporting, and day-to-day operations — web platforms, mobile apps, SaaS products, and business systems built around how your team actually works.
               </p>
               <div className="home-actions">
-                <Link to="/contact?type=Not%20sure%20yet" className="studio-btn">
+                <Link
+                  to="/contact?type=Not%20sure%20yet"
+                  className="studio-btn"
+                  onClick={() => trackEvent('home_cta_click', 'conversion', 'discuss_project')}
+                >
                   Discuss Your Project <ArrowRight size={16} />
                 </Link>
-                <Link to="/work" className="studio-btn-ghost">
-                  Explore Our Work
-                </Link>
+                {env.calendarUrl ? (
+                  <a
+                    href={env.calendarUrl}
+                    className="studio-btn-ghost"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('home_cta_click', 'conversion', 'discovery_call')}
+                  >
+                    Book a Discovery Call
+                  </a>
+                ) : (
+                  <Link to="/work" className="studio-btn-ghost">
+                    Explore Our Work
+                  </Link>
+                )}
               </div>
             </Reveal>
           </div>
