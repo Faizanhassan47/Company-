@@ -23,10 +23,10 @@
     overflow-x: hidden;
     width: 100%;
   }
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 100vw;
+
+  :root {
+    --page-edge: 1rem;
+    --container-padding: var(--page-edge);
   }
 }
 

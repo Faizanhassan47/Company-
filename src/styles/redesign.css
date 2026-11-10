@@ -1,13 +1,6 @@
 /* Studio redesign — shared type, buttons, frames, and photography */
 
-.studio-home .container,
-.services-page .container,
-.work-page .container,
-.case-page .container,
-.about-page .container,
-.contact-page .container {
-  max-width: 1160px;
-}
+/* Page max width comes from --page-max-width so every shell shares one edge. */
 
 .studio-home h1,
 .studio-home h2,

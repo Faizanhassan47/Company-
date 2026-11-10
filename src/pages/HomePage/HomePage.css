@@ -24,13 +24,15 @@
 }
 
 .home-hero-stage {
-  width: min(1240px, calc(100% - 2 * var(--container-padding)));
+  width: 100%;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(28px, 4vw, 56px);
   align-items: center;
-  padding: clamp(28px, 5vh, 56px) 0 clamp(36px, 6vh, 72px);
+  padding: clamp(28px, 5vh, 56px) var(--page-edge) clamp(36px, 6vh, 72px);
+  box-sizing: border-box;
 }
 
 .home-brand {
@@ -124,7 +126,7 @@
 }
 
 .home-work {
-  padding: clamp(64px, 10vw, 110px) 0 24px;
+  padding: var(--section-y) 0;
 }
 
 .home-work-head {
@@ -317,8 +319,11 @@
 
 .home-services,
 .home-process,
-.home-principles {
-  padding: clamp(48px, 8vw, 88px) 0;
+.home-principles,
+.home-tech,
+.home-agency,
+.home-faq {
+  padding: var(--section-y) 0;
 }
 
 .home-service-grid {
@@ -398,12 +403,6 @@
   color: #d4d4d8;
   font-size: 15px;
   max-width: 48ch;
-}
-
-.home-tech,
-.home-agency,
-.home-faq {
-  padding: clamp(48px, 8vw, 88px) 0;
 }
 
 .home-faq-list {
@@ -555,7 +554,7 @@
 }
 
 .home-close {
-  padding: 28px 0 clamp(72px, 10vw, 120px);
+  padding: var(--section-y) 0;
 }
 
 .home-close-panel {

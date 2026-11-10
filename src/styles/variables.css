@@ -72,9 +72,12 @@
   --spacing-24: 96px;
   --spacing-32: 128px;
 
-  /* Layout */
-  --container-max-width: 1400px;
-  --container-padding: clamp(1.25rem, 4vw, 3.5rem);
+  /* Layout — one edge system for the whole site */
+  --page-max-width: 1160px;
+  --page-edge: clamp(1.25rem, 4vw, 2rem);
+  --section-y: clamp(4rem, 8vw, 6.5rem);
+  --container-max-width: var(--page-max-width);
+  --container-padding: var(--page-edge);
   --header-height: 76px;
 
   /* Radius */

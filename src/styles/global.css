@@ -53,7 +53,8 @@ section,
 
 @media (max-width: 600px) {
   :root {
-    --container-padding: 16px;
+    --page-edge: 16px;
+    --container-padding: var(--page-edge);
     --header-height: 68px;
   }
 
@@ -198,19 +199,21 @@ img {
   white-space: nowrap !important;
 }
 
-/* Container & Layout */
-.container {
+/* Container & Layout — shared page edge for every section shell */
+.container,
+.page-shell {
   width: 100%;
-  max-width: var(--container-max-width);
+  max-width: var(--page-max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
+  padding-left: var(--page-edge);
+  padding-right: var(--page-edge);
+  box-sizing: border-box;
 }
 
 .section {
-  padding-top: clamp(4rem, 8vw, 8rem);
-  padding-bottom: clamp(4rem, 8vw, 8rem);
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
   position: relative;
 }
 

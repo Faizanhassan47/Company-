@@ -28,13 +28,15 @@
 }
 
 .sv-shell {
-  width: min(1180px, calc(100% - 2 * var(--container-padding)));
+  width: 100%;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 48px;
   align-items: start;
-  padding: 40px 0 96px;
+  padding: 40px var(--page-edge) 96px;
+  box-sizing: border-box;
 }
 
 .sv-rail {
