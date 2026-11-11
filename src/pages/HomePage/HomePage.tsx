@@ -148,7 +148,7 @@ export const HomePage: React.FC = () => {
             <Reveal>
               <p className="studio-kicker">Tekmora Solutions / Software development</p>
               <h1>
-                Custom software that solves
+                Custom software that solves <br />
                 <span className="serif-accent"> real business problems.</span>
               </h1>
               <p className="studio-lead">
