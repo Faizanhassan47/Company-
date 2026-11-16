@@ -277,11 +277,28 @@ export const CaseStudyPage: React.FC = () => {
           {tab === 'Engineering' && (
             <div className="case-block">
               <h2>Engineering</h2>
+              <p className="case-engineering-lead">
+                How the system was structured, and the main technical decisions that kept the delivery practical.
+              </p>
+              <h3 className="case-subhead">Architecture</h3>
               <ul className="case-list">
                 {project.technicalArchitecture.map(item => (
                   <li key={item}><span>{item}</span></li>
                 ))}
               </ul>
+              {project.challengesAndDecisions.length > 0 && (
+                <>
+                  <h3 className="case-subhead">Key decisions</h3>
+                  <ul className="case-list">
+                    {project.challengesAndDecisions.map(item => (
+                      <li key={item.challenge}>
+                        <strong>{item.challenge}</strong>
+                        <span>{item.decision}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
               <div className="tag-row">
                 {project.technologies.map(tech => (
                   <span className="soft-tag" key={tech}>{tech}</span>

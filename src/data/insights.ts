@@ -509,5 +509,57 @@ export const INSIGHTS_DATA: InsightArticle[] = [
     ],
     relatedServiceSlugs: ['warehouse-management-systems', 'sap-business-one-integration'],
     relatedProjectSlugs: ['warehouse-grn-automation', 'sap-b1-production-dashboard']
+  },
+  {
+    slug: 'how-to-evaluate-a-software-company-without-public-reviews',
+    number: '14',
+    category: 'Buying Software',
+    title: 'How to Evaluate a Software Company Without Public Reviews',
+    tagline: 'Practical signals that matter when a newer firm has case studies and process clarity, but not a long review stack yet.',
+    summary:
+      'A factual checklist for buyers evaluating custom software partners when public testimonials are limited: case studies, technical decisions, ownership, communication, and scope discipline.',
+    readingTime: '5 min read',
+    publishDate: 'November 16, 2026',
+    updatedDate: 'November 16, 2026',
+    author: 'Tekmora',
+    sections: [
+      {
+        heading: 'Public reviews are useful, not required',
+        paragraphs: [
+          'Many early-stage software companies do not have a public review stack yet. Buyers already know this. Reviews help later; they are not the only way to judge whether a team can handle your project.',
+          'What matters earlier is whether the company can explain similar work clearly, make technical decisions transparent, and agree scope before build work expands.'
+        ]
+      },
+      {
+        heading: 'Signals that reduce delivery risk',
+        paragraphs: [
+          '1. Detailed case studies: Look for challenge, approach, decisions, and outcome—not just a logo wall or vague claim.',
+          '2. Technical decisions: Ask why a system was structured a certain way, how failures are handled, and what was left out of the first release.',
+          '3. Process clarity: Discovery, scope, build, test, and handover should be explicit. Ambiguous process usually becomes ambiguous delivery.',
+          '4. Code ownership: Confirm who owns source code and deliverables after handover.',
+          '5. Communication expectations: Response timing, update cadence, and how scope changes are handled should be stated up front.'
+        ],
+        callout: 'If a company cannot walk through a similar project without inventing metrics, that is a clearer warning than missing star ratings.'
+      },
+      {
+        heading: 'Questions worth asking in the first conversation',
+        paragraphs: [
+          'What problem was the closest project solving, and for which users?',
+          'What technical constraints shaped the first release?',
+          'How do you handle requirement changes after scope is agreed?',
+          'What do we own at handover, and what support options exist afterward?',
+          'How soon can we see working increments instead of a single late reveal?'
+        ]
+      },
+      {
+        heading: 'What to avoid',
+        paragraphs: [
+          'Do not treat invented testimonials, unverified percentage gains, or vague “trusted by many companies” claims as proof.',
+          'Prefer concrete operating context—warehouse receiving, SAP-connected workflows, dashboards, offline field apps—over generic marketing language.'
+        ]
+      }
+    ],
+    relatedServiceSlugs: ['custom-software-development', 'warehouse-management-systems', 'erp-operations-software'],
+    relatedProjectSlugs: ['warehouse-grn-automation', 'dome-enterprise', 'sap-b1-production-dashboard']
   }
 ];

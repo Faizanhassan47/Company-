@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { buildServicesItemListSchema } from '../../data/aiSeo';
 import './ServicesPage.css';
 
 const SHOWCASE = [
@@ -83,6 +84,7 @@ export const ServicesPage: React.FC = () => {
         title="Software Development Services — Tekmora Solutions"
         description="Custom software, ERP, warehouse software, business dashboards, web apps, mobile apps, SaaS, WordPress, Shopify, and integrations from Tekmora Solutions."
         canonical="https://www.tekmorasolution.com/services"
+        jsonLd={buildServicesItemListSchema()}
       />
 
       <section className="sv">

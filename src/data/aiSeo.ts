@@ -1,4 +1,136 @@
-/** Answer-style FAQs optimized for search and AI citation. Keep factual and non-hyped. */
+/** Shared schema + FAQs for search and AI citation. Keep factual and non-hyped. */
+
+export const ORGANIZATION_ID = 'https://www.tekmorasolution.com/#organization';
+export const WEBSITE_ID = 'https://www.tekmorasolution.com/#website';
+
+/** Public services listed on the site (keep in sync with Services page + llms.txt). */
+export const PUBLIC_SERVICE_OFFERS = [
+  {
+    name: 'Custom Software Development',
+    slug: 'custom-software-development',
+    description: 'Applications built around business processes, users, and requirements.'
+  },
+  {
+    name: 'Web Application Development',
+    slug: 'web-application-development',
+    description: 'Websites, portals, dashboards, and browser-based applications.'
+  },
+  {
+    name: 'Mobile App Development',
+    slug: 'mobile-app-development',
+    description: 'Mobile applications for customers, teams, and field workflows.'
+  },
+  {
+    name: 'SaaS Product Development',
+    slug: 'saas-engineering-modernization',
+    description: 'Subscription platforms with accounts, permissions, and product operations.'
+  },
+  {
+    name: 'WordPress Development',
+    slug: 'wordpress-development',
+    description: 'Custom WordPress sites, themes, plugins, and WooCommerce stores.'
+  },
+  {
+    name: 'Shopify Development',
+    slug: 'shopify-development',
+    description: 'Shopify store setup, theme work, apps, and checkout improvements.'
+  },
+  {
+    name: 'Integrations and Software Engineering',
+    slug: 'performance-scaling-cloud-devops',
+    description: 'APIs, third-party integrations, and improvements to existing systems.'
+  },
+  {
+    name: 'ERP and Operations Software',
+    slug: 'erp-operations-software',
+    description: 'Systems for orders, inventory, approvals, reporting, and operations workflows.'
+  },
+  {
+    name: 'Warehouse Management Software',
+    slug: 'warehouse-management-systems',
+    description: 'Receiving, GRN processing, inventory visibility, and dock-to-stock workflows.'
+  },
+  {
+    name: 'Business Dashboards and Internal Tools',
+    slug: 'internal-tools-dashboards',
+    description: 'Dashboards and back-office tools that replace spreadsheet reporting.'
+  }
+] as const;
+
+export const buildOrganizationSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': ['Organization', 'ProfessionalService'],
+  '@id': ORGANIZATION_ID,
+  name: 'Tekmora Solutions',
+  alternateName: ['Tekmora', 'Tekmora Solution'],
+  url: 'https://www.tekmorasolution.com',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://www.tekmorasolution.com/brand-icon.svg'
+  },
+  image: 'https://www.tekmorasolution.com/og-image.jpg',
+  description:
+    'Tekmora Solutions is a software development company that designs and builds custom software, web applications, mobile apps, SaaS products, ERP-style operations systems, warehouse software, business dashboards, WordPress sites, and Shopify stores.',
+  sameAs: ['https://www.linkedin.com/company/tekmora-solution'],
+  email: 'info@tekmorasolution.com',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: 'info@tekmorasolution.com',
+    url: 'https://www.tekmorasolution.com/contact',
+    availableLanguage: ['English']
+  },
+  areaServed: 'Worldwide',
+  knowsAbout: PUBLIC_SERVICE_OFFERS.map(service => service.name),
+  makesOffer: PUBLIC_SERVICE_OFFERS.map(service => ({
+    '@type': 'Offer',
+    itemOffered: {
+      '@type': 'Service',
+      name: service.name,
+      description: service.description,
+      url: `https://www.tekmorasolution.com/services/${service.slug}`,
+      provider: { '@id': ORGANIZATION_ID }
+    }
+  }))
+});
+
+export const buildServiceSchema = (service: {
+  title: string;
+  slug: string;
+  overview: string;
+  primaryTopic?: string;
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `https://www.tekmorasolution.com/services/${service.slug}#service`,
+  name: service.title,
+  serviceType: service.primaryTopic || service.title,
+  description: service.overview,
+  url: `https://www.tekmorasolution.com/services/${service.slug}`,
+  areaServed: 'Worldwide',
+  provider: { '@id': ORGANIZATION_ID },
+  brand: { '@id': ORGANIZATION_ID }
+});
+
+export const buildServicesItemListSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Tekmora Solutions software development services',
+  itemListElement: PUBLIC_SERVICE_OFFERS.map((service, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: service.name,
+    url: `https://www.tekmorasolution.com/services/${service.slug}`,
+    item: {
+      '@type': 'Service',
+      name: service.name,
+      description: service.description,
+      url: `https://www.tekmorasolution.com/services/${service.slug}`,
+      provider: { '@id': ORGANIZATION_ID }
+    }
+  }))
+});
+
 export const HOME_FAQS = [
   {
     question: 'What does Tekmora Solutions do?',
@@ -54,6 +186,11 @@ export const HOME_FAQS = [
     question: 'Where can I see Tekmora’s work?',
     answer:
       'Selected projects and case studies are published at tekmorasolution.com/work, including warehouse GRN automation, the DOME internal operations product, and SAP Business One dashboard work.'
+  },
+  {
+    question: 'Do you have client reviews or references?',
+    answer:
+      'Tekmora does not publish a public review stack yet. Proof of work is shown through detailed case studies, technical decisions, and a clear delivery process at tekmorasolution.com/work and tekmorasolution.com/workflow. After a project, short permission-based quotes can be added when a client agrees—including anonymized ones. Tekmora does not invent reviews, client names, or unverified results.'
   },
   {
     question: 'How is Tekmora Solutions different from similarly named companies?',

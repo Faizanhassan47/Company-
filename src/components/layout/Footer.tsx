@@ -1,60 +1,58 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { TekmoraLogo } from '../ui/TekmoraLogo';
 import './Footer.css';
 
+const NAV = [
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Projects', to: '/work' },
+  { label: 'Workflow', to: '/workflow' },
+  { label: 'Agency Partners', to: '/agency-partners' },
+  { label: 'Contact', to: '/contact' }
+] as const;
+
 export const Footer: React.FC = () => {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="site-footer">
       <div className="container">
-        <div className="footer-main-grid">
-          <div className="footer-main-brand">
-            <TekmoraLogo height={28} />
-            <p className="footer-about-text">
-              Tekmora Solutions builds custom software, web applications, mobile apps, and SaaS products designed around how businesses work.
-            </p>
+        <div className="footer-top">
+          <div className="footer-brand">
+            <TekmoraLogo height={26} />
+            <p>Software built around how your business actually works.</p>
           </div>
 
-          <div className="footer-nav-group">
-            <div className="footer-group-header">Company</div>
-            <ul className="footer-nav-links">
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/services">Services</Link></li>
-              <li><Link to="/work">Projects</Link></li>
-              <li><Link to="/workflow">Workflow</Link></li>
-              <li><Link to="/agency-partners">Agency Partners</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-nav-group">
-            <div className="footer-group-header">Services</div>
-            <ul className="footer-nav-links">
-              <li><Link to="/services/custom-software-development">Custom Software</Link></li>
-              <li><Link to="/services/erp-operations-software">ERP & Operations</Link></li>
-              <li><Link to="/services/warehouse-management-systems">Warehouse Software</Link></li>
-              <li><Link to="/services/internal-tools-dashboards">Dashboards & Internal Tools</Link></li>
-              <li><Link to="/services/web-application-development">Web Development</Link></li>
-              <li><Link to="/services/mobile-app-development">Mobile Apps</Link></li>
-              <li><Link to="/services/saas-engineering-modernization">SaaS Development</Link></li>
-              <li><Link to="/services/wordpress-development">WordPress</Link></li>
-              <li><Link to="/services/shopify-development">Shopify</Link></li>
-              <li><Link to="/services/performance-scaling-cloud-devops">Integrations & Engineering</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-nav-group">
-            <div className="footer-group-header">Connect</div>
-            <ul className="footer-nav-links">
-              <li><a href="mailto:info@tekmorasolution.com">info@tekmorasolution.com</a></li>
-              <li><a href="https://www.linkedin.com/company/tekmora-solution" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            </ul>
+          <div className="footer-contact">
+            <a href="mailto:info@tekmorasolution.com" className="footer-contact-link">
+              info@tekmorasolution.com
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/tekmora-solution"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-contact-link"
+            >
+              LinkedIn
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
           </div>
         </div>
 
-        <div className="footer-bottom-row">
-          <div className="footer-copyright">© {new Date().getFullYear()} Tekmora Solutions. All rights reserved.</div>
-          <div className="footer-legal-row">
+        <nav className="footer-nav" aria-label="Footer">
+          {NAV.map(item => (
+            <Link key={item.to} to={item.to}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="footer-bottom">
+          <p>© {year} Tekmora Solutions</p>
+          <div className="footer-legal">
             <Link to="/privacy">Privacy</Link>
             <Link to="/terms">Terms</Link>
           </div>

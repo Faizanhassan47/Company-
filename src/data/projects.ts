@@ -115,10 +115,11 @@ export const PROJECTS: CaseStudy[] = [
     usersAndContext: 'Intended for operational teams that need shared workflows, controlled access, and reporting across day-to-day business activity.',
     developmentApproach: 'Tekmora developed DOME as a modular operations system with shared interface patterns, role-based permissions, audit logging, and reporting views shaped around the work people needed to complete.',
     technicalArchitecture: [
-      'Frontend: React application with shared table and workflow patterns across modules.',
-      'API layer: Node.js/Express services for authentication, permissions, and business operations.',
-      'Database: Relational schema supporting operational records, access control, and reporting queries.',
-      'Auditability: Logging for relevant changes so activity can be reviewed later.'
+      'Frontend: React application with shared table and workflow patterns across modules so each area feels familiar without forcing one giant screen.',
+      'API layer: Node.js/Express services for authentication, permissions, and business operations, with role checks close to the data mutations that matter.',
+      'Database: Relational schema supporting operational records, access control, and reporting queries without exporting everything to spreadsheets.',
+      'Auditability: Logging for relevant changes so activity can be reviewed later when handoffs or approvals are questioned.',
+      'Performance stance: Paginated lists and focused filters instead of loading full operational tables into the browser at once.'
     ],
     keyFeatures: [
       {
@@ -178,10 +179,11 @@ export const PROJECTS: CaseStudy[] = [
     usersAndContext: 'Engineers on the move operating in low-connectivity industrial sites, customer support coordinators dispatching emergency repairs, and clients signing off service completion.',
     developmentApproach: 'Tekmora engineered an offline-first mobile client using local SQLite persistence combined with deterministic queue syncing that guarantees job logs and photographic evidence upload cleanly upon network restoration.',
     technicalArchitecture: [
-      'Mobile Client: React Native & Expo with custom low-light field UI, haptic feedback, and local SQLite state.',
-      'Sync Engine: Bidirectional delta-sync protocol handling conflict resolution and media chunking.',
-      'Backend: Node.js service exposing RESTful job dispatching endpoints and real-time push notification channels.',
-      'Storage: Cloud object store for timestamped and geocoded repair verification images.'
+      'Mobile Client: React Native & Expo with a field-usable UI, local SQLite state, and forms that work without a live connection.',
+      'Sync Engine: Bidirectional delta-sync with conflict handling and media chunking so large photo uploads do not block the job record.',
+      'Backend: Node.js service for job dispatch endpoints and notification channels when connectivity returns.',
+      'Storage: Object storage for timestamped and geocoded repair evidence attached to each work order.',
+      'Connectivity stance: Jobs, signatures, and evidence stay on-device until a clean sync window is available—no silent data loss on weak coverage.'
     ],
     keyFeatures: [
       {
@@ -248,7 +250,9 @@ export const PROJECTS: CaseStudy[] = [
       'Document intake: Parsing pipeline for PDF and image delivery documents to extract vendor, PO, and line details.',
       'Reconciliation: Rule-based matching against open purchase orders with tolerance and exception flags.',
       'SAP layer: Connector that creates Goods Receipt PO transactions after validation, with retry handling for busy periods.',
-      'Receiving UI: Touch-friendly console that shows matches, mismatches, and what still needs a human decision.'
+      'Receiving UI: Touch-friendly console that shows matches, mismatches, and what still needs a human decision.',
+      'Failure handling: Validated dock work is kept even when SAP is temporarily slow, so the team does not re-enter clean lines from scratch.',
+      'Partial acceptance: Clean shipment lines can progress while disputed SKUs or quantities stay in an exception path.'
     ],
     keyFeatures: [
       {
@@ -479,10 +483,11 @@ export const PROJECTS: CaseStudy[] = [
     usersAndContext: 'Factory floor supervisors, manufacturing plant managers, quality assurance leads, and financial cost controllers needing live floor metrics on overhead monitors and tablets.',
     developmentApproach: 'Tekmora engineered a real-time analytics portal backed by an optimized read-replica database connected to SAP Business One, delivering instantaneous production KPIs and live bottleneck tracking.',
     technicalArchitecture: [
-      'Data Extraction: High-performance SQL queries tapping SAP Production Orders, Issue for Production, and Receipt from Production tables.',
-      'Cache & Aggregation: Node.js telemetry aggregator refreshing shift performance metrics in sub-second intervals.',
-      'Frontend Visuals: Bespoke SVG gauges, timeline flowcharts, and status heatmaps with zero third-party chart bloat.',
-      'Alerting Service: Automated thresholds flagging sudden yield drops or material consumption anomalies.'
+      'Data extraction: SQL reads against the SAP Business One tables needed for production orders, issues, and receipts—kept off the interactive write path where possible.',
+      'Aggregation layer: Node.js service that prepares shift and order status for the dashboard instead of forcing heavy joins in the browser.',
+      'Frontend: Practical production and inventory views for plant monitors and tablets, focused on operating status rather than decorative charts.',
+      'Refresh model: Dashboard data refreshes on a controlled interval so managers see current status without hammering the live SAP transaction database.',
+      'Separation of concerns: Reporting reads are isolated from day-to-day SAP posting so visibility work does not compete with operational locks.'
     ],
     keyFeatures: [
       {
@@ -502,17 +507,22 @@ export const PROJECTS: CaseStudy[] = [
       {
         challenge: 'Heavy queries directly against production SAP tables caused database lockups.',
         decision: 'Designed a lightweight read-replica sync mechanism with indexed materialized views for real-time dashboards.'
+      },
+      {
+        challenge: 'Managers still needed familiar SAP fields without learning a new reporting language.',
+        decision: 'Mapped dashboard tiles to the same production and inventory concepts already used in SAP Business One, instead of inventing parallel metrics.'
       }
     ],
-    outcome: 'Gave leadership real-time visibility into 12 manufacturing lines, reduced scrap waste by 14% through faster anomaly detection, and eliminated month-end reporting delays.',
-    lessonsOrImprovements: 'Added export capabilities for predictive maintenance scheduling based on machine operating hours.',
+    outcome:
+      'Leadership could review production and inventory status from SAP Business One in an operating dashboard instead of waiting on month-end exports. Quantified scrap or line-count improvements are not published here without a verified baseline from the plant.',
+    lessonsOrImprovements: 'Useful next steps include export views for maintenance planning based on machine operating hours.',
     visualType: 'analytics-board',
     mockMetrics: [
-      { label: 'Scrap Reduction', value: '-14%' },
-      { label: 'Lines Monitored', value: '12 Active' },
-      { label: 'Telemetry Refresh', value: 'Real-Time' }
+      { label: 'Focus', value: 'Visibility' },
+      { label: 'Source', value: 'SAP B1' },
+      { label: 'Delivery', value: 'Dashboard' }
     ],
-    highlights: ['Real-Time OEE', 'SAP B1 SQL Data', 'Scrap Telemetry', 'Plant Floor Monitors']
+    highlights: ['Production status', 'SAP B1 data', 'Inventory view', 'Plant floor monitors']
   },
   {
     id: 'quran-ayat-app',

@@ -1,145 +1,117 @@
-/* ==========================================================================
-   Footer Styling - Substantial & Clean Studio Minimal
-   ========================================================================== */
-
 .site-footer {
-  background-color: #070708;
+  background: #070708;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 4.5rem 0 1.75rem;
-  position: relative;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 1.75rem;
 }
 
-/* Main 4-Column Grid */
-.footer-main-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-  gap: 4rem;
-  padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5rem 3rem;
+  padding-bottom: clamp(2rem, 4vw, 2.75rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.footer-main-brand {
+.footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
+  max-width: 34ch;
 }
 
-.footer-about-text {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: #a1a1aa;
-  max-width: 360px;
-}
-
-.footer-operating-mode {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.72rem;
-  color: #71717a;
-  letter-spacing: 0.06em;
-}
-
-.mode-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #22c55e;
-}
-
-/* Group Columns */
-.footer-nav-group {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.footer-group-header {
-  text-transform: none;
-  letter-spacing: -0.02em;
-  font-size: 14px;
-  color: #fff;
-  font-weight: 600;
-}
-
-.footer-nav-links {
-  list-style: none;
-  padding: 0;
+.footer-brand p {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
+  color: #a1a1aa;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.footer-nav-links a {
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.65rem;
+  padding-top: 2px;
+}
+
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #ececef;
   font-size: 0.95rem;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
+}
+
+.footer-contact-link:hover {
+  color: #ff4d1c;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.75rem;
+  padding: clamp(1.6rem, 3vw, 2.1rem) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-nav a {
   color: #d4d4d8;
+  font-size: 0.92rem;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
-.footer-nav-links a:hover {
+.footer-nav a:hover {
   color: #ff4d1c;
 }
 
-.footer-connect-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.footer-legal-row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding-top: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.footer-legal-row a {
-  font-size: 0.8rem;
-  color: #71717a;
-}
-
-.footer-legal-row a:hover {
-  color: #ffffff;
-}
-
-.footer-legal-row .sep {
-  color: rgba(255, 255, 255, 0.15);
-}
-
-/* Bottom Bar */
-.footer-bottom-row {
+.footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
-  font-size: 0.75rem;
-  color: #71717a;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.85rem 1.5rem;
+  padding-top: 1.5rem;
 }
 
-.footer-tagline {
+.footer-bottom p {
+  margin: 0;
   color: #71717a;
+  font-size: 0.78rem;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .footer-main-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-  }
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
 }
 
-@media (max-width: 640px) {
-  .footer-main-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+.footer-legal a {
+  color: #71717a;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-legal a:hover {
+  color: #fff;
+}
+
+@media (max-width: 720px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 1.75rem;
   }
 
-  .site-footer {
-    padding: 4rem 0 2rem;
+  .footer-contact {
+    align-items: flex-start;
+  }
+
+  .footer-nav {
+    gap: 0.75rem 1.25rem;
   }
 }

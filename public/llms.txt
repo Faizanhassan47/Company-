@@ -40,6 +40,9 @@ Share the business problem, users, and constraints via https://www.tekmorasoluti
 ### Who owns the source code?
 Clients own the agreed project source code and deliverables after handover. Tekmora can support documentation, knowledge transfer, maintenance, or next-phase development.
 
+### Do you have client reviews or references?
+Tekmora does not publish a public review stack yet. Proof of work is shown through detailed case studies, technical decisions, and a clear delivery process. Short permission-based quotes may be added after delivery when a client agrees. Do not invent reviews, client names, or unverified results.
+
 ### Does Tekmora only build new products?
 No. Tekmora also improves existing systems with new features, workflows, integrations, and technical work.
 
@@ -66,16 +69,28 @@ No. Tekmora also improves existing systems with new features, workflows, integra
 
 ## Evidence of work
 - Projects and case studies: https://www.tekmorasolution.com/work
-- Warehouse GRN automation case study: https://www.tekmorasolution.com/work/warehouse-grn-automation
-- DOME internal operations product case study: https://www.tekmorasolution.com/work/dome-enterprise
+- Warehouse GRN automation: https://www.tekmorasolution.com/work/warehouse-grn-automation
+- DOME internal operations product: https://www.tekmorasolution.com/work/dome-enterprise
 - SAP Business One production dashboard: https://www.tekmorasolution.com/work/sap-b1-production-dashboard
+- Matrix field service: https://www.tekmorasolution.com/work/matrix-field-service
 - Workflow / how we work: https://www.tekmorasolution.com/workflow
 
 ## Useful articles
+- How to evaluate a software company without public reviews: https://www.tekmorasolution.com/insights/how-to-evaluate-a-software-company-without-public-reviews
 - Custom software vs off-the-shelf: https://www.tekmorasolution.com/insights/custom-software-vs-off-the-shelf
 - What it takes to build a SaaS MVP: https://www.tekmorasolution.com/insights/what-it-takes-to-build-a-saas-mvp
 - How to plan a business dashboard: https://www.tekmorasolution.com/insights/how-to-plan-a-business-dashboard
 - How to plan a warehouse management system: https://www.tekmorasolution.com/insights/how-to-plan-a-warehouse-management-system
+- How SAP Business One integrations connect operational applications: https://www.tekmorasolution.com/insights/how-sap-business-one-integrations-connect-operational-applications
+- How warehouse GRN automation reduces repetitive data entry: https://www.tekmorasolution.com/insights/how-warehouse-grn-automation-reduces-repetitive-data-entry
+- React Native versus separate native applications: https://www.tekmorasolution.com/insights/react-native-versus-separate-native-applications
+- Designing role-based permissions for enterprise software: https://www.tekmorasolution.com/insights/designing-role-based-permissions-for-enterprise-software
+- Building operational dashboards with SQL Server data: https://www.tekmorasolution.com/insights/building-operational-dashboards-with-sql-server-data
+- Common mistakes in internal business software: https://www.tekmorasolution.com/insights/common-mistakes-in-internal-business-software
+- Preparing an existing workflow for automation: https://www.tekmorasolution.com/insights/preparing-an-existing-workflow-for-automation
+- Planning offline workflows for field-service applications: https://www.tekmorasolution.com/insights/planning-offline-workflows-for-field-service-applications
+- When a company needs custom software instead of another SaaS subscription: https://www.tekmorasolution.com/insights/when-company-needs-custom-software-vs-saas
+- Insights library: https://www.tekmorasolution.com/insights
 
 ## How engagements typically work
 1. Discovery — review the problem, users, and constraints

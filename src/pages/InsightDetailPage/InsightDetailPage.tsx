@@ -5,6 +5,7 @@ import { SERVICES_DATA } from '../../data/services';
 import { PROJECTS } from '../../data/projects';
 import { ArrowLeft, ArrowUpRight, Clock, Calendar, ShieldCheck, Layers } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { ORGANIZATION_ID } from '../../data/aiSeo';
 import './InsightDetailPage.css';
 
 export const InsightDetailPage: React.FC = () => {
@@ -42,21 +43,18 @@ export const InsightDetailPage: React.FC = () => {
     );
   }
 
+  const articleUrl = `https://www.tekmorasolution.com/insights/${article.slug}`;
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${articleUrl}#article`,
     headline: article.title,
     description: article.summary,
-    author: {
-      '@type': 'Organization',
-      name: 'Tekmora Solutions',
-      url: 'https://www.tekmorasolution.com'
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Tekmora Solutions',
-      logo: 'https://www.tekmorasolution.com/brand-icon.svg'
-    },
+    url: articleUrl,
+    mainEntityOfPage: articleUrl,
+    inLanguage: 'en-US',
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
     datePublished: article.publishDate,
     dateModified: article.updatedDate
   };

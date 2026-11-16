@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
@@ -18,11 +18,29 @@ const WORK_DROPDOWN = [
   { label: 'Workflow', to: '/workflow', note: 'How engagements run' }
 ] as const;
 
+const SERVICES_DROPDOWN = [
+  { label: 'Custom Software Development', to: '/services/custom-software-development' },
+  { label: 'Web Development', to: '/services/web-application-development' },
+  { label: 'Mobile App Development', to: '/services/mobile-app-development' },
+  { label: 'SaaS Development', to: '/services/saas-engineering-modernization' },
+  { label: 'WordPress Development', to: '/services/wordpress-development' },
+  { label: 'Shopify Development', to: '/services/shopify-development' },
+  { label: 'Integrations & Software Engineering', to: '/services/performance-scaling-cloud-devops' },
+  { label: 'ERP & Operations Software', to: '/services/erp-operations-software' },
+  { label: 'Warehouse Management Software', to: '/services/warehouse-management-systems' },
+  { label: 'Business Dashboards & Internal Tools', to: '/services/internal-tools-dashboards' }
+] as const;
+
 export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [workOpen, setWorkOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileWorkOpen, setMobileWorkOpen] = useState(false);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const workDropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const { t } = useTranslation();
 
@@ -44,7 +62,47 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   useEffect(() => {
     setMobileMenuOpen(false);
     setWorkOpen(false);
+    setServicesOpen(false);
+    setMobileServicesOpen(false);
+    setMobileWorkOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      setMobileServicesOpen(false);
+      setMobileWorkOpen(false);
+    }
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!servicesOpen && !workOpen) return;
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node;
+      const insideServices = servicesDropdownRef.current?.contains(target);
+      const insideWork = workDropdownRef.current?.contains(target);
+
+      if (!insideServices) setServicesOpen(false);
+      if (!insideWork) setWorkOpen(false);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setServicesOpen(false);
+        setWorkOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('touchstart', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('touchstart', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [servicesOpen, workOpen]);
 
   const navLabels: Record<string, string> = {
     home: t('nav.home', 'Home'),
@@ -58,6 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     .map(route => ({ id: route.id, label: navLabels[route.id] || route.id, to: route.path }));
 
   const workActive = location.pathname === '/work' || location.pathname.startsWith('/work/') || location.pathname === '/workflow';
+  const servicesActive = location.pathname === '/services' || location.pathname.startsWith('/services/');
 
   return (
     <>
@@ -84,20 +143,67 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
           <nav className="desktop-nav-pill-dock" aria-label="Primary Navigation">
             {navLinks.map(link => {
+              if (link.id === 'services') {
+                return (
+                  <div
+                    key={link.id}
+                    ref={servicesDropdownRef}
+                    className={`nav-dropdown ${servicesOpen ? 'is-open' : ''} ${servicesActive ? 'nav-pill--active' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      className={`nav-pill-item nav-dropdown-trigger ${servicesActive ? 'nav-pill--active' : ''}`}
+                      aria-expanded={servicesOpen}
+                      aria-haspopup="true"
+                      onClick={() => {
+                        setServicesOpen(open => !open);
+                        setWorkOpen(false);
+                      }}
+                    >
+                      <span className="nav-pill-text">{link.label}</span>
+                      <ChevronDown size={14} className="nav-dropdown-caret" aria-hidden="true" />
+                    </button>
+                    <div className="nav-dropdown-panel nav-dropdown-panel--services" role="menu">
+                      <Link
+                        to="/services"
+                        className={`nav-dropdown-link nav-dropdown-link--overview ${location.pathname === '/services' ? 'is-active' : ''}`}
+                        role="menuitem"
+                      >
+                        <strong>All services</strong>
+                        <span>Overview of what we build</span>
+                      </Link>
+                      <div className="nav-dropdown-divider" aria-hidden="true" />
+                      {SERVICES_DROPDOWN.map(item => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          className={`nav-dropdown-link nav-dropdown-link--compact ${location.pathname === item.to ? 'is-active' : ''}`}
+                          role="menuitem"
+                        >
+                          <strong>{item.label}</strong>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
               if (link.id === 'work') {
                 return (
                   <div
                     key={link.id}
+                    ref={workDropdownRef}
                     className={`nav-dropdown ${workOpen ? 'is-open' : ''} ${workActive ? 'nav-pill--active' : ''}`}
-                    onMouseEnter={() => setWorkOpen(true)}
-                    onMouseLeave={() => setWorkOpen(false)}
                   >
                     <button
                       type="button"
                       className={`nav-pill-item nav-dropdown-trigger ${workActive ? 'nav-pill--active' : ''}`}
                       aria-expanded={workOpen}
                       aria-haspopup="true"
-                      onClick={() => setWorkOpen(open => !open)}
+                      onClick={() => {
+                        setWorkOpen(open => !open);
+                        setServicesOpen(false);
+                      }}
                     >
                       <span className="nav-pill-text">{link.label}</span>
                       <ChevronDown size={14} className="nav-dropdown-caret" aria-hidden="true" />
@@ -179,24 +285,80 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
           <div className="mobile-nav-links">
             {navLinks.map((link, idx) => {
-              if (link.id === 'work') {
+              if (link.id === 'services') {
                 return (
-                  <div key={link.id} className="mobile-nav-group">
-                    <div className="mobile-nav-item mobile-nav-group-label">
+                  <div key={link.id} className={`mobile-nav-group ${mobileServicesOpen ? 'is-open' : ''}`}>
+                    <button
+                      type="button"
+                      className="mobile-nav-item mobile-nav-accordion"
+                      aria-expanded={mobileServicesOpen}
+                      onClick={() => {
+                        setMobileServicesOpen(open => !open);
+                        setMobileWorkOpen(false);
+                      }}
+                    >
                       <span className="mobile-link-num font-mono">0{idx + 1}</span>
                       <span className="mobile-link-title">{link.label}</span>
-                    </div>
-                    {WORK_DROPDOWN.map(item => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        className="mobile-nav-item mobile-nav-subitem"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <span className="mobile-link-title">{item.label}</span>
-                        <ArrowUpRight size={20} className="mobile-link-arrow" />
-                      </Link>
-                    ))}
+                      <ChevronDown size={20} className="mobile-link-caret" aria-hidden="true" />
+                    </button>
+                    {mobileServicesOpen && (
+                      <div className="mobile-nav-submenu">
+                        <Link
+                          to="/services"
+                          className="mobile-nav-item mobile-nav-subitem"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span className="mobile-link-title">All services</span>
+                          <ArrowUpRight size={16} className="mobile-link-arrow" />
+                        </Link>
+                        {SERVICES_DROPDOWN.map(item => (
+                          <Link
+                            key={item.to}
+                            to={item.to}
+                            className="mobile-nav-item mobile-nav-subitem"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <span className="mobile-link-title">{item.label}</span>
+                            <ArrowUpRight size={16} className="mobile-link-arrow" />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              if (link.id === 'work') {
+                return (
+                  <div key={link.id} className={`mobile-nav-group ${mobileWorkOpen ? 'is-open' : ''}`}>
+                    <button
+                      type="button"
+                      className="mobile-nav-item mobile-nav-accordion"
+                      aria-expanded={mobileWorkOpen}
+                      onClick={() => {
+                        setMobileWorkOpen(open => !open);
+                        setMobileServicesOpen(false);
+                      }}
+                    >
+                      <span className="mobile-link-num font-mono">0{idx + 1}</span>
+                      <span className="mobile-link-title">{link.label}</span>
+                      <ChevronDown size={20} className="mobile-link-caret" aria-hidden="true" />
+                    </button>
+                    {mobileWorkOpen && (
+                      <div className="mobile-nav-submenu">
+                        {WORK_DROPDOWN.map(item => (
+                          <Link
+                            key={item.to}
+                            to={item.to}
+                            className="mobile-nav-item mobile-nav-subitem"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <span className="mobile-link-title">{item.label}</span>
+                            <ArrowUpRight size={16} className="mobile-link-arrow" />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 );
               }

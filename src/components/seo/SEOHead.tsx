@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { buildOrganizationSchema, WEBSITE_ID } from '../../data/aiSeo';
 
 interface SEOProps {
   title: string;
@@ -87,127 +88,16 @@ export const SEOHead: React.FC<SEOProps> = ({
       document.head.appendChild(scriptTag);
     }
 
-    const defaultOrganizationSchema = {
-      '@context': 'https://schema.org',
-      '@type': ['Organization', 'ProfessionalService'],
-      '@id': 'https://www.tekmorasolution.com/#organization',
-      name: 'Tekmora Solutions',
-      alternateName: ['Tekmora', 'Tekmora Solution'],
-      url: 'https://www.tekmorasolution.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.tekmorasolution.com/brand-icon.svg'
-      },
-      image: 'https://www.tekmorasolution.com/og-image.jpg',
-      description:
-        'Tekmora Solutions designs and develops custom software, web applications, mobile apps, and SaaS products that help businesses simplify operations and scale.',
-      sameAs: ['https://www.linkedin.com/company/tekmora-solution'],
-      email: 'info@tekmorasolution.com',
-      contactPoint: {
-        '@type': 'ContactPoint',
-        contactType: 'sales',
-        email: 'info@tekmorasolution.com',
-        url: 'https://www.tekmorasolution.com/contact',
-        availableLanguage: ['English']
-      },
-      areaServed: 'Worldwide',
-      knowsAbout: [
-        'Custom Software Development',
-        'Web Application Development',
-        'Mobile App Development',
-        'SaaS Product Development',
-        'ERP and Operations Software',
-        'Warehouse Management Software',
-        'Business Dashboards and Internal Tools',
-        'WordPress Development',
-        'Shopify Development',
-        'API Integration and Software Engineering',
-        'Agency Development Partnerships'
-      ],
-      makesOffer: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Custom Software Development',
-            url: 'https://www.tekmorasolution.com/services/custom-software-development'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Web Application Development',
-            url: 'https://www.tekmorasolution.com/services/web-application-development'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Mobile App Development',
-            url: 'https://www.tekmorasolution.com/services/mobile-app-development'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'SaaS Product Development',
-            url: 'https://www.tekmorasolution.com/services/saas-engineering-modernization'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'ERP and Operations Software',
-            url: 'https://www.tekmorasolution.com/services/erp-operations-software'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Warehouse Management Software',
-            url: 'https://www.tekmorasolution.com/services/warehouse-management-systems'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Business Dashboards and Internal Tools',
-            url: 'https://www.tekmorasolution.com/services/internal-tools-dashboards'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'WordPress Development',
-            url: 'https://www.tekmorasolution.com/services/wordpress-development'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Shopify Development',
-            url: 'https://www.tekmorasolution.com/services/shopify-development'
-          }
-        }
-      ]
-    };
+    const defaultOrganizationSchema = buildOrganizationSchema();
 
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      '@id': 'https://www.tekmorasolution.com/#website',
+      '@id': WEBSITE_ID,
       name: 'Tekmora Solutions',
       url: 'https://www.tekmorasolution.com/',
       inLanguage: 'en-US',
-      publisher: { '@id': 'https://www.tekmorasolution.com/#organization' },
+      publisher: { '@id': defaultOrganizationSchema['@id'] },
       potentialAction: {
         '@type': 'CommunicateAction',
         target: 'https://www.tekmorasolution.com/contact',

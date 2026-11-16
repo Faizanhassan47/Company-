@@ -3,48 +3,67 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { Reveal } from '../../components/studio/StudioMotion';
-import { WorkflowFlowchart } from './WorkflowFlowchart';
 import './WorkflowPage.css';
 
-const STEPS = [
+const STAGES = [
   {
+    phase: '01',
     title: 'Discovery',
-    text: 'Review the business problem, users, current tools, constraints, and what “done” should mean for the first release.'
+    outcome: 'Shared understanding',
+    detail:
+      'We review the business problem, who uses the system, current tools, constraints, and what a useful first release should look like. No build starts until that picture is clear.',
+    outputs: ['Problem brief', 'Users & workflows', 'Constraints']
   },
   {
+    phase: '02',
     title: 'Scope',
-    text: 'Agree features, integrations, milestones, and ownership of decisions before build work expands.'
+    outcome: 'Agreed plan',
+    detail:
+      'Features, integrations, milestones, and decision ownership are written down before development expands. If priorities change later, we update scope explicitly—not by silent drift.',
+    outputs: ['Scope outline', 'Milestones', 'Ownership']
   },
   {
+    phase: '03',
     title: 'Build',
-    text: 'Develop in visible increments, share progress, and keep technical decisions tied to the agreed requirements.'
+    outcome: 'Working increments',
+    detail:
+      'Development happens in visible pieces tied to the agreed requirements. You see progress against the plan, not a black box until the end.',
+    outputs: ['Incremental releases', 'Technical notes', 'Open decisions']
   },
   {
+    phase: '04',
     title: 'Test',
-    text: 'Validate workflows, permissions, edge cases, and integrations against real operating scenarios.'
+    outcome: 'Validated workflows',
+    detail:
+      'We check permissions, edge cases, and integrations against real operating scenarios. Gaps found here return to scope or build with a clear update.',
+    outputs: ['Scenario checks', 'Issue list', 'Sign-off path']
   },
   {
-    title: 'Handover and support',
-    text: 'Deliver the working system with documentation, knowledge transfer, and a clear path for fixes or next-phase work.'
+    phase: '05',
+    title: 'Handover',
+    outcome: 'Owned release',
+    detail:
+      'You receive the working system, documentation, and knowledge transfer. Source code and agreed deliverables are yours. Support or a next phase can be discussed after launch.',
+    outputs: ['Production release', 'Documentation', 'Source ownership']
   }
 ] as const;
 
-const GUARANTEES = [
+const AGREEMENTS = [
   {
-    title: 'You own the source code',
-    text: 'Project code and agreed deliverables are handed over for your ownership. Tekmora does not lock the product behind an opaque black box.'
+    title: 'Source code ownership',
+    text: 'Project code and agreed deliverables are handed over. Tekmora does not lock the product behind an opaque black box.'
   },
   {
-    title: 'Changing requirements stay explicit',
-    text: 'When priorities shift, we revisit scope together so timeline and effort stay honest instead of drifting silently.'
+    title: 'Explicit change control',
+    text: 'When priorities shift, we revisit scope together so timeline and effort stay honest.'
   },
   {
     title: 'Support after launch',
-    text: 'After release we can discuss maintenance, small fixes, documentation follow-up, or a next development phase.'
+    text: 'After release we can discuss maintenance, small fixes, documentation follow-up, or further development.'
   },
   {
-    title: 'Clear communication',
-    text: 'Expect structured updates on what is done, what is blocked, and what needs a decision. Inquiries get a reply within one business day when possible.'
+    title: 'Direct communication',
+    text: 'Updates cover what is done, what is blocked, and what needs a decision. Inquiries get a reply within one business day when possible.'
   }
 ] as const;
 
@@ -58,81 +77,75 @@ export const WorkflowPage: React.FC = () => {
       />
 
       <section className="workflow-hero">
-        <div className="container">
+        <div className="container workflow-hero-inner">
           <Reveal>
-            <p className="studio-kicker">Workflow</p>
-            <h1>A deliberate path from discovery to handover.</h1>
+            <p className="studio-kicker">How we work</p>
+            <h1>From first conversation to a working release.</h1>
             <p className="studio-lead">
-              Clear steps reduce delivery risk. This is how Tekmora moves from the first conversation to a working release—without hiding ownership or next steps.
+              Five stages. Clear ownership. No invented process theater—just the path Tekmora uses to move from problem to production.
             </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="workflow-flowchart-section">
+      <section className="workflow-process" aria-label="Delivery stages">
         <div className="container">
-          <Reveal className="workflow-section-head">
-            <p className="studio-kicker">Delivery flowchart</p>
-            <h2>From first thought to final handover</h2>
-            <p className="workflow-section-lead">
-              An animated view of the full process—from the initial idea through discovery, build, test, launch, and ownership transfer.
-            </p>
-          </Reveal>
-          <WorkflowFlowchart />
-        </div>
-      </section>
-
-      <section className="workflow-steps">
-        <div className="container">
-          <Reveal className="workflow-section-head">
-            <p className="studio-kicker">Engagement detail</p>
-            <h2>What happens in each stage</h2>
-          </Reveal>
-          <ol className="workflow-step-list">
-            {STEPS.map((step, index) => (
-              <li key={step.title}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
+          <ol className="workflow-timeline">
+            {STAGES.map((stage, index) => (
+              <li key={stage.phase} className="workflow-stage">
+                <div className="workflow-stage-rail" aria-hidden="true">
+                  <span className="workflow-stage-dot" />
+                  {index < STAGES.length - 1 && <span className="workflow-stage-line" />}
                 </div>
+                <Reveal className="workflow-stage-body" delay={index * 0.04}>
+                  <div className="workflow-stage-meta">
+                    <span className="workflow-stage-phase">{stage.phase}</span>
+                    <span className="workflow-stage-outcome">{stage.outcome}</span>
+                  </div>
+                  <h2>{stage.title}</h2>
+                  <p>{stage.detail}</p>
+                  <ul className="workflow-stage-outputs">
+                    {stage.outputs.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </Reveal>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="workflow-guarantees">
+      <section className="workflow-agreements">
         <div className="container">
-          <Reveal className="workflow-section-head">
+          <Reveal className="workflow-agreements-head">
             <p className="studio-kicker">Working agreements</p>
-            <h2>Ownership, changes, and support</h2>
+            <h2>What stays true across every engagement</h2>
           </Reveal>
-          <div className="workflow-card-grid">
-            {GUARANTEES.map(item => (
-              <article key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
+          <dl className="workflow-agreement-list">
+            {AGREEMENTS.map(item => (
+              <div key={item.title} className="workflow-agreement">
+                <dt>{item.title}</dt>
+                <dd>{item.text}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
       <section className="workflow-close">
-        <div className="container workflow-close-panel">
+        <div className="container workflow-close-inner">
           <Reveal>
-            <p className="studio-kicker">Next step</p>
             <h2>Tell us what you’re planning.</h2>
             <p>
               Share the problem, the users, and any systems involved. We’ll review fit and discuss next steps before a proposal.
             </p>
             <div className="workflow-actions">
               <Link to="/contact?type=Not%20sure%20yet&ref=workflow" className="studio-btn">
-                Discuss Your Project <ArrowRight size={16} />
+                Discuss your project <ArrowRight size={16} />
               </Link>
               <Link to="/work" className="studio-btn-ghost">
-                View Case Studies
+                View case studies
               </Link>
             </div>
           </Reveal>

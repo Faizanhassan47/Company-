@@ -37,6 +37,33 @@ const FEATURED = [
   }
 ] as const;
 
+const SHIFTS = [
+  {
+    project: 'Warehouse GRN',
+    before: 'Paper GRNs matched to open POs by hand, then re-keyed into SAP.',
+    after: 'Document intake, PO checks, exception review, and verified SAP B1 commits.',
+    note: 'From the receiving brief: stop line-by-line dock matching before stock is visible.'
+  },
+  {
+    project: 'SAP B1 Dashboard',
+    before: 'Production and inventory status assembled from exports and month-end reports.',
+    after: 'One operating view sourced from SAP Business One for day-to-day decisions.',
+    note: 'From the plant brief: managers needed floor status without waiting on spreadsheets.'
+  },
+  {
+    project: 'Matrix',
+    before: 'Paper job sheets and messaging apps for remote maintenance visits.',
+    after: 'Offline-capable work orders, evidence capture, and queued sync when connectivity returns.',
+    note: 'From the field brief: submissions had to survive weak coverage at industrial sites.'
+  },
+  {
+    project: 'DOME',
+    before: 'Operational work spread across disconnected tools and manual handoffs.',
+    after: 'Shared workflows, role-based access, audit history, and reporting in one system.',
+    note: 'Internal product brief: permissions, handoffs, and reporting had to live together.'
+  }
+] as const;
+
 const SERVICES = [
   {
     title: 'Custom Software Development',
@@ -110,6 +137,29 @@ const PROCESS = [
   {
     title: 'Handover and support',
     text: 'Deliver the working system with documentation, knowledge transfer, and a clear path for fixes or next-phase work.'
+  }
+] as const;
+
+const LIBRARY = [
+  {
+    title: 'Evaluate a software company without public reviews',
+    href: '/insights/how-to-evaluate-a-software-company-without-public-reviews',
+    text: 'What to ask when case studies and process matter more than star ratings.'
+  },
+  {
+    title: 'How to plan a warehouse management system',
+    href: '/insights/how-to-plan-a-warehouse-management-system',
+    text: 'Receiving, inventory accuracy, and the workflows a WMS has to support.'
+  },
+  {
+    title: 'How to plan a business dashboard',
+    href: '/insights/how-to-plan-a-business-dashboard',
+    text: 'Decide users, decisions, and data sources before building charts.'
+  },
+  {
+    title: 'Custom software vs off-the-shelf',
+    href: '/insights/custom-software-vs-off-the-shelf',
+    text: 'When building fits better than forcing another product into your process.'
   }
 ] as const;
 
@@ -264,6 +314,38 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      <section className="home-shifts" aria-label="What changed in selected projects">
+        <div className="container">
+          <Reveal className="home-section-head">
+            <p className="studio-kicker">What changed</p>
+            <h2>Before and after, without invented numbers.</h2>
+            <p className="home-section-lead">
+              These are the real operational shifts from selected work. Time savings and KPI percentages stay unpublished until a verified baseline exists.
+            </p>
+          </Reveal>
+          <div className="home-shift-list">
+            {SHIFTS.map(item => (
+              <article key={item.project} className="home-shift">
+                <h3>{item.project}</h3>
+                <div className="home-shift-pair">
+                  <div>
+                    <span>Before</span>
+                    <p>{item.before}</p>
+                  </div>
+                  <div>
+                    <span>After</span>
+                    <p>{item.after}</p>
+                  </div>
+                </div>
+                <blockquote>
+                  <p>{item.note}</p>
+                </blockquote>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="home-services">
         <div className="container">
           <Reveal className="home-section-head">
@@ -380,13 +462,41 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      <section className="home-library">
+        <div className="container">
+          <Reveal className="home-section-head">
+            <p className="studio-kicker">Insights</p>
+            <h2>Clear answers to common buying questions.</h2>
+            <p className="home-section-lead">
+              Short, factual notes—not hype pieces. Useful when you are comparing build vs buy, planning a system, or evaluating a partner.
+            </p>
+          </Reveal>
+          <ul className="home-library-list">
+            {LIBRARY.map(item => (
+              <li key={item.href}>
+                <Link to={item.href}>
+                  <strong>{item.title}</strong>
+                  <p>{item.text}</p>
+                  <em>
+                    Read <ArrowRight size={14} />
+                  </em>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link to="/insights" className="text-link home-services-all">
+            Browse all insights <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
       <section className="home-faq" id="faq">
         <div className="container">
           <Reveal className="home-section-head">
             <p className="studio-kicker">Common questions</p>
-            <h2>Clear answers for buyers .</h2>
+            <h2>Clear answers for buyers.</h2>
             <p className="home-section-lead">
-              Short answers about Tekmora’s services, ERP/warehouse/dashboard work, who it’s for, and how a project starts.
+              Short answers about services, proof of work, reviews, ownership, and how a project starts.
             </p>
           </Reveal>
           <div className="home-faq-list">

@@ -7,6 +7,7 @@ import {
   HelpCircle, Zap
 } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
+import { buildServiceSchema } from '../../data/aiSeo';
 import { trackEvent } from '../../utils/analytics';
 import './ServiceDetailPage.css';
 
@@ -76,21 +77,12 @@ export const ServiceDetailPage: React.FC = () => {
     );
   }
 
-  const serviceJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: service.title,
-    serviceType: service.primaryTopic,
-    provider: {
-      '@id': 'https://www.tekmorasolution.com/#organization',
-      '@type': 'Organization',
-      name: 'Tekmora Solutions',
-      url: 'https://www.tekmorasolution.com'
-    },
-    description: service.overview,
-    areaServed: 'Worldwide',
-    url: `https://www.tekmorasolution.com/services/${service.slug}`
-  };
+  const serviceJsonLd = buildServiceSchema({
+    title: service.title,
+    slug: service.slug,
+    overview: service.overview,
+    primaryTopic: service.primaryTopic
+  });
 
   const faqJsonLd = service.faqs?.length
     ? {

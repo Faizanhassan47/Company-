@@ -169,6 +169,21 @@
   color: #a1a1aa;
 }
 
+.case-engineering-lead {
+  margin: 0 0 18px;
+  max-width: 58ch;
+  color: #a1a1aa;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.case-subhead {
+  margin: 22px 0 0;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  color: #ececef;
+}
+
 .case-list {
   list-style: none;
   display: grid;

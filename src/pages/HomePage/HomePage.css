@@ -150,6 +150,7 @@
 }
 
 .home-work-head h2,
+.home-shifts h2,
 .home-services h2,
 .home-process h2,
 .home-principles h2,
@@ -330,12 +331,76 @@
 }
 
 .home-services,
+.home-shifts,
 .home-process,
 .home-principles,
 .home-tech,
 .home-agency,
+.home-library,
 .home-faq {
   padding: var(--section-y) 0;
+}
+
+.home-library h2 {
+  margin-top: 10px;
+  max-width: 18ch;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  line-height: 1.08;
+}
+
+.home-library-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.home-library-list a {
+  display: grid;
+  gap: 8px;
+  min-height: 100%;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: #101114;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.home-library-list a:hover {
+  border-color: rgba(255, 77, 28, 0.4);
+}
+
+.home-library-list strong {
+  font-size: 1.02rem;
+  letter-spacing: -0.02em;
+}
+
+.home-library-list p {
+  margin: 0;
+  color: #a8a8b0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.home-library-list em {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: #ececef;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .home-library-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .home-service-grid {
@@ -415,6 +480,73 @@
   color: #d4d4d8;
   font-size: 15px;
   max-width: 48ch;
+}
+
+.home-shifts {
+  padding: var(--section-y) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.home-shift-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-shift {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-shift h3 {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.home-shift-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 28px;
+}
+
+.home-shift-pair span {
+  display: block;
+  margin-bottom: 8px;
+  color: #ff4d1c;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.home-shift-pair p {
+  margin: 0;
+  max-width: 42ch;
+  color: #c4c4cc;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.home-shift blockquote {
+  margin: 18px 0 0;
+  padding: 0;
+  border: none;
+}
+
+.home-shift blockquote p {
+  margin: 0;
+  max-width: 62ch;
+  color: #8e8e96;
+  font-size: 14px;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .home-shift-pair {
+    grid-template-columns: 1fr;
+  }
 }
 
 .home-faq-list {
