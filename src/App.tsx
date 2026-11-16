@@ -29,6 +29,7 @@ const InsightsPage = lazy(() => import('@/pages/InsightsPage').then(module => ({
 const InsightDetailPage = lazy(() => import('@/pages/InsightDetailPage').then(module => ({ default: module.InsightDetailPage })));
 const ContactPage = lazy(() => import('@/pages/ContactPage').then(module => ({ default: module.ContactPage })));
 const AgencyPartnersPage = lazy(() => import('@/pages/AgencyPartnersPage').then(module => ({ default: module.AgencyPartnersPage })));
+const WorkflowPage = lazy(() => import('@/pages/WorkflowPage').then(module => ({ default: module.WorkflowPage })));
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage').then(module => ({ default: module.PrivacyPage })));
 const TermsPage = lazy(() => import('@/pages/TermsPage').then(module => ({ default: module.TermsPage })));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage').then(module => ({ default: module.NotFoundPage })));
@@ -49,6 +50,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
         <Route path="/work" element={<PageTransition><WorkPage /></PageTransition>} />
         <Route path="/work/:slug" element={<PageTransition><CaseStudyPage /></PageTransition>} />
+        <Route path="/workflow" element={<PageTransition><WorkflowPage /></PageTransition>} />
         <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
         <Route path="/services/:slug" element={<PageTransition><ServiceDetailPage /></PageTransition>} />
         <Route path="/industries" element={<PageTransition><IndustriesPage /></PageTransition>} />

@@ -69,7 +69,7 @@ No. Tekmora also improves existing systems with new features, workflows, integra
 - Warehouse GRN automation case study: https://www.tekmorasolution.com/work/warehouse-grn-automation
 - DOME internal operations product case study: https://www.tekmorasolution.com/work/dome-enterprise
 - SAP Business One production dashboard: https://www.tekmorasolution.com/work/sap-b1-production-dashboard
-- How we work (homepage section): https://www.tekmorasolution.com/#how-we-work
+- Workflow / how we work: https://www.tekmorasolution.com/workflow
 
 ## Useful articles
 - Custom software vs off-the-shelf: https://www.tekmorasolution.com/insights/custom-software-vs-off-the-shelf

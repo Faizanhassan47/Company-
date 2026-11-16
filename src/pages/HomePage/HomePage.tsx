@@ -339,7 +339,8 @@ export const HomePage: React.FC = () => {
             <p className="studio-kicker">How we work</p>
             <h2>A deliberate path from discovery to handover.</h2>
             <p className="home-section-lead">
-              Clear steps reduce delivery risk—especially when you are evaluating a focused team rather than a personal brand.
+              Clear steps reduce delivery risk—especially when you are evaluating a focused team rather than a personal brand.{' '}
+              <Link to="/workflow" className="text-link">Read the full workflow →</Link>
             </p>
           </Reveal>
           <ol className="home-process-list">
@@ -383,7 +384,7 @@ export const HomePage: React.FC = () => {
         <div className="container">
           <Reveal className="home-section-head">
             <p className="studio-kicker">Common questions</p>
-            <h2>Clear answers for buyers and AI search.</h2>
+            <h2>Clear answers for buyers .</h2>
             <p className="home-section-lead">
               Short answers about Tekmora’s services, ERP/warehouse/dashboard work, who it’s for, and how a project starts.
             </p>
