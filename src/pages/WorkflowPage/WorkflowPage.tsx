@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { Reveal } from '../../components/studio/StudioMotion';
+import { WorkflowFlowchart } from './WorkflowFlowchart';
 import './WorkflowPage.css';
 
 const STEPS = [
@@ -68,11 +69,24 @@ export const WorkflowPage: React.FC = () => {
         </div>
       </section>
 
+      <section className="workflow-flowchart-section">
+        <div className="container">
+          <Reveal className="workflow-section-head">
+            <p className="studio-kicker">Delivery flowchart</p>
+            <h2>From first thought to final handover</h2>
+            <p className="workflow-section-lead">
+              An animated view of the full process—from the initial idea through discovery, build, test, launch, and ownership transfer.
+            </p>
+          </Reveal>
+          <WorkflowFlowchart />
+        </div>
+      </section>
+
       <section className="workflow-steps">
         <div className="container">
           <Reveal className="workflow-section-head">
-            <p className="studio-kicker">Engagement steps</p>
-            <h2>How a project moves forward</h2>
+            <p className="studio-kicker">Engagement detail</p>
+            <h2>What happens in each stage</h2>
           </Reveal>
           <ol className="workflow-step-list">
             {STEPS.map((step, index) => (
