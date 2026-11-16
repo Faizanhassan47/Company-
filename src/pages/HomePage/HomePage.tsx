@@ -137,7 +137,7 @@ export const HomePage: React.FC = () => {
     <main className="home-page studio-home" id="main-content">
       <SEOHead
         title="Tekmora Solutions | Custom Software & App Development"
-        description="Custom software that solves real business problems — web apps, ERP-style operations systems, mobile apps, and SaaS products. Discuss your project with Tekmora Solutions."
+        description="Custom software that solves real business problems — web apps, mobile apps, SaaS, WordPress, Shopify, and business systems. Discuss your project with Tekmora Solutions."
         canonical="https://www.tekmorasolution.com/"
         jsonLd={buildFaqSchema(HOME_FAQS)}
       />
@@ -152,7 +152,7 @@ export const HomePage: React.FC = () => {
                 <span className="serif-accent"> real business problems.</span>
               </h1>
               <p className="studio-lead">
-                We design and develop applications that centralize workflows, reporting, and day-to-day operations — web platforms, mobile apps, SaaS products, and business systems built around how your team actually works.
+                We design and develop applications that centralize workflows, reporting, and day-to-day operations — web platforms, mobile apps, SaaS products, WordPress sites, Shopify stores, and business systems built around how your team actually works.
               </p>
               <div className="home-actions">
                 <Link
