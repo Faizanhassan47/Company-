@@ -97,8 +97,8 @@ export const WorkflowFlowchart: React.FC = () => {
                 <motion.div
                   className="wf-connector"
                   aria-hidden="true"
-                  initial={reduce ? false : { opacity: 0, scaleX: 0.4 }}
-                  whileInView={{ opacity: 1, scaleX: 1 }}
+                  initial={reduce ? false : { opacity: 0, scaleY: 0.35 }}
+                  whileInView={{ opacity: 1, scaleY: 1 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.45, delay: delay + 0.08, ease: EASE }}
                 >
