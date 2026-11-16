@@ -156,11 +156,11 @@ export const ContactPage: React.FC = () => {
           <aside className="contact-aside">
             <div className="aside-card">
               <h2>Share your project details</h2>
-              <p className="form-helper">A short description is enough to get started. Include any useful links, documents, or deadlines you already have.</p>
+              <p className="form-helper">A short description is enough to get started. Include any useful links, documents, or deadlines you already have. We aim to reply within one business day.</p>
               {isSubmitted ? (
                 <div className="contact-success" role="status">
                   <CheckCircle2 size={32} />
-                  <p>We’ll reply to {formData.email} after reviewing your note.</p>
+                  <p>Thanks. We’ll review your note and aim to reply to {formData.email} within one business day.</p>
                   <button type="button" className="studio-btn-ghost" onClick={() => setIsSubmitted(false)}>Send another note</button>
                 </div>
               ) : (

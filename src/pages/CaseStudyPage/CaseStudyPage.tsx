@@ -23,6 +23,40 @@ const FEATURED: Record<string, { name: string; category: string; summary: string
       { value: 'Role-based', label: 'Access model' },
       { value: 'Audit trails', label: 'Traceability' }
     ]
+  },
+  'warehouse-grn-automation': {
+    name: 'Warehouse GRN',
+    category: 'Warehouse receiving and SAP integration',
+    summary: 'Document intake, purchase-order matching, batch checks, and verified SAP Business One commits.',
+    tags: ['Receiving', 'SAP B1', 'Exceptions'],
+    overview:
+      'Selected warehouse work for a logistics-style receiving process: replace paper GRN checks with a structured dock workflow that matches deliveries to open purchase orders and commits verified receipts into SAP Business One.',
+    challenge:
+      'Dock teams compared vendor documents to open SAP purchase orders by hand. That slowed receiving, increased batch-entry mistakes, and delayed inventory visibility.',
+    solution:
+      'A receiving console and automation pipeline for document intake, PO matching, exception review, batch checks, and SAP commit only after validation.',
+    stats: [
+      { value: 'Receiving', label: 'Focus' },
+      { value: 'SAP B1', label: 'Integration' },
+      { value: 'GRN + PO', label: 'Workflow' }
+    ]
+  },
+  'sap-b1-production-dashboard': {
+    name: 'SAP B1 Dashboard',
+    category: 'Manufacturing visibility',
+    summary: 'Operational dashboard connected to SAP Business One production and inventory data.',
+    tags: ['SAP B1', 'Dashboards', 'Operations'],
+    overview:
+      'Selected manufacturing visibility work: surface production and inventory status from SAP Business One in a practical dashboard instead of assembling status from exports.',
+    challenge:
+      'Managers needed production and inventory status without waiting on manual spreadsheet exports from SAP.',
+    solution:
+      'A dashboard layer that reads the required SAP Business One data and presents the operating view teams needed day to day.',
+    stats: [
+      { value: 'Visibility', label: 'Focus' },
+      { value: 'SAP B1', label: 'Source' },
+      { value: 'Dashboard', label: 'Delivery' }
+    ]
   }
 };
 

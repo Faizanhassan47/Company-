@@ -35,7 +35,10 @@ Tekmora Solutions is a software development company at tekmorasolution.com. It b
 Businesses needing internal tools, portals, dashboards, warehouse or operations systems; startups building web, mobile, or SaaS products; and digital agencies needing development capacity for client projects.
 
 ### How does a project start?
-Share the business problem, users, and constraints via https://www.tekmorasolution.com/contact or info@tekmorasolution.com. Tekmora reviews suitability, discusses scope if it looks like a fit, and agrees next steps before a proposal.
+Share the business problem, users, and constraints via https://www.tekmorasolution.com/contact or info@tekmorasolution.com. Tekmora reviews suitability, aims to reply within one business day when possible, discusses scope if it looks like a fit, and agrees next steps before a proposal.
+
+### Who owns the source code?
+Clients own the agreed project source code and deliverables after handover. Tekmora can support documentation, knowledge transfer, maintenance, or next-phase development.
 
 ### Does Tekmora only build new products?
 No. Tekmora also improves existing systems with new features, workflows, integrations, and technical work.
@@ -63,8 +66,10 @@ No. Tekmora also improves existing systems with new features, workflows, integra
 
 ## Evidence of work
 - Projects and case studies: https://www.tekmorasolution.com/work
-- DOME internal operations product case study: https://www.tekmorasolution.com/work/dome-enterprise
 - Warehouse GRN automation case study: https://www.tekmorasolution.com/work/warehouse-grn-automation
+- DOME internal operations product case study: https://www.tekmorasolution.com/work/dome-enterprise
+- SAP Business One production dashboard: https://www.tekmorasolution.com/work/sap-b1-production-dashboard
+- How we work (homepage section): https://www.tekmorasolution.com/#how-we-work
 
 ## Useful articles
 - Custom software vs off-the-shelf: https://www.tekmorasolution.com/insights/custom-software-vs-off-the-shelf
@@ -73,8 +78,8 @@ No. Tekmora also improves existing systems with new features, workflows, integra
 - How to plan a warehouse management system: https://www.tekmorasolution.com/insights/how-to-plan-a-warehouse-management-system
 
 ## How engagements typically work
-1. Review the business problem, users, and constraints
-2. Define scope and delivery expectations
-3. Design and develop the agreed functionality
-4. Test and prepare for release
-5. Discuss maintenance or next-phase work if needed
+1. Discovery — review the problem, users, and constraints
+2. Scope — agree features, milestones, and ownership of decisions
+3. Build — develop in visible increments
+4. Test — validate against real operating scenarios
+5. Handover and support — deliver code ownership, documentation, and optional next-phase work

@@ -12,28 +12,28 @@ import './HomePage.css';
 
 const FEATURED = [
   {
+    slug: 'warehouse-grn-automation',
+    name: 'Warehouse GRN',
+    line: 'Receiving workflow with document intake, PO matching, exceptions, and SAP Business One commit.',
+    tag: 'Warehouse · SAP'
+  },
+  {
     slug: 'dome-enterprise',
     name: 'DOME',
     line: 'Internal product: operations workflows, permissions, audit trails, and reporting.',
     tag: 'Internal product'
   },
   {
-    slug: 'glucotrack-cgm',
-    name: 'GlucoTrack',
-    line: 'Mobile glucose monitoring with sensor pairing and clinical records.',
-    tag: 'Healthcare'
+    slug: 'sap-b1-production-dashboard',
+    name: 'SAP B1 Dashboard',
+    line: 'Production and inventory visibility pulled from SAP Business One into one operating view.',
+    tag: 'Manufacturing'
   },
   {
     slug: 'matrix-field-service',
     name: 'Matrix',
-    line: 'Field service app for jobs, tracking, and equipment checks.',
-    tag: 'Mobile'
-  },
-  {
-    slug: 'warehouse-grn-automation',
-    name: 'WPS',
-    line: 'Warehouse production workflows with scanning and reporting.',
-    tag: 'Operations'
+    line: 'Offline-first field service app for jobs, evidence capture, and sync.',
+    tag: 'Field service'
   }
 ] as const;
 
@@ -92,24 +92,43 @@ const SERVICES = [
 
 const PROCESS = [
   {
-    title: 'Understand the requirements',
-    text: 'Discuss the business problem, target users, existing systems, and priorities.'
+    title: 'Discovery',
+    text: 'Review the business problem, users, current tools, constraints, and what “done” should mean for the first release.'
   },
   {
-    title: 'Define the scope',
-    text: 'Identify features, technical considerations, milestones, and expected deliverables.'
+    title: 'Scope',
+    text: 'Agree features, integrations, milestones, and ownership of decisions before build work expands.'
   },
   {
-    title: 'Design and develop',
-    text: 'Build the agreed functionality, review progress, and address feedback.'
+    title: 'Build',
+    text: 'Develop in visible increments, share progress, and keep technical decisions tied to the agreed requirements.'
   },
   {
-    title: 'Test and launch',
-    text: 'Check the product against acceptance criteria and prepare it for release.'
+    title: 'Test',
+    text: 'Validate workflows, permissions, edge cases, and integrations against real operating scenarios.'
   },
   {
-    title: 'Plan what comes next',
-    text: 'Discuss maintenance, improvements, and future development as needed.'
+    title: 'Handover and support',
+    text: 'Deliver the working system with documentation, knowledge transfer, and a clear path for fixes or next-phase work.'
+  }
+] as const;
+
+const ENGAGEMENT = [
+  {
+    title: 'You own the source code',
+    text: 'Project code and agreed deliverables are handed over for your ownership. Tekmora does not lock the product behind an opaque black box.'
+  },
+  {
+    title: 'Changing requirements stay explicit',
+    text: 'When priorities shift, we revisit scope together so timeline and effort stay honest instead of drifting silently.'
+  },
+  {
+    title: 'Support after launch',
+    text: 'After release we can discuss maintenance, small fixes, documentation follow-up, or a next development phase.'
+  },
+  {
+    title: 'Clear communication',
+    text: 'Expect structured updates on what is done, what is blocked, and what needs a decision. Inquiries get a reply within one business day when possible.'
   }
 ] as const;
 
@@ -127,8 +146,8 @@ const PRINCIPLES = [
     text: 'Clients should know what is done, what is in progress, and what needs a decision.'
   },
   {
-    title: 'Code that can be maintained',
-    text: 'Think beyond the first release and account for future changes.'
+    title: 'Maintainable delivery',
+    text: 'Code, structure, and documentation should support handover and future changes.'
   }
 ] as const;
 
@@ -149,7 +168,7 @@ export const HomePage: React.FC = () => {
               <p className="studio-kicker">Tekmora Solutions / Software development</p>
               <h1>
                 Custom software that solves <br />
-                <span className="serif-accent"> real business problems.</span>
+                <span className="serif-accent"> real business <br /> problems.</span>
               </h1>
               <p className="studio-lead">
                 We design and develop applications that centralize workflows, reporting, and day-to-day operations — web platforms, mobile apps, SaaS products, WordPress sites, Shopify stores, and business systems built around how your team actually works.
@@ -187,47 +206,18 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="home-services">
-        <div className="container">
-          <Reveal className="home-section-head">
-            <p className="studio-kicker">Software development services</p>
-            <h2>Different businesses need different kinds of software.</h2>
-            <p className="home-section-lead">
-              Some need a product built from scratch. Others need to improve an existing system, connect their tools, or make an application easier to use. Here’s where we can help.
-            </p>
-          </Reveal>
-          <ul className="home-service-grid">
-            {SERVICES.map((service, index) => (
-              <li key={service.href}>
-                <Link to={service.href}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <strong>{service.title}</strong>
-                  <p>{service.text}</p>
-                  <em>
-                    Learn more <ArrowRight size={14} />
-                  </em>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link to="/services" className="text-link home-services-all">
-            Explore All Services <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
-
       <section className="home-work">
         <div className="container">
           <Reveal className="home-work-head">
             <div>
-              <p className="studio-kicker">A closer look at our work</p>
-              <h2>Projects, requirements, and what was built.</h2>
+              <p className="studio-kicker">Selected proof of work</p>
+              <h2>Case studies before credentials.</h2>
               <p className="home-section-lead">
-                Browse examples of software projects, including the problems they address, features developed, and technical decisions involved.
+                Prospects usually ask whether we have solved something similar. These projects show the challenge, approach, and what was delivered—without inventing unverified metrics.
               </p>
             </div>
             <Link to="/work" className="text-link">
-              View Projects <ArrowRight size={16} />
+              View All Projects <ArrowRight size={16} />
             </Link>
           </Reveal>
 
@@ -266,11 +256,40 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="home-work-cta">
-            <p>Need operations software, reporting, or a similar internal system?</p>
-            <Link to="/contact?type=Custom%20software%20or%20web%20application&ref=dome-enterprise" className="studio-btn">
-              Build Something Similar <ArrowRight size={16} />
+            <p>Need warehouse receiving, SAP-connected workflows, or similar operations software?</p>
+            <Link to="/contact?type=Existing%20system%20or%20integration&ref=warehouse-grn-automation" className="studio-btn">
+              Discuss a Similar Project <ArrowRight size={16} />
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="home-services">
+        <div className="container">
+          <Reveal className="home-section-head">
+            <p className="studio-kicker">Software development services</p>
+            <h2>Different businesses need different kinds of software.</h2>
+            <p className="home-section-lead">
+              Some need a product built from scratch. Others need to improve an existing system, connect their tools, or make an application easier to use. Here’s where we can help.
+            </p>
+          </Reveal>
+          <ul className="home-service-grid">
+            {SERVICES.map((service, index) => (
+              <li key={service.href}>
+                <Link to={service.href}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{service.title}</strong>
+                  <p>{service.text}</p>
+                  <em>
+                    Learn more <ArrowRight size={14} />
+                  </em>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link to="/services" className="text-link home-services-all">
+            Explore All Services <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
@@ -314,21 +333,32 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="home-process">
+      <section className="home-process" id="how-we-work">
         <div className="container">
-          <Reveal>
-            <p className="studio-kicker">How a project moves forward</p>
-            <h2>A practical path from conversation to release.</h2>
+          <Reveal className="home-section-head">
+            <p className="studio-kicker">How we work</p>
+            <h2>A deliberate path from discovery to handover.</h2>
+            <p className="home-section-lead">
+              Clear steps reduce delivery risk—especially when you are evaluating a focused team rather than a personal brand.
+            </p>
           </Reveal>
           <ol className="home-process-list">
             {PROCESS.map((step, index) => (
               <li key={step.title}>
-                <span>0{index + 1}</span>
+                <span>{String(index + 1).padStart(2, '0')}</span>
                 <strong>{step.title}</strong>
                 <p>{step.text}</p>
               </li>
             ))}
           </ol>
+          <div className="home-principle-grid home-engagement-grid">
+            {ENGAGEMENT.map(item => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

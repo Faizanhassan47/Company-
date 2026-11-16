@@ -211,13 +211,14 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Employed geofencing and motion-activity triggers instead of high-frequency GPS polling.'
       }
     ],
-    outcome: 'Reduced field billing cycle turnaround from 6 business days to immediate same-day invoice generation; achieved 99.8% work order synchronization reliability.',
-    lessonsOrImprovements: 'Integrated biometric fast authentication to allow field technicians to log in instantly while wearing protective work gloves.',
+    outcome:
+      'Field work orders, evidence capture, and sync were brought into one mobile workflow designed for low-connectivity sites. Specific billing-cycle or reliability percentages are not published here without verified operational baselines.',
+    lessonsOrImprovements: 'Later improvements can include faster authenticated login for gloved field use and richer parts-lookup during jobs.',
     visualType: 'mobile-dual',
     mockMetrics: [
-      { label: 'Job Sync Reliability', value: '99.8%' },
-      { label: 'Invoice Turnaround', value: 'Same-day' },
-      { label: 'Field Technicians', value: '80+ Active' }
+      { label: 'Mode', value: 'Offline-first' },
+      { label: 'Client', value: 'React Native' },
+      { label: 'Sync', value: 'Queued uploads' }
     ],
     highlights: ['Offline SQLite Sync', 'Digital Work Orders', 'GPS Geocoding', 'React Native & Expo']
   },
@@ -226,62 +227,75 @@ export const PROJECTS: CaseStudy[] = [
     slug: 'warehouse-grn-automation',
     number: '03',
     title: 'Warehouse & GRN Automation',
-    client: 'Supply Chain & Distribution Logistics',
-    tagline: 'A warehouse workflow combining document extraction, purchase-order matching, batch handling and SAP integration.',
+    client: 'Selected logistics and distribution operation',
+    tagline: 'Warehouse receiving software for document intake, purchase-order matching, batch checks, and SAP Business One commit.',
     imageUrl: '/projects/warehouse.jpg',
     thumbnailUrl: '/projects/warehouse.jpg',
     category: 'Warehouse Automation & SAP Integration',
     filterCategory: 'warehouse-sap',
+    portfolioKind: 'selected',
     year: '2024',
-    role: 'System Integration & Automation Engineering',
-    services: ['Document OCR & Parsing', 'PO Reconciliation Engine', 'Batch & Expiry Validation', 'SAP B1 Middleware'],
+    role: 'System integration and warehouse workflow engineering',
+    services: ['Document parsing', 'PO reconciliation', 'Batch and expiry checks', 'SAP B1 integration'],
     technologies: ['Node.js', 'Express', 'SQL Server', 'SAP Business One DI API', 'React'],
-    clientProblem: 'Receiving docks manually cross-checked printed vendor Goods Receipt Notes (GRNs) against open SAP purchase orders line by line. Manual verification created dock bottlenecks, frequent data entry errors in lot numbers, and delayed warehouse bin allocation.',
-    usersAndContext: 'Warehouse receiving managers, dock workers scanning delivery pallets, and inventory procurement analysts auditing shipment discrepancies.',
-    developmentApproach: 'Tekmora built a specialized automation pipeline that parses digital invoices, matches SKU line items with SAP open purchase orders, flags quantity/cost deviations, and commits verified receipts directly to SAP Business One.',
+    clientProblem:
+      'Receiving teams manually compared vendor Goods Receipt Notes (GRNs) and packing slips against open SAP purchase orders. Line-by-line checks slowed the dock, made lot and batch entry error-prone, and delayed stock visibility.',
+    usersAndContext:
+      'Warehouse receiving staff, supervisors handling exceptions, and inventory or procurement roles reviewing mismatches before stock is committed.',
+    developmentApproach:
+      'Tekmora built a receiving workflow that ingests delivery documents, matches lines to open purchase orders, highlights discrepancies, validates batch details when required, and commits verified receipts into SAP Business One only after checks pass.',
     technicalArchitecture: [
-      'Document Ingestion: Automated PDF/image parsing pipeline extracting vendor details, PO numbers, and batch items.',
-      'Reconciliation Engine: Rule-based matching engine verifying tolerances, unit of measurement conversions, and price accuracy.',
-      'Integration Layer: Custom SAP Business One Service Layer connector creating Goods Receipt PO (GRPO) transactions automatically.',
-      'Warehouse UI: Touchscreen-friendly receiving console highlighting discrepancies with visual color codes.'
+      'Document intake: Parsing pipeline for PDF and image delivery documents to extract vendor, PO, and line details.',
+      'Reconciliation: Rule-based matching against open purchase orders with tolerance and exception flags.',
+      'SAP layer: Connector that creates Goods Receipt PO transactions after validation, with retry handling for busy periods.',
+      'Receiving UI: Touch-friendly console that shows matches, mismatches, and what still needs a human decision.'
     ],
     keyFeatures: [
       {
-        title: 'Automated PO Reconciler',
-        description: 'Auto-matches vendor shipment items to active purchase orders with tolerance verification.'
+        title: 'Purchase-order matching',
+        description: 'Compare inbound shipment lines against open POs so mismatches are visible before stock is committed.'
       },
       {
-        title: 'Batch & Lot Tracking',
-        description: 'Mandatory batch and expiry validation prior to committing stock to warehouse bins.'
+        title: 'Batch and lot checks',
+        description: 'Capture and validate batch or expiry details when the warehouse process requires them.'
       },
       {
-        title: 'Direct SAP B1 Integration',
-        description: 'Real-time API creation of Goods Receipt POs with rollback handling in case of validation failures.'
+        title: 'SAP Business One commit',
+        description: 'Push verified receipts into SAP after checks pass, instead of re-keying from paper at the dock.'
       },
       {
-        title: 'Discrepancy Exception Management',
-        description: 'Instant supervisor alerts and split-receipt routing when delivered quantities deviate from agreed terms.'
+        title: 'Exception handling',
+        description: 'Route short shipments, wrong SKUs, and other discrepancies for supervisor review.'
       }
     ],
     challengesAndDecisions: [
       {
-        challenge: 'Inconsistent invoice layouts across different domestic and international vendors.',
-        decision: 'Implemented a templated extraction pipeline with flexible fuzzy matching algorithms for vendor SKU aliases.'
+        challenge: 'Vendor documents did not follow one consistent layout.',
+        decision:
+          'Used templated extraction with fuzzy matching on SKU aliases so new vendors could be onboarded without rewriting the whole pipeline.'
       },
       {
-        challenge: 'Handling lock timeouts and concurrent transactions on SAP Business One backend during peak hours.',
-        decision: 'Constructed an in-memory queue with rate-limited worker threads and retry policies.'
+        challenge: 'SAP could lock or slow down during concurrent receiving activity.',
+        decision:
+          'Queued commits with rate limits and retries so failed receipts could be reattempted without losing the validated dock work.'
+      },
+      {
+        challenge: 'Not every mismatch should block the entire shipment.',
+        decision:
+          'Separated clean lines from exceptions so verified items could progress while disputed lines stayed visible for review.'
       }
     ],
-    outcome: 'Accelerated receiving dock processing from 45 minutes per shipment to under 4 minutes; eliminated human transposition errors in batch numbering.',
-    lessonsOrImprovements: 'Added direct barcode printing triggers for pallet labeling at the moment of SAP receipt confirmation.',
+    outcome:
+      'Receiving moved from paper-heavy, line-by-line SAP re-entry to a structured dock workflow with document intake, PO checks, exception review, and verified SAP commits. Quantified time savings are not published here without a verified before-and-after baseline from the operation.',
+    lessonsOrImprovements:
+      'Next useful extensions include pallet label triggers at confirmation and broader vendor template coverage as new document formats appear.',
     visualType: 'workflow-diagram',
     mockMetrics: [
-      { label: 'Dock Processing', value: '< 4 Mins' },
-      { label: 'Entry Error Rate', value: '0.0%' },
-      { label: 'SAP Receipts', value: '1,200+/Mo' }
+      { label: 'Focus', value: 'Receiving' },
+      { label: 'Integration', value: 'SAP B1' },
+      { label: 'Workflow', value: 'GRN + PO match' }
     ],
-    highlights: ['Document Extraction', 'PO Reconciliation', 'Batch & Lot Handling', 'SAP B1 DI Integration']
+    highlights: ['Document intake', 'PO reconciliation', 'Batch checks', 'SAP B1 integration']
   },
   {
     id: 'shoestops',

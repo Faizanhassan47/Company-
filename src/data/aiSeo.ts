@@ -43,12 +43,17 @@ export const HOME_FAQS = [
   {
     question: 'How do I start a project with Tekmora?',
     answer:
-      'Share a short project description through the contact form at tekmorasolution.com/contact or email info@tekmorasolution.com. Tekmora reviews the requirements, arranges a discussion if the project looks suitable, and agrees scope before a proposal.'
+      'Share a short project description through the contact form at tekmorasolution.com/contact or email info@tekmorasolution.com. Tekmora reviews the requirements, aims to reply within one business day when possible, arranges a discussion if the project looks suitable, and agrees scope before a proposal.'
+  },
+  {
+    question: 'Who owns the source code?',
+    answer:
+      'Clients own the agreed project source code and deliverables after handover. Tekmora documents the work and can support knowledge transfer, maintenance, or a next development phase when needed.'
   },
   {
     question: 'Where can I see Tekmora’s work?',
     answer:
-      'Selected projects and case studies are published at tekmorasolution.com/work, including the DOME internal operations product and warehouse GRN automation case studies.'
+      'Selected projects and case studies are published at tekmorasolution.com/work, including warehouse GRN automation, the DOME internal operations product, and SAP Business One dashboard work.'
   },
   {
     question: 'How is Tekmora Solutions different from similarly named companies?',
