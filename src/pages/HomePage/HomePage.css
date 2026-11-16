@@ -28,11 +28,21 @@
   max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 4vw, 48px);
   align-items: center;
   padding: clamp(28px, 5vh, 56px) var(--page-edge) clamp(36px, 6vh, 72px);
   box-sizing: border-box;
+}
+
+.home-hero-copy {
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.home-hero-copy h1 {
+  max-width: 12ch;
 }
 
 .home-brand {
@@ -82,7 +92,7 @@
   box-shadow:
     0 40px 80px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(255, 77, 28, 0.08);
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 9;
   background: #101114;
   animation: homeVisualRise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -94,7 +104,9 @@
 }
 
 .home-hero-visual .project-poster img {
-  object-position: center 35%;
+  object-fit: contain;
+  object-position: center center;
+  background: #0b1220;
 }
 
 .home-hero-visual figcaption {
@@ -644,8 +656,12 @@
   }
 
   .product-window-frame.home-hero-visual {
-    aspect-ratio: 16 / 12;
+    aspect-ratio: 16 / 9;
     border-radius: 16px;
+  }
+
+  .home-hero-copy h1 {
+    max-width: none;
   }
 
   .home-side-row {
