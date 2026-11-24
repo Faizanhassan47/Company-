@@ -419,31 +419,51 @@ export const HomePage: React.FC = () => {
 
       <section className="home-process" id="how-we-work">
         <div className="container">
-          <Reveal className="home-section-head">
-            <p className="studio-kicker">How we work</p>
-            <h2>A deliberate path from discovery to handover.</h2>
-            <p className="home-section-lead">
-              Clear steps reduce delivery risk—especially when you are evaluating a focused team rather than a personal brand.{' '}
-              <Link to="/workflow" className="text-link">Read the full workflow →</Link>
-            </p>
-          </Reveal>
-          <Stagger as="ol" className="home-process-list">
-            {PROCESS.map((step, index) => (
-              <StaggerItem as="li" key={step.title}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{step.title}</strong>
-                <p>{step.text}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-          <Stagger className="home-principle-grid home-engagement-grid">
-            {ENGAGEMENT.map(item => (
-              <StaggerItem as="article" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <div className="home-process-layout">
+            <Reveal className="home-process-intro">
+              <p className="studio-kicker">How we work</p>
+              <h2>A deliberate path from discovery to handover.</h2>
+              <p className="home-section-lead">
+                Clear steps reduce delivery risk—especially when you are evaluating a focused team rather than a personal brand.
+              </p>
+              <Link to="/workflow" className="text-link home-process-link">
+                Read the full workflow <ArrowRight size={16} />
+              </Link>
+            </Reveal>
+
+            <Stagger as="ol" className="home-process-timeline">
+              {PROCESS.map((step, index) => (
+                <StaggerItem as="li" key={step.title}>
+                  <div className="home-process-step">
+                    <div className="home-process-rail" aria-hidden="true">
+                      <span className="home-process-dot" />
+                      {index < PROCESS.length - 1 ? <span className="home-process-line" /> : null}
+                    </div>
+                    <div className="home-process-body">
+                      <span className="home-process-index">{String(index + 1).padStart(2, '0')}</span>
+                      <strong>{step.title}</strong>
+                      <p>{step.text}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+
+          <div className="home-process-agreements">
+            <Reveal className="home-process-agreements-head">
+              <p className="studio-kicker">Working agreements</p>
+              <h3>What stays true across every engagement</h3>
+            </Reveal>
+            <Stagger className="home-agreement-list">
+              {ENGAGEMENT.map(item => (
+                <StaggerItem as="article" key={item.title} className="home-agreement">
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
         </div>
       </section>
 
