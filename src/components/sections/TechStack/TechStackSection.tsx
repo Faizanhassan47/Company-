@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Layout, Server, Smartphone, Database, Cloud } from 'lucide-react';
 import { fadeInUp, staggerContainer } from '../../../utils/animations';
 import './TechStackSection.css';

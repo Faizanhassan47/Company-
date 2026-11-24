@@ -1,0 +1,241 @@
+/* Opening animation — derives all color from the global design system. */
+.oa-root {
+  --oa-bg: var(--bg-main);
+  --oa-surface: var(--bg-elevated);
+  --oa-panel: var(--bg-card);
+  --oa-border: var(--border-subtle);
+  --oa-border-active: var(--border-accent);
+  --oa-text: var(--text-primary);
+  --oa-muted: var(--text-muted);
+  --oa-dim: var(--text-dim);
+  --oa-accent: var(--accent-orange);
+  --oa-string: var(--accent-parchment);
+  --oa-comment: var(--text-dim);
+  --oa-fn: var(--text-secondary);
+  --oa-grid: color-mix(in srgb, var(--text-dim) 22%, transparent);
+  --oa-depth: color-mix(in srgb, var(--accent-orange) 12%, transparent);
+  --oa-vignette: color-mix(in srgb, var(--bg-main) 72%, transparent);
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--oa-bg);
+  color: var(--oa-text);
+  padding:
+    env(safe-area-inset-top, 0)
+    env(safe-area-inset-right, 0)
+    env(safe-area-inset-bottom, 0)
+    env(safe-area-inset-left, 0);
+  touch-action: none;
+}
+
+.oa-root.is-exiting {
+  pointer-events: none;
+}
+
+.oa-skip {
+  position: absolute;
+  top: max(var(--spacing-4), env(safe-area-inset-top, 0px));
+  right: max(var(--spacing-4), env(safe-area-inset-right, 0px));
+  z-index: 2;
+}
+
+.oa-scene {
+  position: relative;
+  width: min(100vw, 1200px);
+  height: min(100dvh, 100vh);
+  perspective: 1200px;
+  perspective-origin: 50% 46%;
+  overflow: hidden;
+}
+
+.oa-grid {
+  position: absolute;
+  inset: -20%;
+  background-image:
+    linear-gradient(var(--oa-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--oa-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: rotateX(68deg) translateY(18%) scale(1.4);
+  transform-origin: center top;
+  opacity: 0.2;
+  pointer-events: none;
+  will-change: opacity, transform;
+  mask-image: linear-gradient(to bottom, transparent, black 28%, black 70%, transparent);
+}
+
+.oa-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 35%, var(--oa-vignette) 100%);
+}
+
+.oa-camera {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.oa-layer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(520px, calc(100vw - 2.5rem));
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+
+.oa-panel {
+  border: 1px solid var(--oa-border);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--oa-panel) 92%, transparent);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+  transition:
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.oa-layer.is-active .oa-panel {
+  border-color: var(--oa-border-active);
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px color-mix(in srgb, var(--oa-accent) 20%, transparent),
+    0 18px 48px color-mix(in srgb, var(--oa-accent) 10%, transparent);
+}
+
+.oa-panel-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-bottom: 1px solid var(--oa-border);
+  background: color-mix(in srgb, var(--oa-surface) 88%, transparent);
+}
+
+.oa-panel-label,
+.oa-panel-file {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.oa-panel-label {
+  color: var(--oa-accent);
+}
+
+.oa-panel-file {
+  color: var(--oa-muted);
+}
+
+.oa-code {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 var(--spacing-3);
+  margin: 0;
+  padding: var(--spacing-3);
+  max-height: min(42vh, 320px);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 1.6vw, 0.82rem);
+  line-height: 1.55;
+}
+
+.oa-line-num {
+  color: var(--oa-dim);
+  text-align: right;
+  user-select: none;
+  min-width: 1.4em;
+}
+
+.oa-line-code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--oa-text);
+}
+
+.oa-tok-keyword { color: var(--oa-accent); }
+.oa-tok-string { color: var(--oa-string); }
+.oa-tok-comment { color: var(--oa-comment); font-style: italic; }
+.oa-tok-fn { color: var(--oa-fn); }
+.oa-tok-tag { color: var(--oa-accent); }
+.oa-tok-attr { color: var(--oa-fn); }
+.oa-tok-number { color: var(--oa-string); }
+.oa-tok-type { color: var(--text-secondary); }
+.oa-tok-punct { color: var(--oa-muted); }
+.oa-tok-plain { color: var(--oa-text); }
+
+.oa-cursor {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: var(--oa-accent);
+  animation: oaBlink 0.9s steps(1) infinite;
+}
+
+@keyframes oaBlink {
+  50% { opacity: 0; }
+}
+
+.oa-beam {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 42vh;
+  margin-left: -1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--oa-accent) 55%, transparent),
+    transparent
+  );
+  transform: translateZ(-900px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .oa-scene {
+    perspective: 900px;
+  }
+
+  .oa-grid {
+    transform: none;
+    inset: 0;
+    opacity: 0.2;
+    mask-image: none;
+    background-size: 36px 36px;
+  }
+
+  .oa-layer {
+    width: min(100vw - 1.5rem, 420px);
+  }
+
+  .oa-code {
+    max-height: 38vh;
+    font-size: 0.72rem;
+  }
+
+  .oa-beam {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oa-cursor {
+    animation: none;
+  }
+}

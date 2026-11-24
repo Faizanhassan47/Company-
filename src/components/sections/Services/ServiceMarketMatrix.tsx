@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Flame, Coins, ArrowUpRight, Check, Copy, ChevronDown, Sparkles, Filter } from 'lucide-react';
 import { SERVICES_MARKET_MATRIX, type ServiceMarketItem } from '../../../data/services';
 import './ServiceMarketMatrix.css';

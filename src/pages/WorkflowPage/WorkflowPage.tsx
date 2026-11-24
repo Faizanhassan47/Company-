@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
-import { Reveal } from '../../components/studio/StudioMotion';
+import { Reveal, Stagger, StaggerItem } from '../../components/studio/StudioMotion';
 import './WorkflowPage.css';
 
 const STAGES = [
@@ -90,14 +90,14 @@ export const WorkflowPage: React.FC = () => {
 
       <section className="workflow-process" aria-label="Delivery stages">
         <div className="container">
-          <ol className="workflow-timeline">
+          <Stagger as="ol" className="workflow-timeline">
             {STAGES.map((stage, index) => (
-              <li key={stage.phase} className="workflow-stage">
+              <StaggerItem as="li" key={stage.phase} className="workflow-stage">
                 <div className="workflow-stage-rail" aria-hidden="true">
                   <span className="workflow-stage-dot" />
                   {index < STAGES.length - 1 && <span className="workflow-stage-line" />}
                 </div>
-                <Reveal className="workflow-stage-body" delay={index * 0.04}>
+                <div className="workflow-stage-body">
                   <div className="workflow-stage-meta">
                     <span className="workflow-stage-phase">{stage.phase}</span>
                     <span className="workflow-stage-outcome">{stage.outcome}</span>
@@ -109,10 +109,10 @@ export const WorkflowPage: React.FC = () => {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                </Reveal>
-              </li>
+                </div>
+              </StaggerItem>
             ))}
-          </ol>
+          </Stagger>
         </div>
       </section>
 
@@ -122,14 +122,14 @@ export const WorkflowPage: React.FC = () => {
             <p className="studio-kicker">Working agreements</p>
             <h2>What stays true across every engagement</h2>
           </Reveal>
-          <dl className="workflow-agreement-list">
+          <Stagger className="workflow-agreement-list" as="div">
             {AGREEMENTS.map(item => (
-              <div key={item.title} className="workflow-agreement">
-                <dt>{item.title}</dt>
-                <dd>{item.text}</dd>
-              </div>
+              <StaggerItem key={item.title} className="workflow-agreement">
+                <p className="workflow-agreement-title">{item.title}</p>
+                <p>{item.text}</p>
+              </StaggerItem>
             ))}
-          </dl>
+          </Stagger>
         </div>
       </section>
 

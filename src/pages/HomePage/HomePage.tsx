@@ -6,7 +6,7 @@ import { env } from '@/config/env';
 import { buildFaqSchema, HOME_FAQS } from '../../data/aiSeo';
 import { TECH_EXPERTISE } from '../../data/company';
 import { ProjectPoster } from '../../components/studio/ProjectPosters';
-import { Reveal } from '../../components/studio/StudioMotion';
+import { Reveal, Stagger, StaggerItem } from '../../components/studio/StudioMotion';
 import { trackEvent } from '../../utils/analytics';
 import './HomePage.css';
 
@@ -271,24 +271,26 @@ export const HomePage: React.FC = () => {
             </Link>
           </Reveal>
 
-          <div className="home-feature">
-            <Link to={`/work/${FEATURED[0].slug}`} className="home-feature-main">
-              <div className="home-feature-media">
-                <ProjectPoster slug={FEATURED[0].slug} />
-              </div>
-              <div className="home-feature-meta">
-                <span>{FEATURED[0].tag}</span>
-                <h3>{FEATURED[0].name}</h3>
-                <p>{FEATURED[0].line}</p>
-                <em>
-                  View case study <ArrowUpRight size={16} />
-                </em>
-              </div>
-            </Link>
+          <Stagger className="home-feature">
+            <StaggerItem>
+              <Link to={`/work/${FEATURED[0].slug}`} className="home-feature-main">
+                <div className="home-feature-media">
+                  <ProjectPoster slug={FEATURED[0].slug} />
+                </div>
+                <div className="home-feature-meta">
+                  <span>{FEATURED[0].tag}</span>
+                  <h3>{FEATURED[0].name}</h3>
+                  <p>{FEATURED[0].line}</p>
+                  <em>
+                    View case study <ArrowUpRight size={16} />
+                  </em>
+                </div>
+              </Link>
+            </StaggerItem>
 
-            <div className="home-feature-side">
-              {FEATURED.slice(1).map((item, index) => (
-                <Reveal key={item.slug} delay={0.08 * (index + 1)}>
+            <Stagger className="home-feature-side">
+              {FEATURED.slice(1).map(item => (
+                <StaggerItem key={item.slug}>
                   <Link to={`/work/${item.slug}`} className="home-side-row">
                     <div className="home-side-media">
                       <ProjectPoster slug={item.slug} />
@@ -300,10 +302,10 @@ export const HomePage: React.FC = () => {
                     </div>
                     <ArrowUpRight size={18} aria-hidden="true" />
                   </Link>
-                </Reveal>
+                </StaggerItem>
               ))}
-            </div>
-          </div>
+            </Stagger>
+          </Stagger>
 
           <div className="home-work-cta">
             <p>Need warehouse receiving, SAP-connected workflows, or similar operations software?</p>
@@ -323,9 +325,9 @@ export const HomePage: React.FC = () => {
               These are the real operational shifts from selected work. Time savings and KPI percentages stay unpublished until a verified baseline exists.
             </p>
           </Reveal>
-          <div className="home-shift-list">
+          <Stagger className="home-shift-list">
             {SHIFTS.map(item => (
-              <article key={item.project} className="home-shift">
+              <StaggerItem key={item.project} as="article" className="home-shift">
                 <h3>{item.project}</h3>
                 <div className="home-shift-pair">
                   <div>
@@ -340,9 +342,9 @@ export const HomePage: React.FC = () => {
                 <blockquote>
                   <p>{item.note}</p>
                 </blockquote>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -355,9 +357,9 @@ export const HomePage: React.FC = () => {
               Some need a product built from scratch. Others need to improve an existing system, connect their tools, or make an application easier to use. Here’s where we can help.
             </p>
           </Reveal>
-          <ul className="home-service-grid">
+          <Stagger as="ul" className="home-service-grid">
             {SERVICES.map((service, index) => (
-              <li key={service.href}>
+              <StaggerItem as="li" key={service.href}>
                 <Link to={service.href}>
                   <span>{String(index + 1).padStart(2, '0')}</span>
                   <strong>{service.title}</strong>
@@ -366,9 +368,9 @@ export const HomePage: React.FC = () => {
                     Learn more <ArrowRight size={14} />
                   </em>
                 </Link>
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </Stagger>
           <Link to="/services" className="text-link home-services-all">
             Explore All Services <ArrowRight size={16} />
           </Link>
@@ -384,14 +386,14 @@ export const HomePage: React.FC = () => {
               A short list of stacks Tekmora actually uses. The right choice always depends on the product requirements and constraints.
             </p>
           </Reveal>
-          <div className="home-tech-grid">
+          <Stagger className="home-tech-grid">
             {TECH_EXPERTISE.map(item => (
-              <article key={item.name}>
+              <StaggerItem as="article" key={item.name}>
                 <h3>{item.name}</h3>
                 <p>{item.detail}</p>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -425,23 +427,23 @@ export const HomePage: React.FC = () => {
               <Link to="/workflow" className="text-link">Read the full workflow →</Link>
             </p>
           </Reveal>
-          <ol className="home-process-list">
+          <Stagger as="ol" className="home-process-list">
             {PROCESS.map((step, index) => (
-              <li key={step.title}>
+              <StaggerItem as="li" key={step.title}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 <strong>{step.title}</strong>
                 <p>{step.text}</p>
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
-          <div className="home-principle-grid home-engagement-grid">
+          </Stagger>
+          <Stagger className="home-principle-grid home-engagement-grid">
             {ENGAGEMENT.map(item => (
-              <article key={item.title}>
+              <StaggerItem as="article" key={item.title}>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -451,14 +453,14 @@ export const HomePage: React.FC = () => {
             <p className="studio-kicker">What matters when building software</p>
             <h2>Working principles, not marketing slogans.</h2>
           </Reveal>
-          <div className="home-principle-grid">
+          <Stagger className="home-principle-grid">
             {PRINCIPLES.map(item => (
-              <article key={item.title}>
+              <StaggerItem as="article" key={item.title}>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -471,9 +473,9 @@ export const HomePage: React.FC = () => {
               Short, factual notes—not hype pieces. Useful when you are comparing build vs buy, planning a system, or evaluating a partner.
             </p>
           </Reveal>
-          <ul className="home-library-list">
+          <Stagger as="ul" className="home-library-list">
             {LIBRARY.map(item => (
-              <li key={item.href}>
+              <StaggerItem as="li" key={item.href}>
                 <Link to={item.href}>
                   <strong>{item.title}</strong>
                   <p>{item.text}</p>
@@ -481,9 +483,9 @@ export const HomePage: React.FC = () => {
                     Read <ArrowRight size={14} />
                   </em>
                 </Link>
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </Stagger>
           <Link to="/insights" className="text-link home-services-all">
             Browse all insights <ArrowRight size={16} />
           </Link>

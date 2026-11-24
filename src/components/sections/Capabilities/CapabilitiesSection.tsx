@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ARCHITECTURE_LAYERS, type ArchitectureLayer } from '../../../data/capabilities';
 import { Layers, Database, Cpu, Network, LayoutTemplate, Play, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { fadeInUp } from '../../../utils/animations';

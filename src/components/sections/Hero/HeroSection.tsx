@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight, Activity, ShieldCheck, Database, Cpu, Terminal, Zap, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './HeroSection.css';

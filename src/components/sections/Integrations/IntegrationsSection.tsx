@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { fadeInUp, staggerContainer } from '../../../utils/animations';
 import { Link2 } from 'lucide-react';
 import './IntegrationsSection.css';

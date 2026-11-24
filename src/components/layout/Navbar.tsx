@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll, useSpring } from 'motion/react';
 import { Menu, X, ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { TekmoraLogo } from '../ui/TekmoraLogo';
 import { MagneticButton } from '../ui/MagneticButton';
@@ -34,7 +34,6 @@ const SERVICES_DROPDOWN = [
 export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [workOpen, setWorkOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -43,21 +42,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const workDropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const { t } = useTranslation();
+  const { scrollY, scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 28,
+    restDelta: 0.001
+  });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentScroll = window.scrollY;
-
-      if (totalHeight > 0) {
-        setScrollProgress((currentScroll / totalHeight) * 100);
-      }
-
-      setScrolled(currentScroll > 30);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, 'change', latest => {
+    setScrolled(latest > 30);
+  });
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -122,16 +116,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     <>
       <motion.header
         className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ type: 'tween', ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
+        transition={{ type: 'tween', ease: [0.22, 1, 0.36, 1], duration: 0.9 }}
       >
-        <div
+        <motion.div
           className="header-scroll-progress"
-          style={{ transform: `scaleX(${scrollProgress / 100})` }}
+          style={{ scaleX: smoothProgress, transformOrigin: '0% 50%' }}
           role="progressbar"
           aria-label="Page scroll progress"
-          aria-valuenow={Math.round(scrollProgress)}
           aria-valuemin={0}
           aria-valuemax={100}
         />

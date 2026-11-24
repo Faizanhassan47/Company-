@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { WifiOff, CheckCircle2, ShieldCheck, Activity, Globe, Server, X, Lock } from 'lucide-react';
 import './NetworkStatus.css';
 

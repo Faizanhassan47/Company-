@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { CheckCircle2, Zap } from 'lucide-react';
 import { staggerContainer, fadeInUp, hoverLift } from '../../../utils/animations';
 import './TechRadarSection.css';

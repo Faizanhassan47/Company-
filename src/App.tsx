@@ -1,12 +1,13 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { initAnalytics, trackPageView } from './utils/analytics';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, MotionConfig } from 'motion/react';
 import { PageTransition } from './components/layout/PageTransition';
 import { Navbar } from './components/layout/Navbar';
 import { MovingField } from './components/studio/MovingField';
 import { Footer } from './components/layout/Footer';
 import { Preloader } from './components/layout/Preloader';
+import { OpeningAnimation } from './components/opening';
 import { SmoothScroll } from './components/layout/SmoothScroll';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { CookieBanner } from './components/ui/CookieBanner';
@@ -73,14 +74,17 @@ const AnimatedRoutes = () => {
   );
 };
 
-export const App: React.FC = () => {
-  const [preloaderDone, setPreloaderDone] = useState(false);
+const AppShell: React.FC = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  // Replay on every full page load of the homepage (no session skip).
+  const [openingDone, setOpeningDone] = useState(() => !isHome);
+  const [preloaderDone, setPreloaderDone] = useState(() => isHome);
   const [searchOpen, setSearchOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
-  
+
   useSpotlight();
-  
-  // Easter Eggs
+
   const tekmoraCode = useSecretCode('tekmora');
   const rootCode = useSecretCode('root');
   const terminalOpen = tekmoraCode.success || rootCode.success;
@@ -89,6 +93,8 @@ export const App: React.FC = () => {
     tekmoraCode.setSuccess(false);
     rootCode.setSuccess(false);
   };
+
+  const showOpening = isHome && !openingDone;
 
   useEffect(() => {
     initAnalytics();
@@ -99,57 +105,69 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <BrowserRouter>
-      <SmoothScroll>
-        <ScrollToTop />
+    <SmoothScroll>
+      <ScrollToTop />
 
-        {/* Quick Search Command Palette (Cmd+K) */}
-        {searchOpen && (
-          <Suspense fallback={null}>
-            <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
-          </Suspense>
-        )}
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      )}
 
-        {/* Network Connectivity Status Indicator */}
-        <NetworkStatus />
+      <NetworkStatus />
 
-        {/* Developer Keyboard Shortcuts HUD */}
-        <KeyboardShortcutsModal
-          isOpen={shortcutsOpen}
-          onClose={() => setShortcutsOpen(false)}
-          onOpenSearch={() => { setShortcutsOpen(false); setSearchOpen(true); }}
+      <KeyboardShortcutsModal
+        isOpen={shortcutsOpen}
+        onClose={() => setShortcutsOpen(false)}
+        onOpenSearch={() => {
+          setShortcutsOpen(false);
+          setSearchOpen(true);
+        }}
+      />
+
+      <AnimatePresence>
+        {terminalOpen && <TerminalEasterEgg onClose={closeTerminal} />}
+      </AnimatePresence>
+
+      <CookieBanner />
+      <LiveChat />
+
+      {/* Cinematic intro — homepage only, every refresh; site renders underneath */}
+      {showOpening && (
+        <OpeningAnimation
+          onComplete={() => {
+            setOpeningDone(true);
+            setPreloaderDone(true);
+          }}
         />
+      )}
 
-        {/* God Mode Terminal */}
-        <AnimatePresence>
-          {terminalOpen && <TerminalEasterEgg onClose={closeTerminal} />}
-        </AnimatePresence>
+      {/* Short preloader only when the cinematic intro is not playing */}
+      {!showOpening && !preloaderDone && (
+        <Preloader onComplete={() => setPreloaderDone(true)} />
+      )}
 
-        {/* GDPR Cookie Consent */}
-        <CookieBanner />
+      <div className="site-wrapper">
+        <MovingField />
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <Navbar onOpenSearch={() => setSearchOpen(true)} />
+        <AnimatedRoutes />
+        <BackToTop />
+        <Footer />
+      </div>
+    </SmoothScroll>
+  );
+};
 
-        {/* Live Sales Chat */}
-        <LiveChat />
-
-        {/* Preloader */}
-        {!preloaderDone && (
-          <Preloader onComplete={() => setPreloaderDone(true)} />
-        )}
-
-        {/* Site Layout */}
-        <div className="site-wrapper">
-          <MovingField />
-          <a className="skip-link" href="#main-content">Skip to content</a>
-          <Navbar onOpenSearch={() => setSearchOpen(true)} />
-
-          <AnimatedRoutes />
-
-          <BackToTop />
-
-          <Footer />
-        </div>
-      </SmoothScroll>
-    </BrowserRouter>
+export const App: React.FC = () => {
+  return (
+    <MotionConfig reducedMotion="never" transition={{ ease: [0.22, 1, 0.36, 1] }}>
+      <BrowserRouter>
+        <AppShell />
+      </BrowserRouter>
+    </MotionConfig>
   );
 };
 

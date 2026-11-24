@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Calculator, Clock, Check, Sparkles, Zap, Cpu, Layers, ArrowRight, DollarSign, Share2, GitBranch } from 'lucide-react';
 import { fadeInUp } from '../../utils/animations';
 import './ProjectEstimator.css';

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, BookOpen, Calendar, Clock, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { INSIGHTS_DATA } from '../../data/insights';

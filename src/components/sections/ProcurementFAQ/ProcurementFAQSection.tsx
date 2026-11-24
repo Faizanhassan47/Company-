@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ChevronDown, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { staggerContainer, fadeInUp } from '../../../utils/animations';
 import './ProcurementFAQSection.css';

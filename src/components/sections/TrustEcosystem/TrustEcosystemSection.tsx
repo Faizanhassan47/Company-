@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ShieldCheck, Database, Server, Smartphone, Cpu, Cloud, Radio, Lock } from 'lucide-react';
 import { staggerContainer, fadeInUp, hoverLift } from '../../../utils/animations';
 import './TrustEcosystemSection.css';

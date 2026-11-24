@@ -168,14 +168,14 @@
   border-left: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.workflow-agreement dt {
+.workflow-agreement-title {
   margin: 0 0 10px;
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-.workflow-agreement dd {
+.workflow-agreement > p:last-child {
   margin: 0;
   max-width: 42ch;
   color: #a8a8b0;

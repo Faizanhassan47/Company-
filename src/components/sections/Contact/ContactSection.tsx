@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Mail, MapPin, Send, CheckCircle2, Clock, Calendar, Paperclip } from 'lucide-react';
 import { TekmoraLogo } from '../../ui/TekmoraLogo';
 import { ProjectEstimator, type EstimatorSelection } from '../../ui/ProjectEstimator';

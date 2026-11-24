@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { fadeInUp, staggerContainer } from '../../../utils/animations';
 import { Settings2, RefreshCcw, Blocks, Link2, Users, Lightbulb } from 'lucide-react';
 import './EngagementModelsSection.css';

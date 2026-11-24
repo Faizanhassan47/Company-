@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, X, Check, ArrowRight, ShieldCheck, Download, ExternalLink } from 'lucide-react';
 import './MeetingSchedulerModal.css';
 

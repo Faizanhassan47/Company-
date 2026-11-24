@@ -10,37 +10,42 @@ interface SmoothScrollProps {
   children: React.ReactNode;
 }
 
+/**
+ * Desktop smooth scrolling via Lenis — tuned slow enough to feel.
+ * Touch devices keep native momentum scrolling.
+ */
 export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   const lenisRef = useRef<Lenis | null>(null);
   const location = useLocation();
 
   useEffect(() => {
-    // Detect mobile or touch-dominant devices
     const isTouchDevice =
       typeof window !== 'undefined' &&
       (('ontouchstart' in window) ||
         navigator.maxTouchPoints > 0 ||
         window.innerWidth < 1024);
 
-    // On touch/mobile, let native hardware momentum scrolling run at 60-120Hz
+    // Keep native momentum on phones; Lenis on desktop for feelable glide
     if (isTouchDevice) {
       return;
     }
 
-    // Initialize Lenis for desktop
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
+      duration: 1.6,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      syncTouch: false, // Never hijack touch
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.2,
+      syncTouch: false
     });
 
     lenisRef.current = lenis;
-
-    // Lock Lenis with GSAP ScrollTrigger to prevent desync & stutter
-    lenis.on('scroll', ScrollTrigger.update);
+    lenis.on('scroll', () => {
+      ScrollTrigger.update();
+      document.dispatchEvent(new CustomEvent('lenis-scroll'));
+    });
 
     const updateTicker = (time: number) => {
       lenis.raf(time * 1000);
@@ -56,7 +61,6 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     };
   }, []);
 
-  // Reset scroll on route change
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
@@ -67,4 +71,3 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
   return <>{children}</>;
 };
-

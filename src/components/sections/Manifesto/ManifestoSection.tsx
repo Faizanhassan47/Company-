@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ShieldCheck } from 'lucide-react';
 import { fadeInUp } from '../../../utils/animations';
 import './ManifestoSection.css';

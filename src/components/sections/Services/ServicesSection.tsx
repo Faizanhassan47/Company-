@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Code, Globe, Smartphone, Cloud, ShoppingBag, Wrench } from 'lucide-react';
 import { fadeInUp } from '../../../utils/animations';

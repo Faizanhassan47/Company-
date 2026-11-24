@@ -1,0 +1,1 @@
+export { OpeningAnimation } from './OpeningAnimation';

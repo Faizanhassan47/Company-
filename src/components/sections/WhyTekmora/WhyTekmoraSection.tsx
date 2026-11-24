@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { MessageSquare, Lightbulb, Code2, Eye } from 'lucide-react';
 import { fadeInUp, staggerContainer } from '../../../utils/animations';
 import './WhyTekmoraSection.css';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Factory, Stethoscope, Truck, Building2, ShoppingCart, Activity } from 'lucide-react';
 import { fadeInUp, staggerContainer } from '../../../utils/animations';

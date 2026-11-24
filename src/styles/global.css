@@ -36,10 +36,19 @@ body {
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-/* Performance: instruct browser to skip layout/paint for offscreen sections until scrolled near */
-.home-page > section:not(:first-of-type) {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
+/* Scroll reveal fallback — guarantees visibility even if Motion stalls */
+[data-reveal='out'] > div {
+  opacity: 0;
+  transform: translate3d(0, 56px, 0);
+  transition:
+    opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal='in'] > div {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 
@@ -432,20 +441,16 @@ img {
   }
 }
 
-/* Accessibility */
+/* Accessibility: soften decorative CSS only — do not zero Motion transforms */
 @media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
   html {
     scroll-behavior: auto;
+  }
+
+  .industry-marquee,
+  .wf-connector-flow,
+  .wf-node-pulse {
+    animation: none !important;
   }
 }
 
