@@ -64,6 +64,7 @@ export const ServiceDetailPage: React.FC = () => {
         <SEOHead
           title="Service Not Found | Tekmora"
           description="The requested service discipline could not be located."
+          robots="noindex, nofollow"
         />
         <span className="sd-kicker">404 DISCIPLINE</span>
         <h1 style={{ fontSize: '2.5rem', margin: '1rem 0', color: '#fafafa' }}>Service Not Found</h1>

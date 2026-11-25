@@ -8,6 +8,9 @@ type PosterSpec = {
   kicker: string;
   title: string;
   className?: string;
+  optimized?: boolean;
+  width?: number;
+  height?: number;
 };
 
 const POSTERS: Record<string, PosterSpec> = {
@@ -16,7 +19,7 @@ const POSTERS: Record<string, PosterSpec> = {
     alt: 'DOME digital office platform dashboard',
     kicker: 'Enterprise',
     title: 'DOME',
-    className: 'poster-wide'
+    className: 'poster-wide', optimized: true, width: 1280, height: 720
   },
   'citi-books-platform': {
     src: '/projects/citi-store.jpg',
@@ -36,7 +39,7 @@ const POSTERS: Record<string, PosterSpec> = {
     alt: 'Matrix field service app with jobs, live tracking and equipment scan',
     kicker: 'Field service',
     title: 'Matrix',
-    className: 'poster-wide'
+    className: 'poster-wide', optimized: true, width: 1500, height: 1125
   },
   'quran-ayat-app': {
     src: '/projects/ayat.jpg',
@@ -57,7 +60,7 @@ const POSTERS: Record<string, PosterSpec> = {
     alt: 'Warehouse production system with scan and track and a SAP dashboard',
     kicker: 'Operations',
     title: 'WPS',
-    className: 'poster-wide'
+    className: 'poster-wide', optimized: true, width: 1500, height: 1125
   },
   shoestops: {
     src: '/projects/shoestops.jpg',
@@ -85,7 +88,7 @@ const POSTERS: Record<string, PosterSpec> = {
     alt: 'SAP Business One production analytics dashboard',
     kicker: 'Manufacturing',
     title: 'SAP B1',
-    className: 'poster-wide'
+    className: 'poster-wide', optimized: true, width: 1280, height: 720
   },
   'leoedge-dashboard': {
     src: '/projects/leoedge.jpg',
@@ -138,9 +141,21 @@ const POSTERS: Record<string, PosterSpec> = {
   }
 };
 
-const ShotPoster: React.FC<PosterSpec> = ({ src, alt, kicker, title, className = '' }) => (
+const ShotPoster: React.FC<PosterSpec & { priority?: boolean }> = ({ src, alt, kicker, title, className = '', optimized, width, height, priority }) => (
   <figure className={`project-poster ${className}`}>
-    <img src={src} alt={alt} />
+    <picture>
+      {optimized && <source srcSet={src.replace(/\.jpg$/, '.avif')} type="image/avif" />}
+      {optimized && <source srcSet={src.replace(/\.jpg$/, '.webp')} type="image/webp" />}
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+        decoding={priority ? 'sync' : 'async'}
+      />
+    </picture>
     <figcaption>
       <span>{kicker}</span>
       <strong>{title}</strong>
@@ -159,9 +174,9 @@ const TypePoster: React.FC<{ title: string; category: string; stack: string[] }>
   </figure>
 );
 
-export const ProjectPoster: React.FC<{ slug: string }> = ({ slug }) => {
+export const ProjectPoster: React.FC<{ slug: string; priority?: boolean }> = ({ slug, priority = false }) => {
   const poster = POSTERS[slug];
-  if (poster) return <ShotPoster {...poster} />;
+  if (poster) return <ShotPoster {...poster} priority={priority} />;
 
   const project = PROJECTS.find(item => item.slug === slug);
   return (

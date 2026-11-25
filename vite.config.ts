@@ -34,7 +34,10 @@ export default defineConfig({
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router')) {
             return 'react-vendor';
           }
-          if (id.includes('node_modules/framer-motion') || id.includes('node_modules/gsap')) {
+          if (id.includes('node_modules/gsap')) {
+            return 'gsap-vendor';
+          }
+          if (id.includes('node_modules/framer-motion')) {
             return 'animation-vendor';
           }
           if (id.includes('node_modules/lucide-react')) {

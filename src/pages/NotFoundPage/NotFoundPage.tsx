@@ -10,6 +10,8 @@ export const NotFoundPage: React.FC = () => {
       <SEOHead
         title="Page Not Found | Tekmora"
         description="The requested page does not exist."
+        robots="noindex, nofollow"
+        canonical="https://www.tekmorasolution.com/404"
       />
       <div className="container not-found-container">
         <span className="not-found-code font-mono">404</span>

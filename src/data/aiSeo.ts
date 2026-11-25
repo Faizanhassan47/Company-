@@ -68,7 +68,7 @@ export const buildOrganizationSchema = () => ({
     '@type': 'ImageObject',
     url: 'https://www.tekmorasolution.com/brand-icon.svg'
   },
-  image: 'https://www.tekmorasolution.com/og-image.jpg',
+  image: 'https://www.tekmorasolution.com/og-image-optimized.jpg',
   description:
     'Tekmora Solutions is a software development company that designs and builds custom software, web applications, mobile apps, SaaS products, ERP-style operations systems, warehouse software, business dashboards, WordPress sites, and Shopify stores.',
   sameAs: ['https://www.linkedin.com/company/tekmora-solution'],

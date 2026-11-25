@@ -8,6 +8,12 @@ import { SEOHead } from '../../components/seo/SEOHead';
 import { ORGANIZATION_ID } from '../../data/aiSeo';
 import './InsightDetailPage.css';
 
+const toIsoDate = (value?: string) => {
+  if (!value) return undefined;
+  const date = new Date(value);
+  return Number.isNaN(date.valueOf()) ? undefined : date.toISOString().slice(0, 10);
+};
+
 export const InsightDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -33,6 +39,7 @@ export const InsightDetailPage: React.FC = () => {
         <SEOHead
           title="Article Not Found | Tekmora"
           description="The requested technical article could not be located."
+          robots="noindex, nofollow"
         />
         <h1 className="font-display">ARTICLE NOT FOUND</h1>
         <p className="text-secondary mt-4">The requested technical publication could not be located.</p>
@@ -51,12 +58,13 @@ export const InsightDetailPage: React.FC = () => {
     headline: article.title,
     description: article.summary,
     url: articleUrl,
-    mainEntityOfPage: articleUrl,
+    mainEntityOfPage: { '@id': `${articleUrl}#webpage` },
     inLanguage: 'en-US',
     author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
-    datePublished: article.publishDate,
-    dateModified: article.updatedDate
+    datePublished: toIsoDate(article.publishDate),
+    dateModified: toIsoDate(article.updatedDate),
+    image: 'https://www.tekmorasolution.com/og-image-optimized.jpg'
   };
 
   return (

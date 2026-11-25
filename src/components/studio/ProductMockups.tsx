@@ -145,8 +145,8 @@ export const STUDIO_PHOTOS = {
   engineers: '/studio/engineers.jpg'
 };
 
-export const ProjectVisual: React.FC<{ slug: string }> = ({ slug }) => (
-  <ProjectPoster slug={slug} />
+export const ProjectVisual: React.FC<{ slug: string; priority?: boolean }> = ({ slug, priority = false }) => (
+  <ProjectPoster slug={slug} priority={priority} />
 );
 
 export const ScenePhoto: React.FC<{ src: string; alt: string; className?: string; children?: React.ReactNode }> = ({

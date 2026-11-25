@@ -5,16 +5,13 @@ export type SiteCurrency = 'USD' | 'EUR' | 'GBP' | 'PKR';
 
 const CURRENCIES: SiteCurrency[] = ['USD', 'EUR', 'GBP', 'PKR'];
 
-const getInitialCurrency = (): SiteCurrency => {
-  if (typeof window === 'undefined') return 'USD';
-  const saved = window.localStorage.getItem('tekmora-currency');
-  return CURRENCIES.includes(saved as SiteCurrency) ? saved as SiteCurrency : 'USD';
-};
-
 export const CurrencyBar: React.FC = () => {
-  const [currency, setCurrency] = useState<SiteCurrency>(getInitialCurrency);
+  const [currency, setCurrency] = useState<SiteCurrency>('USD');
 
   useEffect(() => {
+    const saved = window.localStorage.getItem('tekmora-currency');
+    if (CURRENCIES.includes(saved as SiteCurrency)) setCurrency(saved as SiteCurrency);
+
     const handleCurrencyChange = (event: Event) => {
       const nextCurrency = (event as CustomEvent<SiteCurrency>).detail;
       if (CURRENCIES.includes(nextCurrency)) setCurrency(nextCurrency);

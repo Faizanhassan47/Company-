@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { buildServicesItemListSchema } from '../../data/aiSeo';
+import { SERVICES_DATA } from '../../data/services';
 import './ServicesPage.css';
 
 const SHOWCASE = [
@@ -77,6 +78,15 @@ const SHOWCASE = [
   }
 ] as const;
 
+const SPECIALIST_SLUGS = new Set([
+  'ai-integration-workflow-automation', 'ai-agents-process-automation',
+  'rag-enterprise-data-ai', 'api-stripe-integrations', 'security-auth-multitenant',
+  'production-hardening-code-rescue', 'maintenance-evolution-retainers',
+  'ai-customer-support-chatbots', 'web-development', 'erp-wms-development',
+  'sap-b1-integration', 'data-bi-analytics', 'api-integration'
+]);
+const SPECIALIST_SERVICES = SERVICES_DATA.filter(service => SPECIALIST_SLUGS.has(service.slug));
+
 export const ServicesPage: React.FC = () => {
   return (
     <main className="services-page" id="main-content">
@@ -133,6 +143,19 @@ export const ServicesPage: React.FC = () => {
                 </article>
               ))}
             </div>
+
+            <section className="sv-specialist" aria-labelledby="specialist-services-title">
+              <p className="sv-meta">Specialist capabilities</p>
+              <h2 id="specialist-services-title">Explore focused engineering services</h2>
+              <p>For projects that need a narrower technical discipline, explore these focused service areas.</p>
+              <div className="sv-specialist-links">
+                {SPECIALIST_SERVICES.map(service => (
+                  <Link key={service.slug} to={`/services/${service.slug}`}>
+                    {service.title} <span aria-hidden="true">â†’</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
 
             <footer className="sv-foot">
               <div>

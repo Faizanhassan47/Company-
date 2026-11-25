@@ -11,9 +11,9 @@ interface EdgeRegion {
 }
 
 export const NetworkStatus: React.FC = () => {
-  const [isOnline, setIsOnline] = useState(
-    typeof navigator !== 'undefined' ? navigator.onLine : true
-  );
+  // Keep the first client render identical to the server render. The actual
+  // connection state is synchronized after hydration.
+  const [isOnline, setIsOnline] = useState(true);
   const [showReconnected, setShowReconnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -43,6 +43,7 @@ export const NetworkStatus: React.FC = () => {
 
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
+    setIsOnline(navigator.onLine);
 
     // Micro-jitter simulation for edge ping telemetry
     const interval = setInterval(() => {

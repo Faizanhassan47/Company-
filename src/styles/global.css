@@ -82,7 +82,7 @@ section,
 /* Selection */
 ::selection {
   background-color: var(--accent-orange);
-  color: #ffffff;
+  color: #111114;
 }
 
 /* Custom Scrollbar */
@@ -343,7 +343,7 @@ img {
 
 .btn-orange {
   background-color: var(--accent-orange);
-  color: #ffffff;
+  color: #111114;
   border-color: var(--accent-orange);
 }
 

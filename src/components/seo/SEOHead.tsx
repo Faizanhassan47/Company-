@@ -8,6 +8,7 @@ interface SEOProps {
   image?: string;
   type?: 'website' | 'article' | 'service';
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  robots?: string;
 }
 
 export const SEOHead: React.FC<SEOProps> = ({
@@ -16,7 +17,8 @@ export const SEOHead: React.FC<SEOProps> = ({
   canonical,
   image,
   type = 'website',
-  jsonLd
+  jsonLd,
+  robots = 'index, follow, max-image-preview:large'
 }) => {
   useEffect(() => {
     // 1. Update Title
@@ -32,11 +34,19 @@ export const SEOHead: React.FC<SEOProps> = ({
     }
     metaDesc.content = description;
 
+    let robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement;
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.name = 'robots';
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.content = robots;
+
     // 3. Update Canonical
     const currentUrl = canonical || `${window.location.origin}${window.location.pathname}`;
     const socialImage = image
       ? new URL(image, 'https://www.tekmorasolution.com').href
-      : 'https://www.tekmorasolution.com/og-image.jpg';
+      : 'https://www.tekmorasolution.com/og-image-optimized.jpg';
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
@@ -128,11 +138,14 @@ export const SEOHead: React.FC<SEOProps> = ({
     const hasBreadcrumbSchema = suppliedSchemas.some(schema => schema['@type'] === 'BreadcrumbList');
     const pageSchema = {
       '@context': 'https://schema.org',
-      '@type': type === 'article' ? 'Article' : 'WebPage',
+      '@type': 'WebPage',
+      '@id': `${currentUrl}#webpage`,
       name: formattedTitle,
       description,
       url: currentUrl,
-      inLanguage: 'en-US'
+      inLanguage: 'en-US',
+      isPartOf: { '@id': WEBSITE_ID },
+      about: { '@id': defaultOrganizationSchema['@id'] }
     };
 
     const schemaToInject = [
@@ -148,7 +161,52 @@ export const SEOHead: React.FC<SEOProps> = ({
     return () => {
       // Cleanup on unmount if needed
     };
-  }, [title, description, canonical, image, type, jsonLd]);
+  }, [title, description, canonical, image, type, jsonLd, robots]);
 
-  return null;
+  const formattedTitle = title.includes('Tekmora') ? title : `${title} | Tekmora`;
+  const currentUrl = canonical || 'https://www.tekmorasolution.com/';
+  const socialImage = image
+    ? new URL(image, 'https://www.tekmorasolution.com').href
+    : 'https://www.tekmorasolution.com/og-image-optimized.jpg';
+  const organization = buildOrganizationSchema();
+  const website = {
+    '@context': 'https://schema.org', '@type': 'WebSite', '@id': WEBSITE_ID,
+    name: 'Tekmora Solutions', url: 'https://www.tekmorasolution.com/', inLanguage: 'en-US',
+    publisher: { '@id': organization['@id'] }
+  };
+  const page = {
+    '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${currentUrl}#webpage`,
+    name: formattedTitle, description, url: currentUrl, inLanguage: 'en-US',
+    isPartOf: { '@id': WEBSITE_ID }, about: { '@id': organization['@id'] }
+  };
+  const schemas = [organization, website, page, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+
+  const schemaScript = (
+    <script id="tekmora-schema-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }} />
+  );
+
+  // Metadata is emitted during SSR and moved into <head> by the prerenderer.
+  // In the browser, useEffect owns those head nodes; rendering a second set in
+  // the hydrated app would make React try to claim nodes outside #root.
+  if (typeof document !== 'undefined') return schemaScript;
+
+  return (
+    <>
+      <title>{formattedTitle}</title>
+      <meta name="description" content={description} />
+      <meta name="robots" content={robots} />
+      <link rel="canonical" href={currentUrl} />
+      <meta property="og:type" content={type === 'article' ? 'article' : 'website'} />
+      <meta property="og:url" content={currentUrl} />
+      <meta property="og:title" content={formattedTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={socialImage} />
+      <meta property="og:site_name" content="Tekmora Solutions" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={formattedTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={socialImage} />
+      {schemaScript}
+    </>
+  );
 };

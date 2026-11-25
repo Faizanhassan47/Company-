@@ -214,7 +214,7 @@ export const HomePage: React.FC = () => {
       <section className="home-hero">
         <div className="home-hero-stage">
           <div className="home-hero-copy">
-            <Reveal>
+            <Reveal aboveFold>
               <p className="studio-kicker">Tekmora Solutions / Software development</p>
               <h1>
                 Custom software that solves <br />
@@ -251,7 +251,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="product-window-frame home-hero-visual">
-            <ProjectPoster slug="dome-enterprise" />
+            <ProjectPoster slug="dome-enterprise" priority />
           </div>
         </div>
       </section>

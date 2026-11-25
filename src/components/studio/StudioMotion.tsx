@@ -20,9 +20,9 @@ function isElementInView(node: Element) {
   return rect.top < vh * 0.92 && rect.bottom > vh * 0.06;
 }
 
-function useScrollInView() {
+function useScrollInView(initialInView = false) {
   const [node, setNode] = useState<Element | null>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(initialInView);
   const ref = useCallback((el: Element | null) => setNode(el), []);
 
   useEffect(() => {
@@ -91,15 +91,16 @@ interface RevealProps {
   className?: string;
   delay?: number;
   as?: 'div' | 'section' | 'article' | 'li' | 'header';
+  aboveFold?: boolean;
 }
 
-export const Reveal: React.FC<RevealProps> = ({ children, className, delay = 0 }) => {
-  const { ref, inView } = useScrollInView();
+export const Reveal: React.FC<RevealProps> = ({ children, className, delay = 0, aboveFold = false }) => {
+  const { ref, inView } = useScrollInView(aboveFold);
 
   return (
     <div ref={ref as never} className={className} data-reveal={inView ? 'in' : 'out'}>
       <motion.div
-        initial={{ opacity: 0, y: 56 }}
+        initial={aboveFold ? { opacity: 1, y: 20 } : { opacity: 0, y: 56 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 56 }}
         transition={{ duration: 1.15, delay, ease: MOTION_EASE }}
       >

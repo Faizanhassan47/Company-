@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { StaticRouter } from 'react-router';
 import { initAnalytics, trackPageView } from './utils/analytics';
 import { AnimatePresence, MotionConfig } from 'motion/react';
 import { PageTransition } from './components/layout/PageTransition';
@@ -7,7 +8,6 @@ import { Navbar } from './components/layout/Navbar';
 import { MovingField } from './components/studio/MovingField';
 import { Footer } from './components/layout/Footer';
 import { Preloader } from './components/layout/Preloader';
-import { OpeningAnimation } from './components/opening';
 import { SmoothScroll } from './components/layout/SmoothScroll';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { CookieBanner } from './components/ui/CookieBanner';
@@ -35,6 +35,7 @@ const PrivacyPage = lazy(() => import('@/pages/PrivacyPage').then(module => ({ d
 const TermsPage = lazy(() => import('@/pages/TermsPage').then(module => ({ default: module.TermsPage })));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage').then(module => ({ default: module.NotFoundPage })));
 const CommandPalette = lazy(() => import('./components/layout/CommandPalette').then(module => ({ default: module.CommandPalette })));
+const OpeningAnimation = lazy(() => import('./components/opening').then(module => ({ default: module.OpeningAnimation })));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -74,12 +75,13 @@ const AnimatedRoutes = () => {
   );
 };
 
-const AppShell: React.FC = () => {
+const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   // Replay on every full page load of the homepage (no session skip).
-  const [openingDone, setOpeningDone] = useState(() => !isHome);
-  const [preloaderDone, setPreloaderDone] = useState(() => isHome);
+  const isPrerendered = prerendered || (typeof document !== 'undefined' && document.getElementById('root')?.dataset.prerendered === 'true');
+  const [openingDone, setOpeningDone] = useState(() => !isHome || isPrerendered);
+  const [preloaderDone, setPreloaderDone] = useState(() => isHome || isPrerendered);
   const [searchOpen, setSearchOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
@@ -134,12 +136,14 @@ const AppShell: React.FC = () => {
 
       {/* Cinematic intro — homepage only, every refresh; site renders underneath */}
       {showOpening && (
-        <OpeningAnimation
-          onComplete={() => {
-            setOpeningDone(true);
-            setPreloaderDone(true);
-          }}
-        />
+        <Suspense fallback={null}>
+          <OpeningAnimation
+            onComplete={() => {
+              setOpeningDone(true);
+              setPreloaderDone(true);
+            }}
+          />
+        </Suspense>
       )}
 
       {/* Short preloader only when the cinematic intro is not playing */}
@@ -162,13 +166,22 @@ const AppShell: React.FC = () => {
 };
 
 export const App: React.FC = () => {
+  const prerendered = typeof document !== 'undefined' && document.getElementById('root')?.dataset.prerendered === 'true';
   return (
-    <MotionConfig reducedMotion="never" transition={{ ease: [0.22, 1, 0.36, 1] }}>
+    <MotionConfig reducedMotion="user" transition={{ ease: [0.22, 1, 0.36, 1] }}>
       <BrowserRouter>
-        <AppShell />
+        <AppShell prerendered={prerendered} />
       </BrowserRouter>
     </MotionConfig>
   );
 };
+
+export const ServerApp: React.FC<{ url: string }> = ({ url }) => (
+  <MotionConfig reducedMotion="user" transition={{ ease: [0.22, 1, 0.36, 1] }}>
+    <StaticRouter location={url}>
+      <AppShell prerendered />
+    </StaticRouter>
+  </MotionConfig>
+);
 
 export default App;

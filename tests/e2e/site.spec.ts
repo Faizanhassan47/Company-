@@ -68,6 +68,8 @@ test('public pages expose complete SEO metadata', async ({ page }) => {
   for (const path of seoPages) {
     await page.goto(path);
     await expect(page.locator('main#main-content')).toBeVisible();
+    const expectedCanonical = `https://www.tekmorasolution.com${path === '/' ? '/' : path}`;
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', expectedCanonical);
 
     const title = await page.title();
     const description = await page.locator('meta[name="description"]').getAttribute('content');
@@ -79,8 +81,23 @@ test('public pages expose complete SEO metadata', async ({ page }) => {
     expect(seenTitles.has(title), `${path} has a duplicate title`).toBe(false);
     seenTitles.add(title);
     expect(description?.length, `${path} should have a description`).toBeGreaterThan(50);
-    expect(canonical, `${path} should have a canonical URL`).toBe(`https://www.tekmorasolution.com${path === '/' ? '/' : path}`);
+    expect(canonical, `${path} should have a canonical URL`).toBe(expectedCanonical);
     expect(h1Count, `${path} should have exactly one main heading`).toBe(1);
     expect(schemaCount, `${path} should expose structured data`).toBeGreaterThan(0);
   }
 });
+
+for (const path of ['/', '/services', '/services/custom-software-development', '/work', '/contact']) {
+  test(`${path} matches the representative visual baseline`, async ({ page }) => {
+    await page.goto(path);
+    await expect(page.locator('main#main-content')).toBeVisible();
+    await page.addStyleTag({ content: '.opening-animation, .preloader-overlay { display: none !important; }' });
+    await page.evaluate(() => document.fonts.ready);
+    const name = path === '/' ? 'home' : path.replace(/^\//, '').replaceAll('/', '-');
+    await expect(page).toHaveScreenshot(`${name}.png`, {
+      animations: 'disabled',
+      caret: 'hide',
+      fullPage: false
+    });
+  });
+}

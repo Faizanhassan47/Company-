@@ -108,7 +108,7 @@ export const WorkPage: React.FC = () => {
 
       <section className="work-hero">
         <div className="container">
-          <Reveal>
+          <Reveal aboveFold>
             <p className="studio-kicker">Projects</p>
             <h1>Software projects and selected work</h1>
             <p className="studio-lead">
@@ -139,13 +139,13 @@ export const WorkPage: React.FC = () => {
         <div className="container">
           {filteredProjects.length === 0 && <p>No projects in this category yet.</p>}
           <div className="work-grid">
-            {filteredProjects.map(project => {
+            {filteredProjects.map((project, index) => {
               const card = present(project);
               return (
                 <article className="work-case" key={project.slug}>
                   <Link to={`/work/${project.slug}`} className="work-case-link">
                     <div className="work-case-media">
-                      <ProjectVisual slug={project.slug} />
+                      <ProjectVisual slug={project.slug} priority={index === 0} />
                     </div>
                     <div className="work-case-copy">
                       <p className="work-case-sub">

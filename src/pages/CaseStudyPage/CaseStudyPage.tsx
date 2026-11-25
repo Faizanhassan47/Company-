@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SEOHead } from '../../components/seo/SEOHead';
 import { ProjectVisual, TechLogos } from '../../components/studio/ProductMockups';
 import { trackEvent } from '../../utils/analytics';
+import { ORGANIZATION_ID, WEBSITE_ID } from '../../data/aiSeo';
 import './CaseStudyPage.css';
 
 const TABS = ['Overview', 'Challenge', 'Solution', 'Features', 'Engineering', 'Outcome'] as const;
@@ -89,6 +90,7 @@ export const CaseStudyPage: React.FC = () => {
         <SEOHead
           title="Case Study Not Found | Tekmora"
           description="The requested project case study could not be located in our portfolio."
+          robots="noindex, nofollow"
         />
         <div className="container case-missing">
           <p className="studio-kicker">404</p>
@@ -113,6 +115,21 @@ export const CaseStudyPage: React.FC = () => {
   const portfolioKind: PortfolioKind = project.portfolioKind ?? 'selected';
   const kindLabel = PORTFOLIO_KIND_LABEL[portfolioKind];
   const contactHref = `/contact?type=${encodeURIComponent(similarProjectNeed(project))}&ref=${encodeURIComponent(project.slug)}`;
+  const projectUrl = `https://www.tekmorasolution.com/work/${project.slug}`;
+  const caseStudySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': `${projectUrl}#case-study`,
+    name: project.title,
+    description: project.tagline,
+    url: projectUrl,
+    image: new URL(project.imageUrl || '/og-image-optimized.jpg', 'https://www.tekmorasolution.com').href,
+    creator: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntityOfPage: { '@id': `${projectUrl}#webpage` },
+    inLanguage: 'en-US'
+  };
 
   return (
     <main className="case-page" id="main-content">
@@ -121,7 +138,7 @@ export const CaseStudyPage: React.FC = () => {
         description={`${project.title}: ${project.tagline} See the requirements, implementation approach, and development decisions.`}
         canonical={`https://www.tekmorasolution.com/work/${project.slug}`}
         image={project.imageUrl}
-        type="article"
+        jsonLd={caseStudySchema}
       />
 
       <section className="case-hero">

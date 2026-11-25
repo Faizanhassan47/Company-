@@ -1,17 +1,39 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { hydrateRoot } from 'react-dom/client'
 import './index.css'
 import './i18n'
 import App from './App.tsx'
 import { ErrorBoundary } from './components/layout/ErrorBoundary'
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root')!
+const fontStylesheet = document.getElementById('site-font-stylesheet') as HTMLLinkElement | null
+if (fontStylesheet) {
+  const activateFonts = () => { fontStylesheet.media = 'all' }
+  if (fontStylesheet.sheet) requestAnimationFrame(activateFonts)
+  else fontStylesheet.addEventListener('load', activateFonts, { once: true })
+}
+const app = (
   <StrictMode>
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
-  </StrictMode>,
+  </StrictMode>
 )
+
+if (root.dataset.prerendered === 'true' && root.hasChildNodes()) {
+  const hydrate = () => {
+    hydrateRoot(root, app, {
+      onRecoverableError(error, errorInfo) {
+        console.error('Hydration recovery:', error, errorInfo.componentStack)
+      },
+    })
+  }
+  if (document.readyState === 'complete') hydrate()
+  else window.addEventListener('load', hydrate, { once: true })
+} else {
+  createRoot(root).render(app)
+}
 
 // Register Service Worker for PWA offline capabilities in production
 if ('serviceWorker' in navigator && import.meta.env.PROD) {

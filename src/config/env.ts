@@ -3,6 +3,7 @@ const optional = (value: string | undefined) => value?.trim() || undefined;
 export const env = Object.freeze({
   formspreeEndpointId: optional(import.meta.env.VITE_FORMSPREE_ENDPOINT_ID) ?? 'mbgjkvrb',
   googleAnalyticsId: optional(import.meta.env.VITE_GA_MEASUREMENT_ID),
+  googleTagManagerId: optional(import.meta.env.VITE_GTM_CONTAINER_ID),
   /** Cal.com / Calendly / similar discovery-call URL. When set, Contact shows Schedule a Discovery Call. */
   calendarUrl: optional(import.meta.env.VITE_CALENDAR_URL),
   sanityProjectId: optional(import.meta.env.VITE_SANITY_PROJECT_ID),
@@ -11,7 +12,7 @@ export const env = Object.freeze({
 });
 
 export const missingOptionalIntegrations = [
-  !env.googleAnalyticsId && 'VITE_GA_MEASUREMENT_ID',
+  !env.googleAnalyticsId && !env.googleTagManagerId && 'VITE_GTM_CONTAINER_ID (or VITE_GA_MEASUREMENT_ID)',
   !env.calendarUrl && 'VITE_CALENDAR_URL',
   !env.sanityProjectId && 'VITE_SANITY_PROJECT_ID',
   !env.sentryDsn && 'VITE_SENTRY_DSN'

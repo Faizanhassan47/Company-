@@ -260,3 +260,30 @@
     align-items: start;
   }
 }
+.sv-specialist {
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.sv-specialist > p:not(.sv-meta) {
+  color: var(--text-secondary);
+  max-width: 46rem;
+}
+
+.sv-specialist-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.sv-specialist-links a {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 0;
+}
+
+.sv-specialist-links a:hover {
+  color: var(--accent-orange);
+}

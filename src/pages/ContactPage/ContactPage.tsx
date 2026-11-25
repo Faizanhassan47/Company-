@@ -113,7 +113,7 @@ export const ContactPage: React.FC = () => {
 
       <section className="contact-layout">
         <div className="container contact-grid">
-          <Reveal>
+          <Reveal aboveFold>
             <p className="studio-kicker">Contact</p>
             <h1>Let’s talk about your project.</h1>
             <p className="studio-lead">

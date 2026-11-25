@@ -6,7 +6,13 @@
 Tekmora Solutions (also known as Tekmora)
 
 ## Website
-https://www.tekmorasolution.com/
+[Tekmora Solutions official website](https://www.tekmorasolution.com/)
+
+## Key links
+- [Services](https://www.tekmorasolution.com/services)
+- [Projects and case studies](https://www.tekmorasolution.com/work)
+- [Insights](https://www.tekmorasolution.com/insights)
+- [Contact Tekmora Solutions](https://www.tekmorasolution.com/contact)
 
 ## Contact
 - Email: info@tekmorasolution.com
