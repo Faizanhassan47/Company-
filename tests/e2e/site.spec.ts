@@ -36,6 +36,12 @@ test('site uses the permanent black theme', async ({ page }) => {
   await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(9, 9, 9)');
 });
 
+test('homepage plays the opening animation after prerender hydration', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('dialog', { name: /software engineering introduction/i })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Skip Intro' })).toBeVisible();
+});
+
 test('homepage dashboard preview does not overflow a phone viewport', async ({ page }) => {
   await page.setViewportSize({ width: 393, height: 852 });
   await page.goto('/');
@@ -91,7 +97,7 @@ for (const path of ['/', '/services', '/services/custom-software-development', '
   test(`${path} matches the representative visual baseline`, async ({ page }) => {
     await page.goto(path);
     await expect(page.locator('main#main-content')).toBeVisible();
-    await page.addStyleTag({ content: '.opening-animation, .preloader-overlay { display: none !important; }' });
+    await page.addStyleTag({ content: '.oa-root, .preloader-overlay { display: none !important; }' });
     await page.evaluate(() => document.fonts.ready);
     const name = path === '/' ? 'home' : path.replace(/^\//, '').replaceAll('/', '-');
     await expect(page).toHaveScreenshot(`${name}.png`, {

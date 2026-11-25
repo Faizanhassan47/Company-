@@ -99,6 +99,14 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
   const showOpening = isHome && !openingDone;
 
   useEffect(() => {
+    // Prerendered pages must match the server markup for the first hydration
+    // pass. Once React owns the page, start the homepage intro normally.
+    if (isHome && isPrerendered) {
+      setOpeningDone(false);
+    }
+  }, [isHome, isPrerendered]);
+
+  useEffect(() => {
     initAnalytics();
 
     const handleOpenHUD = () => setShortcutsOpen(prev => !prev);
