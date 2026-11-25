@@ -22,15 +22,11 @@ const app = (
 )
 
 if (root.dataset.prerendered === 'true' && root.hasChildNodes()) {
-  const hydrate = () => {
-    hydrateRoot(root, app, {
-      onRecoverableError(error, errorInfo) {
-        console.error('Hydration recovery:', error, errorInfo.componentStack)
-      },
-    })
-  }
-  if (document.readyState === 'complete') hydrate()
-  else window.addEventListener('load', hydrate, { once: true })
+  hydrateRoot(root, app, {
+    onRecoverableError(error, errorInfo) {
+      console.error('Hydration recovery:', error, errorInfo.componentStack)
+    },
+  })
 } else {
   createRoot(root).render(app)
 }

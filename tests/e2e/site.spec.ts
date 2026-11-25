@@ -39,7 +39,9 @@ test('site uses the permanent black theme', async ({ page }) => {
 test('homepage plays the opening animation after prerender hydration', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('dialog', { name: /software engineering introduction/i })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Skip Intro' })).toBeVisible();
+  await expect(page.locator('.site-wrapper')).toBeHidden();
+  await page.getByRole('button', { name: 'Skip Intro' }).click();
+  await expect(page.locator('.site-wrapper')).toBeVisible();
 });
 
 test('homepage dashboard preview does not overflow a phone viewport', async ({ page }) => {

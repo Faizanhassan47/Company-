@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
 import { initAnalytics, trackPageView } from './utils/analytics';
@@ -18,6 +18,7 @@ import { NetworkStatus } from './components/ui/NetworkStatus';
 import { KeyboardShortcutsModal } from './components/ui/KeyboardShortcutsModal';
 import { useSecretCode } from './hooks/useSecretCode';
 import { useSpotlight } from './utils/useSpotlight';
+import { OpeningAnimation } from './components/opening';
 const HomePage = lazy(() => import('@/pages/HomePage').then(module => ({ default: module.HomePage })));
 const WorkPage = lazy(() => import('@/pages/WorkPage').then(module => ({ default: module.WorkPage })));
 const CaseStudyPage = lazy(() => import('@/pages/CaseStudyPage').then(module => ({ default: module.CaseStudyPage })));
@@ -35,7 +36,6 @@ const PrivacyPage = lazy(() => import('@/pages/PrivacyPage').then(module => ({ d
 const TermsPage = lazy(() => import('@/pages/TermsPage').then(module => ({ default: module.TermsPage })));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage').then(module => ({ default: module.NotFoundPage })));
 const CommandPalette = lazy(() => import('./components/layout/CommandPalette').then(module => ({ default: module.CommandPalette })));
-const OpeningAnimation = lazy(() => import('./components/opening').then(module => ({ default: module.OpeningAnimation })));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -98,9 +98,9 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
 
   const showOpening = isHome && !openingDone;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Prerendered pages must match the server markup for the first hydration
-    // pass. Once React owns the page, start the homepage intro normally.
+    // pass. Before the browser paints the hydrated app, start the intro.
     if (isHome && isPrerendered) {
       setOpeningDone(false);
     }
@@ -142,16 +142,14 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
       <CookieBanner />
       <LiveChat />
 
-      {/* Cinematic intro — homepage only, every refresh; site renders underneath */}
+      {/* Cinematic intro — homepage only, every refresh */}
       {showOpening && (
-        <Suspense fallback={null}>
-          <OpeningAnimation
-            onComplete={() => {
-              setOpeningDone(true);
-              setPreloaderDone(true);
-            }}
-          />
-        </Suspense>
+        <OpeningAnimation
+          onComplete={() => {
+            setOpeningDone(true);
+            setPreloaderDone(true);
+          }}
+        />
       )}
 
       {/* Short preloader only when the cinematic intro is not playing */}
@@ -159,16 +157,18 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
         <Preloader onComplete={() => setPreloaderDone(true)} />
       )}
 
-      <div className="site-wrapper">
-        <MovingField />
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        <Navbar onOpenSearch={() => setSearchOpen(true)} />
-        <AnimatedRoutes />
-        <BackToTop />
-        <Footer />
-      </div>
+      {!showOpening && (
+        <div className="site-wrapper">
+          <MovingField />
+          <a className="skip-link" href="#main-content">
+            Skip to content
+          </a>
+          <Navbar onOpenSearch={() => setSearchOpen(true)} />
+          <AnimatedRoutes />
+          <BackToTop />
+          <Footer />
+        </div>
+      )}
     </SmoothScroll>
   );
 };
