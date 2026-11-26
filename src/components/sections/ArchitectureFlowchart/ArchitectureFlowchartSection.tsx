@@ -122,7 +122,7 @@ SET reserved_stock = reserved_stock + 150,
     updated_at = NOW()
 WHERE sku = 'SKU-9941';
 
-COMMIT; -- Atomicity guaranteed across multi-tenant clusters`
+COMMIT; -- Atomic transaction boundary; validate behavior for the selected database`
   }
 };
 

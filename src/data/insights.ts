@@ -199,7 +199,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
     category: 'Warehouse & Logistics',
     title: 'How Warehouse GRN Automation Reduces Repetitive Data Entry',
     tagline: 'Eliminating receiving dock bottlenecks with automated document parsing and direct PO reconciliation.',
-    summary: 'How extracting vendor delivery notes into structured line items cuts receiving dock turnaround from 45 minutes to under 4 minutes.',
+    summary: 'How extracting vendor delivery notes into structured line items can reduce repetitive receiving work and support controlled purchase-order reconciliation.',
     readingTime: '5 min read',
     publishDate: 'June 02, 2024',
     updatedDate: 'July 29, 2024',
@@ -226,7 +226,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
           'Once the receiving supervisor approves the verified line items, the system posts the Goods Receipt PO transaction directly to the ERP via API.',
           'Simultaneously, the system transmits direct ZPL print commands to network thermal printers on the dock, generating serialized pallet barcodes and bin labels. Pallets move immediately from the receiving bay to warehouse storage without paperwork delays.'
         ],
-        callout: 'In production deployments, automated GRN extraction reduces receiving time per truck from 45 minutes to under 4 minutes while eliminating manual batch entry errors.'
+        callout: 'The effect on receiving time and entry errors depends on document quality, exception volume, ERP rules, and operator review. Establish a baseline and measure the workflow after implementation.'
       }
     ],
     relatedServiceSlugs: ['warehouse-management-systems', 'sap-business-one-integration'],
@@ -254,7 +254,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
       {
         heading: 'Code Reusability and Business Logic Parity',
         paragraphs: [
-          'In operational tools—such as field technician apps, mobile inventory scanners, or financial ledgers—over 90% of the codebase consists of data models, offline SQLite caching, calculation logic, and validation rules.',
+          'In operational tools—such as field technician apps, mobile inventory scanners, or financial ledgers—a substantial portion of the implementation can consist of data models, offline caching, calculation logic, and validation rules.',
           'With React Native, this core operational logic is written and tested once. Bug fixes and workflow improvements apply simultaneously to both iOS and Android releases, eliminating divergent platform bugs and synchronization discrepancies.'
         ]
       },
@@ -262,7 +262,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
         heading: 'When Separate Native Codebases Are Still Justified',
         paragraphs: [
           'Separate native development remains necessary primarily for compute-heavy applications such as real-time 3D graphics rendering, complex on-device computer vision models, or deep low-level Bluetooth peripheral firmware drivers.',
-          'For 98% of business, enterprise, and high-quality consumer mobile applications, React Native provides superior ROI, faster time-to-market, and significantly lower lifetime maintenance overhead.'
+          'React Native can be a practical choice when shared product logic, team skills, native-module requirements, performance constraints, and long-term maintenance goals align. Separate native applications remain appropriate for some products.'
         ]
       }
     ],
@@ -327,7 +327,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
       {
         heading: 'Materialized Views, Read-Replicas, and In-Memory Caching',
         paragraphs: [
-          'To achieve sub-second dashboard rendering without taxing the transactional engine, Tekmora implements a multi-tiered data architecture:',
+          'To improve dashboard rendering without unnecessarily taxing the transactional engine, Tekmora uses a multi-tiered data architecture:',
           '1. Transactional Isolation: Operational queries execute against a secondary read-replica or indexed materialized views updated via background triggers.',
           '2. Telemetry Aggregation: An intermediary Node.js aggregation layer pre-computes shift totals and hourly averages into an in-memory cache.',
           '3. Lightweight Frontend Visuals: Dashboards render custom SVG visualizers and virtualized tables instead of heavy charting libraries that lag on overhead browser clients.'
@@ -428,7 +428,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
       {
         heading: 'Architecting an Offline-First State Engine',
         paragraphs: [
-          'In an offline-first architecture, the local SQLite database on the mobile device is the primary source of truth for the UI. The application reads and writes directly to local tables with zero network latency.',
+          'In an offline-first architecture, the local SQLite database on the mobile device can be the primary source of truth for the UI. Local reads and writes avoid a network round trip, while device and storage performance still affect response time.',
           'All mutations are appended to an immutable synchronization queue. When the device detects network connectivity, background workers process queue entries sequentially, sending delta payloads to the server API and applying server responses to local storage.'
         ]
       },
@@ -497,7 +497,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
           '1. Inbound Receiving & Quality Inspection: Validating delivered items against open purchase orders, capturing lot/expiry details, and assigning put-away routes.',
           '2. Inventory Movement & Cycle Counting: Barcode-verified transfers between storage bins and picking zones to eliminate phantom inventory.',
           '3. Order Picking & Wave Management: Directing pickers along the shortest physical route to gather order items efficiently.',
-          '4. Packing & Dispatch Verification: Final barcode scan at packing stations to ensure 100% order accuracy before printing shipping labels.'
+          '4. Packing & Dispatch Verification: A final barcode scan can verify picked items against the order before shipping labels are printed, with exceptions routed for review.'
         ]
       },
       {

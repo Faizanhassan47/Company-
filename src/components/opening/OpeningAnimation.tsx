@@ -128,11 +128,13 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
     if (completedRef.current) return;
     completedRef.current = true;
     setExiting(true);
-    window.setTimeout(() => onComplete(), 420);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.setTimeout(() => onComplete(), reduceMotion ? 0 : 420);
   }, [onComplete]);
 
   useEffect(() => {
-    const durationCap = mobile ? 3 : 5.5;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const durationCap = reduceMotion ? 0.2 : mobile ? 3 : 5.5;
     let cancelled = false;
     let failSafe = 0;
     let tl: gsap.core.Timeline | null = null;
@@ -331,7 +333,7 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
       aria-modal="true"
       aria-label="Tekmora software engineering introduction"
     >
-      <button type="button" className="studio-btn-ghost oa-skip" onClick={finish}>
+      <button type="button" className="studio-btn-ghost oa-skip" onClick={finish} autoFocus>
         Skip Intro
       </button>
 

@@ -16,37 +16,37 @@ const FAQ_DATA: FAQItem[] = [
   {
     id: 'ip-ownership',
     category: 'GOVERNANCE & ASSETS',
-    question: 'Do clients own 100% of the codebase, data schemas, and intellectual property?',
-    answer: 'Yes. Upon milestone completion and final handoff, 100% of the codebase, Git repositories, database migration scripts, API schemas, and architectural documentation are fully transferred to the client. Tekmora retains zero proprietary locks or hidden licensing fees.',
-    highlights: ['Zero vendor lock-in', 'Complete GitHub/GitLab transfer', 'Documented architecture handoff']
+    question: 'How are code, schemas, and intellectual-property ownership handled?',
+    answer: 'Repository access, database migration scripts, API schemas, documentation, licensing, and intellectual-property handover are defined in the signed project agreement and delivery scope.',
+    highlights: ['Contract-defined ownership', 'Repository handover plan', 'Documented architecture handoff']
   },
   {
     id: 'pricing-models',
     category: 'COMMERCIAL ENGAGEMENT',
     question: 'How are enterprise engagements scoped, budgeted, and billed?',
-    answer: 'We provide two transparent commercial models: (1) Fixed-Price Milestone SOWs for defined platforms where deliverables and delivery schedules are guaranteed, and (2) Dedicated Monthly Engineering Squads for evolving enterprise platforms needing dedicated senior full-stack developers.',
-    highlights: ['Fixed-price milestones', 'Clear SOW guarantees', 'Transparent bi-weekly cadence']
+    answer: 'Engagements can use milestone-based statements of work for well-defined scopes or dedicated monthly engineering capacity for evolving products. Deliverables, assumptions, review cadence, and schedule dependencies are agreed before work begins.',
+    highlights: ['Milestone-based scope', 'Clear acceptance criteria', 'Agreed review cadence']
   },
   {
     id: 'sap-safety',
     category: 'SYSTEM INTEGRATION',
     question: 'How do you safely integrate custom web and mobile apps with SAP Business One and legacy ERPs?',
-    answer: 'We communicate exclusively through certified SAP Service Layer APIs and DI API wrappers with strict idempotent queues. We never perform raw unprotected database writes, ensuring zero transactional drift, complete audit compliance, and undisturbed SAP data integrity.',
-    highlights: ['Certified Service Layer handshake', 'Idempotent transactional queues', 'Zero data corruption guarantee']
+    answer: 'The integration approach is selected for the SAP environment and can use Service Layer or DI API patterns, validation, idempotency, reconciliation, retry handling, and auditable failure paths. Data-write boundaries are reviewed with the system owner before implementation.',
+    highlights: ['Approved SAP integration interface', 'Idempotent processing where required', 'Reconciliation and failure handling']
   },
   {
     id: 'security-compliance',
     category: 'SECURITY & DATA',
     question: 'What security standards and compliance protocols are built into Tekmora systems?',
-    answer: 'Every system is engineered following OWASP Top 10 security guidelines: JWT authentication with granular Role-Based Access Control (RBAC), bcrypt/argon2 password hashing, parameterized SQL queries, AES-256 encrypted fields, and immutable operational audit logs.',
-    highlights: ['OWASP Top 10 compliant', 'Granular RBAC matrices', 'Immutable audit ledgers']
+    answer: 'Security controls are selected from the project threat model and may include role-based access, suitable password hashing, parameterized queries, encryption, logging, and review against relevant OWASP guidance. Compliance remains project- and organization-specific.',
+    highlights: ['Threat-informed controls', 'Role-based access', 'Auditable security requirements']
   },
   {
     id: 'sla-support',
     category: 'SUPPORT & RELIABILITY',
     question: 'What post-launch SLA, warranty, and long-term maintenance is provided?',
-    answer: 'Every production release includes a 60-day post-launch bug warranty followed by optional Enterprise SLA tiers with 24/7 uptime monitoring, critical incident resolution within 2 hours, automated database backups, and scheduled performance health checks.',
-    highlights: ['60-day warranty included', '< 2 hour critical response SLA', '24/7 uptime monitoring']
+    answer: 'Post-launch support periods, response targets, monitoring, backup responsibilities, and maintenance work are defined in the applicable proposal or support agreement. No universal SLA is implied.',
+    highlights: ['Contract-defined support', 'Agreed response targets', 'Documented monitoring responsibilities']
   }
 ];
 
@@ -90,8 +90,8 @@ export const ProcurementFAQSection: React.FC = () => {
               </div>
               <ul className="assurance-list">
                 <li><CheckCircle2 size={12} className="text-green" /> Signed Mutual NDA before technical discovery</li>
-                <li><CheckCircle2 size={12} className="text-green" /> 100% Client IP & Repository Ownership</li>
-                <li><CheckCircle2 size={12} className="text-green" /> Zero-Drift ERP & Database Integrations</li>
+                <li><CheckCircle2 size={12} className="text-green" /> Contract-defined IP & Repository Ownership</li>
+                <li><CheckCircle2 size={12} className="text-green" /> Validated ERP & Database Integrations</li>
                 <li><CheckCircle2 size={12} className="text-green" /> Direct Communication with Lead Engineers</li>
               </ul>
             </div>

@@ -74,9 +74,9 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
       }
     ],
     metrics: [
-      { label: 'Scrap Reduction', value: '-14%' },
-      { label: 'Reporting Latency', value: 'Instant' },
-      { label: 'Floor Telemetry', value: 'Real-Time' }
+      { label: 'Focus', value: 'Production visibility' },
+      { label: 'Reporting', value: 'Operational views' },
+      { label: 'Integration', value: 'ERP data' }
     ]
   },
   {
@@ -127,9 +127,9 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
       }
     ],
     metrics: [
-      { label: 'Dock Processing', value: '< 4 Mins' },
-      { label: 'Entry Accuracy', value: '100%' },
-      { label: 'Receipt Commits', value: '1,200+/Mo' }
+      { label: 'Workflow', value: 'Dock to stock' },
+      { label: 'Control', value: 'Exception review' },
+      { label: 'Integration', value: 'ERP receipt' }
     ]
   },
   {
@@ -155,8 +155,8 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     softwareSolutions: [
       {
-        title: '100% Offline Work Order Execution',
-        description: 'Technicians fill diagnostic forms, track replacement parts, and collect customer signatures with zero connection.'
+        title: 'Offline Work Order Execution',
+        description: 'Technicians can fill diagnostic forms, track replacement parts, and collect customer signatures while a connection is unavailable, then synchronize according to defined conflict rules.'
       },
       {
         title: 'Geocoded Photo Evidence Capture',
@@ -172,7 +172,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     faqs: [
       {
         question: 'How do you prevent battery drain with background GPS tracking?',
-        answer: 'We utilize motion activity sensors and geofencing triggers rather than constant high-frequency GPS polling, extending battery life throughout full 10-hour technician shifts.'
+        answer: 'A suitable implementation can use motion activity sensors, geofencing, and controlled polling instead of constant high-frequency GPS updates. Battery behavior is tested on the target devices and operating patterns.'
       },
       {
         question: 'Can technicians look up spare part inventory from their mobile vans?',
@@ -180,9 +180,9 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
       }
     ],
     metrics: [
-      { label: 'Sync Reliability', value: '99.8%' },
-      { label: 'Billing Turnaround', value: 'Same-Day' },
-      { label: 'Active Technicians', value: '80+' }
+      { label: 'Mode', value: 'Offline-first' },
+      { label: 'Workflow', value: 'Digital work orders' },
+      { label: 'Evidence', value: 'Photos + signatures' }
     ]
   },
   {
@@ -191,7 +191,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     title: 'E-Commerce & Digital Retail',
     tagline: 'High-speed custom storefronts, bespoke inventory management, and conversion-focused architectures.',
     heroHeadline: 'HIGH-PERFORMANCE E-COMMERCE FOR SCALING RETAIL BRANDS.',
-    overview: 'Standard e-commerce templates are often weighed down by bloated plugins, slow checkout funnels, and rigid inventory models. Tekmora builds custom MERN and Next.js e-commerce platforms and bespoke WooCommerce systems with sub-second page transitions, dynamic product routing, and custom administrative backends.',
+    overview: 'Standard e-commerce templates can accumulate plugins, slow checkout paths, and rigid inventory models. Tekmora builds custom MERN and Next.js e-commerce platforms and WooCommerce systems with performance budgets, dynamic product routing, and administrative workflows selected for the store’s needs.',
     commonProblems: [
       {
         problem: 'Slow Category Page Filtering & High Bounce Rates',
@@ -209,7 +209,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     softwareSolutions: [
       {
         title: 'Next.js Server-Rendered Storefronts',
-        description: 'Lightning-fast product catalog navigation, automated SEO meta tags, and instant client-side filtering.'
+        description: 'Product catalog navigation, automated SEO metadata, and client-side filtering designed against agreed performance budgets.'
       },
       {
         title: 'Custom Administrative Catalog Hub',
@@ -225,7 +225,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     faqs: [
       {
         question: 'How do you ensure fast page speeds for catalogs with thousands of products?',
-        answer: 'We implement Next.js Incremental Static Regeneration (ISR), optimized WebP image compression, and indexed database queries that return results in under 50ms.'
+        answer: 'Depending on the catalog, we can use Next.js Incremental Static Regeneration, optimized image delivery, caching, and indexed queries. Response targets are measured with representative data and deployment conditions.'
       },
       {
         question: 'Can you integrate with custom regional payment gateways?',
@@ -233,9 +233,9 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
       }
     ],
     metrics: [
-      { label: 'Lighthouse Speed', value: '98/100' },
-      { label: 'Catalog Latency', value: '< 50ms' },
-      { label: 'Cart Uptime', value: '99.99%' }
+      { label: 'Experience', value: 'Responsive' },
+      { label: 'Catalog', value: 'Search + filters' },
+      { label: 'Operations', value: 'Order workflow' }
     ]
   }
 ];

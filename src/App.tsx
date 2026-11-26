@@ -19,7 +19,7 @@ import { KeyboardShortcutsModal } from './components/ui/KeyboardShortcutsModal';
 import { useSecretCode } from './hooks/useSecretCode';
 import { useSpotlight } from './utils/useSpotlight';
 import { OpeningAnimation } from './components/opening';
-const HomePage = lazy(() => import('@/pages/HomePage').then(module => ({ default: module.HomePage })));
+import { HomePage } from '@/pages/HomePage';
 const WorkPage = lazy(() => import('@/pages/WorkPage').then(module => ({ default: module.WorkPage })));
 const CaseStudyPage = lazy(() => import('@/pages/CaseStudyPage').then(module => ({ default: module.CaseStudyPage })));
 const ServicesPage = lazy(() => import('@/pages/ServicesPage').then(module => ({ default: module.ServicesPage })));
@@ -148,6 +148,9 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
           onComplete={() => {
             setOpeningDone(true);
             setPreloaderDone(true);
+            window.requestAnimationFrame(() => {
+              document.querySelector<HTMLElement>('.skip-link')?.focus();
+            });
           }}
         />
       )}
@@ -157,8 +160,7 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
         <Preloader onComplete={() => setPreloaderDone(true)} />
       )}
 
-      {!showOpening && (
-        <div className="site-wrapper">
+      <div className="site-wrapper" aria-hidden={showOpening || undefined} inert={showOpening || undefined}>
           <MovingField />
           <a className="skip-link" href="#main-content">
             Skip to content
@@ -167,8 +169,7 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
           <AnimatedRoutes />
           <BackToTop />
           <Footer />
-        </div>
-      )}
+      </div>
     </SmoothScroll>
   );
 };

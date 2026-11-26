@@ -13,7 +13,7 @@ const INDUSTRIES: MarqueeItem[] = [
   { name: 'Warehouse & Logistics', category: 'Inventory Automation' },
   { name: 'Field Services & Audits', category: 'Offline Mobile Sync' },
   { name: 'Fintech & Invoicing', category: 'Ledger Integrations' },
-  { name: 'Healthcare & Pharma', category: 'HIPAA & Compliance' },
+  { name: 'Healthcare & Pharma', category: 'Privacy-Aware Workflows' },
   { name: 'Enterprise SaaS', category: 'Multi-Tenant Platforms' },
   { name: 'Commercial Distribution', category: 'SAP Business One' },
   { name: 'Retail & E-Commerce', category: 'High-Volume Order API' },

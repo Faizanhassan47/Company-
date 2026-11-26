@@ -15,7 +15,7 @@ const INDUSTRIES = [
   {
     name: 'Healthcare & Medical',
     icon: <Stethoscope size={24} />,
-    desc: 'HIPAA-compliant patient portals and clinical workflows.',
+    desc: 'Patient portals and clinical workflows with project-specific privacy and security requirements.',
     slug: 'healthcare'
   },
   {

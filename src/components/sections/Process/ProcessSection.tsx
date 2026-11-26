@@ -44,7 +44,7 @@ const PROCESS_STEPS: ProcessStep[] = [
     number: '05',
     name: 'Launch',
     duration: 'Production Deploy',
-    summary: 'The software is deployed to production cloud infrastructure with zero-downtime deployment pipelines and monitoring.',
+    summary: 'The software is deployed through controlled pipelines with monitoring and a release approach suited to the target infrastructure.',
     deliverables: ['Cloud CI/CD Pipeline', 'Real-Time Health & Error Monitoring', 'Admin Documentation & Team Onboarding']
   },
   {
@@ -52,7 +52,7 @@ const PROCESS_STEPS: ProcessStep[] = [
     name: 'Support & Scale',
     duration: 'Long-Term Partnership',
     summary: 'Tekmora acts as your ongoing engineering partner—shipping new feature iterations, maintaining uptime, and optimizing performance.',
-    deliverables: ['Guaranteed SLA Response Times', 'Continuous Database Optimization', 'Feature Enhancements & Scaling']
+    deliverables: ['Contract-Defined Response Targets', 'Database Review & Optimization', 'Feature Enhancements & Scaling']
   }
 ];
 

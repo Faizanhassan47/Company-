@@ -23,9 +23,11 @@ interface ContactPayload {
   _gotcha?: string;
 }
 
+const vercelDeploymentOrigin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '';
 const ALLOWED_ORIGINS = new Set([
   'https://www.tekmorasolution.com',
   'https://tekmorasolution.com',
+  ...(vercelDeploymentOrigin ? [vercelDeploymentOrigin] : []),
   ...(process.env.NODE_ENV === 'development' ? ['http://localhost:5173', 'http://127.0.0.1:4173'] : [])
 ]);
 const MAX_BODY_BYTES = 16_384;

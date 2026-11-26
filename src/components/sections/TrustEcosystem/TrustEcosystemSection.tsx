@@ -17,8 +17,8 @@ interface TechBadge {
 }
 
 const STATS: StatMetric[] = [
-  { value: '100%', label: 'IP OWNERSHIP', sublabel: 'Direct Git transfer & schema documentation' },
-  { value: 'Strict', label: 'TYPE SAFETY', sublabel: 'TypeScript 5.x with zero any standard' },
+  { value: 'Agreed', label: 'IP OWNERSHIP', sublabel: 'Repository transfer and documentation defined in scope' },
+  { value: 'Typed', label: 'TYPE SAFETY', sublabel: 'TypeScript contracts and reviewed boundaries' },
   { value: 'ACID', label: 'DATA INTEGRITY', sublabel: 'Idempotent transactions & migration scripts' },
   { value: 'Zero', label: 'VENDOR LOCK-IN', sublabel: 'Portable open-source modern frameworks' }
 ];
@@ -48,7 +48,7 @@ export const TrustEcosystemSection: React.FC = () => {
         >
           <div className="trust-kicker">
             <ShieldCheck size={14} className="text-orange" />
-            <span>OPERATIONAL ASSURANCE & CERTIFIED STACK</span>
+            <span>OPERATIONAL ASSURANCE & ENGINEERING STACK</span>
           </div>
           <div className="trust-standard-label">ENTERPRISE GRADE // DETERMINISTIC ENGINEERING</div>
         </motion.div>
@@ -88,7 +88,7 @@ export const TrustEcosystemSection: React.FC = () => {
           variants={fadeInUp}
         >
           <div className="tech-ecosystem-title">
-            <span>CERTIFIED ENTERPRISE PROTOCOLS:</span>
+            <span>ENTERPRISE INTEGRATION PROTOCOLS:</span>
           </div>
           <div className="tech-badges-grid">
             {TECH_ECOSYSTEM.map((tech, idx) => (

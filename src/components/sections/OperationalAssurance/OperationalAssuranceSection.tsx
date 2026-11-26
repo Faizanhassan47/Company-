@@ -3,7 +3,7 @@ import { Check, Clock3, Code2, Database, Globe2, LockKeyhole, ShieldCheck, Unloc
 import './OperationalAssuranceSection.css';
 
 const standards = [
-  { icon: Database, value: '100%', title: 'IP Ownership', text: 'Your repository, infrastructure, documentation, and product IP stay fully yours.' },
+  { icon: Database, value: 'Agreed', title: 'IP Ownership', text: 'Repository, documentation, and product-IP handover are defined in the project agreement.' },
   { icon: Code2, value: 'Strict', title: 'Type Safety', text: 'Clear contracts and typed systems reduce regressions as the product evolves.' },
   { icon: ShieldCheck, value: 'ACID', title: 'Data Integrity', text: 'Reliable transactions and migrations protect critical operational records.' },
   { icon: Unlock, value: 'Zero', title: 'Vendor Lock-In', text: 'Portable architecture built with proven, maintainable technologies.' },

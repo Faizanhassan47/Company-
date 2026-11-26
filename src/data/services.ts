@@ -190,7 +190,7 @@ export const SERVICES_MARKET_MATRIX: ServiceMarketItem[] = [
     ratingType: 'money',
     recommendation: 'Excellent after project',
     badgeType: 'retainer',
-    strategicNote: 'Dedicated SLA engineering, 24/7 uptime monitoring, dependency security patching, performance audits, and evolutionary sprints.'
+    strategicNote: 'Ongoing engineering capacity, dependency security patching, performance reviews, and planned feature iterations under an agreed support scope.'
   },
   {
     rank: 14,
@@ -212,7 +212,7 @@ export const SERVICES_MARKET_MATRIX: ServiceMarketItem[] = [
     ratingType: 'fire',
     recommendation: "Don't lead with it",
     badgeType: 'secondary',
-    strategicNote: 'High-performance bespoke corporate portals, headless CMS architectures, and sub-second SEO platforms.'
+    strategicNote: 'Bespoke corporate portals and headless CMS architectures engineered against agreed performance budgets.'
   }
 ];
 
@@ -224,7 +224,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     category: 'ai-automation',
     title: 'AI Integration + Workflow Automation',
     shortDesc: 'Custom LLM pipelines, autonomous multi-step workflow automations, LangGraph & n8n connectors.',
-    tagline: 'Connect intelligence directly into your production pipelines with zero hallucination risk.',
+    tagline: 'Connect AI-assisted processing to production workflows with validation, fallback handling, and human review where needed.',
     primaryTopic: 'Enterprise AI integration & workflow automation',
     heroHeadline: 'EMBED PREDICTABLE AI DIRECTLY INTO OPERATIONAL WORKFLOWS.',
     overview: 'Tekmora engineers production-grade AI integrations that eliminate repetitive manual back-office tasks, enrich unformatted telemetry feeds, and trigger deterministic multi-step actions across your CRM, ERP, and databases. We replace fragile one-off prompts with resilient agentic workflows featuring schema validation, fallback handling, and strict token cost governance.',
@@ -266,7 +266,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     faqs: [
       {
         question: 'How do you prevent AI hallucinations in operational business workflows?',
-        answer: 'We never allow models to return unstructured free text for programmatic execution. We enforce strict JSON schema contracts with Zod validation, temperature 0 deterministic sampling, and cross-reference model outputs against SQL referential constraints.'
+        answer: 'For programmatic actions, we require structured outputs and validate them against explicit schemas and business rules. High-risk actions can include database checks and human approval rather than relying on model output alone.'
       },
       {
         question: 'Can you integrate AI workflows with on-premise databases securely?',
@@ -274,7 +274,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       },
       {
         question: 'What are the typical operating cost reductions from AI workflow automation?',
-        answer: 'Our enterprise clients consistently observe a 60% to 85% drop in manual document processing time, accompanied by near-instant turnaround on operational approvals and zero transcription errors.'
+        answer: 'Potential savings depend on the current workflow, document quality, exception rate, and review controls. We establish a baseline and test cycle time and error handling before making a quantified business case.'
       }
     ],
     relevantProjectSlugs: ['warehouse-grn-automation', 'comments-fusion', 'dome-enterprise']
@@ -375,7 +375,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       },
       {
         title: 'Deterministic State Machines & Memory',
-        description: 'Persistent conversation and execution memory backed by Redis and relational state graphs, ensuring agents never lose context during long-running tasks.'
+        description: 'Persistent conversation and execution state backed by Redis and relational state graphs, with checkpoint and recovery behavior defined for long-running tasks.'
       },
       {
         title: 'Autonomous Reconciliation & Auditing',
@@ -422,15 +422,15 @@ export const SERVICES_DATA: ServiceDetail[] = [
     number: '04',
     category: 'ai-automation',
     title: 'RAG / Private Company Data AI',
-    shortDesc: 'Hybrid vector search over proprietary enterprise docs, strict data isolation, zero hallucination guardrails.',
+    shortDesc: 'Hybrid vector search over proprietary enterprise documents with access controls, citations, and response validation.',
     tagline: 'Transform your proprietary corporate archives into an instant, confidential intelligence engine.',
     primaryTopic: 'Enterprise Retrieval-Augmented Generation (RAG)',
-    heroHeadline: 'QUERY YOUR PROPRIETARY DATA WITH ZERO INFORMATION LEAKS.',
-    overview: 'Tekmora builds enterprise-grade Retrieval-Augmented Generation (RAG) systems that allow internal teams to query confidential PDFs, contracts, technical specifications, and historical records. We guarantee absolute data isolation, strict permission enforcement, semantic citation tracing, and zero training leakage to external foundation model providers.',
+    heroHeadline: 'QUERY PROPRIETARY DATA WITH EXPLICIT ACCESS AND DEPLOYMENT CONTROLS.',
+    overview: 'Tekmora builds Retrieval-Augmented Generation (RAG) systems that help authorized teams search internal PDFs, contracts, technical specifications, and historical records. The implementation can include permission checks, source citations, audit logging, and deployment controls selected for the project’s security requirements.',
     keyCapabilities: [
       {
         title: 'Hybrid Semantic & Keyword Search',
-        description: 'Combines dense vector embeddings with BM25 full-text keyword indexing and re-ranking algorithms (Cohere ReRank) for 99%+ retrieval accuracy.'
+        description: 'Combines dense vector embeddings with BM25 full-text indexing and optional re-ranking, then evaluates retrieval quality against an approved test set.'
       },
       {
         title: 'Document Ingestion & Chunking Pipelines',
@@ -446,7 +446,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       },
       {
         title: 'Private & Air-Gapped Deployment Options',
-        description: 'Support for cloud VPC deployments or on-premise open-source models (Llama 3, Mistral) with zero data transmission to external APIs.'
+        description: 'Support for cloud VPC or on-premise open-source model deployments where the approved architecture keeps inference data inside the selected environment.'
       }
     ],
     technicalStack: [
@@ -465,7 +465,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     faqs: [
       {
         question: 'Will our proprietary company documents be used to train public AI models?',
-        answer: 'Never. We utilize zero-data-retention enterprise API contracts (where data is never logged or used for training) or deploy self-hosted open-source models inside your own private AWS/Azure VPC.'
+        answer: 'Data handling depends on the selected provider, contract, retention settings, and deployment model. We can evaluate enterprise API controls or self-hosted models and document the resulting data flow before implementation.'
       },
       {
         question: 'How do you prevent employees from accessing documents above their pay grade?',
@@ -486,7 +486,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     category: 'security-systems',
     title: 'Security / Auth / Roles / Multi-Tenant Systems',
     shortDesc: 'Granular RBAC/ABAC authorization, SAML/SSO, row-level tenant security, and tamper-proof audit trails.',
-    tagline: 'Bulletproof identity governance, multi-tenant isolation, and SOC2-ready authorization matrices.',
+    tagline: 'Structured identity governance, tenant isolation, and auditable authorization controls.',
     primaryTopic: 'Enterprise security, identity governance & multi-tenancy',
     heroHeadline: 'ENTERPRISE ACCESS CONTROL AND TENANT ISOLATION ARCHITECTURES.',
     overview: 'Tekmora architects enterprise authentication, fine-grained access control, and multi-tenant security layers that pass stringent enterprise vendor reviews. We replace ad-hoc boolean flags with deterministic Role-Based (RBAC) and Attribute-Based (ABAC) authorization engines, single sign-on (SSO), and immutable transaction logging.',
@@ -505,7 +505,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       },
       {
         title: 'Cryptographic Transaction Audit Logs',
-        description: 'Immutable, tamper-evident audit trails recording every read, write, export, and privilege elevation event for SOC2 and HIPAA compliance.'
+        description: 'Tamper-evident audit trails can record relevant reads, writes, exports, and privilege changes where the project control requirements call for them.'
       },
       {
         title: 'Session Governance & Token Rotation',
@@ -528,7 +528,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     faqs: [
       {
         question: 'Why is application-level authorization check not enough for multi-tenant systems?',
-        answer: 'Application-level code is vulnerable to developer oversight (forgetting a `where tenant_id = ?` clause). Enforcing Row-Level Security (RLS) in PostgreSQL guarantees that even if an application endpoint has a bug, the database engine will refuse to return rows belonging to another tenant.'
+        answer: 'Application-level checks can be missed. PostgreSQL Row-Level Security can add a database-enforced policy boundary, but it still requires correct policy design, testing, connection context, and operational review.'
       },
       {
         question: 'Can you implement SCIM for automated user onboarding and deprovisioning?',
@@ -595,7 +595,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       },
       {
         question: 'Do we have to completely rewrite our application to rescue it?',
-        answer: 'Rarely. In over 80% of cases, we successfully stabilize existing codebases by adding strict runtime contracts, wrapping transactions with safeguards, and optimizing database queries without throwing away your existing UI or business logic.'
+        answer: 'A rewrite is not assumed. We first inspect architecture, tests, dependencies, data flows, and failure modes, then recommend targeted stabilization or replacement based on the evidence found.'
       },
       {
         question: 'How fast can Tekmora step in to resolve an active production crisis?',
@@ -614,8 +614,8 @@ export const SERVICES_DATA: ServiceDetail[] = [
     shortDesc: 'High-volume webhooks, idempotent transactions, Stripe billing & payout engines, and enterprise CRM/ERP conduits.',
     tagline: 'Reliable transaction pipelines connecting payments, ERPs, and third-party SaaS ecosystems.',
     primaryTopic: 'API development, Stripe integration & payment systems',
-    heroHeadline: 'CONNECT PAYMENTS, STRIPE, AND THIRD-PARTY APIS FLAWLESSLY.',
-    overview: 'Tekmora builds resilient API integration pipelines and payment gateways. Whether connecting Stripe for global subscription billing, linking your warehouse to shipping carriers, or synchronizing CRM records with your accounting software, we engineer fault-tolerant, idempotent integration middleware that never loses a transaction.',
+    heroHeadline: 'CONNECT PAYMENTS, STRIPE, AND THIRD-PARTY APIS WITH CONTROLLED FAILURE HANDLING.',
+    overview: 'Tekmora builds API integration pipelines and payment gateways. Whether connecting Stripe for subscription billing, linking a warehouse to shipping carriers, or synchronizing CRM records with accounting software, we use idempotency, reconciliation, retries, and observable failure handling appropriate to the integration.',
     keyCapabilities: [
       {
         title: 'Idempotent Stripe Billing & Checkout',
@@ -861,15 +861,15 @@ export const SERVICES_DATA: ServiceDetail[] = [
     number: '10',
     category: 'enterprise-cloud',
     title: 'Maintenance & Evolution Retainers',
-    shortDesc: 'Dedicated SLA engineering, 24/7 uptime monitoring, dependency security patching, and evolutionary feature sprints.',
-    tagline: 'Guaranteed senior engineering capacity to keep your mission-critical software fast, secure, and evolving.',
+    shortDesc: 'Planned engineering capacity for maintenance, dependency security updates, operational review, and feature work.',
+    tagline: 'An agreed support cadence for maintaining and evolving production software.',
     primaryTopic: 'Ongoing software maintenance & engineering retainers',
     heroHeadline: 'PROACTIVE ENGINEERING SUPPORT AND CONTINUOUS EVOLUTION.',
-    overview: 'Software is never finished after initial launch. Tekmora provides dedicated engineering retainers that protect your investment. We act as your fractional platform engineering team, providing proactive 24/7 uptime monitoring, critical security patching, rapid bug resolution, and monthly feature iteration cycles under a guaranteed SLA.',
+    overview: 'Production software needs maintenance after launch. Tekmora can provide an agreed engineering retainer covering operational review, dependency security updates, defect resolution, and planned feature iterations. Coverage hours, response targets, capacity, and service levels are defined in the applicable statement of work.',
     keyCapabilities: [
       {
-        title: 'Guaranteed SLA Response Times',
-        description: 'Direct Slack channel and hotline with committed response times (under 1 hour for critical production incidents).'
+        title: 'Agreed response targets',
+        description: 'Communication channels, support hours, severity levels, and response targets are documented in the applicable support agreement.'
       },
       {
         title: 'Proactive Security & Dependency Upgrades',
@@ -904,7 +904,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     faqs: [
       {
         question: 'Do unused retainer hours roll over to the next month?',
-        answer: 'Yes, up to 25% of unused feature development hours roll over into the following month, ensuring your budget is never wasted while maintaining team availability.'
+        answer: 'Rollover, reserved capacity, response targets, and billing terms are defined in the applicable retainer agreement rather than assumed across every engagement.'
       },
       {
         question: 'Can you take over maintenance of software that was built by another agency?',
@@ -940,7 +940,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       },
       {
         title: 'Hallucination-Guarded Knowledge Base',
-        description: 'Strict retrieval from verified return policies, warranties, and FAQs with zero improvisation on policy terms.'
+        description: 'Retrieval from approved return policies, warranties, and FAQs, with escalation when a response is unsupported or outside configured policy rules.'
       },
       {
         title: 'Omnichannel Deployment',
@@ -986,12 +986,12 @@ export const SERVICES_DATA: ServiceDetail[] = [
     slug: 'web-application-development',
     number: '12',
     category: 'saas-modernization',
-    title: 'Web Development',
-    shortDesc: 'Websites, dashboards, portals, and browser-based applications.',
-    tagline: 'Web applications designed around real use.',
-    primaryTopic: 'Web application development',
-    heroHeadline: 'Web applications designed around real use.',
-    overview: 'From customer-facing websites to complex browser-based applications, we develop web experiences with attention to usability, functionality, and long-term maintenance. The technical approach depends on whether the product needs to communicate information or help people complete ongoing tasks.',
+    title: 'Business Web Application Development',
+    shortDesc: 'Portals, dashboards, and browser-based applications for ongoing business workflows.',
+    tagline: 'Web applications designed around repeatable business tasks.',
+    primaryTopic: 'Business web application development',
+    heroHeadline: 'Business web applications designed around real workflows.',
+    overview: 'We develop browser-based applications for customers, employees, and partners who need to complete ongoing tasks—not simply read marketing content. Typical scopes include account portals, dashboards, workflow applications, and secure operational interfaces with maintainable APIs and permissions.',
     keyCapabilities: [
       {
         title: 'Business websites',
@@ -1195,11 +1195,11 @@ export const SERVICES_DATA: ServiceDetail[] = [
     slug: 'sap-business-one-integration',
     number: '15',
     category: 'enterprise-cloud',
-    title: 'SAP Business One Integration',
+    title: 'SAP Business One Operational Integration',
     shortDesc: 'Operational software connected to SAP Business One, warehouse inventory and manufacturing processes.',
-    tagline: 'Custom middleware and real-time dashboards communicating directly with SAP Business One.',
-    primaryTopic: 'SAP Business One integration services',
-    heroHeadline: 'CONNECTING PHYSICAL OPERATIONS DIRECTLY TO SAP BUSINESS ONE.',
+    tagline: 'Connect warehouse, manufacturing, and operational applications to SAP Business One.',
+    primaryTopic: 'SAP Business One operational integration services',
+    heroHeadline: 'Connect operational workflows to SAP Business One.',
     overview: 'Tekmora builds robust integration layers and specialized user interfaces that communicate directly with SAP Business One (SQL Server and SAP HANA). We connect warehouse scanners, shop floor displays, and external portals to SAP, eliminating manual data entry and providing live operational visibility.',
     keyCapabilities: [
       {
@@ -1243,7 +1243,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       },
       {
         question: 'Does your integration slow down our SAP Business One system?',
-        answer: 'No. We utilize queued asynchronous middleware and dedicated read-replica reporting queries to ensure zero performance degradation on your primary SAP transactional database.'
+        answer: 'The integration is designed to limit load through queues, batching, caching, or approved reporting data sources. We measure query and transaction impact in the target SAP environment before release.'
       },
       {
         question: 'Can you work with both SAP HANA and Microsoft SQL Server databases?',
@@ -1699,12 +1699,12 @@ export const SERVICES_DATA: ServiceDetail[] = [
     slug: 'web-development',
     number: 'C02',
     category: 'saas-modernization',
-    title: 'Enterprise Web Application Development',
-    shortDesc: 'High-performance, secure, and scalable web applications.',
-    tagline: 'Web platforms that operate like native desktop applications.',
-    primaryTopic: 'Enterprise Web Apps',
-    heroHeadline: 'WEB APPLICATIONS ENGINEERED FOR ENTERPRISE SCALE.',
-    overview: 'We build data-intensive web applications with sub-second response times. Using modern JavaScript frameworks and robust backend architectures, we deliver platforms that handle thousands of concurrent users flawlessly.',
+    title: 'Business Website & CMS Development',
+    shortDesc: 'Business websites, content platforms, and CMS implementations built for maintainable publishing.',
+    tagline: 'Websites and content platforms that teams can maintain.',
+    primaryTopic: 'Business website and CMS development',
+    heroHeadline: 'Business websites built for clear content and maintainable publishing.',
+    overview: 'We build business websites and content-led platforms where the primary need is to explain services, publish information, and help visitors take the next step. The scope can include a headless or traditional CMS, reusable page templates, search-friendly rendering, forms, and measured performance budgets. For portals and workflow-heavy products, use our business web application service.',
     architectureApproach: 'Server-Side Rendered (SSR) or Static Site Generated (SSG) frontends backed by highly available REST/GraphQL APIs, deployed on scalable cloud infrastructure.',
     keyCapabilities: [
       { title: 'Complex State Management', description: 'Handling massive datasets in the browser without freezing the UI.' },
@@ -1736,12 +1736,12 @@ export const SERVICES_DATA: ServiceDetail[] = [
     slug: 'erp-wms-development',
     number: 'C03',
     category: 'enterprise-cloud',
-    title: 'ERP / WMS Development',
-    shortDesc: 'Custom Warehouse Management and Enterprise Resource Planning systems.',
-    tagline: 'Connecting inventory, procurement, and dispatch workflows.',
-    primaryTopic: 'WMS & ERP Systems',
-    heroHeadline: 'WAREHOUSE PLATFORMS BUILT FOR OPERATIONAL VELOCITY.',
-    overview: 'Build warehouse platforms that connect inventory, procurement, SAP, dispatch, barcode operations and warehouse workflows into a single, cohesive system.',
+    title: 'ERP-Connected WMS Development',
+    shortDesc: 'Warehouse execution systems connected to ERP inventory, procurement, and dispatch records.',
+    tagline: 'Connect warehouse-floor execution to ERP data and controls.',
+    primaryTopic: 'ERP-connected WMS development',
+    heroHeadline: 'Warehouse execution platforms connected to ERP workflows.',
+    overview: 'We develop warehouse execution layers that connect barcode operations, receiving, inventory movements, and dispatch workflows with an existing ERP. This service is for organizations that need a coordinated WMS and ERP boundary; the warehouse management service covers narrower receiving and inventory workflows, while ERP operations software covers broader cross-department processes.',
     architectureApproach: 'Event-driven architecture to handle high-volume inventory movements, coupled with offline-first mobile scanning applications for warehouse floor staff.',
     keyCapabilities: [
       { title: 'Inventory Management', description: 'Real-time stock visibility and location tracking.' },
@@ -1773,12 +1773,12 @@ export const SERVICES_DATA: ServiceDetail[] = [
     slug: 'sap-b1-integration',
     number: 'C04',
     category: 'enterprise-cloud',
-    title: 'SAP B1 Integration & Automation',
-    shortDesc: 'Deep bi-directional integration with SAP Business One.',
-    tagline: 'Unlock your ERP data and automate SAP workflows.',
-    primaryTopic: 'SAP B1 Integration',
-    heroHeadline: 'SEAMLESS SAP BUSINESS ONE INTEGRATIONS.',
-    overview: 'We connect your SAP Business One ERP to modern web apps, mobile apps, e-commerce platforms, and custom portals using the SAP Service Layer (DI API). We automate data entry, sync inventory, and extend SAP functionality.',
+    title: 'SAP B1 Service Layer & DI API Automation',
+    shortDesc: 'Technical middleware and automation using SAP Business One integration interfaces.',
+    tagline: 'Engineer controlled SAP data flows through Service Layer and DI API.',
+    primaryTopic: 'SAP B1 Service Layer and DI API integration',
+    heroHeadline: 'Technical SAP B1 integration and document automation.',
+    overview: 'We engineer middleware that connects approved applications to SAP Business One through Service Layer or DI API patterns appropriate to the environment. Typical scopes include validated document creation, inventory synchronization, portal data access, retry handling, reconciliation, and observable integration failures.',
     architectureApproach: 'Middleware layer caching SAP data in Redis/PostgreSQL to prevent overwhelming the SAP Service Layer, ensuring fast API responses for end-user applications.',
     keyCapabilities: [
       { title: 'Service Layer API Integration', description: 'Secure, high-performance communication with SAP.' },
@@ -1815,7 +1815,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     tagline: 'Enterprise mobility solutions that work anywhere, even offline.',
     primaryTopic: 'Mobile App Engineering',
     heroHeadline: 'MISSION-CRITICAL MOBILE APPLICATIONS.',
-    overview: 'From consumer-facing flagship apps to ruggedized warehouse scanner tools, we build mobile applications that deliver flawless performance. We specialize in complex requirements like offline-first synchronization and hardware integrations.',
+    overview: 'From consumer-facing apps to warehouse scanner tools, we build mobile applications against agreed usability and performance requirements. Relevant work can include offline-first synchronization and hardware integrations.',
     architectureApproach: 'React Native for cross-platform efficiency, with native Swift/Kotlin modules written for specific hardware integrations (Bluetooth, Scanners, offline SQLite).',
     keyCapabilities: [
       { title: 'Offline-First Architecture', description: 'Apps that function completely without internet and sync when reconnected.' },
@@ -1852,7 +1852,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     tagline: 'See the true velocity and profitability of your business in real time.',
     primaryTopic: 'Data & BI',
     heroHeadline: 'ACTIONABLE BUSINESS INTELLIGENCE.',
-    overview: 'We build data pipelines that aggregate fragmented data sources into a single source of truth. We design bespoke Power BI dashboards and custom analytical portals that give executives instant visibility into KPIs.',
+    overview: 'We build data pipelines that combine approved data sources into governed reporting models. We design Power BI dashboards and custom analytical portals that help authorized users review defined KPIs with documented refresh behavior.',
     architectureApproach: 'ELT pipelines using dbt to transform raw data in a data warehouse (Snowflake/PostgreSQL), feeding optimized materialized views into BI tools or custom React dashboards.',
     keyCapabilities: [
       { title: 'Data Warehousing', description: 'Centralizing data from ERPs, CRMs, and APIs.' },
@@ -1890,7 +1890,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
     primaryTopic: 'System Integration',
     heroHeadline: 'ENTERPRISE SYSTEM INTEGRATION.',
     overview: 'We engineer resilient middleware that connects legacy systems, third-party SaaS, and custom applications. We eliminate manual data entry by automating the flow of information across your entire technical ecosystem.',
-    architectureApproach: 'Asynchronous event-driven architecture utilizing message queues (RabbitMQ/BullMQ) to ensure guaranteed delivery, with idempotent webhook receivers to prevent duplicate processing.',
+    architectureApproach: 'Asynchronous event-driven architecture can use message queues (RabbitMQ/BullMQ), retry policies, dead-letter handling, and idempotent webhook receivers to improve delivery resilience and control duplicate processing.',
     keyCapabilities: [
       { title: 'Custom Middleware Engineering', description: 'Building the connective tissue between closed systems.' },
       { title: 'API Gateway Design', description: 'Creating clean, secure, and documented APIs for your partners.' },
@@ -1907,7 +1907,7 @@ export const SERVICES_DATA: ServiceDetail[] = [
       { phase: '04', name: 'Stress Testing', description: 'Simulating outages to ensure the system recovers gracefully.' }
     ],
     faqs: [
-      { question: 'What happens if the receiving API goes down?', answer: 'Our queues will automatically retry the request with exponential backoff until the system recovers, ensuring zero data loss.' },
+      { question: 'What happens if the receiving API goes down?', answer: 'A suitable integration can queue requests, retry with bounded exponential backoff, surface exhausted attempts, and support reconciliation. Recovery behavior is tested against the receiving system’s constraints.' },
       { question: 'Can you integrate with SOAP APIs?', answer: 'Yes, we regularly integrate with legacy SOAP, XML, and even flat-file FTP drops.' }
     ],
     relevantProjectSlugs: ['api-stripe-integrations', 'citi-books-platform'],

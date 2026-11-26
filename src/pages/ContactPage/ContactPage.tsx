@@ -73,25 +73,14 @@ export const ContactPage: React.FC = () => {
     };
 
     try {
-      let isSent = false;
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (response.ok) isSent = true;
-      } catch {
-        // Fall through to Formspree.
-      }
-
-      if (!isSent && env.formspreeEndpointId) {
-        const response = await fetch(`https://formspree.io/f/${env.formspreeEndpointId}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (response.ok) isSent = true;
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) {
+        setErrorMessage('The contact service is temporarily unavailable. Please email info@tekmorasolution.com.');
+        return;
       }
 
       setIsSubmitted(true);

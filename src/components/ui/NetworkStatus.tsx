@@ -6,7 +6,7 @@ import './NetworkStatus.css';
 interface EdgeRegion {
   name: string;
   location: string;
-  latency: number;
+  latency: string;
   status: 'optimal' | 'good';
 }
 
@@ -17,13 +17,13 @@ export const NetworkStatus: React.FC = () => {
   const [showReconnected, setShowReconnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Regional edge telemetry with slight dynamic jitter for realism
-  const [regions, setRegions] = useState<EdgeRegion[]>([
-    { name: 'US-East-1', location: 'N. Virginia, USA', latency: 22, status: 'optimal' },
-    { name: 'EU-Central-1', location: 'Frankfurt, Germany', latency: 34, status: 'optimal' },
-    { name: 'AP-South-1', location: 'Mumbai, India', latency: 48, status: 'optimal' },
-    { name: 'AP-Southeast-1', location: 'Singapore', latency: 62, status: 'optimal' },
-    { name: 'US-West-2', location: 'Oregon, USA', latency: 29, status: 'optimal' },
+  // Reference regions only. Do not present fabricated live latency telemetry.
+  const [regions] = useState<EdgeRegion[]>([
+    { name: 'US-East', location: 'Candidate region', latency: 'Measured per project', status: 'optimal' },
+    { name: 'EU-Central', location: 'Candidate region', latency: 'Measured per project', status: 'optimal' },
+    { name: 'AP-South', location: 'Candidate region', latency: 'Measured per project', status: 'optimal' },
+    { name: 'AP-Southeast', location: 'Candidate region', latency: 'Measured per project', status: 'optimal' },
+    { name: 'US-West', location: 'Candidate region', latency: 'Measured per project', status: 'optimal' },
   ]);
 
   useEffect(() => {
@@ -45,21 +45,9 @@ export const NetworkStatus: React.FC = () => {
     window.addEventListener('offline', handleOffline);
     setIsOnline(navigator.onLine);
 
-    // Micro-jitter simulation for edge ping telemetry
-    const interval = setInterval(() => {
-      setRegions(prev =>
-        prev.map(r => {
-          const jitter = Math.floor(Math.random() * 5) - 2;
-          const base = r.name.startsWith('US-East') ? 22 : r.name.startsWith('EU') ? 34 : r.name.startsWith('AP-S') ? 48 : 60;
-          return { ...r, latency: Math.max(14, base + jitter) };
-        })
-      );
-    }, 4000);
-
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
-      clearInterval(interval);
     };
   }, []);
 
@@ -158,17 +146,17 @@ export const NetworkStatus: React.FC = () => {
                   <div className="sla-banner-status">
                     <span className="telemetry-live-dot large" />
                     <div>
-                      <div className="sla-status-text">ALL EDGE CLUSTERS OPERATIONAL</div>
-                      <div className="sla-status-desc font-mono">Global edge routing active • Zero-Downtime Pipeline</div>
+                      <div className="sla-status-text">ILLUSTRATIVE OPERATIONS MODEL</div>
+                      <div className="sla-status-desc font-mono">Monitoring and release controls are configured per deployment</div>
                     </div>
                   </div>
-                  <div className="sla-banner-badge font-mono">99.99% SLA COMMITMENT</div>
+                  <div className="sla-banner-badge font-mono">CONTRACT-DEFINED TARGETS</div>
                 </div>
 
                 {/* Regional Latencies Grid */}
                 <div className="sla-section-title font-mono">
                   <Globe size={13} className="text-orange" />
-                  <span>LIVE REGIONAL EDGE TELEMETRY</span>
+                  <span>REFERENCE REGIONAL DEPLOYMENT OPTIONS</span>
                 </div>
                 <div className="sla-regions-grid">
                   {regions.map((region) => (
@@ -178,7 +166,7 @@ export const NetworkStatus: React.FC = () => {
                         <div className="sla-region-loc">{region.location}</div>
                       </div>
                       <div className="sla-region-latency">
-                        <span className="latency-val text-green">{region.latency}ms</span>
+                        <span className="latency-val text-green">{region.latency}</span>
                         <span className="latency-dot optimal" />
                       </div>
                     </div>
@@ -188,7 +176,7 @@ export const NetworkStatus: React.FC = () => {
                 {/* Architectural Commitments */}
                 <div className="sla-section-title font-mono" style={{ marginTop: 16 }}>
                   <ShieldCheck size={13} className="text-orange" />
-                  <span>ENTERPRISE OPERATIONAL GUARANTEES</span>
+                  <span>ENTERPRISE OPERATIONAL CONTROLS</span>
                 </div>
                 <div className="sla-guarantees-grid font-mono">
                   <div className="sla-guarantee-card">
@@ -196,7 +184,7 @@ export const NetworkStatus: React.FC = () => {
                       <Server size={14} className="text-orange" />
                       <span>HIGH AVAILABILITY</span>
                     </div>
-                    <p>99.99% uptime guarantee with multi-region serverless failover and zero single points of failure.</p>
+                    <p>Availability targets, failover design, and recovery responsibilities are agreed for the selected hosting architecture.</p>
                   </div>
                   <div className="sla-guarantee-card">
                     <div className="guarantee-header">
@@ -208,7 +196,7 @@ export const NetworkStatus: React.FC = () => {
                   <div className="sla-guarantee-card">
                     <div className="guarantee-header">
                       <ShieldCheck size={14} className="text-orange" />
-                      <span>SOC 2 & ISO ALIGNED</span>
+                      <span>CONTROL MAPPING</span>
                     </div>
                     <p>Immutable operational logging, daily automated backup retention, and strict audit trails.</p>
                   </div>
@@ -224,7 +212,7 @@ export const NetworkStatus: React.FC = () => {
 
               {/* Footer */}
               <div className="sla-modal-footer font-mono">
-                <span className="sla-footer-note">DISPATCH PROTOCOL // VERIFIED HOSTINGER RELAY</span>
+                <span className="sla-footer-note">REFERENCE OPERATIONS VIEW // PROJECT-SPECIFIC CONFIGURATION</span>
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"

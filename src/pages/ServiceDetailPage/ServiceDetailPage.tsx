@@ -11,6 +11,42 @@ import { buildServiceSchema } from '../../data/aiSeo';
 import { trackEvent } from '../../utils/analytics';
 import './ServiceDetailPage.css';
 
+const RELATED_RESOURCES: Record<string, Array<{ to: string; label: string }>> = {
+  'sap-business-one-integration': [
+    { to: '/services/sap-b1-integration', label: 'SAP Business One automation and extension work' },
+    { to: '/insights/how-sap-business-one-integrations-connect-operational-applications', label: 'How SAP Business One integrations connect operational applications' },
+    { to: '/work/sap-b1-production-dashboard', label: 'SAP Business One production dashboard case study' }
+  ],
+  'sap-b1-integration': [
+    { to: '/services/sap-business-one-integration', label: 'Broader SAP Business One integration services' },
+    { to: '/work/warehouse-grn-automation', label: 'Warehouse GRN and SAP integration case study' }
+  ],
+  'warehouse-management-systems': [
+    { to: '/services/erp-wms-development', label: 'ERP and WMS platform development' },
+    { to: '/insights/how-to-plan-a-warehouse-management-system', label: 'How to plan a warehouse management system' },
+    { to: '/work/warehouse-grn-automation', label: 'Warehouse GRN automation case study' }
+  ],
+  'erp-operations-software': [
+    { to: '/services/custom-software-development', label: 'Custom software development for business workflows' },
+    { to: '/insights/when-company-needs-custom-software-vs-saas', label: 'When custom operations software is a better fit than SaaS' },
+    { to: '/work/dome-enterprise', label: 'DOME business operations case study' }
+  ],
+  'internal-tools-dashboards': [
+    { to: '/services/data-bi-analytics', label: 'Business intelligence and data analytics services' },
+    { to: '/insights/how-to-plan-a-business-dashboard', label: 'How to plan a business dashboard' },
+    { to: '/insights/building-operational-dashboards-with-sql-server-data', label: 'Building operational dashboards with SQL Server data' }
+  ],
+  'data-bi-analytics': [
+    { to: '/services/internal-tools-dashboards', label: 'Operational dashboards and internal tools' },
+    { to: '/work/sap-b1-production-dashboard', label: 'SAP Business One dashboard case study' }
+  ],
+  'custom-software-development': [
+    { to: '/insights/custom-software-vs-off-the-shelf', label: 'Custom software versus off-the-shelf systems' },
+    { to: '/work/dome-enterprise', label: 'Business operations software case study' },
+    { to: '/services/erp-operations-software', label: 'ERP-style operations software' }
+  ]
+};
+
 // Slug alias resolver
 const resolveService = (slug?: string): ServiceDetail | undefined => {
   if (!slug) return undefined;
@@ -53,6 +89,7 @@ export const ServiceDetailPage: React.FC = () => {
   const relevantProjects = service
     ? PROJECTS.filter(p => service.relevantProjectSlugs?.includes(p.slug))
     : [];
+  const relatedResources = service ? RELATED_RESOURCES[service.slug] ?? [] : [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -272,6 +309,28 @@ export const ServiceDetailPage: React.FC = () => {
                       <span>View Case Study</span>
                       <ArrowUpRight size={14} />
                     </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {relatedResources.length > 0 && (
+        <section className="sd-projects-section" aria-labelledby="related-resources-heading">
+          <div className="container">
+            <div className="sd-section-intro">
+              <span className="sd-kicker">RELATED GUIDES & SERVICES</span>
+              <h2 className="sd-section-heading" id="related-resources-heading">Continue your research</h2>
+              <p className="sd-section-sub">Relevant technical guidance, adjacent capabilities, and existing project evidence.</p>
+            </div>
+            <div className="sd-projects-grid">
+              {relatedResources.map(resource => (
+                <article className="sd-project-card" key={resource.to}>
+                  <h3 className="sd-proj-title"><Link to={resource.to}>{resource.label}</Link></h3>
+                  <div className="sd-proj-action">
+                    <Link to={resource.to} className="sd-proj-link font-mono">Read {resource.label} <ArrowUpRight size={14} /></Link>
                   </div>
                 </article>
               ))}

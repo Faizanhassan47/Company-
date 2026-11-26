@@ -5,7 +5,6 @@ import {
 } from 'lucide-react';
 import './ProjectInquirySection.css';
 import { trackEvent } from '../../../utils/analytics';
-import { env } from '@/config/env';
 
 const SERVICE_OPTIONS = [
   { id: 'web-app', label: 'Web Application', icon: <Globe size={18} /> },
@@ -62,40 +61,15 @@ export const ProjectInquirySection: React.FC = () => {
       };
 
       try {
-        let isSent = false;
-
-        // 1. Primary endpoint
-        try {
-          const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(payload)
-          });
-          if (response.ok) {
-            isSent = true;
-          }
-        } catch {
-          // fallback
-        }
-
-        // 2. Fallback Formspree
-        if (!isSent) {
-          const endpointId = env.formspreeEndpointId;
-          const response = await fetch(`https://formspree.io/f/${endpointId}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(payload)
-          });
-          if (response.ok) {
-            isSent = true;
-          }
-        }
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        const isSent = response.ok;
 
         if (isSent) {
           setIsSuccess(true);

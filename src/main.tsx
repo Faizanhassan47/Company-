@@ -7,12 +7,6 @@ import App from './App.tsx'
 import { ErrorBoundary } from './components/layout/ErrorBoundary'
 
 const root = document.getElementById('root')!
-const fontStylesheet = document.getElementById('site-font-stylesheet') as HTMLLinkElement | null
-if (fontStylesheet) {
-  const activateFonts = () => { fontStylesheet.media = 'all' }
-  if (fontStylesheet.sheet) requestAnimationFrame(activateFonts)
-  else fontStylesheet.addEventListener('load', activateFonts, { once: true })
-}
 const app = (
   <StrictMode>
     <ErrorBoundary>

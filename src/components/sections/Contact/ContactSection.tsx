@@ -9,7 +9,6 @@ import { MeetingSchedulerModal } from '../../ui/MeetingSchedulerModal';
 import { staggerContainer, fadeInUp } from '../../../utils/animations';
 import { trackEvent } from '../../../utils/analytics';
 import './ContactSection.css';
-import { env } from '@/config/env';
 
 export const ContactSection: React.FC = () => {
   const { t } = useTranslation();
@@ -74,40 +73,15 @@ export const ContactSection: React.FC = () => {
     };
 
     try {
-      let isSent = false;
-
-      // 1. Primary: Hostinger SMTP + Automated Branded Thank You Email
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
-        if (response.ok) {
-          isSent = true;
-        }
-      } catch {
-        // Continue to Formspree fallback
-      }
-
-      // 2. Fallback: Formspree endpoint if /api/contact is unavailable
-      if (!isSent) {
-        const endpointId = env.formspreeEndpointId;
-        const response = await fetch(`https://formspree.io/f/${endpointId}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
-        if (response.ok) {
-          isSent = true;
-        }
-      }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+      const isSent = response.ok;
 
       if (isSent) {
         setSubmitted(true);

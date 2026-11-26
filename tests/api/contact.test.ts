@@ -72,6 +72,16 @@ test('enforces the distributed rate limit', async () => {
   assert.equal(sent.length, 0);
 });
 
+test('fails safely when the distributed rate-limit service is unavailable', async () => {
+  process.env.UPSTASH_REDIS_REST_URL = 'https://mock-upstash.example';
+  process.env.UPSTASH_REDIS_REST_TOKEN = 'mock-token';
+  globalThis.fetch = (async () => new Response('unavailable', { status: 503 })) as typeof fetch;
+  const result = await invoke();
+  assert.equal(result.status, 503);
+  assert.deepEqual(result.body, { error: 'Contact service is temporarily unavailable.' });
+  assert.equal(sent.length, 0);
+});
+
 test('fails safely when production rate-limit configuration is missing', async () => {
   process.env.NODE_ENV = 'production';
   const result = await invoke();

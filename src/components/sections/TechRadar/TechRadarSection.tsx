@@ -34,7 +34,7 @@ const RADAR_DATA: RadarItem[] = [
     category: 'data',
     categoryLabel: 'ENTERPRISE DATABASE',
     role: 'Mission-critical relational ledger with ACID compliance, indexed views, and stored procedures.',
-    benchmark: 'Zero Record Drift / Sub-Millisecond Reads',
+    benchmark: 'Consistency and read targets validated per workload',
     status: 'MISSION CRITICAL',
     tags: ['T-SQL', 'ACID Transactions', 'Indexed Views']
   },
@@ -44,7 +44,7 @@ const RADAR_DATA: RadarItem[] = [
     category: 'frontend',
     categoryLabel: 'WEB SYSTEMS',
     role: 'High-performance desktop & tablet enterprise portals with deterministic state machines.',
-    benchmark: '100 Lighthouse Performance / Zero Layout Shift',
+    benchmark: 'Performance and layout budgets validated per release',
     status: 'TIER-1 VERIFIED',
     tags: ['React 19', 'Next.js App Router', 'TypeScript 5.x']
   },
@@ -64,7 +64,7 @@ const RADAR_DATA: RadarItem[] = [
     category: 'backend',
     categoryLabel: 'API & MIDDLEWARE',
     role: 'High-throughput enterprise API gateway with granular role-based access control (RBAC).',
-    benchmark: '15,000+ Req/Sec / Zero Runtime Exceptions',
+    benchmark: 'Load and error targets validated against representative traffic',
     status: 'TIER-1 VERIFIED',
     tags: ['Node.js 22 LTS', 'JWT Security', 'Express Gateway']
   },
@@ -84,7 +84,7 @@ const RADAR_DATA: RadarItem[] = [
     category: 'enterprise',
     categoryLabel: 'HARDWARE & EDGE',
     role: 'Direct serial/Bluetooth protocol drivers for warehouse ruggedized PDA scanners & thermal printers.',
-    benchmark: '100% Deterministic Barcode Decodes',
+    benchmark: 'Barcode behavior tested on target devices and label conditions',
     status: 'MISSION CRITICAL',
     tags: ['ESC/POS Protocol', 'Bluetooth SPP', 'Zebra DataWedge']
   },
@@ -126,11 +126,11 @@ export const TechRadarSection: React.FC = () => {
         >
           <div>
             <h2 className="radar-headline font-display">
-              CERTIFIED TECH STACK<br />
+              ENGINEERING TECH STACK<br />
               <span className="italic-accent">& ARCHITECTURE MATRIX.</span>
             </h2>
             <p className="radar-subtitle">
-              Tekmora engineers exclusively with proven, enterprise-grade technologies that guarantee high throughput, offline survivability, and zero runtime fragility.
+              Tekmora selects established technologies according to the workload, deployment environment, offline needs, and validation criteria agreed for each project.
             </p>
           </div>
 

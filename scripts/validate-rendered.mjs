@@ -16,7 +16,9 @@ page.on('console', message => {
 for (const route of routes) {
   consoleErrors = [];
   const response = await page.goto(`${baseUrl}${route.path}`, { waitUntil: 'domcontentloaded' });
-  await page.waitForTimeout(50);
+  // Route chunks can resolve just after DOMContentLoaded on slower mobile-class
+  // CPUs. Validate the settled hydrated page instead of the Suspense fallback.
+  await page.waitForSelector('h1', { timeout: 5_000 });
   const result = await page.evaluate(() => ({
     title: document.title,
     h1: document.querySelectorAll('h1').length,

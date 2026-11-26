@@ -54,7 +54,7 @@ export const HeroSection: React.FC = () => {
 
           <div className="hero-trust-metrics">
             <div className="metric-item">
-              <span className="metric-val font-mono">100%</span>
+              <span className="metric-val font-mono">AGREED</span>
               <span className="metric-lbl">Production Ready</span>
             </div>
             <div className="metric-sep" />
@@ -92,7 +92,7 @@ export const HeroSection: React.FC = () => {
               </div>
               <div className="hero-window-status">
                 <span className="status-live-dot" />
-                <span>ONLINE 99.99%</span>
+                <span>MONITORED SERVICE</span>
               </div>
             </div>
 

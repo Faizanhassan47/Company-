@@ -23,7 +23,7 @@
     "lead": "Diseñamos y desarrollamos plataformas web a medida, aplicaciones móviles offline-first e integraciones de bases de datos internas para organizaciones que lidian con flujos de trabajo complejos y herramientas desconectadas.",
     "tenet_1": "Arquitectura determinista por encima de plantillas frágiles",
     "tenet_2": "Comunicación directa con ingenieros senior",
-    "tenet_3": "Código fuente y esquemas de base de datos 100% propiedad del cliente",
+    "tenet_3": "La propiedad del código y los esquemas se define en el acuerdo del proyecto",
     "cta_primary": "Iniciar una consulta de proyecto",
     "cta_secondary": "Explorar disciplinas técnicas",
     "copy": "COPIAR",
@@ -41,12 +41,12 @@
     "p1_desc": "Trabajas directamente con los desarrolladores senior que escriben tu código. Eliminamos las capas de gestores de cuentas y los cuellos de botella en la comunicación.",
     "p2_badge": "ARQUITECTURA",
     "p2_title": "Determinista y Tipo Seguro",
-    "p2_desc": "Cada sistema se basa en estrictos contratos de TypeScript, migraciones de bases de datos que cumplen con ACID y wrappers de API ERP certificados.",
+    "p2_desc": "Los sistemas usan contratos tipados, migraciones revisadas y controles de integración ERP adecuados al proyecto.",
     "p3_badge": "VELOCIDAD",
     "p3_title": "Sprints Semanales de Prueba",
     "p3_desc": "Entregamos software funcional en entornos de prueba en vivo cada semana. Revisas la funcionalidad real en lugar de presentaciones abstractas.",
     "p4_badge": "GOBERNANZA",
-    "p4_title": "Propiedad de IP 100% del Cliente",
+    "p4_title": "Propiedad de IP definida por contrato",
     "p4_desc": "Al finalizar la entrega de un hito, todos los repositorios Git, scripts de infraestructura y esquemas de base de datos se transfieren directamente a tu organización."
   },
   "services": {
@@ -120,11 +120,11 @@
     "s3_p2": "Linting estricto de TypeScript",
     "s3_p3": "Acceso directo al ingeniero",
     "s4_badge": "PRODUCCIÓN Y ENTREGA",
-    "s4_title": "Despliegue y Transferencia 100% de IP",
-    "s4_desc": "Implementación automatizada de CI/CD, migraciones de bases de datos sin tiempo de inactividad y transferencia completa de repositorios Git e IP. Respaldado por una garantía de 60 días y monitoreo SLA de alta disponibilidad 24/7.",
-    "s4_p1": "Transferencia de IP y Git 100%",
+    "s4_title": "Despliegue controlado y entrega acordada",
+    "s4_desc": "El despliegue, las migraciones, la entrega del repositorio, el soporte y el monitoreo se definen para cada proyecto.",
+    "s4_p1": "Transferencia de repositorio e IP definida por contrato",
     "s4_p2": "Garantía de 60 días",
-    "s4_p3": "Monitoreo de tiempo de actividad 24/7"
+    "s4_p3": "Monitoreo definido por contrato"
   },
   "contact": {
     "section_meta": "INICIAR UN PROYECTO",

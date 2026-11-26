@@ -177,7 +177,7 @@ export const PROJECTS: CaseStudy[] = [
     technologies: ['React Native', 'Expo', 'Node.js', 'PostgreSQL', 'SQLite'],
     clientProblem: 'Field service technicians previously relied on physical paper job sheets and patchy messaging apps to report maintenance visits, part replacements, and customer signatures. This resulted in delayed billing cycles, lost job records, and zero real-time tracking.',
     usersAndContext: 'Engineers on the move operating in low-connectivity industrial sites, customer support coordinators dispatching emergency repairs, and clients signing off service completion.',
-    developmentApproach: 'Tekmora engineered an offline-first mobile client using local SQLite persistence combined with deterministic queue syncing that guarantees job logs and photographic evidence upload cleanly upon network restoration.',
+    developmentApproach: 'Tekmora engineered an offline-first mobile client using local SQLite persistence and queued synchronization for job logs and photographic evidence when connectivity returns, including retry and conflict-handling requirements.',
     technicalArchitecture: [
       'Mobile Client: React Native & Expo with a field-usable UI, local SQLite state, and forms that work without a live connection.',
       'Sync Engine: Bidirectional delta-sync with conflict handling and media chunking so large photo uploads do not block the job record.',
@@ -320,7 +320,7 @@ export const PROJECTS: CaseStudy[] = [
     usersAndContext: 'Consumers shopping across diverse shoe categories and internal staff managing product variants, pricing tiers, and fulfillment statuses.',
     developmentApproach: 'Tekmora engineered a high-performance Next.js storefront combined with an Express/Node.js API and MongoDB database, implementing server-side rendering for optimal search indexing and instantaneous category transitions.',
     technicalArchitecture: [
-      'Storefront: Next.js with optimized dynamic image delivery, sub-second routing, and accessible checkout forms.',
+      'Storefront: Next.js with optimized dynamic image delivery, performance-tested routing, and accessible checkout forms.',
       'API & Auth: Node.js/Express with JWT session management and role-guarded administrative endpoints.',
       'Data Model: Document schema in MongoDB tailored for multi-attribute footwear (sizes, colorways, inventory bins).'
     ],
@@ -348,13 +348,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Implemented an synchronized local storage and server session fallback strategy.'
       }
     ],
-    outcome: 'Achieved sub-second page transition speeds, increased conversion rates, and streamlined catalog updates for the client team.',
+    outcome: 'Delivered a responsive storefront and administrative workflow for product and catalog updates. Conversion impact and production response times are not published without verified analytics and test conditions.',
     lessonsOrImprovements: 'Integrating real-time courier tracking webhooks and additional payment gateway providers.',
     visualType: 'full-interface',
     mockMetrics: [
-      { label: 'Page Speed', value: '98/100' },
-      { label: 'Catalog Size', value: '1,500+ SKUs' },
-      { label: 'Cart Latency', value: '< 50ms' }
+      { label: 'Experience', value: 'Responsive storefront' },
+      { label: 'Catalog', value: 'Products + variants' },
+      { label: 'Operations', value: 'Admin workflow' }
     ],
     highlights: ['Next.js SSR', 'Dynamic Catalog', 'Admin Console', 'MERN Architecture']
   },
@@ -401,13 +401,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Engineered exponential backoff retries and intelligent jitter delays across all scheduled workers.'
       }
     ],
-    outcome: 'Eliminated up to 15 hours of repetitive manual engagement tasks per user weekly while maintaining 99.9% campaign uptime.',
+    outcome: 'Delivered authenticated campaign workflows, dashboards, and automation controls. Time savings and production uptime are not published without verified usage and monitoring records.',
     lessonsOrImprovements: 'Added customizable reporting exports and multi-tenant team collaboration roles.',
     visualType: 'workflow-diagram',
     mockMetrics: [
-      { label: 'Uptime', value: '99.9%' },
-      { label: 'Weekly Time Saved', value: '15+ Hrs' },
-      { label: 'Queue Throughput', value: 'Real-Time' }
+      { label: 'Workflow', value: 'Campaign automation' },
+      { label: 'Access', value: 'Authenticated routes' },
+      { label: 'Interface', value: 'Operations dashboard' }
     ],
     highlights: ['Scheduled Workflows', 'Protected Dashboards', 'Queue Processing', 'Next.js & Node']
   },
@@ -428,9 +428,9 @@ export const PROJECTS: CaseStudy[] = [
     technologies: ['Next.js', 'Strapi CMS', 'Tailwind CSS', 'i18n Localization'],
     clientProblem: 'The healthcare provider needed a fast, accessible, multilingual digital platform where non-technical medical staff could easily update specialist directories, departmental clinical schedules, and patient intake resources without code deployments.',
     usersAndContext: 'Patients seeking reliable medical guidance and appointment routing across diverse languages, alongside hospital administrative staff updating clinical listings.',
-    developmentApproach: 'Tekmora architected a headless CMS structure using Strapi integrated with Next.js static site generation and incremental regeneration to guarantee extreme performance and instant multilingual switching.',
+    developmentApproach: 'Tekmora architected a headless CMS structure using Strapi with Next.js static generation and incremental regeneration to support cached delivery and multilingual navigation.',
     technicalArchitecture: [
-      'Frontend: Next.js with SSG and ISR ensuring sub-second global page loads.',
+      'Frontend: Next.js with SSG and ISR supporting cacheable global page delivery.',
       'Headless CMS: Strapi CMS with custom content types for clinicians, facilities, and care programs.',
       'Localization: Native i18n routing preserving SEO parameters across language locales.'
     ],
@@ -454,13 +454,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Implemented an audited design token palette with verified 7:1 contrast ratios for critical patient text.'
       }
     ],
-    outcome: 'Broadened patient access across diverse linguistic groups, achieved perfect 100 Lighthouse performance scores, and reduced content update turnaround from days to minutes.',
+    outcome: 'Delivered a multilingual healthcare information site with CMS-managed specialist, department, and patient-resource content. Audience, performance, and publishing-time outcomes are not stated without verified analytics and test records.',
     lessonsOrImprovements: 'Added downloadable patient preparation PDFs dynamically rendered from CMS records.',
     visualType: 'editorial-poster',
     mockMetrics: [
-      { label: 'Performance', value: '100/100' },
+      { label: 'Delivery', value: 'Static + incremental' },
       { label: 'Languages', value: 'Multilingual' },
-      { label: 'Content Speed', value: 'Instant' }
+      { label: 'Content', value: 'Headless CMS' }
     ],
     highlights: ['Headless CMS', 'i18n Localization', 'WCAG AA Accessibility', 'Next.js & Strapi']
   },
@@ -555,7 +555,7 @@ export const PROJECTS: CaseStudy[] = [
         description: 'Carefully typeset Uthmani script with adjustable font sizing, diacritics clarity, and night reading themes.'
       },
       {
-        title: '100% Offline Recitation',
+        title: 'Offline Recitation',
         description: 'Complete Quran text and multiple translations accessible without internet connection.'
       },
       {
@@ -565,19 +565,19 @@ export const PROJECTS: CaseStudy[] = [
     ],
     challengesAndDecisions: [
       {
-        challenge: 'Ensuring perfect Arabic font glyph rendering and correct ligatures across varying Android OEM devices.',
+        challenge: 'Maintaining Arabic glyph rendering and ligatures across varying Android OEM devices.',
         decision: 'Implemented custom font rendering wrappers with strict line-height and baseline alignments.'
       }
     ],
-    outcome: 'Delivered an elegant, 5-star rated experience praised for its calmness, zero advertisements, and lightning-fast verse navigation.',
+    outcome: 'Delivered an offline-capable reading experience with a calm interface and advertisement-free product design. Public rating claims are withheld pending verifiable store evidence.',
     lessonsOrImprovements: 'Introduced customizable thematic collections and daily ayah reflection widgets.',
     visualType: 'clean-mobile',
     mockMetrics: [
-      { label: 'App Rating', value: '4.9 ★' },
+      { label: 'Experience', value: 'Advertisement-free' },
       { label: 'Offline Verses', value: '6,236' },
-      { label: 'Ad Bloat', value: '0%' }
+      { label: 'Storage', value: 'Offline SQLite' }
     ],
-    highlights: ['Serene Minimalist UI', 'Uthmani Typography', '100% Offline SQLite', 'Zero Ads']
+    highlights: ['Serene Minimalist UI', 'Uthmani Typography', 'Offline SQLite', 'Advertisement-Free Design']
   },
   {
     id: 'citi-books-platform',
@@ -649,7 +649,7 @@ export const PROJECTS: CaseStudy[] = [
     technologies: ['React Native', 'Expo', 'TypeScript', 'Node.js', 'SQLite'],
     clientProblem: 'Fitness enthusiasts and personal training clients needed an offline-resilient training app that tracks workout routines, rest intervals, and progressive overload metrics without requiring continuous cell reception in subterranean gyms.',
     usersAndContext: 'Athletes following custom training programs and personal trainers assigning structured workout splits.',
-    developmentApproach: 'Tekmora built a lightweight React Native client featuring a zero-latency workout timer, local SQLite log storage, and synchronized cloud metrics when connected.',
+    developmentApproach: 'Tekmora built a React Native client with a local workout timer, SQLite log storage, and synchronization of cloud metrics when connected.',
     technicalArchitecture: [
       'Mobile Framework: React Native with Expo and native haptic triggers for rest interval timing.',
       'Persistence: Local SQLite caching for full offline workout execution and historical logs.',
@@ -665,7 +665,7 @@ export const PROJECTS: CaseStudy[] = [
         description: 'Visual volume progression graphs and estimated 1-rep maximum calculations.'
       },
       {
-        title: '100% Offline Capability',
+        title: 'Offline Capability',
         description: 'Complete workout tracking and historical reference without internet dependence.'
       }
     ],
@@ -675,13 +675,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Implemented native background timer notifications and state timestamp diffing.'
       }
     ],
-    outcome: 'Delivered an intuitive, reliable training companion with high daily retention and rapid workout logging.',
+    outcome: 'Delivered a training companion for workout planning, local logging, timers, and progress views. Retention and logging-speed outcomes are not published without verified product analytics.',
     lessonsOrImprovements: 'Added customizable workout split templates and superset pairing tools.',
     visualType: 'clean-mobile',
     mockMetrics: [
-      { label: 'Log Speed', value: '< 2 Sec' },
-      { label: 'Offline Ready', value: '100%' },
-      { label: 'Crash Rate', value: '< 0.01%' }
+      { label: 'Logging', value: 'Local-first' },
+      { label: 'Mode', value: 'Offline-capable' },
+      { label: 'Progress', value: 'Workout analytics' }
     ],
     highlights: ['React Native', 'Offline SQLite', 'Haptic Rest Timer', 'Volume Analytics']
   },
@@ -728,12 +728,12 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Standardized all timestamps to UTC on the backend with client-side localization and shift rule sets.'
       }
     ],
-    outcome: 'Cut monthly payroll processing time by 70% and eliminated human calculation errors in deduction schedules.',
+    outcome: 'Delivered attendance, payroll-deduction, and administrative reporting workflows. Processing-time and accuracy outcomes are withheld pending verified operational baselines.',
     lessonsOrImprovements: 'Added direct batch salary disbursement CSV export for bank integrations.',
     visualType: 'analytics-board',
     mockMetrics: [
-      { label: 'Processing Time', value: '-70%' },
-      { label: 'Calculation Accuracy', value: '100%' },
+      { label: 'Workflow', value: 'Attendance + payroll' },
+      { label: 'Controls', value: 'Deduction rules' },
       { label: 'Security', value: 'JWT RBAC' }
     ],
     highlights: ['HR Automation', 'Payroll Engine', 'Next.js & Node', 'Role Permissions']
@@ -781,13 +781,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Employed lazy loading for off-screen media and lightweight CSS transforms over heavy canvas rendering.'
       }
     ],
-    outcome: 'Delivered an impressive digital showcase that significantly elevated brand authority and international client inquiries.',
+    outcome: 'Delivered an interactive project showcase with responsive layouts and motion-aware presentation. Brand and enquiry impact are not published without verified analytics.',
     lessonsOrImprovements: 'Added interactive case-study carousels with keyboard arrow navigation.',
     visualType: 'full-interface',
     mockMetrics: [
-      { label: 'Lighthouse Score', value: '96/100' },
-      { label: 'Animation FPS', value: '60 FPS' },
-      { label: 'Inquiry Rate', value: '+45%' }
+      { label: 'Experience', value: 'Interactive showcase' },
+      { label: 'Layout', value: 'Responsive' },
+      { label: 'Motion', value: 'Reduced-motion aware' }
     ],
     highlights: ['Next.js SSR', 'Framer Motion', 'Editorial Styling', 'Responsive Design']
   },
@@ -839,8 +839,8 @@ export const PROJECTS: CaseStudy[] = [
     visualType: 'editorial-poster',
     mockMetrics: [
       { label: 'Languages', value: 'Multi-Locale' },
-      { label: 'Query Latency', value: '< 80ms' },
-      { label: 'Render Optimization', value: 'Zero Thrash' }
+      { label: 'Data', value: 'Paginated API' },
+      { label: 'Rendering', value: 'Cached UI state' }
     ],
     highlights: ['Next.js', 'i18n Localization', 'State Optimization', 'Pagination Engine']
   },
@@ -886,11 +886,11 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Implemented secure cookie-based token handling with server-side validation layers.'
       }
     ],
-    outcome: 'Streamlined internal administrative workflows, cutting order moderation and listing review times by 40%.',
+    outcome: 'Delivered protected administrative workflows for data management and review. Efficiency gains are not published without a verified operational baseline.',
     lessonsOrImprovements: 'Added exportable audit logs and role-specific dashboard home widgets.',
     visualType: 'analytics-board',
     mockMetrics: [
-      { label: 'Efficiency Gain', value: '+40%' },
+      { label: 'Workflow', value: 'Data review' },
       { label: 'Security Tier', value: 'JWT RBAC' },
       { label: 'Data Density', value: 'High' }
     ],
@@ -938,13 +938,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Configured optimized, lightweight touch-event handlers with native momentum scrolling.'
       }
     ],
-    outcome: 'Successfully established a polished corporate presence that reinforced brand credibility and drove inbound inquiries.',
+    outcome: 'Delivered a responsive corporate profile and project presentation. Enquiry and brand-impact outcomes are not published without verified analytics.',
     lessonsOrImprovements: 'Migrated styling to modern CSS custom properties for effortless theme updates.',
     visualType: 'clean-mobile',
     mockMetrics: [
-      { label: 'Mobile Score', value: '95/100' },
-      { label: 'Lead Inquiries', value: '+30%' },
-      { label: 'Uptime', value: '99.9%' }
+      { label: 'Layout', value: 'Responsive' },
+      { label: 'Content', value: 'Project showcase' },
+      { label: 'Integration', value: 'API data' }
     ],
     highlights: ['React.js', 'Corporate Platform', 'Touch Sliders', 'Responsive UI']
   },
@@ -990,13 +990,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Implemented responsive image sizes with modern WebP formatting and lazy loading.'
       }
     ],
-    outcome: 'Elevated online visibility, driving increased foot traffic and digital table reservation requests.',
+    outcome: 'Delivered a responsive restaurant website with API-driven menu content and customer contact paths. Traffic and reservation outcomes are not published without verified analytics.',
     lessonsOrImprovements: 'Added direct WhatsApp concierge reservation integration for instant booking confirmations.',
     visualType: 'full-interface',
     mockMetrics: [
-      { label: 'Mobile Traffic', value: '75%' },
-      { label: 'Image Load Speed', value: '< 300ms' },
-      { label: 'Reservations', value: '+35%' }
+      { label: 'Experience', value: 'Responsive menu' },
+      { label: 'Content', value: 'API-driven' },
+      { label: 'Contact', value: 'Reservation path' }
     ],
     highlights: ['React', 'Dynamic Menu', 'Hospitality Experience', 'Mobile-First']
   },
@@ -1042,13 +1042,13 @@ export const PROJECTS: CaseStudy[] = [
         decision: 'Implemented optimized database indexing and client-side cached lookup routines.'
       }
     ],
-    outcome: 'Successfully launched a dependable member portal connecting regional businesses with zero operational downtime.',
+    outcome: 'Delivered a member portal for business listings, profiles, service information, and member interactions. Availability outcomes are not published without monitored production evidence.',
     lessonsOrImprovements: 'Modernized the frontend to modular component structures for enhanced long-term scalability.',
     visualType: 'analytics-board',
     mockMetrics: [
       { label: 'Member Network', value: 'Active' },
-      { label: 'Platform Stability', value: '99.9%' },
-      { label: 'Directory Response', value: '< 100ms' }
+      { label: 'Platform', value: 'Member portal' },
+      { label: 'Directory', value: 'Search + listings' }
     ],
     highlights: ['Business Portal', 'Directory Search', 'Member Network', 'PHP & SQL']
   }

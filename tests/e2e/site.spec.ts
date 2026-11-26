@@ -36,12 +36,27 @@ test('site uses the permanent black theme', async ({ page }) => {
   await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(9, 9, 9)');
 });
 
-test('homepage plays the opening animation after prerender hydration', async ({ page }) => {
+test('homepage plays the opening animation after prerender hydration', async ({ browser }) => {
+  const context = await browser.newContext({ reducedMotion: 'no-preference' });
+  const page = await context.newPage();
   await page.goto('/');
   await expect(page.getByRole('dialog', { name: /software engineering introduction/i })).toBeVisible();
-  await expect(page.locator('.site-wrapper')).toBeHidden();
-  await page.getByRole('button', { name: 'Skip Intro' }).click();
+  await expect(page.locator('.site-wrapper')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.site-wrapper')).toHaveAttribute('inert', '');
+  await expect(page.getByRole('button', { name: 'Skip Intro' })).toBeFocused();
+  await page.getByRole('button', { name: 'Skip Intro' }).click({ force: true });
   await expect(page.locator('.site-wrapper')).toBeVisible();
+  await expect(page.locator('.site-wrapper')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.site-wrapper')).not.toHaveAttribute('inert', '');
+  await expect(page.locator('.skip-link')).toBeFocused();
+  await context.close();
+});
+
+test('homepage minimizes the opening sequence for reduced motion', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('dialog', { name: /software engineering introduction/i })).toBeHidden();
+  await expect(page.locator('.site-wrapper')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.site-wrapper')).not.toHaveAttribute('inert', '');
 });
 
 test('homepage dashboard preview does not overflow a phone viewport', async ({ page }) => {
@@ -68,6 +83,78 @@ test('project inquiry exposes accessible required fields', async ({ page }) => {
   await page.goto('/contact');
   await expect(page.getByLabel(/full name|your name/i).first()).toBeVisible();
   await expect(page.getByLabel(/work email|email/i).first()).toHaveAttribute('type', 'email');
+});
+
+test('contact submission records one conversion only after API success', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('tekmora_cookie_consent', 'granted'));
+  await page.route('https://www.googletagmanager.com/gtm.js**', route =>
+    route.fulfill({ status: 200, contentType: 'application/javascript', body: '' })
+  );
+  let requests = 0;
+  await page.route('**/api/contact', async route => {
+    requests += 1;
+    await new Promise(resolve => setTimeout(resolve, 100));
+    await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' });
+  });
+  await page.goto('/contact');
+  await page.getByLabel('Full name').fill('Test User');
+  await page.getByLabel('Work email').fill('test@example.com');
+  await page.getByLabel('Tell us about your project').fill('Mocked browser validation only.');
+  const submit = page.getByRole('button', { name: /Discuss Your Project/i });
+  await submit.dblclick();
+  await expect(page.getByRole('status')).toBeVisible();
+  expect(requests).toBe(1);
+  const events = await page.evaluate(() => window.dataLayer?.filter(item => item.event === 'contact_form_submit') ?? []);
+  expect(events).toHaveLength(1);
+  expect(events[0]).not.toHaveProperty('email');
+  expect(events[0]).not.toHaveProperty('name');
+});
+
+test('failed contact submission has an error and no conversion event', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('tekmora_cookie_consent', 'granted'));
+  await page.route('https://www.googletagmanager.com/gtm.js**', route =>
+    route.fulfill({ status: 200, contentType: 'application/javascript', body: '' })
+  );
+  await page.route('**/api/contact', route =>
+    route.fulfill({ status: 503, contentType: 'application/json', body: '{"error":"unavailable"}' })
+  );
+  await page.goto('/contact');
+  await page.getByLabel('Full name').fill('Test User');
+  await page.getByLabel('Work email').fill('test@example.com');
+  await page.getByLabel('Tell us about your project').fill('Mocked failure validation only.');
+  await page.getByRole('button', { name: /Discuss Your Project/i }).click();
+  await expect(page.getByRole('alert')).toContainText(/temporarily unavailable/i);
+  const events = await page.evaluate(() => window.dataLayer?.filter(item => item.event === 'contact_form_submit') ?? []);
+  expect(events).toHaveLength(0);
+});
+
+test('analytics prevents duplicate scripts and stops events after consent withdrawal', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('tekmora_cookie_consent', 'granted'));
+  await page.route('https://www.googletagmanager.com/gtm.js**', route =>
+    route.fulfill({ status: 200, contentType: 'application/javascript', body: '' })
+  );
+  await page.goto('/services');
+  await expect(page.locator('script[data-tekmora-analytics]')).toHaveCount(1);
+  await page.evaluate(() => {
+    const link = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href="/contact"]'))
+      .find(candidate => candidate.offsetParent !== null);
+    link?.click();
+  });
+  await page.waitForURL('**/contact');
+  await expect.poll(() => page.evaluate(() => window.dataLayer
+    .filter(item => item.event === 'page_view')
+    .map(item => item.page_path)))
+    .toEqual(['/services', '/contact']);
+  await page.evaluate(() => localStorage.setItem('tekmora_cookie_consent', 'denied'));
+  await page.evaluate(() => {
+    const link = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href="/services"]'))
+      .find(candidate => candidate.offsetParent !== null);
+    link?.click();
+  });
+  await page.waitForURL('**/services');
+  await expect(page.locator('script[data-tekmora-analytics]')).toHaveCount(1);
+  expect(await page.evaluate(() => window.dataLayer.filter(item => item.event === 'page_view').map(item => item.page_path)))
+    .toEqual(['/services', '/contact']);
 });
 
 test('public pages expose complete SEO metadata', async ({ page }) => {
@@ -98,9 +185,31 @@ test('public pages expose complete SEO metadata', async ({ page }) => {
 for (const path of ['/', '/services', '/services/custom-software-development', '/work', '/contact']) {
   test(`${path} matches the representative visual baseline`, async ({ page }) => {
     await page.goto(path);
+    const openingDialog = page.getByRole('dialog', { name: /software engineering introduction/i });
+    if (await openingDialog.isVisible()) {
+      await page.getByRole('button', { name: 'Skip Intro' }).click({ force: true });
+      await expect(openingDialog).toBeHidden();
+      await page.mouse.move(0, page.viewportSize()?.height ?? 0);
+    }
     await expect(page.locator('main#main-content')).toBeVisible();
-    await page.addStyleTag({ content: '.oa-root, .preloader-overlay { display: none !important; }' });
-    await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator('.site-wrapper')).toBeVisible();
+    await page.addStyleTag({
+      content: '.preloader-overlay { display: none !important; } *, *::before, *::after { animation: none !important; transition: none !important; }'
+    });
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await Promise.all([
+        document.fonts.load('400 16px Poppins'),
+        document.fonts.load('600 16px Poppins'),
+        document.fonts.load('700 16px Poppins')
+      ]);
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.scrollBehavior = 'auto';
+      window.scrollTo({ left: 0, top: 0, behavior: 'auto' });
+      window.dispatchEvent(new Event('scroll'));
+      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    });
     const name = path === '/' ? 'home' : path.replace(/^\//, '').replaceAll('/', '-');
     await expect(page).toHaveScreenshot(`${name}.png`, {
       animations: 'disabled',

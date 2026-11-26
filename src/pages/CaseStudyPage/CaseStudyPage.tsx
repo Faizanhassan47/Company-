@@ -70,6 +70,24 @@ const similarProjectNeed = (project: CaseStudy) => {
 
 const shortName = (project: CaseStudy) => FEATURED[project.slug]?.name ?? project.title;
 
+const CASE_STUDY_RESOURCES: Record<string, Array<{ to: string; label: string }>> = {
+  'warehouse-grn-automation': [
+    { to: '/services/warehouse-management-systems', label: 'Warehouse management software services' },
+    { to: '/services/sap-business-one-integration', label: 'SAP Business One integration services' },
+    { to: '/insights/how-to-plan-a-warehouse-management-system', label: 'Warehouse management system planning guide' }
+  ],
+  'sap-b1-production-dashboard': [
+    { to: '/services/data-bi-analytics', label: 'Business intelligence and data analytics services' },
+    { to: '/services/sap-business-one-integration', label: 'SAP Business One integration services' },
+    { to: '/insights/building-operational-dashboards-with-sql-server-data', label: 'Operational dashboards with SQL Server data' }
+  ],
+  'dome-enterprise': [
+    { to: '/services/custom-software-development', label: 'Custom software development services' },
+    { to: '/services/erp-operations-software', label: 'ERP-style operations software' },
+    { to: '/insights/common-mistakes-in-internal-business-software', label: 'Common mistakes in internal business software' }
+  ]
+};
+
 export const CaseStudyPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -115,6 +133,7 @@ export const CaseStudyPage: React.FC = () => {
   const portfolioKind: PortfolioKind = project.portfolioKind ?? 'selected';
   const kindLabel = PORTFOLIO_KIND_LABEL[portfolioKind];
   const contactHref = `/contact?type=${encodeURIComponent(similarProjectNeed(project))}&ref=${encodeURIComponent(project.slug)}`;
+  const relatedResources = CASE_STUDY_RESOURCES[project.slug] ?? [];
   const projectUrl = `https://www.tekmorasolution.com/work/${project.slug}`;
   const caseStudySchema = {
     '@context': 'https://schema.org',
@@ -341,6 +360,17 @@ export const CaseStudyPage: React.FC = () => {
                 </li>
               ))}
             </ul>
+          )}
+
+          {relatedResources.length > 0 && (
+            <div className="case-block">
+              <h2>Related services and guidance</h2>
+              <ul className="case-list">
+                {relatedResources.map(resource => (
+                  <li key={resource.to}><Link to={resource.to}>{resource.label}</Link></li>
+                ))}
+              </ul>
+            </div>
           )}
 
           <div className="band-cta">
