@@ -52,7 +52,9 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
+    // Keep default lag smoothing — disabling it (0) makes GSAP timelines
+    // jump ahead after any delayed frame (breaks OpeningAnimation, etc.).
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       gsap.ticker.remove(updateTicker);

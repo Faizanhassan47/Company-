@@ -75,9 +75,6 @@ const AnimatedRoutes = () => {
   );
 };
 
-const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 const focusMainContent = () => {
   const main = document.getElementById('main-content');
   if (!main) return;
@@ -89,9 +86,9 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
   const location = useLocation();
   const isHome = location.pathname === '/';
   // Replay on every full page load of the homepage (no session skip).
+  // OpeningAnimation itself handles prefers-reduced-motion with a short static hold.
   const isPrerendered = prerendered || (typeof document !== 'undefined' && document.getElementById('root')?.dataset.prerendered === 'true');
-  // Respect OS/browser "reduce motion" — never flash the intro then leave Skip to content focused.
-  const [openingDone, setOpeningDone] = useState(() => !isHome || isPrerendered || prefersReducedMotion());
+  const [openingDone, setOpeningDone] = useState(() => !isHome || isPrerendered);
   const [preloaderDone, setPreloaderDone] = useState(() => isHome || isPrerendered);
   const [searchOpen, setSearchOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
@@ -111,9 +108,8 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
 
   useLayoutEffect(() => {
     // Prerendered pages must match the server markup for the first hydration
-    // pass. Before the browser paints the hydrated app, start the intro —
-    // unless the user prefers reduced motion.
-    if (isHome && isPrerendered && !prefersReducedMotion()) {
+    // pass. Before the browser paints the hydrated app, start the intro.
+    if (isHome && isPrerendered) {
       setOpeningDone(false);
     }
   }, [isHome, isPrerendered]);

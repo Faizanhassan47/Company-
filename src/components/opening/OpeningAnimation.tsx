@@ -128,26 +128,45 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
     if (completedRef.current) return;
     completedRef.current = true;
     setExiting(true);
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.setTimeout(() => onComplete(), reduceMotion ? 0 : 420);
+    window.setTimeout(() => onComplete(), 420);
   }, [onComplete]);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const durationCap = reduceMotion ? 0.2 : mobile ? 3 : 5.5;
+    // Always play the full cinematic intro. Skip Intro / Escape remain the exit.
+    // (OS prefers-reduced-motion used to force a 0.2s path that faded the overlay
+    // at a negative timeline time and looked broken.)
+    const durationCap = mobile ? 3 : 5.5;
     let cancelled = false;
     let failSafe = 0;
     let tl: gsap.core.Timeline | null = null;
     let raf2 = 0;
 
-    // Prevent GSAP from jumping the whole sequence when a frame is delayed.
-    gsap.ticker.lagSmoothing(0);
+    // Keep lag smoothing ON during the intro. lagSmoothing(0) makes any delayed
+    // first paint (hydration, tab throttle, Lenis ticker) jump the whole timeline
+    // to the end — which looked like the intro "not working".
+    gsap.ticker.lagSmoothing(500, 33);
 
     const pushTyped = (id: string, chars: number) => {
       const next = Math.floor(chars);
       if (typedRef.current[id] === next) return;
       typedRef.current[id] = next;
       setTyped(prev => (prev[id] === next ? prev : { ...prev, [id]: next }));
+    };
+
+    const placeLayer = (layer: CodeLayer, el: HTMLDivElement, visible: boolean) => {
+      gsap.set(el, {
+        xPercent: -50,
+        yPercent: -50,
+        x: layer.x * (mobile ? 0.35 : 1),
+        y: layer.y * (mobile ? 0.35 : 1),
+        z: layer.z,
+        rotateX: mobile ? layer.rotateX * 0.35 : layer.rotateX,
+        rotateY: mobile ? layer.rotateY * 0.35 : layer.rotateY,
+        scale: visible ? 1 : 0.94,
+        opacity: visible ? 1 : 0,
+        force3D: true,
+        transformOrigin: '50% 50%'
+      });
     };
 
     const start = () => {
@@ -166,27 +185,15 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
         ])
       ) as Record<string, number>;
 
+      // Always paint a solid overlay first — never leave the homepage showing through.
+      if (rootRef.current) gsap.set(rootRef.current, { opacity: 1 });
+      gsap.set(camera, { z: 0, rotateX: 0, rotateY: 0, force3D: true });
+      if (gridRef.current) gsap.set(gridRef.current, { opacity: 0.2, y: 24 });
+
       readyLayers.forEach(layer => {
         const el = layerRefs.current[layer.id];
-        if (!el) return;
-        gsap.set(el, {
-          xPercent: -50,
-          yPercent: -50,
-          x: layer.x * (mobile ? 0.35 : 1),
-          y: layer.y * (mobile ? 0.35 : 1),
-          z: layer.z,
-          rotateX: mobile ? layer.rotateX * 0.35 : layer.rotateX,
-          rotateY: mobile ? layer.rotateY * 0.35 : layer.rotateY,
-          scale: 0.94,
-          opacity: 0,
-          force3D: true,
-          transformOrigin: '50% 50%'
-        });
+        if (el) placeLayer(layer, el, false);
       });
-
-      gsap.set(camera, { z: 0, rotateX: 0, rotateY: 0, force3D: true });
-      if (rootRef.current) gsap.set(rootRef.current, { opacity: 1 });
-      if (gridRef.current) gsap.set(gridRef.current, { opacity: 0.2, y: 24 });
 
       tl = gsap.timeline({
         defaults: { ease: 'sine.inOut', force3D: true },
@@ -195,7 +202,6 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
       timelineRef.current = tl;
       failSafe = window.setTimeout(finish, (durationCap + 1.2) * 1000);
 
-      // Soft scene settle
       if (gridRef.current) {
         tl.to(gridRef.current, { opacity: 0.45, y: 0, duration: 0.9, ease: 'power2.out' }, 0);
       }
@@ -233,7 +239,6 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
           at + 0.12
         );
 
-        // Continuous camera drift toward the active layer
         tl.to(
           camera,
           {
@@ -261,12 +266,14 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
       });
 
       const exitAt = durationCap * 0.78;
+      const fadeAt = Math.max(exitAt, durationCap - 0.45);
+
       tl.to(
         camera,
         {
           z: '+=720',
           rotateY: mobile ? 0 : '+=4',
-          duration: durationCap * 0.22,
+          duration: Math.max(0.4, durationCap * 0.22),
           ease: 'power2.inOut'
         },
         exitAt
@@ -281,7 +288,7 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
             opacity: 0,
             scale: 1.04,
             z: `+=${mobile ? 280 : 520}`,
-            duration: durationCap * 0.2,
+            duration: Math.max(0.35, durationCap * 0.2),
             ease: 'power2.inOut'
           },
           exitAt
@@ -293,11 +300,7 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
       }
 
       if (rootRef.current) {
-        tl.to(
-          rootRef.current,
-          { opacity: 0, duration: 0.45, ease: 'power1.out' },
-          durationCap - 0.45
-        );
+        tl.to(rootRef.current, { opacity: 0, duration: 0.45, ease: 'power1.out' }, fadeAt);
       }
     };
 

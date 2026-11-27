@@ -22,8 +22,9 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--oa-bg);
+  background: var(--oa-bg, #090909);
   color: var(--oa-text);
+  opacity: 1;
   padding:
     env(safe-area-inset-top, 0)
     env(safe-area-inset-right, 0)

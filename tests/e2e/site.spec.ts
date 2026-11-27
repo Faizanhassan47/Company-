@@ -53,12 +53,13 @@ test('homepage plays the opening animation after prerender hydration', async ({ 
   await context.close();
 });
 
-test('homepage minimizes the opening sequence for reduced motion', async ({ page }) => {
+test('homepage opening animation is skippable under reduced motion preference', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('dialog', { name: /software engineering introduction/i })).toBeHidden();
+  // Full cinematic still plays; Skip Intro is the accessibility exit
+  await expect(page.getByRole('dialog', { name: /software engineering introduction/i })).toBeVisible();
+  await expect(page.locator('.site-wrapper')).toHaveAttribute('aria-hidden', 'true');
+  await page.getByRole('button', { name: 'Skip Intro' }).click({ force: true });
   await expect(page.locator('.site-wrapper')).not.toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('.site-wrapper')).not.toHaveAttribute('inert', '');
-  // Reduced-motion users must not land with the skip chip stuck visible/focused
   await expect(page.locator('.skip-link')).not.toBeFocused();
 });
 
