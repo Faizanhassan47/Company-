@@ -75,12 +75,23 @@ const AnimatedRoutes = () => {
   );
 };
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const focusMainContent = () => {
+  const main = document.getElementById('main-content');
+  if (!main) return;
+  if (!main.hasAttribute('tabindex')) main.tabIndex = -1;
+  main.focus({ preventScroll: true });
+};
+
 const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   // Replay on every full page load of the homepage (no session skip).
   const isPrerendered = prerendered || (typeof document !== 'undefined' && document.getElementById('root')?.dataset.prerendered === 'true');
-  const [openingDone, setOpeningDone] = useState(() => !isHome || isPrerendered);
+  // Respect OS/browser "reduce motion" — never flash the intro then leave Skip to content focused.
+  const [openingDone, setOpeningDone] = useState(() => !isHome || isPrerendered || prefersReducedMotion());
   const [preloaderDone, setPreloaderDone] = useState(() => isHome || isPrerendered);
   const [searchOpen, setSearchOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
@@ -100,8 +111,9 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
 
   useLayoutEffect(() => {
     // Prerendered pages must match the server markup for the first hydration
-    // pass. Before the browser paints the hydrated app, start the intro.
-    if (isHome && isPrerendered) {
+    // pass. Before the browser paints the hydrated app, start the intro —
+    // unless the user prefers reduced motion.
+    if (isHome && isPrerendered && !prefersReducedMotion()) {
       setOpeningDone(false);
     }
   }, [isHome, isPrerendered]);
@@ -148,9 +160,9 @@ const AppShell: React.FC<{ prerendered?: boolean }> = ({ prerendered = false }) 
           onComplete={() => {
             setOpeningDone(true);
             setPreloaderDone(true);
-            window.requestAnimationFrame(() => {
-              document.querySelector<HTMLElement>('.skip-link')?.focus();
-            });
+            // Focus main content — not the skip link — so the orange
+            // "Skip to content" chip does not stay stuck on screen.
+            window.requestAnimationFrame(focusMainContent);
           }}
         />
       )}

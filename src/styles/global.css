@@ -157,7 +157,8 @@ button {
   transform: translateY(-150%);
 }
 
-.skip-link:focus {
+/* Only reveal on real keyboard focus — not programmatic .focus() after the intro */
+.skip-link:focus-visible {
   transform: translateY(0);
 }
 

@@ -48,7 +48,8 @@ test('homepage plays the opening animation after prerender hydration', async ({ 
   await expect(page.locator('.site-wrapper')).toBeVisible();
   await expect(page.locator('.site-wrapper')).not.toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('.site-wrapper')).not.toHaveAttribute('inert', '');
-  await expect(page.locator('.skip-link')).toBeFocused();
+  await expect(page.locator('#main-content')).toBeFocused();
+  await expect(page.locator('.skip-link')).not.toBeFocused();
   await context.close();
 });
 
@@ -57,6 +58,8 @@ test('homepage minimizes the opening sequence for reduced motion', async ({ page
   await expect(page.getByRole('dialog', { name: /software engineering introduction/i })).toBeHidden();
   await expect(page.locator('.site-wrapper')).not.toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('.site-wrapper')).not.toHaveAttribute('inert', '');
+  // Reduced-motion users must not land with the skip chip stuck visible/focused
+  await expect(page.locator('.skip-link')).not.toBeFocused();
 });
 
 test('homepage dashboard preview does not overflow a phone viewport', async ({ page }) => {
